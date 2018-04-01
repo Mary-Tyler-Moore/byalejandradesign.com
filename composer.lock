@@ -672,15 +672,15 @@
         },
         {
             "name": "wpackagist-plugin/under-construction-page",
-            "version": "2.90",
+            "version": "2.95",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/under-construction-page/",
-                "reference": "tags/2.90"
+                "reference": "tags/2.95"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/under-construction-page.2.90.zip",
+                "url": "https://downloads.wordpress.org/plugin/under-construction-page.2.95.zip",
                 "reference": null,
                 "shasum": null
             },
