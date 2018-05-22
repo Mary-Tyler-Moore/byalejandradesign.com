@@ -82,7 +82,4 @@ if (!defined('ABSPATH')) {
     define('ABSPATH', $webroot_dir . '/wp/');
 };
 
-define( 'DBI_AWS_ACCESS_KEY_ID', env('ILAB_AWS_S3_ACCESS_KEY') );
-define( 'DBI_AWS_SECRET_ACCESS_KEY', env('ILAB_AWS_S3_ACCESS_SECRET') );
-
 define( 'APP_ROOT', $webroot_dir);
