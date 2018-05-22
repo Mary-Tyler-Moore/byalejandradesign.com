@@ -1,6 +1,5 @@
 <?php
 
-echo dirname(__DIR__);
-echo ABSPATH . '../';
+echo APP_ROOT . '../';
 
 ?>
