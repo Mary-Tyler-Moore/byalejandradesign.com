@@ -1,5 +1,5 @@
 <?php
 
-echo get_template_directory();
+echo ABSPATH;
 
 ?>
