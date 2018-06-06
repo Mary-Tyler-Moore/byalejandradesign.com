@@ -1,6 +1,6 @@
 import fallback from './fallback';
 import braintree from './braintree/routes';
-import test from './test';
+import address from './address/routes';
 
-const routes = [braintree, test, fallback];
+const routes = [address, braintree, fallback];
 export default routes;

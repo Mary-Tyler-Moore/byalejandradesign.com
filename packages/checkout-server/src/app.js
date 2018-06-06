@@ -1,10 +1,7 @@
-import dotenv from 'dotenv';
 import express from 'express';
 import serverless from 'serverless-http';
 import middleware from './middleware';
 import routes from './routes';
-
-dotenv.config();
 
 const app = express();
 // Apply all middlewares to array

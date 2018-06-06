@@ -14,21 +14,27 @@
 		"prettier": "prettier --write '**/*.{js,json,md}'",
 		"webpack": "webpack --watch"
 	},
-	"keywords": ["mailserver"],
+	"keywords": [
+		"mailserver"
+	],
 	"author": "Nick Myers",
 	"license": "ISC",
 	"dependencies": {
+		"axios": "^0.18.0",
+		"bluebird": "^3.5.1",
 		"braintree": "^2.11.0",
 		"cors": "^2.8.4",
 		"dotenv": "^4.0.0",
 		"express": "^4.16.2",
-		"serverless-http": "^1.5.3"
+		"serverless-http": "^1.5.3",
+		"xml2js": "^0.4.19"
 	},
 	"devDependencies": {
 		"babel-cli": "^6.26.0",
 		"babel-core": "^6.26.3",
 		"babel-loader": "^7.1.4",
 		"babel-preset-env": "^1.7.0",
+		"dotenv-webpack": "^1.5.5",
 		"eslint": "^4.3.0",
 		"eslint-plugin-import": "^2.7.0",
 		"eslint-watch": "^3.1.2",
@@ -46,6 +52,9 @@
 		"webpack-node-externals": "^1.7.2"
 	},
 	"lint-staged": {
-		"**/*.{js,json,md}": ["prettier --write", "git add"]
+		"**/*.{js,json,md}": [
+			"prettier --write",
+			"git add"
+		]
 	}
 }
