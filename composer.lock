@@ -1,17 +1,17 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2ccd0722e95bc2ec087f99707146959f",
+    "content-hash": "c0125b10fdee9f6cd98b15ddb4d8f6c2",
     "packages": [
         {
             "name": "advanced-custom-fields/advanced-custom-fields-pro",
-            "version": "5.6.9",
+            "version": "5.6.10",
             "dist": {
                 "type": "zip",
-                "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&t=5.6.9",
+                "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&t=5.6.10",
                 "reference": null,
                 "shasum": null
             },
@@ -631,26 +631,6 @@
             "homepage": "https://wordpress.org/plugins/duplicate-post/"
         },
         {
-            "name": "wpackagist-plugin/ewww-image-optimizer",
-            "version": "4.2.1",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/ewww-image-optimizer/",
-                "reference": "tags/4.2.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/ewww-image-optimizer.4.2.1.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/ewww-image-optimizer/"
-        },
-        {
             "name": "wpackagist-plugin/ilab-media-tools",
             "version": "2.1.0",
             "source": {
@@ -691,26 +671,6 @@
             "homepage": "https://wordpress.org/plugins/post-types-order/"
         },
         {
-            "name": "wpackagist-plugin/under-construction-page",
-            "version": "2.95",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/under-construction-page/",
-                "reference": "tags/2.95"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/under-construction-page.2.95.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/under-construction-page/"
-        },
-        {
             "name": "wpackagist-plugin/updraftplus",
             "version": "1.14.11",
             "source": {
@@ -729,26 +689,6 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/updraftplus/"
-        },
-        {
-            "name": "wpackagist-plugin/wp-db-backup",
-            "version": "2.3.1",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/wp-db-backup/",
-                "reference": "tags/2.3.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wp-db-backup.2.3.1.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/wp-db-backup/"
         },
         {
             "name": "wpackagist-plugin/wp-rest-api-cache",
