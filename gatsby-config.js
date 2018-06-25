@@ -7,8 +7,9 @@ module.exports = {
       footerNav: [
         '/cloud-studio',
         '/shop',
-        '/privacy-policy',
         '/faq',
+        '/privacy-policy',
+        '/return-policy',
         '/contact',
       ],
     },
