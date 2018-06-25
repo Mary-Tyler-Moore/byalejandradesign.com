@@ -11,6 +11,9 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     const shopItemTemplate = path.resolve(
       'src/components/Product/SingleProduct.js'
     );
+
+    const cloudStudioTemplate = path.resolve('src/templates/cloud-studio.js');
+
     res(
       graphql(
         `
@@ -25,23 +28,57 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             }
           }
         `
-      ).then((result) => {
-        if (result.errors) {
-          reject(result.errors);
-        }
+      )
+        .then((result) => {
+          if (result.errors) {
+            reject(result.errors);
+          }
 
-        result.data.allWordpressWpShop.edges.forEach(({ node }) => {
-          const path = `shop/${node.slug}`;
+          result.data.allWordpressWpShop.edges.forEach(({ node }) => {
+            const path = `shop/${node.slug}`;
 
-          createPage({
-            path,
-            component: shopItemTemplate,
-            context: {
-              id: node.id,
-            },
+            createPage({
+              path,
+              component: shopItemTemplate,
+              context: {
+                id: node.id,
+              },
+            });
           });
-        });
-      })
+        })
+        .then(() => {
+          return graphql(
+            `
+              {
+                allWordpressPost {
+                  edges {
+                    node {
+                      id
+                      slug
+                    }
+                  }
+                }
+              }
+            `
+          );
+        })
+        .then((result) => {
+          if (result.errors) {
+            reject(result.errors);
+          }
+
+          result.data.allWordpressPost.edges.forEach(({ node }) => {
+            const path = `cloud-studio/${node.slug}`;
+
+            createPage({
+              path,
+              component: cloudStudioTemplate,
+              context: {
+                id: node.id,
+              },
+            });
+          });
+        })
     );
   });
 };
