@@ -2,13 +2,25 @@ import * as React from 'react';
 import withSize from 'react-size-components';
 
 import { ProductListDesktop, ProductListMobile } from '../components/Product';
+import {
+  CollectionsDesktop,
+  CollectionsMobile,
+} from '../components/Collections';
 
 class Shop extends React.Component {
   render() {
     return (
       <section className="shop">
         <section className="shopSideBar">
-          <p>SideBar</p>
+          {this.props.sizes.mobile ? (
+            <CollectionsMobile
+              edges={this.props.data.allWordpressWpCollections.edges}
+            />
+          ) : (
+            <CollectionsDesktop
+              edges={this.props.data.allWordpressWpCollections.edges}
+            />
+          )}
         </section>
         <section className="shopProducts">
           {this.props.data.allWordpressWpShop.edges.map(
@@ -40,6 +52,7 @@ export const query = graphql`
             sale_price
             description
             product_type
+            provided_dimensions
             ceramic {
               name
               slug
@@ -64,7 +77,6 @@ export const query = graphql`
                 }
               }
             }
-            provided_dimensions
           }
         }
       }
