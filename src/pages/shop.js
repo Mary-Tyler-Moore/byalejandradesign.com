@@ -1,8 +1,7 @@
 import * as React from 'react';
+import withSize from 'react-size-components';
 
-import Img from 'gatsby-image';
-
-import { ProductList } from '../components/Product';
+import { ProductListDesktop, ProductListMobile } from '../components/Product';
 
 class Shop extends React.Component {
   render() {
@@ -12,16 +11,21 @@ class Shop extends React.Component {
           <p>SideBar</p>
         </section>
         <section className="shopProducts">
-          {this.props.data.allWordpressWpShop.edges.map(({ node }) => (
-            <ProductList node={node} key={node.id} />
-          ))}
+          {this.props.data.allWordpressWpShop.edges.map(
+            ({ node }) =>
+              this.props.sizes.mobile ? (
+                <ProductListMobile node={node} key={node.id} />
+              ) : (
+                <ProductListDesktop node={node} key={node.id} />
+              )
+          )}
         </section>
       </section>
     );
   }
 }
 
-export default Shop;
+export default withSize({ mobile: true })(Shop);
 
 export const query = graphql`
   query AllShopItems {
@@ -61,6 +65,27 @@ export const query = graphql`
               }
             }
             provided_dimensions
+          }
+        }
+      }
+    }
+    allWordpressWpCollections {
+      edges {
+        node {
+          name
+          id
+          description
+          acf {
+            subtitle
+            image {
+              localFile {
+                childImageSharp {
+                  sizes(maxWidth: 800, maxHeight: 600) {
+                    ...GatsbyImageSharpSizes
+                  }
+                }
+              }
+            }
           }
         }
       }
