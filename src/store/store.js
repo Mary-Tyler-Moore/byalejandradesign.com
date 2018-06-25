@@ -14,24 +14,30 @@ const persistedState = application ? application.state : undefined;
 // no date means 0 will automatically invalidate
 const stateDate = application ? application.date : 0;
 
-const store =
-  process.env.NODE_ENV !== 'development' &&
-  useStorage(REFRESH, INVALIDATE)(stateDate)
-    ? middleware(createStore)(reducer, persistedState)
-    : middleware(createStore)(reducer);
+const _createStore = () => {
+  console.log('ex');
 
-if (process.env.NODE_ENV !== 'development') {
-  store.subscribe(
-    throttle(() => {
-      const application = {
-        state: store.getState(),
-        date: Date.now(),
-      };
+  const store =
+    process.env.NODE_ENV !== 'development' &&
+    useStorage(REFRESH, INVALIDATE)(stateDate)
+      ? middleware(createStore)(reducer, persistedState)
+      : middleware(createStore)(reducer);
 
-      saveLocalApplication(application);
-    }),
-    1000
-  );
-}
+  if (process.env.NODE_ENV !== 'development') {
+    store.subscribe(
+      throttle(() => {
+        const application = {
+          state: store.getState(),
+          date: Date.now(),
+        };
 
-export default store;
+        saveLocalApplication(application);
+      }),
+      1000
+    );
+  }
+
+  return store;
+};
+
+export default _createStore;
