@@ -7,7 +7,7 @@ import { kebabToSentence, compose, capitalize } from 'smalldash';
  */
 const removeSlash = (url) => {
   const regex = /\//gi;
-  console.log(url.split(regex));
+  // console.log(url.split(regex));
   return url.split(regex)[1];
 };
 
