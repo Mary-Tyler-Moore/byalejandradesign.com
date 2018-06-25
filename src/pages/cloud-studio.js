@@ -1,26 +1,17 @@
 import * as React from 'react';
-import ReactHtmlParser from 'react-html-parser';
+import withSize from 'react-size-components';
+import { AllPostsDesktop, AllPostsMobile } from '../components/CloudStudio';
 
-class CloudStudio extends React.Component {
-  render() {
-    console.log(this.props.data.allWordpressPost);
-    return (
-      <section className="cloudStudio">
-        {this.props.data.allWordpressPost.edges.map(({ node }) => (
-          <article className="cloudStudio_post">
-            <h3 className="cloudStudio_postTitle">{node.title}</h3>
-            <p className="cloudStudio_postDate">{node.date}</p>
-            <div className="cloudStudio_postContent">
-              {ReactHtmlParser(node.content)}
-            </div>
-          </article>
-        ))}
-      </section>
-    );
-  }
-}
+const Edges = (props) =>
+  props.sizes.mobile ? (
+    <AllPostsMobile edges={props.data.allWordpressPost.edges} />
+  ) : (
+    <AllPostsDesktop edges={props.data.allWordpressPost.edges} />
+  );
 
-export default CloudStudio;
+const SizedEdges = withSize({ mobile: true })(Edges);
+
+export default SizedEdges;
 
 export const query = graphql`
   query AllBlogPosts {
