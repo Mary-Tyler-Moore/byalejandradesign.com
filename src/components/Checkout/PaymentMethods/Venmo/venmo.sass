@@ -1,0 +1,26 @@
+@import '../../../Global/extras'
+
+$venmo-blue: #3D95CE
+  
+.venmoButton
+  @extend %button
+  background: $venmo-blue
+  width: 100%
+  max-width: 750px
+  height: 55px
+  @include small-phone
+    height: 45px
+  min-height: 40px
+  max-height: 55px
+  padding: 14px 4px 11px 4px
+  border: none
+  border-radius: 4px
+  &:hover
+    opacity: 0.8
+    &_img
+      width: 90px
+
+  // &_container
+  //   width: 100%
+  //   +flexbox
+  //   justify-content: center

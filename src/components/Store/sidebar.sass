@@ -1,0 +1,19 @@
+@import ../Global/extras
+
+.storeSidebar
+  display: flex
+  flex-direction: column
+
+.storeSidebarCollection
+  margin: 1rem 0
+
+.collectionPhoto
+  cursor: pointer
+  backface-visibility: hidden
+  box-shadow: 4px 4px 16px -8px $black
+
+  +transition(0.25s transform, 0.25s filter)
+
+  &:hover
+    transform: scale(1.05)
+    filter: brightness(0.6)

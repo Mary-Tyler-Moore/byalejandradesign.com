@@ -1,0 +1,24 @@
+@import '../../../Global/extras'
+
+.cardIcons
+  display: grid
+  grid-template-columns: repeat(20, 1fr)
+  grid-gap: 0.5rem
+  // margin: 2rem 0
+  padding: 0.5rem 0
+  border-bottom: 1px solid $grey-lightest
+  &_forceAspect
+    position: relative
+    &:before
+      display: block
+      content: ""
+      width: 100%
+      padding-top: (157 / 250) * 100%
+  &_svg
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    width: 100%
+    height: auto

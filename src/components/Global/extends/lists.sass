@@ -1,0 +1,21 @@
+@import '../colors/colors'
+@import '../mixins/mixins'
+@import '../fonts/fonts'
+
+%list__generic
+	box-sizing: border-box
+	box-shadow: none
+  color: $grey
+	font-family: $primary-font
+	margin: 0
+	padding: 0
+
+%ul
+  @extend %list__generic
+  list-style-type: circle
+
+%ol
+	@extend %list__generic
+
+%li
+  @extend %list__generic

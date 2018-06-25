@@ -1,0 +1,43 @@
+@import ../Global/extras.sass
+
+%navLink
+  text-decoration: none
+  padding: 1rem
+  transition: 0.25s color, 0.25s background
+
+%navHighlight
+  background: $white
+  color: $black
+
+.mainNavDesktop
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  display: flex
+  justify-content: space-between
+  background: transparentize($black, 0.2)
+  z-index: 2
+
+  &_link
+    @extend %navLink
+
+    color: white
+
+    &:hover
+      @extend %navHighlight
+
+    &-active
+      background: $white
+      color: $black
+
+.mainNavMobile
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+
+  &_link
+    @extend %navLink
+
+    margin: 1rem
