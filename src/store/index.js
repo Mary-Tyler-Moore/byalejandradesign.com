@@ -1,2 +1,2 @@
-import store from './store';
-export default store;
+import createStore from './create-store';
+export default createStore;
