@@ -1,25 +1,31 @@
-@import '../Global/extras'
+@import ../../sass/extras
 
 .contactForm
-	@extend %form
+  @extend %form
 
 .contactFormItem
-	@extend %formItem
-	&_label
-		@extend %formLabel
-	&_input
-		@extend %formInput
+  @extend %formItem
+
+  &_label
+    @extend %formLabel
+
+  &_input
+    @extend %formInput
 
 .contactFormTextArea
-	@extend %formItem
-	&_label
-		@extend %formLabel
-	&_textArea
-		@extend %formInput
-		resize: vertical
+  @extend %formItem
+
+  &_label
+    @extend %formLabel
+
+  &_textArea
+    @extend %formInput
+
+    resize: vertical
 
 .contactFormSubmit
-	&_input
-		@extend %button-styled
-		font-family: 'FontAwesome'
-		font-size: 1.4rem
+  &_input
+    @extend %button-styled
+
+    font-family: "FontAwesome"
+    font-size: 1.4rem

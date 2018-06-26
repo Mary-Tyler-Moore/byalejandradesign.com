@@ -7,7 +7,7 @@ import { dollarString } from 'smalldash';
 // style
 import './product-list.sass';
 
-const ProductListDesktop = ({ node, onClick }) => (
+const ProductListMobile = ({ node, onClick }) => (
   <article className="productLink">
     <Img sizes={node.acf.main_image.localFile.childImageSharp.sizes} />
     <h3 className="productLink_title">
@@ -20,4 +20,4 @@ const ProductListDesktop = ({ node, onClick }) => (
   </article>
 );
 
-export default ProductListDesktop;
+export default ProductListMobile;

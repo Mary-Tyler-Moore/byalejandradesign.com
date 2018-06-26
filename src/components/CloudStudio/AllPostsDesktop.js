@@ -6,7 +6,7 @@ class AllPostsDesktop extends React.Component {
     return (
       <section className="cloudStudio">
         {this.props.edges.map(({ node }) => (
-          <article className="cloudStudio_post">
+          <article key={node.id} className="cloudStudio_post">
             <h3 className="cloudStudio_postTitle">{node.title}</h3>
             <p className="cloudStudio_postDate">{node.date}</p>
             <div className="cloudStudio_postContent">

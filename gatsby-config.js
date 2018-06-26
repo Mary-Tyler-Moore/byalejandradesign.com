@@ -3,7 +3,7 @@ module.exports = {
     title: 'Gatsby Default Starter',
     subTitle: 'Design Studio and Shop',
     navLayout: {
-      mainNav: ['/home', '/cloud-studio', '/shop', '/contact'],
+      mainNav: ['/home', '/cloud-studio', '/shop', '/cart', '/contact'],
       footerNav: [
         '/cloud-studio',
         '/shop',
@@ -18,6 +18,7 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
+    'gatsby-plugin-react-next',
     {
       resolve: 'gatsby-plugin-sass',
       options: { precision: 8 },

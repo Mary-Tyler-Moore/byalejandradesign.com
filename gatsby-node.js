@@ -8,9 +8,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators;
 
   return new Promise((res, rej) => {
-    const shopItemTemplate = path.resolve(
-      'src/components/Product/SingleProduct.js'
-    );
+    const shopItemTemplate = path.resolve('src/templates/shop-product.js');
 
     const cloudStudioTemplate = path.resolve('src/templates/cloud-studio.js');
 

@@ -40,7 +40,7 @@ Layout.propTypes = {
   children: PropTypes.func,
 };
 
-export default withSize({ mobile: true })(Layout);
+export default withSize({ mobile: true, orientation: true })(Layout);
 
 export const query = graphql`
   query SiteTitleQuery {

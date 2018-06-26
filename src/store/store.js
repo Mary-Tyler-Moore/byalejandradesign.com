@@ -15,8 +15,6 @@ const persistedState = application ? application.state : undefined;
 const stateDate = application ? application.date : 0;
 
 const _createStore = () => {
-  console.log('ex');
-
   const store =
     process.env.NODE_ENV !== 'development' &&
     useStorage(REFRESH, INVALIDATE)(stateDate)
