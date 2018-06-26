@@ -7,7 +7,7 @@ import Button from '../Button';
 import './single-product.sass';
 import title from './title.js';
 
-const SingleProductDesktop = ({ node } = {}) => (
+const SingleProductDesktop = ({ node, addOneToCart } = {}) => (
   <article className="singleProductDesktop">
     <aside className="singleProductDesktop_img">
       <Img sizes={node.acf.main_image.localFile.childImageSharp.sizes} />
@@ -17,7 +17,9 @@ const SingleProductDesktop = ({ node } = {}) => (
       <p>{node.acf.description}</p>
       <p>{dollarString(node.acf.price)}</p>
       <p>Quantity Available: {node.acf.quantity}</p>
-      <Button>Add To Cart</Button>
+      <Button onClick={addOneToCart} name={node.id}>
+        Add To Cart
+      </Button>
     </aside>
   </article>
 );

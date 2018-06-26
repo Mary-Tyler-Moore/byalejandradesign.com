@@ -7,7 +7,7 @@ import Button from '../Button';
 import './single-product.sass';
 import title from './title';
 
-const SingleProductMobile = ({ node } = {}) => (
+const SingleProductMobile = ({ node, addOneToCart } = {}) => (
   <article className="singleProductMobile">
     <aside>
       <Img sizes={node.acf.main_image.localFile.childImageSharp.sizes} />
@@ -17,7 +17,9 @@ const SingleProductMobile = ({ node } = {}) => (
       <p>{node.acf.description}</p>
       <p>{dollarString(node.acf.price)}</p>
       <p>Quantity Available: {node.acf.quantity}</p>
-      <Button>Add To Cart</Button>
+      <Button onClick={addOneToCart} name={node.id}>
+        Add To Cart
+      </Button>{' '}
     </aside>
   </article>
 );

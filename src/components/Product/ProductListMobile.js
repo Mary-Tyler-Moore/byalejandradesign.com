@@ -7,14 +7,14 @@ import { dollarString } from 'smalldash';
 // style
 import './product-list.sass';
 
-const ProductListMobile = ({ node, onClick }) => (
+const ProductListMobile = ({ node, addOneToCart }) => (
   <article className="productLink">
     <Img sizes={node.acf.main_image.localFile.childImageSharp.sizes} />
     <h3 className="productLink_title">
       {node.acf.display_title ? node.acf.display_title : node.title.rendered}
     </h3>
     <p className="productLink_price">{dollarString(node.acf.price)}</p>
-    <Button onClick={onClick} name={node.id}>
+    <Button onClick={addOneToCart} name={node.id}>
       Add to Cart
     </Button>
   </article>

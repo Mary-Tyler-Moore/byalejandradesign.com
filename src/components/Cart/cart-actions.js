@@ -37,3 +37,13 @@ export const addOneToCart = (id) => updateCartQuantity({ id, quantity: 1 });
  */
 export const removeOneFromCart = (id) =>
   updateCartQuantity({ id, quantity: -1 });
+
+type Fn<T> = (...args: Array<any>) => T;
+type ExtractReturn = <T>(Fn<T>) => T;
+
+export type Actions =
+  | $Call<ExtractReturn, typeof updateCartQuantity>
+  | $Call<ExtractReturn, typeof updateCartDirectly>
+  | $Call<ExtractReturn, typeof emptyCart>
+  | $Call<ExtractReturn, typeof addOneToCart>
+  | $Call<ExtractReturn, typeof removeOneFromCart>;

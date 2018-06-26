@@ -1,17 +1,19 @@
-import React, { PureComponent } from 'react';
+// @flow
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'smalldash';
 // actions
-import {
-  addOneToCart,
-  removeOneFromCart,
-  updateCartQuantity,
-  updateCartQuantityDirectly,
-  emptyCart,
-} from './cart-actions';
+import withCart from './with-cart';
 
-class Cart extends PureComponent {
+import type { CartType } from './cart-reducer';
+
+type Props = {
+  edges: Array<{}>,
+  cart: CartType,
+};
+
+class Cart extends React.PureComponent<Props> {
   render() {
     return (
       <aside className="cart">
@@ -25,22 +27,4 @@ class Cart extends PureComponent {
   }
 }
 
-const mapStateToProps = (state) => ({
-  cart: state.cart,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  addOneToCart: (id) => dispatch(addOneToCart(id)),
-  removeOneFromCart: (id) => dispatch(removeOneFromCart(id)),
-  updateCartQuantity: (obj) => dispatch(updateCartQuantity(obj)),
-  updateCartQuantityDirectly: (obj) =>
-    dispatch(updateCartQuantityDirectly(obj)),
-  emptyCart: () => dispatch(emptyCart),
-});
-
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
-)(Cart);
+export default withCart(Cart);

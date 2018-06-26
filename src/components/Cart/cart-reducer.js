@@ -1,13 +1,20 @@
+// @flow
 import { uniq, compose } from 'smalldash';
 import invariant from 'invariant';
 
-/**
- * {initalProduct}
- * id: '',
- * quantity: 0,
- */
+import type { Actions } from './cart-actions';
 
-const initialCart = {
+export type ProductEntry = {
+  id: number | string,
+  quantity: number,
+};
+
+export type CartType = {
+  products: Array<ProductEntry>,
+  status: string,
+};
+
+const initialCart: CartType = {
   products: [],
   status: '',
 };
@@ -53,7 +60,7 @@ const updateCartDirectly = (products, { id, quantity, type } = {}) => {
   );
 };
 
-const cartReducer = (state = initialCart, action) => {
+const cartReducer = (state = initialCart, action: Actions) => {
   switch (action.type) {
     case 'CART_UPDATE_QUANTITY':
       return {
