@@ -1,4 +1,4 @@
-@import '../../sass/extras'
+@import ../../sass/extras
 
 .cartIcon
   display: block
@@ -7,29 +7,32 @@
   padding: 0
   border: none
   position: relative
+
   +transition(background 0.35s)
+
   text-decoration: none
-  &_img
-    color: $white
-    +transition(color 0.35s)
-    text-shadow: 1px 1px 1px transparentize($grey-dark, 0.6)
-  &_quantity
-    position: absolute
-    top: 50%
-    left: 50%
-    transform: translate(-50%, -35%)
-    font-size: 0.9rem
-    font-weight: 700
-    background: 
-    color: $grey-darker
-    +transition(color 0.35s)
-    text-shadow: 1px 1px 1px transparentize($grey-dark, 0.8)
-  &:hover
-    // background: $white
-    .cartIcon
-      &_img
-        color: $grey-darkest
-      &_quantity
-        color: $white
-    
-    
+
+  // &_img
+  //   color: $white
+  //   +transition(color 0.35s)
+  //   text-shadow: 1px 1px 1px transparentize($grey-dark, 0.6)
+  // &_quantity
+  //   position: absolute
+  //   top: 50%
+  //   left: 50%
+  //   transform: translate(-50%, -35%)
+  //   font-size: 0.9rem
+  //   font-weight: 700
+  //   background:
+  //   color: $grey-darker
+  //   +transition(color 0.35s)
+  //   text-shadow: 1px 1px 1px transparentize($grey-dark, 0.8)
+  // &:hover
+  //   // background: $white
+  //   .cartIcon
+  //     &_img
+  //       color: $grey-darkest
+  //     &_quantity
+  //       color: $white
+  //
+  //

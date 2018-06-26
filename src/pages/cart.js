@@ -2,7 +2,9 @@ import * as React from 'react';
 import withSize from 'react-size-components';
 import Cart from '../components/Cart';
 
-const Edges = (props) => <Cart edges={props.data.allWordpressWpShop.edges} />;
+const Edges = (props) => (
+  <Cart edges={props.data.allWordpressWpShop.edges} {...props} />
+);
 const SizedEdges = withSize({ mobile: true })(Edges);
 
 export default SizedEdges;
@@ -13,28 +15,12 @@ export const query = graphql`
       edges {
         node {
           id
+          slug
           title
           acf {
-            quantity
             price
             sale_price
             description
-            product_type
-            provided_dimensions
-            ceramic {
-              name
-              slug
-            }
-            size {
-              name
-              slug
-            }
-            collection {
-              name
-              slug
-            }
-            additional_images
-            video_type
             display_title
             main_image {
               localFile {

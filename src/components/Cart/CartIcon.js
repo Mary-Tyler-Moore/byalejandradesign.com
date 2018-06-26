@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { compose } from 'smalldash';
+import { Icon } from 'njmyers-component-library';
+import withCart from './with-cart';
 // style
 import './cart-icon.sass';
 
@@ -22,35 +21,22 @@ class CartIcon extends PureComponent {
   };
 
   componentDidMount() {
-    setTimeout(this.setIconWidth, 1000);
+    // setTimeout(this.setIconWidth, 1000);
   }
 
   render() {
     return (
-      <Link
-        style={{ width: `${this.state.width}px` }}
-        className="cartIcon"
-        to="/checkout/cart"
-      >
-        <i
-          className="fa fa-shopping-bag fa-3x cartIcon_img"
-          ref={(node) => (this.icon = node)}
+      <div className="cartIcon">
+        <Icon.Ring
+          width="20px"
+          className="cartIcon_svg"
+          color="white"
+          thickness={8}
         />
         <span className="cartIcon_quantity">{this.props.quantity}</span>
-      </Link>
+      </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  quantity: state.cart.totalQuantity,
-});
-
-const mapDispatchToProps = (dispatch) => ({});
-
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
-)(CartIcon);
+export default withCart(CartIcon);
