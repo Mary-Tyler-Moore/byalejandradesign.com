@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it renders the footer navs it displays the desktop version 1`] = `"<nav class=\\"footerNavDesktop\\"><a class=\\"footerNavDesktop_link\\" href=\\"/link\\">Link</a><a class=\\"footerNavDesktop_link\\" href=\\"/other-link\\">Other Link</a></nav>"`;
+
+exports[`it renders the footer navs it displays the mobile version 1`] = `"<nav class=\\"footerNavMobile\\"><a class=\\"footerNavMobile_link\\" href=\\"/link\\">Link</a><a class=\\"footerNavMobile_link\\" href=\\"/other-link\\">Other Link</a></nav>"`;

@@ -7,8 +7,8 @@ import { kebabToSentence, compose, capitalize } from 'smalldash';
  */
 const removeSlash = (url) => {
   const regex = /\//gi;
-  // console.log(url.split(regex));
-  return url.split(regex)[1];
+  const split = url.split(regex);
+  return split.length > 1 ? split[1] : split[0];
 };
 
 /**

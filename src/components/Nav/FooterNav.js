@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Link from 'gatsby-link';
 import URLToTitle from './url-to-title';
-//
+// style
 import './footer-nav.sass';
 
 class DesktopFooterNav extends React.Component {

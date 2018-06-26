@@ -1,11 +1,16 @@
 // @flow
+
+/**
+ * Creates an action for submitting the form
+ * @return {[type]} [description]
+ */
 export const submitContactForm = () => ({ type: 'SUBMIT_CONTACT_FORM' });
 
 /**
  * Creates an action with key and value for updating contact form
- * @param  {[type]} key   [description]
- * @param  {[type]} value [description]
- * @return {[type]}       [description]
+ * @param  {string} key   [description]
+ * @param  {string} value [description]
+ * @return {action}       [description]
  */
 export const updateContactForm = (key: string, value: string) => ({
   type: 'UPDATE_CONTACT_FORM',
@@ -13,11 +18,21 @@ export const updateContactForm = (key: string, value: string) => ({
   key,
 });
 
+/**
+ * Creates
+ * @param  {[type]} value [description]
+ * @return {[type]}       [description]
+ */
 export const submitFormSucess = (value: string) => ({
   type: 'SUBMIT_CONTACT_FORM_SUCCESS',
   value,
 });
 
+/**
+ * Creates a contact form error
+ * @param  {[type]} value [description]
+ * @return {[type]}       [description]
+ */
 export const submitFormError = (value: string) => ({
   type: 'SUBMIT_CONTACT_FORM_ERROR',
   value,

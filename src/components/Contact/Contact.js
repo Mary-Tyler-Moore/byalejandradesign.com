@@ -1,5 +1,6 @@
 // @flow
 import * as React from 'react';
+import axios from 'axios';
 // reducer
 import contactReducer, { contactFields } from './contact-reducer';
 import type { State } from './contact-reducer';
@@ -7,7 +8,7 @@ import type { State } from './contact-reducer';
 import { updateContactForm, submitContactForm } from './contact-actions';
 import type { Actions } from './contact-actions';
 // components
-import { Form } from 'njmyers-component-library';
+import { Form, StatusSwitch } from 'njmyers-component-library';
 // styles
 import './contact.sass';
 
@@ -33,18 +34,34 @@ class Contact extends React.PureComponent<{}, State> {
     status: 'initial',
   };
 
-  logAction = (prevState: State) => (action: Actions) => (nextState) => {
+  logAction = (prev: State) => (action: Actions) => (next: State) => {
     console.log({
-      prevState,
+      prev,
       action,
-      nextState,
+      next,
     });
+  };
+
+  submitMiddleware = async (action: Actions, state: State) => {
+    try {
+      axios.post(`${process.env.REACT_APP_MAIL_URL}/send/artetexture`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: process.env.REACT_APP_MAIL_API_KEY,
+        },
+        body: this.state,
+      });
+    } catch (e) {
+      this.dispatch(submitFormError(e));
+    }
   };
 
   dispatch = (action: Actions) => {
     this.setState((prevState) => {
       // generate next state
       const nextState: State = contactReducer(prevState, action);
+      // do side effects
+      this.submitMiddleware(action, prevState);
       // state logging
       if (process.env.NODE_ENV !== 'production') {
         this.logAction(prevState)(action)(nextState);
@@ -60,7 +77,7 @@ class Contact extends React.PureComponent<{}, State> {
   };
 
   onSubmit = (event: SyntheticEvent<HTMLInputElement>) => {
-    console.log(event);
+    this.dispatch(submitContactForm());
   };
 
   render() {
@@ -68,13 +85,7 @@ class Contact extends React.PureComponent<{}, State> {
       <section className="contact" onSubmit={this.onSubmit}>
         <h1 className="contact_heading">Contact Artetexture</h1>
         <form className="contactForm">
-          <input
-            type="text"
-            onChange={this.onChange}
-            name="name"
-            value={this.state.name}
-          />
-          {/* <Input
+          <Input
             name="name"
             label="Full Name"
             placeholder="Nicholas"
@@ -102,13 +113,11 @@ class Contact extends React.PureComponent<{}, State> {
             value={this.state.message}
             rows={8}
             required={true}
-          /> */}
-          {this.state.status ? (
+          />
+          <StatusSwitch status={this.state.status}>
             <p className="message">{this.state.status}</p>
-          ) : (
-            undefined
-          )}
-          {/* <Submit value="&#xf1d8;" /> */}
+          </StatusSwitch>
+          <Submit value="&#xf1d8;" />
         </form>
       </section>
     );
