@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'Artetexture',
     subTitle: 'Design Studio and Shop',
     navLayout: {
       mainNav: ['/home', '/cloud-studio', '/shop', '/cart', '/contact'],

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Link from 'gatsby-link';
+import CartIcon from '../Cart/CartIcon';
 import withSize from 'react-size-components';
 import { Modal } from 'njmyers-component-library';
 import URLToTitle from './url-to-title';
@@ -20,6 +21,9 @@ class DesktopMainNav extends React.Component {
             {URLToTitle(nav)}
           </Link>
         ))}
+        <Link className="mainNavDesktop_link" to="/cart">
+          Cart
+        </Link>
       </nav>
     );
   }

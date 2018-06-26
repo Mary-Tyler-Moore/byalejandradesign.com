@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import withSize from 'react-size-components';
 import { MainNav, FooterNav } from '../components/Nav';
-
+import sampleImg from '../media/sample_header.jpg';
 // import Header from '../components/header'
 import 'normalize.css';
 import './index.sass';
@@ -11,7 +11,9 @@ import './index.sass';
 const Layout = ({ children, data, sizes }) => (
   <div className="root">
     <Helmet
-      title={data.site.siteMetadata.title}
+      title={
+        data.site.siteMetadata.title + ': ' + data.site.siteMetadata.subTitle
+      }
       meta={[
         { name: 'description', content: 'Sample' },
         { name: 'keywords', content: 'sample, something' },
@@ -23,8 +25,20 @@ const Layout = ({ children, data, sizes }) => (
         width: '100%',
         height: '400px',
         background: 'rgba(0, 0, 0, 0.6)',
+        overflow: 'hidden',
+        position: 'relative',
       }}
     >
+      <img
+        style={{
+          width: '100%',
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+        }}
+        src={sampleImg}
+      />
       Header type is Mobile {sizes.mobile.toString()}
     </header>
     {/* <Header siteTitle={data.site.siteMetadata.title} /> */}

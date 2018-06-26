@@ -42,26 +42,35 @@ class Contact extends React.PureComponent<{}, State> {
     });
   };
 
-  submitMiddleware = async (action: Actions, state: State) => {
-    try {
-      axios.post(`${process.env.REACT_APP_MAIL_URL}/send/artetexture`, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: process.env.REACT_APP_MAIL_API_KEY,
-        },
-        body: this.state,
-      });
-    } catch (e) {
-      this.dispatch(submitFormError(e));
-    }
+  submitRequest = (action: Actions, state: State) => {
+    // if (action.type === 'SUBMIT_CONTACT_FORM') {
+    //   // set state to loading
+    //   this.setState({ status: 'loading' });
+    //   // make request
+    //   try {
+    //     const response = await axios({
+    //       url: `${process.env.REACT_APP_MAIL_URL}/send/artetexture`,
+    //       headers: {
+    //         'Content-Type': 'application/json',
+    //         Authorization: process.env.REACT_APP_MAIL_API_KEY,
+    //       },
+    //       data: this.state,
+    //     });
+    //
+    //     console.log(response);
+    //   } catch (e) {
+    //     this.dispatch(submitFormError(e));
+    //   }
+    // }
   };
 
   dispatch = (action: Actions) => {
+    // do side effects
+    this.submitRequest(action, this.state);
+    // do reduction
     this.setState((prevState) => {
       // generate next state
       const nextState: State = contactReducer(prevState, action);
-      // do side effects
-      this.submitMiddleware(action, prevState);
       // state logging
       if (process.env.NODE_ENV !== 'production') {
         this.logAction(prevState)(action)(nextState);
@@ -77,6 +86,7 @@ class Contact extends React.PureComponent<{}, State> {
   };
 
   onSubmit = (event: SyntheticEvent<HTMLInputElement>) => {
+    event.preventDefault();
     this.dispatch(submitContactForm());
   };
 
