@@ -4,22 +4,14 @@ import Helmet from 'react-helmet';
 import withSize from 'react-size-components';
 import { MainNav, FooterNav } from '../components/Nav';
 import Header from '../components/Header';
-// fonts
-import WebFont from 'webfontloader';
+import Fonts from '../components/Fonts';
 // styles
 import 'normalize.css';
 import './index.sass';
 
-const fonts = {
-  google: {
-    families: ['Work+Sans:300,400,500,700,800,900'],
-  },
-};
-
-WebFont.load(fonts);
-
 const Layout = ({ children, data, sizes }) => (
   <div className="root">
+    <Fonts />
     <Helmet
       title={
         data.site.siteMetadata.title + ': ' + data.site.siteMetadata.subTitle
@@ -28,7 +20,12 @@ const Layout = ({ children, data, sizes }) => (
         { name: 'description', content: 'Sample' },
         { name: 'keywords', content: 'sample, something' },
       ]}
-    />
+    >
+      <link
+        href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900"
+        rel="stylesheet"
+      />
+    </Helmet>
     <MainNav
       maxWidth={data.site.siteMetadata.design.maxWidth}
       mainNav={data.site.siteMetadata.navLayout.mainNav}
