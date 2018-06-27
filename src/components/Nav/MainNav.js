@@ -2,7 +2,7 @@
 import * as React from 'react';
 import Link from 'gatsby-link';
 import withSize from 'react-size-components';
-import { Modal } from 'njmyers-component-library';
+import { Modal, Icon } from 'njmyers-component-library';
 import URLToTitle from './url-to-title';
 // icons
 import Logo from '../Logo';
@@ -17,6 +17,7 @@ type Props = {
     },
   },
   maxWidth: number,
+  contentPadding: number,
   mainNav: Array<string>,
 };
 
@@ -24,9 +25,10 @@ class DesktopMainNav extends React.Component<Props> {
   getStyle = () => {
     const { innerWidth } = this.props.sizes.window;
     const { maxWidth } = this.props;
+    // calculate the max width
     const sidePadding = innerWidth > maxWidth ? (innerWidth - maxWidth) / 2 : 0;
-
-    return { padding: `0 ${sidePadding}px` };
+    // add content padding
+    return { padding: `0 ${sidePadding + this.props.contentPadding}px` };
   };
 
   render() {
@@ -55,25 +57,61 @@ class DesktopMainNav extends React.Component<Props> {
   }
 }
 
-class MobileMainNav extends React.Component<Props> {
+type MobileNavState = {
+  status: 'on' | 'off',
+};
+
+const LinkedCartIcon = ({ onClick }) => (
+  <Link
+    to="/cart"
+    className="mainNavMobile_link"
+    activeClassName="mainNavMobile_link-active"
+    onClick={onClick}
+  >
+    <CartIcon />
+  </Link>
+);
+
+class MobileMainNav extends React.Component<Props, MobileNavState> {
+  state = {
+    status: 'off',
+  };
+
+  handleClick = () => {
+    this.setState(({ status }) => ({
+      status: status === 'on' ? 'off' : 'on',
+    }));
+  };
+
   render() {
     return (
-      <Modal>
-        <nav className="mainNavMobile">
-          {this.props.mainNav.map((nav) => (
-            <Link
-              key={nav}
-              to={nav}
-              className="mainNavMobile_link"
-              activeClassName="mainNavMobile_link-active"
-              onClick={this.props.onClick}
-            >
-              {URLToTitle(nav)}
-            </Link>
-          ))}
-          <CartIcon />
-        </nav>
-      </Modal>
+      <header className="mainHeaderMobile">
+        <div className="mainHeaderMobile_hamburger" onClick={this.handleClick}>
+          <Icon.Hamburger color="#ffffff" radius={1} />
+          <Icon.Cross color="#ffffff" radius={1} />
+        </div>
+        <Modal
+          status={this.state.status}
+          style={{ background: 'rgba(0, 0, 0, 0.7)' }}
+        >
+          <nav className="mainNavMobile">
+            {this.props.mainNav.map((nav) => (
+              <Link
+                key={nav}
+                to={nav}
+                className="mainNavMobile_link"
+                activeClassName="mainNavMobile_link-active"
+                onClick={this.handleClick}
+              >
+                {URLToTitle(nav)}
+              </Link>
+            ))}
+            <LinkedCartIcon onClick={this.handleClick} />
+            {/* <CartIcon className="mainNavMobile_link" /> */}
+          </nav>
+        </Modal>
+        <LinkedCartIcon onClick={this.handleClick} />
+      </header>
     );
   }
 }

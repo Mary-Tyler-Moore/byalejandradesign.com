@@ -1,15 +1,16 @@
+@import ../../sass/extras
+
 .header
   &_imgContainer
     height: 500px
     width: 100%
     overflow: hidden
 
-  &_img
-    // position: absolute
-    // top: 50%
+    +all-phone
+      height: 220px
 
-    // left: 50%
+  &_img
     transform: translateY(-25%)
 
-    // display: flex
-    // align-items: flex-end
+    +all-phone
+      transform: translateY(-20%)
