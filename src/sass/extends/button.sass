@@ -7,7 +7,6 @@
   box-sizing: border-box
   box-shadow: none
   cursor: pointer
-  font-family: $primary-font
   margin: 0
   padding: 0
 
@@ -19,7 +18,7 @@
 %button-styled
   @extend %button
 
-  background: $grey
+  background: $red-lighter
   border-radius: 2px
   box-shadow: 2px 2px 5px transparentize($black, 0.85)
   font-size: 1rem
@@ -29,4 +28,4 @@
   +transition(background 0.25s ease)
 
   &:hover
-    background: transparentize($grey, 0.2)
+    background: transparentize($red-lighter, 0.2)

@@ -28,6 +28,7 @@ const Layout = ({ children, data, sizes }) => (
     </Helmet>
     <MainNav
       maxWidth={data.site.siteMetadata.design.maxWidth}
+      contentPadding={data.site.siteMetadata.design.contentPadding}
       mainNav={data.site.siteMetadata.navLayout.mainNav}
       sizes={sizes}
     />
@@ -36,6 +37,7 @@ const Layout = ({ children, data, sizes }) => (
       style={{
         maxWidth: `${data.site.siteMetadata.design.maxWidth}px`,
         minHeight: '100vh',
+        padding: `0 ${data.site.siteMetadata.design.contentPadding}px`,
       }}
       className="mainContent"
     >
@@ -71,6 +73,7 @@ export const query = graphql`
         }
         design {
           maxWidth
+          contentPadding
         }
       }
     }
