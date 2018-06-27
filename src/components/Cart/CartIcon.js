@@ -9,8 +9,15 @@ import './cart-icon.sass';
  * @param {object} props react props
  */
 class CartIcon extends PureComponent {
+  mergeClassNames = () =>
+    this.props.className ? `cartIcon ${this.props.className}` : 'cartIcon';
+
   render() {
-    return <div className="cartIcon">{this.props.cart.totalQuantity}</div>;
+    return (
+      <div className={this.mergeClassNames()}>
+        {this.props.cart.totalQuantity}
+      </div>
+    );
   }
 }
 
