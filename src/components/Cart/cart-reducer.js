@@ -12,11 +12,13 @@ export type ProductEntry = {
 export type CartType = {
   products: Array<ProductEntry>,
   status: string,
+  totalQuantity: number,
 };
 
 const initialCart: CartType = {
   products: [],
   status: '',
+  totalQuantity: 0,
 };
 
 /**
@@ -60,7 +62,7 @@ const updateCartDirectly = (products, { id, quantity, type } = {}) => {
   );
 };
 
-const cartReducer = (state = initialCart, action: Actions) => {
+const cartReducer = (state: CartType = initialCart, action: Actions) => {
   switch (action.type) {
     case 'CART_UPDATE_QUANTITY':
       return {

@@ -1,9 +1,17 @@
-.singleProductDesktop
+@import ../../sass/extras
+
+.singleProduct
   display: grid
   grid-template-columns: 400px 1fr
   grid-gap: 3rem
 
   &_img
+    @extend %niceShadow
+
+  &_content
+
+  &_h1
+    margin: 0
 
 .singleProductMobile
   display: grid

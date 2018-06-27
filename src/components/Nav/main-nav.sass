@@ -3,11 +3,11 @@
 %navLink
   text-decoration: none
   padding: 1rem
-  transition: 0.25s color, 0.25s background
+  transition: 0.25s border
+  border-bottom: 2px solid $clear
 
 %navHighlight
-  background: $white
-  color: $black
+  border-bottom: 2px solid $white
 
 .mainNavDesktop
   position: fixed
@@ -19,6 +19,8 @@
   background: transparentize($black, 0.2)
   z-index: 2
 
+  @extend %niceShadow
+
   &_link
     @extend %navLink
 
@@ -28,8 +30,10 @@
       @extend %navHighlight
 
     &-active
-      background: $white
-      color: $black
+      @extend %navHighlight
+
+  &_logo
+    width: 40px
 
 .mainNavMobile
   display: flex

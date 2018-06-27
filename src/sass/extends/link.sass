@@ -1,16 +1,14 @@
-@import '../colors/colors'
-@import '../mixins/mixins'
-@import '../fonts/fonts'
+@import ../colors/colors
 
 %a
-	box-sizing: border-box
-	cursor: pointer
-	color: $blue
-	font-family: $primary-font
-	margin: 0
-	padding: 0
-	text-decoration: none
-	&:hover
-		color: transparentize($blue, 0.2)
-	&:focus
-		outline: none
+  cursor: pointer
+  color: $blue
+  margin: 0
+  padding: 0
+  text-decoration: none
+
+  &:hover
+    color: transparentize($blue, 0.2)
+
+  &:focus
+    outline: none

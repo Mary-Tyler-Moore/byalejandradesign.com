@@ -2,22 +2,33 @@
 
 .productLink
   width: 100%
+  display: grid
 
-  &_title
+  // grid-template-columns: 400px 1fr
+  &_img
+    cursor: pointer
+    backface-visibility: hidden
+
+    @extend %niceShadow
+
+    +transition(0.25s transform, 0.25s filter)
+
+  &_imgLink:hover
+    .productLink_img
+      transform: scale(1.04)
+      filter: brightness(0.6)
+
+  &_textContainer
+
+  &_textLink
+    @extend %a
+
     font-size: 0.9rem
     font-weight: 600
+
+  &_title
+    margin: 0.6rem 0
 
   &_price
     font-size: 0.9rem
     font-style: italic
-
-.productLinkPhoto
-  cursor: pointer
-  backface-visibility: hidden
-  box-shadow: 4px 4px 16px -8px $black
-
-  +transition(0.25s transform, 0.25s filter)
-
-  &:hover
-    transform: scale(1.05)
-    filter: brightness(0.6)

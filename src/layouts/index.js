@@ -3,10 +3,20 @@ import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
 import withSize from 'react-size-components';
 import { MainNav, FooterNav } from '../components/Nav';
-import sampleImg from '../media/sample_header.jpg';
-// import Header from '../components/header'
+import Header from '../components/Header';
+// fonts
+import WebFont from 'webfontloader';
+// styles
 import 'normalize.css';
 import './index.sass';
+
+const fonts = {
+  google: {
+    families: ['Work+Sans:300,400,500,700,800,900'],
+  },
+};
+
+WebFont.load(fonts);
 
 const Layout = ({ children, data, sizes }) => (
   <div className="root">
@@ -19,31 +29,23 @@ const Layout = ({ children, data, sizes }) => (
         { name: 'keywords', content: 'sample, something' },
       ]}
     />
-    <MainNav mainNav={data.site.siteMetadata.navLayout.mainNav} sizes={sizes} />
-    <header
+    <MainNav
+      maxWidth={data.site.siteMetadata.design.maxWidth}
+      mainNav={data.site.siteMetadata.navLayout.mainNav}
+      sizes={sizes}
+    />
+    <Header edges={data.allWordpressWpHeaders.edges} />
+    <main
       style={{
-        width: '100%',
-        height: '400px',
-        background: 'rgba(0, 0, 0, 0.6)',
-        overflow: 'hidden',
-        position: 'relative',
+        maxWidth: `${data.site.siteMetadata.design.maxWidth}px`,
+        minHeight: '100vh',
       }}
+      className="mainContent"
     >
-      <img
-        style={{
-          width: '100%',
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-        }}
-        src={sampleImg}
-      />
-      Header type is Mobile {sizes.mobile.toString()}
-    </header>
-    {/* <Header siteTitle={data.site.siteMetadata.title} /> */}
-    <main className="mainContent">{children()}</main>
+      {children()}
+    </main>
     <FooterNav
+      maxWidth={data.site.siteMetadata.design.maxWidth}
       footerNav={data.site.siteMetadata.navLayout.footerNav}
       sizes={sizes}
     />
@@ -54,7 +56,11 @@ Layout.propTypes = {
   children: PropTypes.func,
 };
 
-export default withSize({ mobile: true, orientation: true })(Layout);
+export default withSize({
+  mobile: true,
+  orientation: true,
+  measureWindow: true,
+})(Layout);
 
 export const query = graphql`
   query SiteTitleQuery {
@@ -65,6 +71,26 @@ export const query = graphql`
         navLayout {
           mainNav
           footerNav
+        }
+        design {
+          maxWidth
+        }
+      }
+    }
+    allWordpressWpHeaders {
+      edges {
+        node {
+          acf {
+            image {
+              localFile {
+                childImageSharp {
+                  sizes(maxWidth: 1650) {
+                    ...GatsbyImageSharpSizes
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }

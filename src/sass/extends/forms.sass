@@ -1,6 +1,6 @@
-@import '../colors/colors'
-@import '../mixins/mixins'
-@import '../fonts/fonts'
+@import ../colors/colors
+@import ../mixins/mixins
+@import ../fonts/fonts
 
 %form
   display: grid
@@ -10,9 +10,10 @@
 %formItem
   // parent grid
   grid-column: span 12
+
   // for children
   display: grid
-  grid-auto-columns: 1fr 
+  grid-auto-columns: 1fr
   grid-gap: 0.6rem
 
 %formLabel
@@ -23,13 +24,16 @@
   border-bottom: solid 2px $grey-lightest
   box-shadow: none
   padding: 0.5rem 0
+
   +transition(background 0.35s, border 0.35s, padding 0.35s)
+
   &:focus
     outline: none
     border-bottom: solid 2px $cobalt-lightest
-      
+
 %input
   +transition(0.35s border, 0.35s background)
+
   border-bottom: 2px solid $grey-lightest
 
 %input-focus

@@ -3,7 +3,7 @@ module.exports = {
     title: 'Artetexture',
     subTitle: 'Design Studio and Shop',
     navLayout: {
-      mainNav: ['/home', '/cloud-studio', '/shop', '/cart', '/contact'],
+      mainNav: ['/home', '/cloud-studio', '/shop', '/contact'],
       footerNav: [
         '/cloud-studio',
         '/shop',
@@ -12,6 +12,9 @@ module.exports = {
         '/return-policy',
         '/contact',
       ],
+    },
+    design: {
+      maxWidth: 1200,
     },
   },
   plugins: [

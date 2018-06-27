@@ -1,16 +1,8 @@
 import * as React from 'react';
 import withSize from 'react-size-components';
-import {
-  SingleProductMobile,
-  SingleProductDesktop,
-} from '../components/Product';
+import { SingleProduct } from '../components/Product';
 
-const Node = (props) =>
-  props.sizes.mobile ? (
-    <SingleProductMobile node={props.data.wordpressWpShop} />
-  ) : (
-    <SingleProductDesktop node={props.data.wordpressWpShop} />
-  );
+const Node = (props) => <SingleProduct node={props.data.wordpressWpShop} />;
 
 const SizedNode = withSize({ mobile: true })(Node);
 

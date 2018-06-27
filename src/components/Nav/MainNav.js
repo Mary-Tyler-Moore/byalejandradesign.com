@@ -1,16 +1,38 @@
+// @flow
 import * as React from 'react';
 import Link from 'gatsby-link';
-import CartIcon from '../Cart/CartIcon';
 import withSize from 'react-size-components';
 import { Modal } from 'njmyers-component-library';
 import URLToTitle from './url-to-title';
+// icons
+import Logo from '../Logo';
+import CartIcon from '../Cart/CartIcon';
 // styles
 import './main-nav.sass';
 
-class DesktopMainNav extends React.Component {
+type Props = {
+  sizes: {
+    window: {
+      innerWidth: number,
+    },
+  },
+  maxWidth: number,
+  mainNav: Array<string>,
+};
+
+class DesktopMainNav extends React.Component<Props> {
+  getStyle = () => {
+    const { innerWidth } = this.props.sizes.window;
+    const { maxWidth } = this.props;
+    const sidePadding = innerWidth > maxWidth ? (innerWidth - maxWidth) / 2 : 0;
+
+    return { padding: `0 ${sidePadding}px` };
+  };
+
   render() {
     return (
-      <nav className="mainNavDesktop">
+      <nav style={this.getStyle()} className="mainNavDesktop">
+        <Logo className="mainNavDesktop_logo" />
         {this.props.mainNav.map((nav) => (
           <Link
             key={nav}
@@ -21,15 +43,19 @@ class DesktopMainNav extends React.Component {
             {URLToTitle(nav)}
           </Link>
         ))}
-        <Link className="mainNavDesktop_link" to="/cart">
-          Cart
+        <Link
+          to="/cart"
+          className="mainNavDesktop_link"
+          activeClassName="mainNavDesktop_link-active"
+        >
+          <CartIcon />
         </Link>
       </nav>
     );
   }
 }
 
-class MobileMainNav extends React.Component {
+class MobileMainNav extends React.Component<Props> {
   render() {
     return (
       <Modal>
@@ -45,6 +71,7 @@ class MobileMainNav extends React.Component {
               {URLToTitle(nav)}
             </Link>
           ))}
+          <CartIcon />
         </nav>
       </Modal>
     );

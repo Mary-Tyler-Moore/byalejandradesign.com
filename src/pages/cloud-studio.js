@@ -1,13 +1,13 @@
 import * as React from 'react';
 import withSize from 'react-size-components';
-import { AllPostsDesktop, AllPostsMobile } from '../components/CloudStudio';
+import { AllPosts } from '../components/CloudStudio';
 
-const Edges = (props) =>
-  props.sizes.mobile ? (
-    <AllPostsMobile edges={props.data.allWordpressPost.edges} />
-  ) : (
-    <AllPostsDesktop edges={props.data.allWordpressPost.edges} />
-  );
+const Edges = (props) => (
+  <section>
+    <h1>Cloud Studio</h1>
+    <AllPosts edges={props.data.allWordpressPost.edges} />
+  </section>
+);
 
 const SizedEdges = withSize({ mobile: true })(Edges);
 

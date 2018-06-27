@@ -9,33 +9,8 @@ import './cart-icon.sass';
  * @param {object} props react props
  */
 class CartIcon extends PureComponent {
-  state = {
-    width: 48,
-  };
-
-  setIconWidth = () => {
-    this.setState(
-      (state) =>
-        this.icon.clientWidth !== state.width ? this.icon.clientWidth : null
-    );
-  };
-
-  componentDidMount() {
-    // setTimeout(this.setIconWidth, 1000);
-  }
-
   render() {
-    return (
-      <div className="cartIcon">
-        <Icon.Ring
-          width="20px"
-          className="cartIcon_svg"
-          color="white"
-          thickness={8}
-        />
-        <span className="cartIcon_quantity">{this.props.quantity}</span>
-      </div>
-    );
+    return <div className="cartIcon">{this.props.cart.totalQuantity}</div>;
   }
 }
 

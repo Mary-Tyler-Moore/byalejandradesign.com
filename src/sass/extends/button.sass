@@ -1,27 +1,32 @@
-@import '../colors/colors'
-@import '../mixins/mixins'
-@import '../fonts/fonts'
+@import ../colors/colors
+@import ../mixins/mixins
+@import ../fonts/fonts
 
 %button
-	border: none
-	box-sizing: border-box
-	box-shadow: none
-	cursor: pointer
-	font-family: $primary-font
-	margin: 0
-	padding: 0
-	&:focus
-		outline: none
-	&:hover
+  border: none
+  box-sizing: border-box
+  box-shadow: none
+  cursor: pointer
+  font-family: $primary-font
+  margin: 0
+  padding: 0
+
+  &:focus
+    outline: none
+
+  &:hover
 
 %button-styled
-	@extend %button
-	background: $grey
-	border-radius: 2px
-	box-shadow: 2px 2px 5px transparentize($black, 0.85)
-	font-size: 1rem
-	color: $white
-	padding: 8px 16px
-	+transition(background 0.25s ease)
-	&:hover
-		background: transparentize($grey, 0.2)
+  @extend %button
+
+  background: $grey
+  border-radius: 2px
+  box-shadow: 2px 2px 5px transparentize($black, 0.85)
+  font-size: 1rem
+  color: $white
+  padding: 8px 16px
+
+  +transition(background 0.25s ease)
+
+  &:hover
+    background: transparentize($grey, 0.2)

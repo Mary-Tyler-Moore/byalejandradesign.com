@@ -1,11 +1,13 @@
 import * as React from 'react';
 import withSize from 'react-size-components';
 
-import { ProductListDesktop, ProductListMobile } from '../components/Product';
+import { ProductList } from '../components/Product';
 import {
   CollectionsDesktop,
   CollectionsMobile,
 } from '../components/Collections';
+
+import './shop.sass';
 
 class Shop extends React.Component {
   render() {
@@ -23,14 +25,9 @@ class Shop extends React.Component {
           )}
         </section>
         <section className="shopProducts">
-          {this.props.data.allWordpressWpShop.edges.map(
-            ({ node }) =>
-              this.props.sizes.mobile ? (
-                <ProductListMobile node={node} key={node.id} />
-              ) : (
-                <ProductListDesktop node={node} key={node.id} />
-              )
-          )}
+          {this.props.data.allWordpressWpShop.edges.map(({ node }) => (
+            <ProductList node={node} key={node.id} sizes={this.props.sizes} />
+          ))}
         </section>
       </section>
     );
@@ -45,6 +42,7 @@ export const query = graphql`
       edges {
         node {
           id
+          slug
           title
           acf {
             quantity
