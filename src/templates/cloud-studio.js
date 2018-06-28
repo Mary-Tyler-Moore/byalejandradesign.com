@@ -26,11 +26,7 @@ export const fragment = graphql`
 export const query = graphql`
   query BlogPostById($id: String!) {
     wordpressPost(id: { eq: $id }) {
-      id
-      slug
-      date
-      title
-      content
+      ...PostSample
     }
   }
 `;

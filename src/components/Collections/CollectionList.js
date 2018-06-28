@@ -21,12 +21,14 @@ class CollectionList extends React.Component<Props> {
         {this.props.edges.map(({ node }) => (
           <article key={node.id}>
             <h2>{node.name}</h2>
-            <Link to="/shop">
+            <Link to={`/shop/collection/${node.slug}`}>
               <Img sizes={node.acf.image.localFile.childImageSharp.sizes} />
             </Link>
             <h3>{node.acf.subtitle}</h3>
             <p>{node.description}</p>
-            <Button>View Collection</Button>
+            <Link to={`/shop/collection/${node.slug}`}>
+              <Button>View Collection</Button>
+            </Link>
           </article>
         ))}
       </section>
