@@ -35,8 +35,3 @@ export type ProductNode = {
     main_image: ImageNode,
   },
 };
-
-export type Props = {
-  node: ProductNode,
-  addOneToCart: () => null,
-};

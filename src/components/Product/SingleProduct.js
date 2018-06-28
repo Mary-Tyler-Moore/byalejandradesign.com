@@ -10,7 +10,15 @@ import './single-product.sass';
 import { dollarString } from 'smalldash';
 import title from './title.js';
 // types
-import type { Props } from './types';
+import type { ProductNode } from './types';
+
+type Props = {
+  node: ProductNode,
+  addOneToCart: () => null,
+  sizes: {
+    mobile: boolean,
+  },
+};
 
 /**
  * Displays single product

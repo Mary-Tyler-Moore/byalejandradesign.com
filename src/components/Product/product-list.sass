@@ -1,6 +1,14 @@
 @import ../../sass/extras
 
-.productLink
+.productList
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  grid-gap: 2rem
+
+  +all-phone
+    grid-template-columns: repeat(1, 1fr)
+
+.productListItem
   width: 100%
   display: grid
 

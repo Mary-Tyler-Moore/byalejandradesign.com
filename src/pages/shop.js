@@ -2,33 +2,21 @@ import * as React from 'react';
 import withSize from 'react-size-components';
 
 import { ProductList } from '../components/Product';
-import {
-  CollectionsDesktop,
-  CollectionsMobile,
-} from '../components/Collections';
-
-import './shop.sass';
+import { CollectionList } from '../components/Collections';
 
 class Shop extends React.Component {
   render() {
     return (
       <section className="shop">
         <section className="shopSideBar">
-          {this.props.sizes.mobile ? (
-            <CollectionsMobile
-              edges={this.props.data.allWordpressWpCollections.edges}
-            />
-          ) : (
-            <CollectionsDesktop
-              edges={this.props.data.allWordpressWpCollections.edges}
-            />
-          )}
+          <CollectionList
+            edges={this.props.data.allWordpressWpCollections.edges}
+          />
         </section>
-        <section className="shopProducts">
-          {this.props.data.allWordpressWpShop.edges.map(({ node }) => (
-            <ProductList node={node} key={node.id} sizes={this.props.sizes} />
-          ))}
-        </section>
+        <ProductList
+          edges={this.props.data.allWordpressWpShop.edges}
+          sizes={this.props.sizes}
+        />
       </section>
     );
   }
@@ -82,21 +70,7 @@ export const query = graphql`
     allWordpressWpCollections {
       edges {
         node {
-          name
-          id
-          description
-          acf {
-            subtitle
-            image {
-              localFile {
-                childImageSharp {
-                  sizes(maxWidth: 800, maxHeight: 600) {
-                    ...GatsbyImageSharpSizes
-                  }
-                }
-              }
-            }
-          }
+          ...CollectionData
         }
       }
     }
