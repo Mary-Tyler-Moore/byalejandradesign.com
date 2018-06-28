@@ -13,6 +13,16 @@ const SizedNode = withSize({ mobile: true })(Node);
 
 export default SizedNode;
 
+export const fragment = graphql`
+  fragment PostSample on wordpress__POST {
+    id
+    slug
+    date
+    title
+    content
+  }
+`;
+
 export const query = graphql`
   query BlogPostById($id: String!) {
     wordpressPost(id: { eq: $id }) {

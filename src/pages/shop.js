@@ -29,41 +29,7 @@ export const query = graphql`
     allWordpressWpShop {
       edges {
         node {
-          id
-          slug
-          title
-          acf {
-            quantity
-            price
-            sale_price
-            description
-            product_type
-            provided_dimensions
-            ceramic {
-              name
-              slug
-            }
-            size {
-              name
-              slug
-            }
-            collection {
-              name
-              slug
-            }
-            additional_images
-            video_type
-            display_title
-            main_image {
-              localFile {
-                childImageSharp {
-                  sizes(maxWidth: 800, maxHeight: 600) {
-                    ...GatsbyImageSharpSizes
-                  }
-                }
-              }
-            }
-          }
+          ...ProductData
         }
       }
     }

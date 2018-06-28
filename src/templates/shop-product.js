@@ -108,7 +108,7 @@ export const fragment = graphql`
 `;
 
 export const query = graphql`
-  query ShopItemById($id: String!) {
+  query ProductById($id: String!) {
     wordpressWpShop(id: { eq: $id }) {
       ...ProductData
     }
