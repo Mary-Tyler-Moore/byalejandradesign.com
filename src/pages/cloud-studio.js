@@ -13,16 +13,22 @@ const SizedEdges = withSize({ mobile: true })(Edges);
 
 export default SizedEdges;
 
+export const fragment = graphql`
+  fragment PostSample on wordpressPost {
+    id
+    slug
+    date
+    title
+    content
+  }
+`;
+
 export const query = graphql`
   query AllBlogPosts {
     allWordpressPost {
       edges {
         node {
-          id
-          slug
-          date
-          title
-          content
+          ...PostSample
         }
       }
     }
