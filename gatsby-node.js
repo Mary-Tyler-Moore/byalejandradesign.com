@@ -1,16 +1,32 @@
 /**
+ * @flow
  * Implement Gatsby's Node APIs in this file.
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 const path = require('path');
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
+  /** Creating Redirects */
+  const { createRedirect } = boundActionCreators;
+  const index = '/';
+  const home = '/home';
+
+  createRedirect({
+    fromPath: home,
+    isPermanent: true,
+    redirectInBrowser: true,
+    toPath: index,
+  });
+
+  /** Creating Pages */
   const { createPage } = boundActionCreators;
 
   return new Promise((res, rej) => {
-    const shopItemTemplate = path.resolve('src/templates/shop-product.js');
+    const stub = 'src/templates';
 
-    const cloudStudioTemplate = path.resolve('src/templates/cloud-studio.js');
+    const shopItemTemplate = path.resolve(stub, 'shop-product.js');
+    const cloudStudioTemplate = path.resolve(stub, 'cloud-studio.js');
+    const collectionTemplate = path.resolve(stub, 'collection-products.js');
 
     res(
       graphql(
@@ -29,7 +45,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
       )
         .then((result) => {
           if (result.errors) {
-            reject(result.errors);
+            rej(result.errors);
           }
 
           result.data.allWordpressWpShop.edges.forEach(({ node }) => {
@@ -62,7 +78,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
         })
         .then((result) => {
           if (result.errors) {
-            reject(result.errors);
+            rej(result.errors);
           }
 
           result.data.allWordpressPost.edges.forEach(({ node }) => {
@@ -71,6 +87,39 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             createPage({
               path,
               component: cloudStudioTemplate,
+              context: {
+                id: node.id,
+              },
+            });
+          });
+        })
+        .then(() => {
+          return graphql(
+            `
+              {
+                allWordpressWpCollections {
+                  edges {
+                    node {
+                      id
+                      slug
+                    }
+                  }
+                }
+              }
+            `
+          );
+        })
+        .then((result) => {
+          if (result.errors) {
+            rej(result.errors);
+          }
+
+          result.data.allWordpressWpCollections.edges.forEach(({ node }) => {
+            const path = `shop/collection/${node.slug}`;
+
+            createPage({
+              path,
+              component: collectionTemplate,
               context: {
                 id: node.id,
               },
