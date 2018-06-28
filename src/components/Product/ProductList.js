@@ -1,6 +1,8 @@
+// @flow
 import * as React from 'react';
 import Img from 'gatsby-image';
 import Link from 'gatsby-link';
+import { withCart } from '../Cart';
 import { BEM } from 'njmyers-component-library';
 import Button from '../Button';
 // helpers
@@ -8,14 +10,15 @@ import title from './title';
 import { dollarString } from 'smalldash';
 // style
 import './product-list.sass';
+// types
+import type { Props } from './types';
 
 /**
- * Renders the list of products
- * @param {[type]} node         [description]
- * @param {[type]} addOneToCart [description]
- * @param {[type]} sizes        [description]
+ * Displays list of products
+ * @param {ProductNode} node      graphql node of shop product
+ * @param {function} addOneToCart  redux connect function to add to cart
  */
-const ProductList = ({ node, addOneToCart, sizes }) => (
+const ProductList = ({ node, addOneToCart }: Props) => (
   <BEM block="productLink">
     <article>
       <Link element="imgLink" to={`/shop/${node.slug}`}>
@@ -37,4 +40,4 @@ const ProductList = ({ node, addOneToCart, sizes }) => (
   </BEM>
 );
 
-export default ProductList;
+export default withCart(ProductList);

@@ -1,14 +1,23 @@
+// @flow
 import * as React from 'react';
-import withSize from 'react-size-components';
-import { dollarString } from 'smalldash';
 import Img from 'gatsby-image';
 import Button from '../Button';
 import { BEM } from 'njmyers-component-library';
+import { withCart } from '../Cart';
 // styles
 import './single-product.sass';
+// string helpers
+import { dollarString } from 'smalldash';
 import title from './title.js';
+// types
+import type { Props } from './types';
 
-const SingleProduct = ({ node, addOneToCart } = {}) => (
+/**
+ * Displays single product
+ * @param {ProductNode} node      graphql node of shop product
+ * @param {function} addOneToCart  redux connect function to add to cart
+ */
+const SingleProduct = ({ node, addOneToCart }: Props) => (
   <BEM block="singleProduct">
     <article>
       <aside element="img">
@@ -27,4 +36,4 @@ const SingleProduct = ({ node, addOneToCart } = {}) => (
   </BEM>
 );
 
-export default SingleProduct;
+export default withCart(SingleProduct);
