@@ -6,7 +6,7 @@ import { choosePaymentMethod } from './payment-methods-actions';
 import CreditCard from './CreditCard';
 import Paypal from './Paypal';
 import Venmo from './Venmo';
-import BrainTreeClient from './Braintree';
+import BrainTreeClient from '../Braintree';
 import { CreditCardOption, PaypalOption, VenmoOption } from './Options';
 // style
 import './payment-methods.sass';

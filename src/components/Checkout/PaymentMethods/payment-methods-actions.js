@@ -55,7 +55,6 @@ export const savePaymentNonce = (method: methods) => (payload: {}) => ({
 
 type Fn<T> = (...args: Array<any>) => T;
 type ExtractReturn = <T>(Fn<T>) => T;
-type CurriedExtract = <T>($Call<Fn<T>>) => T;
 
 export type Actions =
   | $Call<ExtractReturn, typeof choosePaymentMethod>

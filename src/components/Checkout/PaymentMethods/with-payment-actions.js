@@ -10,8 +10,8 @@ import {
   savePaymentNonce,
 } from './payment-methods-actions';
 
-import type { State } from '../checkout-reducer';
-import type { Actions, methods } from './payment-methods-actions';
+// import type { State } from '../checkout-reducer';
+import type { methods } from './payment-methods-actions';
 
 /**
  * Connect state to Payment Components
@@ -22,7 +22,7 @@ import type { Actions, methods } from './payment-methods-actions';
 const withPaymentActions = (type: methods) => (
   Wrapped: React.ComponentType<any>
 ) => {
-  const mapStateToProps = (state: Store): * => ({
+  const mapStateToProps = (state: Store) => ({
     braintree: state.checkout.braintree,
     shippingAddress: state.checkout.shippingAddress,
     payment: state.checkout.payment,

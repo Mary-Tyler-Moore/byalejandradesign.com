@@ -23,9 +23,10 @@ import {
   savePaymentInstance,
 } from './payment-methods-actions';
 // getters
-import { getClient } from './Braintree/braintree-epic';
+// import { getClient } from '../Braintree/braintree-epic';
 
 import type { Actions } from './payment-methods-actions';
+const getClient = (store) => store.value.checkout.braintree.client;
 
 /**
  * Merges braintree client with options to create a payment method instance.

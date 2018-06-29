@@ -1,6 +1,5 @@
 // @flow
 import React, { PureComponent } from 'react';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { equals, compose } from 'smalldash';
 // types
@@ -16,10 +15,8 @@ import {
 import CardIcons from './CardIcons';
 import Field from './Field';
 import BillingAddress from '../../Address/BillingAddress';
-import { BEM, StatusSwitch } from 'njmyers-component-library';
+import { BEM } from 'njmyers-component-library';
 // misc
-import toOrderConfirmation from '../to-order-confirmation';
-// style
 import './hosted-fields.sass';
 
 export type FieldState = {
@@ -123,29 +120,23 @@ class HostedFields extends PureComponent<Props, State> {
    * Controls the flow for submitting payment information
    * @param {object} event react synthetic event
    */
-  onSubmit = async (event) => {
+  onSubmit = (event) => {
     event.preventDefault();
     this.setState({ status: 'loading' });
     // validate all hosted card fields
     if (this.validateAllFields()) {
-      try {
-        // submit a nonce
-        const payload = await this.props.payment.instance.tokenize();
-        // save payment nonce to redux
-        this.props.hostedFieldsNonce(payload);
-        // set component state to resolved
-        this.setState({ status: 'resolved ' });
-        // go to next step
-        toOrderConfirmation(this.props);
-      } catch (err) {
-        // user error
-        this.setState({ status: 'error' });
-        // log error to redux non/UI
-        this.props.hostedFieldsError({
-          type: 'CREDIT_CARD_TOKENIZE_ERROR',
-          err,
+      Promise.resolve(this.props.payment.instance.tokenize())
+        .then((payload) => {
+          this.props.hostedFieldsNonce(payload);
+          this.setState({ status: 'resolved' });
+        })
+        .catch((err) => {
+          this.setState({ status: 'error' });
+          this.props.hostedFieldsError({
+            type: 'CREDIT_CARD_TOKENIZE_ERROR',
+            err,
+          });
         });
-      }
     } else {
       this.setState({ status: 'error' });
     }
@@ -250,6 +241,5 @@ export default compose(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  ),
-  withRouter
+  )
 )(HostedFields);

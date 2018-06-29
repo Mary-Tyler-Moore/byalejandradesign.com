@@ -1,15 +1,11 @@
-import React, { PureComponent } from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import { compose } from 'smalldash';
+// HOC to preload checkout module
+import withPaypalButton from './with-paypal-button';
 // auto connect HOC
 import withPaymentActions from '../with-payment-actions';
-// paypal checkout
-import paypal from 'paypal-checkout';
 // styles
 import './paypal.sass';
-// misc
-import toOrderConfirmation from '../to-order-confirmation';
-
-const PayPalButton = paypal.Button.driver('react', { React, ReactDOM });
 
 /**
  * Paypal button. Uses react driver and Braintree client
@@ -17,7 +13,7 @@ const PayPalButton = paypal.Button.driver('react', { React, ReactDOM });
  * https://developers.braintreepayments.com/guides/paypal/overview/javascript/v3
  * https://github.com/paypal/paypal-checkout/blob/master/docs/frameworks.md
  */
-class Paypal extends PureComponent {
+class Paypal extends React.PureComponent {
   componentDidMount = () => this.props.createInstance();
 
   /**
@@ -67,20 +63,17 @@ class Paypal extends PureComponent {
       shippingAddressOverride: this.formatPaypalAddress(),
     });
 
-  onAuthorize = async (data) => {
-    try {
-      // tokenize
-      const payload = await this.props.payment.instance.tokenizePayment(data);
-      // save the nonce to redux state
-      await this.props.submitNonce(payload);
-      // push to next step
-      // TODO ADD GATSBY LINK
-    } catch (err) {
-      this.props.paymentError({
-        type: 'PAYPAL_TOKENIZATION_ERROR',
-        message: 'Paypal error tokenizing',
+  onAuthorize = (data) => {
+    Promise.resolve(this.props.payment.instance.tokenizePayment(data))
+      .then((payload) => {
+        this.props.submitNonce(payload);
+      })
+      .catch((err) => {
+        this.props.paymentError({
+          type: 'PAYPAL_TOKENIZATION_ERROR',
+          message: 'Paypal error tokenizing',
+        });
       });
-    }
   };
 
   onCancel = (data) => {
@@ -100,10 +93,13 @@ class Paypal extends PureComponent {
   };
 
   render() {
+    // need to uppercase the passed component from driver loader
+    const { PaypalButton } = this.props;
+
     return (
       <section className="paypal">
-        {this.props.payment.method === 'paypal' ? (
-          <PayPalButton
+        {this.props.payment.method === 'paypal' && PaypalButton ? (
+          <PaypalButton
             env="sandbox"
             commit={true}
             payment={this.payment}
@@ -124,4 +120,7 @@ class Paypal extends PureComponent {
   }
 }
 
-export default withPaymentActions('paypal')(Paypal);
+export default compose(
+  withPaymentActions('paypal'),
+  withPaypalButton
+)(Paypal);
