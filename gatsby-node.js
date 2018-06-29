@@ -5,9 +5,27 @@
  */
 const path = require('path');
 
-exports.createPages = ({ boundActionCreators, graphql }) => {
+exports.onCreateBabelConfig = ({ actions }) => {
+  // console.log(babelrc);
+  // // const myPath = path.resolve(
+  // //   __dirname,
+  // //   'node_modules',
+  // //   'babel-plugin-syntax-dynamic-import/lib/index.js'
+  // // );
+  // //
+  // // const newBabelRc = {
+  // //   ...babelrc,
+  // //   plugins: babelrc.plugins.concat([myPath]),
+  // // };
+  // //
+  // // console.log(newBabelRc);
+  //
+  // return babelrc;
+};
+
+exports.createPages = ({ graphql, actions }) => {
   /** Creating Redirects */
-  const { createRedirect } = boundActionCreators;
+  const { createRedirect } = actions;
   const index = '/';
   const home = '/home';
 
@@ -26,7 +44,7 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
   });
 
   /** Creating Pages */
-  const { createPage } = boundActionCreators;
+  const { createPage } = actions;
 
   return new Promise((res, rej) => {
     const stub = 'src/templates';

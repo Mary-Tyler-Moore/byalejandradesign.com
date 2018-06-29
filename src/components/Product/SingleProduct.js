@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import Img from 'gatsby-image';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import Button from '../Button';
 import { BEM } from 'njmyers-component-library';
 import { withCart } from '../Cart';
@@ -22,6 +22,15 @@ type Props = {
   },
 };
 
+const CollectionLink = ({ node }) => (
+  <Link
+    element="button"
+    to={`/shop/collection/${collectionFromProduct(node).slug}`}
+  >
+    <Button className="greyButton">Shop this Collection</Button>
+  </Link>
+);
+
 /**
  * Displays single product
  * @param {ProductNode} node      graphql node of shop product
@@ -31,7 +40,7 @@ const SingleProduct = ({ node, addOneToCart }: Props) => (
   <BEM block="singleProduct">
     <article>
       <aside element="img">
-        <Img sizes={node.acf.main_image.localFile.childImageSharp.sizes} />
+        <Img fluid={node.acf.main_image.localFile.childImageSharp.fluid} />
       </aside>
       <aside element="content">
         <h1 element="h1">{title(node)}</h1>
@@ -41,12 +50,7 @@ const SingleProduct = ({ node, addOneToCart }: Props) => (
         <Button element="button" onClick={addOneToCart} name={node.id}>
           Add To Cart
         </Button>
-        <Link
-          element="button"
-          to={`/shop/collection/${collectionFromProduct(node).slug}`}
-        >
-          <Button className="greyButton">Shop this Collection</Button>
-        </Link>
+        {node.collections ? <CollectionLink node={node} /> : null}
       </aside>
     </article>
   </BEM>

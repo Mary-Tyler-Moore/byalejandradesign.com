@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
-import Link from 'gatsby-link';
-import withSize from 'react-size-components';
+import { Link } from 'gatsby';
 import { Modal, Icon } from 'njmyers-component-library';
 import URLToTitle from './url-to-title';
 // icons

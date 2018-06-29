@@ -10,7 +10,7 @@ type Edge = {
       image: {
         localFile: {
           childImageSharp: {
-            sizes: {},
+            fluid: {},
           },
         },
       },
@@ -29,14 +29,14 @@ class DesktopHeader extends React.PureComponent<Props> {
 
   getActiveImage = () => {
     const { node } = this.props.edges[this.getActiveIndex()];
-    return node.acf.image.localFile.childImageSharp.sizes;
+    return node.acf.image.localFile.childImageSharp.fluid;
   };
 
   render() {
     return (
       <BEM block="header">
         <div element="imgContainer">
-          <Img className="header_img" sizes={this.getActiveImage()} />
+          <Img className="header_img" fluid={this.getActiveImage()} />
         </div>
       </BEM>
     );

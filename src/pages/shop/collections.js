@@ -1,8 +1,13 @@
 import * as React from 'react';
+import { graphql } from 'gatsby';
+
 import { CollectionList } from '../../components/Collections';
+import Layout from '../../components/Layout';
 
 const Edges = (props) => (
-  <CollectionList edges={props.data.allWordpressWpCollections.edges} />
+  <Layout>
+    <CollectionList edges={props.data.allWordpressWpCollections.edges} />
+  </Layout>
 );
 
 export default Edges;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import ReactHtmlParser from 'react-html-parser';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import { BEM } from 'njmyers-component-library';
 // style
 import './all-posts.sass';

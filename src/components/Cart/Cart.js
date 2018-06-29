@@ -1,9 +1,8 @@
 // @flow
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { compose, dollarString } from 'smalldash';
+import { dollarString } from 'smalldash';
 import Img from 'gatsby-image';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 // actions
 import withCart from './with-cart';
 import title from '../Product/title';
@@ -66,8 +65,8 @@ class Cart extends React.PureComponent<Props> {
                     <article>
                       <div element="image">
                         <Img
-                          sizes={
-                            node.acf.main_image.localFile.childImageSharp.sizes
+                          fluid={
+                            node.acf.main_image.localFile.childImageSharp.fluid
                           }
                         />
                       </div>

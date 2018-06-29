@@ -4,7 +4,7 @@ import './logo.sass';
 
 const Logo = (props) => (
   <div className={`logo ${props.className ? props.className : ''}`}>
-    <img className="logo_img" src={logo} />
+    <img className="logo_img" src={logo} alt="logo" />
   </div>
 );
 

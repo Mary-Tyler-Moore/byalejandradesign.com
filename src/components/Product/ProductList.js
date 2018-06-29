@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
 import Img from 'gatsby-image';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import { withCart } from '../Cart';
 import { BEM } from 'njmyers-component-library';
 import Button from '../Button';
@@ -34,7 +34,7 @@ const ProductList = ({ edges, addOneToCart, sizes }: Props) => (
           <Link element="imgLink" to={`/shop/${node.slug}`}>
             <Img
               className="productListItem_img"
-              sizes={node.acf.main_image.localFile.childImageSharp.sizes}
+              fluid={node.acf.main_image.localFile.childImageSharp.fluid}
             />
           </Link>
           <div element="textContainer">

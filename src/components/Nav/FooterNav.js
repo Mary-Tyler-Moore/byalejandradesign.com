@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import URLToTitle from './url-to-title';
 // style
 import './footer-nav.sass';

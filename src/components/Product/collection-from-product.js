@@ -7,6 +7,7 @@ import type { CollectionNode } from '../Collections/types';
  */
 const collectionFromProduct = (node: ProductNode): CollectionNode | null => {
   const { collections } = node;
+
   if (Array.isArray(collections) && collections.length === 1) {
     return collections[0];
   }

@@ -1,16 +1,18 @@
 import React from 'react';
-import Link from 'gatsby-link';
-import Img from 'gatsby-image';
+import { graphql } from 'gatsby';
 import { AllPosts } from '../components/CloudStudio';
 import { CollectionList } from '../components/Collections';
+import Layout from '../components/Layout';
 
 const IndexPage = ({ data }) => (
-  <section>
-    <h1>New from the Cloud Studio</h1>
-    <AllPosts edges={data.allWordpressPost.edges} />
-    <h1>Collections</h1>
-    <CollectionList edges={data.allWordpressWpCollections.edges} />
-  </section>
+  <Layout>
+    <section>
+      <h1>New from the Cloud Studio</h1>
+      <AllPosts edges={data.allWordpressPost.edges} />
+      <h1>Collections</h1>
+      <CollectionList edges={data.allWordpressWpCollections.edges} />
+    </section>
+  </Layout>
 );
 
 export default IndexPage;

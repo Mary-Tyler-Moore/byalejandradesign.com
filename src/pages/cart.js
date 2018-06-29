@@ -1,9 +1,14 @@
 import * as React from 'react';
+import { graphql } from 'gatsby';
+
 import withSize from 'react-size-components';
 import Cart from '../components/Cart';
+import Layout from '../components/Layout';
 
 const Edges = (props) => (
-  <Cart edges={props.data.allWordpressWpShop.edges} {...props} />
+  <Layout>
+    <Cart edges={props.data.allWordpressWpShop.edges} {...props} />
+  </Layout>
 );
 const SizedEdges = withSize({ mobile: true })(Edges);
 

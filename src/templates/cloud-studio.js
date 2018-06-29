@@ -1,13 +1,18 @@
 import * as React from 'react';
+// import { graphql } from 'gatsby';
 import withSize from 'react-size-components';
+import Layout from '../components/Layout';
 import { SinglePostMobile, SinglePostDesktop } from '../components/CloudStudio';
 
-const Node = (props) =>
-  props.sizes.mobile ? (
-    <SinglePostMobile node={props.data.wordpressPost} />
-  ) : (
-    <SinglePostDesktop node={props.data.wordpressPost} />
-  );
+const Node = (props) => (
+  <Layout>
+    {props.sizes.mobile ? (
+      <SinglePostMobile node={props.data.wordpressPost} />
+    ) : (
+      <SinglePostDesktop node={props.data.wordpressPost} />
+    )}
+  </Layout>
+);
 
 const SizedNode = withSize({ mobile: true })(Node);
 

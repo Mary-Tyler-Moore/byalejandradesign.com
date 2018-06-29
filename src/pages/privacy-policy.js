@@ -1,8 +1,9 @@
 import * as React from 'react';
+import Layout from '../components/Layout';
 
 class PrivacyPolicy extends React.Component {
   render() {
-    return null;
+    return <Layout />;
   }
 }
 

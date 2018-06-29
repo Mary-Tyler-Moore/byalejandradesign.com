@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Icon } from 'njmyers-component-library';
+// import { Icon } from 'njmyers-component-library';
 import withCart from './with-cart';
 // style
 import './cart-icon.sass';

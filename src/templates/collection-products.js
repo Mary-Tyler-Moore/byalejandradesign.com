@@ -1,14 +1,16 @@
 import * as React from 'react';
+// import { graphql } from 'gatsby';
+import Layout from '../components/Layout';
 import { SingleCollection } from '../components/Collections';
 import { ProductList } from '../components/Product';
 
 const CollectionProducts = ({ data }) => (
-  <React.Fragment>
+  <Layout>
     <SingleCollection node={data.wordpressWpCollections} />
     {data.allWordpressWpShop && (
       <ProductList edges={data.allWordpressWpShop.edges} />
     )}
-  </React.Fragment>
+  </Layout>
 );
 
 export default CollectionProducts;
@@ -32,8 +34,8 @@ export const fragement = graphql`
       image {
         localFile {
           childImageSharp {
-            sizes(maxWidth: 1200, maxHeight: 800) {
-              ...GatsbyImageSharpSizes
+            fluid(maxWidth: 1200, maxHeight: 800) {
+              ...GatsbyImageSharpFluid
             }
           }
         }

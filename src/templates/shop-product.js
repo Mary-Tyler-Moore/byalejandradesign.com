@@ -1,5 +1,7 @@
 // @flow
 import * as React from 'react';
+// import { graphql } from 'gatsby';
+import Layout from '../components/Layout';
 import withSize from 'react-size-components';
 import { SingleProduct } from '../components/Product';
 // types
@@ -21,7 +23,9 @@ type Props = {
  * @param {[type]} props [description]
  */
 const Node = ({ data, sizes }: Props = {}) => (
-  <SingleProduct node={data.wordpressWpShop} sizes={sizes} />
+  <Layout>
+    <SingleProduct node={data.wordpressWpShop} sizes={sizes} />
+  </Layout>
 );
 
 const SizedNode = withSize({ mobile: true })(Node);
@@ -36,8 +40,8 @@ export const sharpImageFragment = graphql`
   fragment SharpImage on wordpress__wp_media {
     localFile {
       childImageSharp {
-        sizes(maxWidth: 800, maxHeight: 600) {
-          ...GatsbyImageSharpSizes
+        fluid(maxWidth: 800, maxHeight: 600) {
+          ...GatsbyImageSharpFluid
         }
       }
     }

@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import Button from '../Button';
 import './collection-list.sass';
@@ -16,14 +16,13 @@ type Props = {
  */
 class CollectionList extends React.Component<Props> {
   render() {
-    console.log(this.props.edges);
     return (
       <section className="collectionList">
         {this.props.edges.map(({ node }) => (
           <article key={node.id}>
             <h2>{node.name}</h2>
             <Link to={`/shop/collection/${node.slug}`}>
-              <Img sizes={node.acf.image.localFile.childImageSharp.sizes} />
+              <Img fluid={node.acf.image.localFile.childImageSharp.fluid} />
             </Link>
             <h3>{node.acf.subtitle}</h3>
             <p>{node.description}</p>

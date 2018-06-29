@@ -1,8 +1,8 @@
 // @flow
 import * as React from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 // reducer
-import contactReducer, { contactFields } from './contact-reducer';
+import contactReducer from './contact-reducer';
 import type { State } from './contact-reducer';
 // actions
 import { updateContactForm, submitContactForm } from './contact-actions';
