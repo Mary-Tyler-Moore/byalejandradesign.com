@@ -7,14 +7,14 @@ import Link from 'gatsby-link';
 // actions
 import withCart from './with-cart';
 import title from '../Product/title';
-import type { CartType } from './cart-reducer';
+import type { State } from './cart-reducer';
 import { BEM } from 'njmyers-component-library';
 
 import './cart.sass';
 
 type Props = {
   edges: Array<{}>,
-  cart: CartType,
+  cart: State,
   sizes: {
     mobile: boolean,
   },

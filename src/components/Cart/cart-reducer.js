@@ -9,13 +9,13 @@ export type ProductEntry = {
   quantity: number,
 };
 
-export type CartType = {
+export type State = {
   products: Array<ProductEntry>,
   status: string,
   totalQuantity: number,
 };
 
-const initialCart: CartType = {
+const initialCart: State = {
   products: [],
   status: '',
   totalQuantity: 0,
@@ -26,14 +26,14 @@ const initialCart: CartType = {
  * @param {number} a
  * @param {number} b
  */
-const safeAddQuantity = (a, b) => (a + b > 0 ? a + b : 0);
+const safeAddQuantity = (a: number, b: number) => (a + b > 0 ? a + b : 0);
 
 /**
  * Reducer logic for updating quantity of a product BY an amount
  * @param {array} products array of objects 'products'
  * @param {object} action a redux style action
  */
-const updateCart = (products, action) => {
+const updateCart = (products, action: Actions) => {
   // error check actions
   invariant(action.id, `${action.type} must contain a product id`);
   // find old product quantity
@@ -53,7 +53,7 @@ const updateCart = (products, action) => {
  * @param {array} products array of objects 'products'
  * @param {object} action a redux style action
  */
-const updateCartDirectly = (products, { id, quantity, type } = {}) => {
+const updateCartDirectly = (products, { id, quantity, type }: Actions) => {
   // error check actions
   invariant(id, `${type} must contain a product id`);
   // update array uniq by product id with new product then removing all products with 0 quantity
@@ -62,7 +62,7 @@ const updateCartDirectly = (products, { id, quantity, type } = {}) => {
   );
 };
 
-const cartReducer = (state: CartType = initialCart, action: Actions) => {
+const cartReducer = (state: State = initialCart, action: Actions) => {
   switch (action.type) {
     case 'CART_UPDATE_QUANTITY':
       return {
@@ -97,7 +97,7 @@ const reduceQuantity = (products) =>
  * Updates cart property totalQuantity
  * @param {object} state redux state
  */
-const updateTotalQuantity = (state) => ({
+const updateTotalQuantity = (state: State) => ({
   ...state,
   totalQuantity: reduceQuantity(state.products),
 });
