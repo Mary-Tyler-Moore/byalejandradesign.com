@@ -16,6 +16,7 @@ type Props = {
  */
 class CollectionList extends React.Component<Props> {
   render() {
+    console.log(this.props.edges);
     return (
       <section className="collectionList">
         {this.props.edges.map(({ node }) => (

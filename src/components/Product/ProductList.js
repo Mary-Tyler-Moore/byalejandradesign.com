@@ -29,7 +29,7 @@ type Props = {
 const ProductList = ({ edges, addOneToCart, sizes }: Props) => (
   <section className="productList">
     {edges.map(({ node }) => (
-      <BEM block="productListItem">
+      <BEM block="productListItem" key={node.id}>
         <article>
           <Link element="imgLink" to={`/shop/${node.slug}`}>
             <Img

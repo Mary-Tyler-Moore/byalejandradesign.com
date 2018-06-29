@@ -18,6 +18,13 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
     toPath: index,
   });
 
+  createRedirect({
+    fromPath: '/collections',
+    isPermanent: true,
+    redirectInBrowser: true,
+    toPath: '/shop/collections',
+  });
+
   /** Creating Pages */
   const { createPage } = boundActionCreators;
 

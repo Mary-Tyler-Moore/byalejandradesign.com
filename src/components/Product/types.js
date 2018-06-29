@@ -1,11 +1,6 @@
 // @flow
 import type { Actions } from '../Cart/cart-actions';
-
-export type NestedCategoryNode = {
-  term_id: string,
-  name: string,
-  slug: string,
-};
+import type { CollectionNode, TaxonomyNode } from '../Collections/types';
 
 export type ImageNode = {
   localFile: {
@@ -19,6 +14,10 @@ export type ProductNode = {
   title: string,
   slug: string,
   id: string,
+  collections: Array<CollectionNode> | CollectionNode,
+  ceramics?: Array<TaxonomyNode> | TaxonomyNode,
+  sizes?: Array<TaxonomyNode> | TaxonomyNode,
+  paintings?: Array<TaxonomyNode> | TaxonomyNode,
   acf: {
     display_title: string,
     quantity: number,
@@ -27,11 +26,8 @@ export type ProductNode = {
     description: string,
     product_type: string,
     provided_dimensions: string,
-    ceramic?: NestedCategoryNode,
-    size?: NestedCategoryNode,
-    collection?: NestedCategoryNode,
+    main_image: ImageNode,
     additional_images: Array<ImageNode>,
     video_type: string,
-    main_image: ImageNode,
   },
 };

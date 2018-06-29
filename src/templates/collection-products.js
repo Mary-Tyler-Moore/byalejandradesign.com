@@ -18,6 +18,7 @@ export const sparseFragment = graphql`
     name
     id
     description
+    slug
     acf {
       subtitle
     }

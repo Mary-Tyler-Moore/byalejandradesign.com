@@ -1,10 +1,15 @@
 import type { ImageNode } from '../Product/types';
 
-export type CollectionNode = {
+export type TaxonomyNode = {
   name: string,
   id: string,
   description: string,
-  acf: {
+  slug: string,
+};
+
+export type CollectionNode = {
+  ...TaxonomyNode,
+  acf?: {
     subtitle: string,
     image: ImageNode,
   },

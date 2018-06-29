@@ -29,34 +29,6 @@ const SizedNode = withSize({ mobile: true })(Node);
 export default SizedNode;
 
 /**
- * These are nested data fragments
- * Only available as nested taxonomies on type wordpress__wp_shop
- */
-export const sizeNestedFragment = graphql`
-  fragment NestedSizeData on size_4 {
-    term_id
-    name
-    slug
-  }
-`;
-
-export const ceramicNestedFragment = graphql`
-  fragment NestedCeramicData on ceramic_4 {
-    term_id
-    name
-    slug
-  }
-`;
-
-export const collectionNestedFragment = graphql`
-  fragment NestedCollectionData on collection_24 {
-    term_id
-    name
-    slug
-  }
-`;
-
-/**
  * Default image sharp fragment for wp media
  * @type {wordpress__wp_media}
  */
@@ -72,15 +44,30 @@ export const sharpImageFragment = graphql`
   }
 `;
 
+export const sparseFragment = graphql`
+  fragment SparseProductData on wordpress__wp_shop {
+    title
+    slug
+    id
+  }
+`;
+
 /**
  * Shop Product fragment. All product data for a full detailed entry.
  * @type {wordpress__wp_shop}
  */
 export const fragment = graphql`
   fragment ProductData on wordpress__wp_shop {
-    title
-    slug
-    id
+    ...SparseProductData
+    collections {
+      ...CollectionData
+    }
+    sizes {
+      slug
+    }
+    ceramics {
+      slug
+    }
     acf {
       display_title
       quantity
@@ -89,15 +76,6 @@ export const fragment = graphql`
       description
       product_type
       provided_dimensions
-      ceramic {
-        ...NestedCeramicData
-      }
-      size {
-        ...NestedSizeData
-      }
-      collection {
-        ...NestedCollectionData
-      }
       additional_images
       video_type
       main_image {

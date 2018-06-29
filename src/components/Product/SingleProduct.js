@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import Img from 'gatsby-image';
+import Link from 'gatsby-link';
 import Button from '../Button';
 import { BEM } from 'njmyers-component-library';
 import { withCart } from '../Cart';
@@ -9,6 +10,7 @@ import './single-product.sass';
 // string helpers
 import { dollarString } from 'smalldash';
 import title from './title.js';
+import collectionFromProduct from './collection-from-product';
 // types
 import type { ProductNode } from './types';
 
@@ -39,6 +41,12 @@ const SingleProduct = ({ node, addOneToCart }: Props) => (
         <Button element="button" onClick={addOneToCart} name={node.id}>
           Add To Cart
         </Button>
+        <Link
+          element="button"
+          to={`/shop/collection/${collectionFromProduct(node).slug}`}
+        >
+          <Button className="greyButton">Shop this Collection</Button>
+        </Link>
       </aside>
     </article>
   </BEM>
