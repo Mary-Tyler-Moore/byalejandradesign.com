@@ -18,7 +18,7 @@ export const query = graphql`
     allWordpressPost {
       edges {
         node {
-          ...PostSample
+          ...PostData
         }
       }
     }

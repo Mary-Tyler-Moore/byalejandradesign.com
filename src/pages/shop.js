@@ -13,10 +13,7 @@ class Shop extends React.Component {
             edges={this.props.data.allWordpressWpCollections.edges}
           />
         </section>
-        <ProductList
-          edges={this.props.data.allWordpressWpShop.edges}
-          sizes={this.props.sizes}
-        />
+        <ProductList edges={this.props.data.allWordpressWpShop.edges} />
       </section>
     );
   }

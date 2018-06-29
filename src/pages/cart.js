@@ -14,24 +14,7 @@ export const query = graphql`
     allWordpressWpShop {
       edges {
         node {
-          id
-          slug
-          title
-          acf {
-            price
-            sale_price
-            description
-            display_title
-            main_image {
-              localFile {
-                childImageSharp {
-                  sizes(maxWidth: 800, maxHeight: 600) {
-                    ...GatsbyImageSharpSizes
-                  }
-                }
-              }
-            }
-          }
+          ...ProductData
         }
       }
     }

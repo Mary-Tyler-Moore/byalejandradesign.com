@@ -4,12 +4,12 @@ import Img from 'gatsby-image';
 import { AllPosts } from '../components/CloudStudio';
 import { CollectionList } from '../components/Collections';
 
-const IndexPage = (props) => (
+const IndexPage = ({ data }) => (
   <section>
     <h1>New from the Cloud Studio</h1>
-    <AllPosts edges={props.data.allWordpressPost.edges} />
+    <AllPosts edges={data.allWordpressPost.edges} />
     <h1>Collections</h1>
-    <CollectionList edges={props.data.allWordpressWpCollections.edges} />
+    <CollectionList edges={data.allWordpressWpCollections.edges} />
   </section>
 );
 
@@ -20,7 +20,7 @@ export const query = graphql`
     allWordpressPost(limit: 2) {
       edges {
         node {
-          ...PostSample
+          ...PostData
         }
       }
     }

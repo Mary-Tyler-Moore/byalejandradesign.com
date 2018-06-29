@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CollectionList } from '../components/Collections';
+import { CollectionList } from '../../components/Collections';
 
 const Edges = (props) => (
   <CollectionList edges={props.data.allWordpressWpCollections.edges} />
@@ -8,7 +8,7 @@ const Edges = (props) => (
 export default Edges;
 
 export const query = graphql`
-  query AllCollections {
+  query AllCollectionsOr {
     allWordpressWpCollections {
       edges {
         node {
