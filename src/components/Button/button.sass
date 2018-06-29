@@ -1,4 +1,30 @@
 @import ../../sass/extras
 
+%buttonStyled
+  @extend %button
+
+  width: 100%
+  margin: 0.5rem 0
+  border-radius: 2px
+  box-shadow: 2px 2px 5px transparentize($black, 0.85)
+  font-size: 1rem
+  padding: 8px 16px
+  transition: 0.25s background
+
 .defaultButton
-  @extend %button-styled
+  @extend %buttonStyled
+
+  background: $red-darker
+  color: $white
+
+  &:hover
+    background: transparentize($red-darker, 0.3)
+
+.greyButton
+  @extend %buttonStyled
+
+  background: $grey-darker
+  color: $white
+
+  &:hover
+    background: transparentize($grey-darker, 0.3)
