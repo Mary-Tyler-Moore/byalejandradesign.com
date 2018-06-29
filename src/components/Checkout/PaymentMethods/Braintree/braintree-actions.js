@@ -79,7 +79,7 @@ export const dataCollectorSaveInstance = (payload: {}) => ({
 type Fn<T> = (...args: Array<any>) => T;
 type ExtractReturn = <T>(Fn<T>) => T;
 
-export type Action =
+export type Actions =
   | $Call<ExtractReturn, typeof brainTreeError>
   | $Call<ExtractReturn, typeof brainTreeCreateClient>
   | $Call<ExtractReturn, typeof brainTreeSaveClient>

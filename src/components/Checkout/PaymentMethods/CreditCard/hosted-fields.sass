@@ -1,4 +1,4 @@
-@import '../../../../sass/extras'
+@import ../../../../sass/extras
 
 $valid: $cobalt
 $invalid: $red-lighter
@@ -15,19 +15,25 @@ $invalid: $red-lighter
     display: grid
     grid-column-gap: 2rem
     grid-template-columns: 1fr 150px 60px
+
   &_feedbackRow
     width: 100%
     display: grid
     grid-template-columns: repeat(1, 1fr)
     grid-row-gap: 1rem
+
   &_submit
-    @extend %button-styled
+    @extend %button
+
   &_invalidNotice
     @extend %invalidText
+
     opacity: 0
     margin: 0
     padding: 0
+
     +transition(0.35s opacity)
+
     &-error
       opacity: 1
 
@@ -35,35 +41,51 @@ $invalid: $red-lighter
   display: grid
   grid-template-columns: repeat(1, 1fr)
   grid-row-gap: 0.7rem
+
   &-cardNumber
+
   &-expiration
+
   &-ccv
+
   // the main class seen by the form code
   &_input
     width: 100%
     height: auto
+
     +transition(0.35s color)
+
     &:focus
+
     // different inputs
     &-cardNumber
+
     &-expirationDate
+
     // different states
     &-valid
       color: $valid
+
     &-invalid
       color: $invalid
 
   &_inputContainer
     width: 100%
     height: 40px
+
     @extend %input
+
     &-isFocused
       @extend %input-focus
+
     &-isValid
       border-color: $valid
+
     &-isInvalid
       border-color: $invalid
+
   &_label
+
   &_invalidStatement
     color: $invalid
     font-style: italic

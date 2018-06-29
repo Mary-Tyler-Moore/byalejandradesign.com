@@ -1,3 +1,4 @@
+// @flow
 // rxjs operators
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
@@ -24,12 +25,14 @@ import {
 // getters
 import { getClient } from './Braintree/braintree-epic';
 
+import type { Actions } from './payment-methods-actions';
+
 /**
  * Merges braintree client with options to create a payment method instance.
  * @param {object} action this is a redux action
  * @param {*} store light store from redux-observable
  */
-const returnClient = (action, store) => {
+const returnClient = (action: Actions, store) => {
   // first get the client from the 'light store' available in redux-observable
   const client = getClient(store);
   // merge client from store
@@ -68,10 +71,22 @@ const paymentMethodsEpic = (actions$, store) =>
       )
     );
 
-const getInstance = (store) => store.getState().checkout.payment.instance;
-const getMethod = (store) => store.getState().checkout.payment.method;
+const getInstance = (store) => {
+  // console.log(store.getState());
+  return store.value.checkout.payment.instance;
+};
 
-const paymentMethodsTeardown = (actions$, store) =>
+const getMethod = (store) => store.value.checkout.payment.method;
+
+/**
+ * Epic to teardown payment instance.
+ * This is necessary to reduce any and all side effects
+ * that may arise from openint a payment instance.
+ * @param  {[type]} actions$ [description]
+ * @param  {[type]} store    [description]
+ * @return {[type]}          [description]
+ */
+const paymentMethodsTeardown = (actions$, store, third) =>
   actions$.ofType('PAYMENT_METHOD_CHOOSE').mergeMap((action) => {
     const instance = getInstance(store);
     const method = getMethod(store);

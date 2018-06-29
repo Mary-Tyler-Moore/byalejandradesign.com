@@ -13,31 +13,31 @@ import addressServer from './address-server';
 // combiner
 import { combineEpics } from 'redux-observable';
 
-const getShippingAddress = (store) => store.getState().checkout.shippingAddress;
+const getShippingAddress = (store) => store.value.checkout.shippingAddress;
 
 /**
  *
  * @param {stream$} actions$ observable stream of redux actions
  */
 const addressValidationUSPS = (actions$, store) =>
-    actions$
-        .ofType('VALIDATE_ADDRESS')
-        .mergeMap(() =>
-            addressServer(getShippingAddress(store))
-                .mergeMap((response) =>
-                    Observable.of({
-                        type: 'VALIDATE_ADDRESS_SUCCESS',
-                        payload: response,
-                    })
-                )
-                .takeUntil(actions$.ofType('USPS_ADDRESS_VALIDATION_CANCEL'))
+  actions$
+    .ofType('VALIDATE_ADDRESS')
+    .mergeMap(() =>
+      addressServer(getShippingAddress(store))
+        .mergeMap((response) =>
+          Observable.of({
+            type: 'VALIDATE_ADDRESS_SUCCESS',
+            payload: response,
+          })
         )
-        .catch((err) =>
-            Observable.of({
-                type: 'USPS_ADDRESS_VALIDATION_ERROR',
-                message: 'USPS Address validation error',
-                err,
-            })
-        );
+        .takeUntil(actions$.ofType('USPS_ADDRESS_VALIDATION_CANCEL'))
+    )
+    .catch((err) =>
+      Observable.of({
+        type: 'USPS_ADDRESS_VALIDATION_ERROR',
+        message: 'USPS Address validation error',
+        err,
+      })
+    );
 
 export default combineEpics(addressValidationUSPS);

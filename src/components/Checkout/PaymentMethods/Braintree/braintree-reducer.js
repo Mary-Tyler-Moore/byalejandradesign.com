@@ -1,7 +1,7 @@
 // @flow
-import type { Action } from './braintree-actions';
+import type { Actions } from './braintree-actions';
 
-type State = {
+export type State = {
   +client: {} | null,
   +status: string,
   +token: string,
@@ -21,7 +21,7 @@ const brainTree: State = {
   dataCollectorInstance: null,
 };
 
-const brainTreeReducer = (state: State = brainTree, action: Action) => {
+const brainTreeReducer = (state: State = brainTree, action: Actions) => {
   switch (action.type) {
     // Token Request Actions
     case 'BRAINTREE_TOKEN_REQUEST':

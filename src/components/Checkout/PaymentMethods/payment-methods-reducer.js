@@ -1,15 +1,15 @@
 // @flow
-import type { Action } from './payment-methods-actions';
+import type { Actions } from './payment-methods-actions';
 
-export type PaymentState = {
-  method: string,
-  instance: {} | null,
-  status: string,
-  nonce: {} | null,
-  error: string,
+export type State = {
+  +method: string,
+  +instance: {} | null,
+  +status: string,
+  +nonce: {} | null,
+  +error: string,
 };
 
-const payment: PaymentState = {
+const payment = {
   method: '',
   instance: null,
   status: 'ready',
@@ -18,7 +18,7 @@ const payment: PaymentState = {
   error: '',
 };
 
-const paymentReducer = (state: PaymentState = payment, action: Action) => {
+const paymentReducer = (state: State = payment, action: Actions) => {
   switch (action.type) {
     case 'PAYMENT_METHOD_TEARDOWN_ERROR':
       return {

@@ -1,4 +1,4 @@
-// rxjs operators
+// @flow
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/from';
 import 'rxjs/add/observable/of';
@@ -22,12 +22,14 @@ import {
   dataCollectorSaveInstance,
 } from './braintree-actions';
 
+import type { Actions } from './braintree-actions';
+
 /**
  * Helper function to access the braintree client from redux-observable 'light store'
  * @param {object} store redux 'light store' passed from redux-observable
  * @return {object} returns an authorized braintree client
  */
-export const getClient = (store) => store.getState().checkout.braintree.client;
+export const getClient = (store) => store.value.checkout.braintree.client;
 
 /**
  * This is the epic for requesting a client token from our server

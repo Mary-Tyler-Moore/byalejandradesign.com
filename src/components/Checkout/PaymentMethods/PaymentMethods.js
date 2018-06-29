@@ -3,15 +3,13 @@ import { connect } from 'react-redux';
 // actions
 import { choosePaymentMethod } from './payment-methods-actions';
 // components
-import AsyncLoader from '../../Root/AsyncLoader';
+import CreditCard from './CreditCard';
+import Paypal from './Paypal';
+import Venmo from './Venmo';
 import BrainTreeClient from './Braintree';
 import { CreditCardOption, PaypalOption, VenmoOption } from './Options';
 // style
 import './payment-methods.sass';
-// async components
-const CreditCard = AsyncLoader(() => import('./CreditCard'));
-const Paypal = AsyncLoader(() => import('./Paypal'));
-const Venmo = AsyncLoader(() => import('./Venmo'));
 
 class PaymentMethods extends PureComponent {
   renderPaymentMethod = () => {
