@@ -1,7 +1,6 @@
 // @flow
 import React, { PureComponent } from 'react';
 import { hostedFields } from 'braintree-web';
-import { connect } from 'react-redux';
 import { equals } from 'smalldash';
 // types
 import type { PaymentState } from '../payment-methods-reducer';

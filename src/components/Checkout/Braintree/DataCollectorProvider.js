@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { StatusSwitch } from 'njmyers-component-library';
 import dataCollector from 'braintree-web/data-collector';
 // actions
 import { deviceData, saveCollector, braintreeError } from './braintree-actions';
