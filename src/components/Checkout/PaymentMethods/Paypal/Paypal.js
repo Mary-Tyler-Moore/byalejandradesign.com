@@ -1,5 +1,7 @@
+// @flow
 import * as React from 'react';
 import { compose } from 'smalldash';
+import { paypalCheckout } from 'braintree-web';
 // HOC to preload checkout module
 import withPaypalButton from './with-paypal-button';
 // auto connect HOC
@@ -7,14 +9,41 @@ import withPaymentActions from '../with-payment-actions';
 // styles
 import './paypal.sass';
 
+type State = {
+  instance: {
+    tokenize: () => null,
+  } | null,
+};
+
 /**
  * Paypal button. Uses react driver and Braintree client
  * Documentation and helpful articles for Braintree/React integration
  * https://developers.braintreepayments.com/guides/paypal/overview/javascript/v3
  * https://github.com/paypal/paypal-checkout/blob/master/docs/frameworks.md
  */
-class Paypal extends React.PureComponent {
-  componentDidMount = () => this.props.createInstance();
+class Paypal extends React.PureComponent<{}, State> {
+  state = {
+    instance: null,
+  };
+
+  componentDidMount() {
+    paypalCheckout
+      .create({
+        client: this.props.braintree.client,
+      })
+      .then((instance) => {
+        this.setState({ instance });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  componentWillUnmount() {
+    if (this.state.instance) {
+      this.state.instance.teardown();
+    }
+  }
 
   /**
    * Rename table of keys. Input the redux key and output the proper paypal key
@@ -54,7 +83,7 @@ class Paypal extends React.PureComponent {
    * Paypal button function
    */
   payment = () =>
-    this.props.payment.instance.createPayment({
+    this.state.instance.createPayment({
       flow: 'checkout',
       currency: 'USD', // default to paying in USD for now
       amount: 10.0, // TODO: Make amount from redux cart.
@@ -64,32 +93,37 @@ class Paypal extends React.PureComponent {
     });
 
   onAuthorize = (data) => {
-    Promise.resolve(this.props.payment.instance.tokenizePayment(data))
+    Promise.resolve(this.state.instance.tokenizePayment(data))
       .then((payload) => {
         this.props.submitNonce(payload);
       })
       .catch((err) => {
-        this.props.paymentError({
-          type: 'PAYPAL_TOKENIZATION_ERROR',
-          message: 'Paypal error tokenizing',
-        });
+        // this.props.paymentError({
+        //   type: 'PAYPAL_TOKENIZATION_ERROR',
+        //   message: 'Paypal error tokenizing',
+        // });
+        console.log(err);
       });
   };
 
   onCancel = (data) => {
-    this.props.paymentError({
-      type: 'PAYPAL_CANCELLED',
-      message: 'Paypal transaction was cancelled',
-      err: data,
-    });
+    // this.props.paymentError({
+    //   type: 'PAYPAL_CANCELLED',
+    //   message: 'Paypal transaction was cancelled',
+    //   err: data,
+    // });
+
+    console.log(data);
   };
 
   onError = (err) => {
-    this.props.paymentError({
-      type: 'PAYPAL_CHECKOUT_JS_ERROR',
-      message: 'Paypal checkout.js error',
-      err,
-    });
+    // this.props.paymentError({
+    //   type: 'PAYPAL_CHECKOUT_JS_ERROR',
+    //   message: 'Paypal checkout.js error',
+    //   err,
+    // });
+
+    console.log(err);
   };
 
   render() {
@@ -121,6 +155,6 @@ class Paypal extends React.PureComponent {
 }
 
 export default compose(
-  withPaymentActions('paypal'),
+  withPaymentActions,
   withPaypalButton
 )(Paypal);

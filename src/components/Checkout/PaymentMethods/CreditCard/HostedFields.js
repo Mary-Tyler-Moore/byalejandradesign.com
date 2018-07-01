@@ -1,16 +1,12 @@
 // @flow
 import React, { PureComponent } from 'react';
+import { hostedFields } from 'braintree-web';
 import { connect } from 'react-redux';
-import { equals, compose } from 'smalldash';
+import { equals } from 'smalldash';
 // types
 import type { PaymentState } from '../payment-methods-reducer';
 // actions
-import {
-  createPaymentInstance,
-  cancelCreatePaymentInstance,
-  createPaymentInstanceError,
-  savePaymentNonce,
-} from '../payment-methods-actions';
+import withPaymentActions from '../with-payment-actions';
 // components
 import CardIcons from './CardIcons';
 import Field from './Field';
@@ -87,21 +83,34 @@ class HostedFields extends PureComponent<Props, State> {
   };
 
   componentDidMount() {
-    this.props.hostedFieldsCreateInstance(this.options);
+    hostedFields
+      .create({
+        client: this.props.braintree.client,
+        ...this.options,
+      })
+      .then((instance) => {
+        this.setState({ instance });
+      })
+      .catch((error) => {
+        this.props.paymentError(error);
+      });
+  }
+
+  componentWillUnmount() {
+    if (this.state.instance) {
+      this.state.instance.teardown();
+    }
   }
 
   /**
    * Set up the event listeners from the hosted fields instance
    * @param {*} prevProps
    */
-  componentDidUpdate(prevProps) {
-    if (
-      this.props.payment.status === 'resolved' &&
-      prevProps.payment.instance !== 'resolved'
-    ) {
-      this.props.payment.instance.on('cardTypeChange', this.onCardTypeChange);
-      this.props.payment.instance.on('focus', this.storeFieldStatus);
-      this.props.payment.instance.on('validityChange', this.storeFieldStatus);
+  componentDidUpdate(prevProps, prevState) {
+    if (!prevState.instance && this.state.instance) {
+      this.state.instance.on('cardTypeChange', this.onCardTypeChange);
+      this.state.instance.on('focus', this.storeFieldStatus);
+      this.state.instance.on('validityChange', this.storeFieldStatus);
     }
   }
 
@@ -125,17 +134,14 @@ class HostedFields extends PureComponent<Props, State> {
     this.setState({ status: 'loading' });
     // validate all hosted card fields
     if (this.validateAllFields()) {
-      Promise.resolve(this.props.payment.instance.tokenize())
+      Promise.resolve(this.state.instance.tokenize())
         .then((payload) => {
-          this.props.hostedFieldsNonce(payload);
+          this.props.submitNonce(payload);
           this.setState({ status: 'resolved' });
         })
         .catch((err) => {
           this.setState({ status: 'error' });
-          this.props.hostedFieldsError({
-            type: 'CREDIT_CARD_TOKENIZE_ERROR',
-            err,
-          });
+          this.props.paymentError(err);
         });
     } else {
       this.setState({ status: 'error' });
@@ -222,24 +228,4 @@ class HostedFields extends PureComponent<Props, State> {
   }
 }
 
-const mapStateToProps = (state) => ({
-  payment: state.checkout.payment,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  hostedFieldsNonce: (payload) =>
-    dispatch(savePaymentNonce('hostedFields')(payload)),
-  hostedFieldsError: (err) =>
-    dispatch(createPaymentInstanceError('hostedFields')(err)),
-  hostedFieldsCreateInstance: (options) =>
-    dispatch(createPaymentInstance('hostedFields')(options)),
-  hostedFieldsCancelInstance: () =>
-    dispatch(cancelCreatePaymentInstance('hostedFields')()),
-});
-
-export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
-)(HostedFields);
+export default withPaymentActions(HostedFields);

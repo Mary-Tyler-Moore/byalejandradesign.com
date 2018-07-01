@@ -1,8 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
-import { createEpicMiddleware } from 'redux-observable';
 import throttle from 'lodash/throttle';
 import reducer from './root-reducer';
-import rootEpic from './root-epic';
 import useStorage from './use-storage';
 import { loadLocalApplication, saveLocalApplication } from './local-storage';
 
@@ -20,11 +18,11 @@ const stateDate = application ? application.date : 0;
  * @return {[type]} [description]
  */
 const _middlewares = () => {
-  const middlewares = { epicMiddleware: createEpicMiddleware() };
+  const middlewares = [];
 
   if (process.env.NODE_ENV === 'development') {
     const { logger } = require('redux-logger');
-    middlewares.logger = logger;
+    middlewares.push(logger);
   }
 
   return middlewares;
@@ -42,7 +40,7 @@ const _createStore = () => {
   const store = createStore(
     reducer,
     preloadedState,
-    applyMiddleware(...Object.values(middlewares))
+    applyMiddleware(...middlewares)
   );
 
   // side effects
@@ -59,9 +57,6 @@ const _createStore = () => {
       1000
     );
   }
-
-  // run epics
-  middlewares.epicMiddleware.run(rootEpic);
 
   return store;
 };

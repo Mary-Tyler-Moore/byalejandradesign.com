@@ -1,8 +1,10 @@
 // @flow
 import type { Actions } from './payment-methods-actions';
 
+export type methods = 'paypal' | 'venmo' | 'hostedFields' | '';
+
 export type State = {
-  +method: string,
+  +method: methods,
   +instance: {} | null,
   +status: string,
   +nonce: {} | null,
@@ -20,34 +22,15 @@ const payment = {
 
 const paymentReducer = (state: State = payment, action: Actions) => {
   switch (action.type) {
-    case 'PAYMENT_METHOD_TEARDOWN_ERROR':
+    case '@PAYMENT_METHOD/CHOOSE':
       return {
         ...state,
-        status: 'error',
+        method: action.method,
       };
-    case 'PAYMENT_METHOD_TEARDOWN_COMPLETE':
-    case 'PAYMENT_METHOD_NO_TEARDOWN':
+    case '@PAYMENT_METHOD/SAVE_NONCE':
       return {
         ...state,
-        method: action.nextMethod,
-        status: 'ready',
-      };
-    case 'PAYMENT_METHOD_INSTANCE_CREATE':
-      return {
-        ...state,
-        status: 'creating',
-      };
-    case 'PAYMENT_METHOD_INSTANCE_SAVE':
-      return {
-        ...state,
-        instance: action.payload,
-        status: 'resolved',
-      };
-    case 'PAYMENT_METHOD_INSTANCE_ERROR':
-      return {
-        ...state,
-        error: action.err,
-        status: 'error',
+        nonce: action.payload,
       };
     default:
       return state;

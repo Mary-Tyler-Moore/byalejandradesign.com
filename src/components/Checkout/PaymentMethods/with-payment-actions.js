@@ -3,15 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import type { Dispatch, Store } from '../../../store/types';
 
-import {
-  createPaymentInstance,
-  cancelCreatePaymentInstance,
-  createPaymentInstanceError,
-  savePaymentNonce,
-} from './payment-methods-actions';
-
-// import type { State } from '../checkout-reducer';
-import type { methods } from './payment-methods-actions';
+import { paymentMethodError, submitNonce } from './payment-methods-actions';
 
 /**
  * Connect state to Payment Components
@@ -19,9 +11,7 @@ import type { methods } from './payment-methods-actions';
  * @param  {[type]} type [description]
  * @return {[type]}      [description]
  */
-const withPaymentActions = (type: methods) => (
-  Wrapped: React.ComponentType<any>
-) => {
+const withPaymentActions = (Wrapped: React.ComponentType<any>) => {
   const mapStateToProps = (state: Store) => ({
     braintree: state.checkout.braintree,
     shippingAddress: state.checkout.shippingAddress,
@@ -29,11 +19,8 @@ const withPaymentActions = (type: methods) => (
   });
 
   const mapDispatchToProps = (dispatch: Dispatch) => ({
-    submitNonce: (payload) => dispatch(savePaymentNonce(type)(payload)),
-    paymentError: (err) => dispatch(createPaymentInstanceError(type)(err)),
-    createInstance: (options = {}) =>
-      dispatch(createPaymentInstance(type)(options)),
-    cancelInstance: () => dispatch(cancelCreatePaymentInstance(type)()),
+    submitNonce: (payload) => dispatch(submitNonce(payload)),
+    paymentError: (err) => dispatch(paymentMethodError(err)),
   });
 
   const connectedComponent = connect(

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 // actions
-import { choosePaymentMethod } from './payment-methods-actions';
+import { paymentMethodType } from './payment-methods-actions';
 // components
 import CreditCard from './CreditCard';
 import Paypal from './Paypal';
@@ -10,6 +10,8 @@ import BrainTreeClient from '../Braintree';
 import { CreditCardOption, PaypalOption, VenmoOption } from './Options';
 // style
 import './payment-methods.sass';
+
+// const
 
 class PaymentMethods extends PureComponent {
   renderPaymentMethod = () => {
@@ -33,18 +35,9 @@ class PaymentMethods extends PureComponent {
         <section>
           <h3>Choose Your Payment Method</h3>
           <section className="paymentOptions">
-            <VenmoOption
-              onClick={this.props.choosePaymentMethod.bind(this, 'venmo')}
-            />
-            <CreditCardOption
-              onClick={this.props.choosePaymentMethod.bind(
-                this,
-                'hostedFields'
-              )}
-            />
-            <PaypalOption
-              onClick={this.props.choosePaymentMethod.bind(this, 'paypal')}
-            />
+            <VenmoOption onClick={this.props.chooseVenmo} />
+            <CreditCardOption onClick={this.props.chooseCredit} />
+            <PaypalOption onClick={this.props.choosePaypal} />
           </section>
           <section className="paymentMethod">
             {this.renderPaymentMethod()}
@@ -60,7 +53,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  choosePaymentMethod: (method) => dispatch(choosePaymentMethod(method)),
+  chooseVenmo: () => dispatch(paymentMethodType('venmo')),
+  choosePaypal: () => dispatch(paymentMethodType('paypal')),
+  chooseCredit: () => dispatch(paymentMethodType('hostedFields')),
 });
 
 export default connect(
