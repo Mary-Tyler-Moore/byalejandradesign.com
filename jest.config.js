@@ -4,4 +4,5 @@ module.exports = {
     '\\.(sass|css|scss)$': '<rootDir>/src/__mocks__/styleMock.js',
   },
   testPathIgnorePatterns: ['/node_modules/', '<rootDir>/.cache/'],
+  transform: { '^.+\\.js$': '<rootDir>/jest-preprocess.js' },
 };
