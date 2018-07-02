@@ -26,7 +26,11 @@
       transform: scale(1.04)
       filter: brightness(0.6)
 
-  &_textContainer
+  &_textLine1,
+  &_textLine2
+    display: flex
+    justify-content: space-between
+    align-items: center
 
   &_textLink
     @extend %a
@@ -35,8 +39,16 @@
     font-weight: 600
 
   &_title
-    margin: 0.6rem 0
+    margin: 0
 
   &_price
     font-size: 0.9rem
     font-style: italic
+
+  &_textLine2
+    margin-bottom: 0.6rem
+
+  &_dimensions
+    margin: 0
+    font-style: italic
+    font-size: 0.8rem

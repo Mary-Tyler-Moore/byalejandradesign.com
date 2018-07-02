@@ -37,15 +37,18 @@ const ProductList = ({ edges, addOneToCart, sizes }: Props) => (
               fluid={node.acf.main_image.localFile.childImageSharp.fluid}
             />
           </Link>
-          <div element="textContainer">
+          <div element="textLine1">
             <Link element="textLink" to={`/shop/${node.slug}`}>
               <h3 className="productLink_title">{title(node)}</h3>
             </Link>
             <p element="price">{dollarString(node.acf.price)}</p>
-            <Button element="button" onClick={addOneToCart} name={node.id}>
-              Add to Cart
-            </Button>
           </div>
+          <div element="textLine2">
+            <p element="dimensions">12" x 12"</p>
+          </div>
+          <Button element="button" onClick={addOneToCart} name={node.id}>
+            Add to Cart
+          </Button>
         </article>
       </BEM>
     ))}

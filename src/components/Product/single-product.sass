@@ -4,6 +4,7 @@
   display: grid
   grid-template-columns: 400px 1fr
   grid-gap: 3rem
+  align-items: baseline
 
   +all-phone
     margin-top: 1rem
@@ -11,8 +12,22 @@
     grid-gap: 2rem
 
 
-  &_img
+  &_imgContainer
     @extend %niceShadow
+
+    position: relative
+
+  &_img
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    opacity: 0
+
+    +transition(0.45s opacity)
+
+    &-active
+      opacity: 1
 
   &_content
 

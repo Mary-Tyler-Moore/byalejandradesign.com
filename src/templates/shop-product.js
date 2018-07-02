@@ -78,11 +78,12 @@ export const fragment = graphql`
       price
       sale_price
       description
-      product_type
       provided_dimensions
-      additional_images
       video_type
       main_image {
+        ...SharpImage
+      }
+      additional_images {
         ...SharpImage
       }
     }

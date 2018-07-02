@@ -12,10 +12,12 @@ class Shop extends React.Component {
       <Layout>
         <section className="shop">
           <section className="shopSideBar">
+            <h1>Collections</h1>
             <CollectionList
               edges={this.props.data.allWordpressWpCollections.edges}
             />
           </section>
+          <h1>Shop</h1>
           <ProductList edges={this.props.data.allWordpressWpShop.edges} />
         </section>
       </Layout>

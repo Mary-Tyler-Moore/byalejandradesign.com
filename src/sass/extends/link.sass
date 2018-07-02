@@ -2,13 +2,15 @@
 
 %a
   cursor: pointer
-  color: $blue
+  color: $grey-darkest
   margin: 0
   padding: 0
   text-decoration: none
 
+  +transition(0.25s color)
+
   &:hover
-    color: transparentize($blue, 0.2)
+    color: transparentize($grey-darkest, 0.2)
 
   &:focus
     outline: none
