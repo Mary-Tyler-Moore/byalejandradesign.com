@@ -8089,9 +8089,9 @@ nise@^1.3.3:
     path-to-regexp "^1.7.0"
     text-encoding "^0.6.4"
 
-njmyers-component-library@^0.1.11:
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/njmyers-component-library/-/njmyers-component-library-0.1.16.tgz#e0473d457d24829984149938e25c644795447fff"
+njmyers-component-library@^0.1.17:
+  version "0.1.17"
+  resolved "https://registry.yarnpkg.com/njmyers-component-library/-/njmyers-component-library-0.1.17.tgz#c00561ecf56a98d14882e1b9aa9b710adfd58fdc"
   dependencies:
     axios "^0.18.0"
     parse-link-header "^1.0.1"
