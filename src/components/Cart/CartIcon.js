@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
-// import { Icon } from 'njmyers-component-library';
 import withCart from './with-cart';
 // style
 import './cart-icon.sass';
+// assets
+import icon from './icon.svg';
 
 /**
  * A cart icon displaying quantity and linking to the shopping cart page
@@ -15,7 +16,10 @@ class CartIcon extends PureComponent {
   render() {
     return (
       <div className={this.mergeClassNames()}>
-        {this.props.cart.totalQuantity}
+        <div className="cartIcon_svgContainer">
+          <img className="cartIcon_svg" src={icon} />
+          <p className="cartIcon_itemText">{this.props.cart.totalQuantity}</p>
+        </div>
       </div>
     );
   }
