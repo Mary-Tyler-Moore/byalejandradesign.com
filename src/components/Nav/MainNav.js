@@ -14,20 +14,24 @@ type Props = {
     window: {
       innerWidth: number,
     },
+    mobile: boolean,
   },
-  maxWidth: number,
-  contentPadding: number,
+  design: {
+    maxWidth: number,
+    contentPadding: number,
+    mobileContentPadding: number,
+  },
   mainNav: Array<string>,
 };
 
 class DesktopMainNav extends React.Component<Props> {
   getStyle = () => {
     const { innerWidth } = this.props.sizes.window;
-    const { maxWidth } = this.props;
+    const { maxWidth, contentPadding } = this.props.design;
     // calculate the max width
     const sidePadding = innerWidth > maxWidth ? (innerWidth - maxWidth) / 2 : 0;
     // add content padding
-    return { padding: `0 ${sidePadding + this.props.contentPadding}px` };
+    return { padding: `0 ${sidePadding + contentPadding}px` };
   };
 
   render() {
@@ -46,8 +50,8 @@ class DesktopMainNav extends React.Component<Props> {
         ))}
         <Link
           to="/cart"
-          className="mainNavDesktop_link"
-          activeClassName="mainNavDesktop_link-active"
+          className="mainNavDesktop_linkCart"
+          activeClassName="mainNavDesktop_linkCart-active"
         >
           <CartIcon />
         </Link>
@@ -60,7 +64,7 @@ type MobileNavState = {
   status: 'on' | 'off',
 };
 
-const LinkedCartIcon = ({ onClick }) => (
+const LinkedMobileCartIcon = ({ onClick }) => (
   <Link
     to="/cart"
     className="mainNavMobile_link"
@@ -72,6 +76,15 @@ const LinkedCartIcon = ({ onClick }) => (
 );
 
 class MobileMainNav extends React.Component<Props, MobileNavState> {
+  getStyle = () => {
+    const { innerWidth } = this.props.sizes.window;
+    const { maxWidth, mobileContentPadding } = this.props.design;
+    // calculate the max width
+    const sidePadding = innerWidth > maxWidth ? (innerWidth - maxWidth) / 2 : 0;
+    // add content padding
+    return { padding: `0 ${sidePadding + mobileContentPadding}px` };
+  };
+
   state = {
     status: 'off',
   };
@@ -84,10 +97,9 @@ class MobileMainNav extends React.Component<Props, MobileNavState> {
 
   render() {
     return (
-      <header className="mainHeaderMobile">
+      <header style={this.getStyle()} className="mainHeaderMobile">
         <div className="mainHeaderMobile_hamburger" onClick={this.handleClick}>
           <Icon.Hamburger color="#ffffff" radius={1} />
-          <Icon.Cross color="#ffffff" radius={1} />
         </div>
         <Modal
           status={this.state.status}
@@ -105,17 +117,15 @@ class MobileMainNav extends React.Component<Props, MobileNavState> {
                 {URLToTitle(nav)}
               </Link>
             ))}
-            <LinkedCartIcon onClick={this.handleClick} />
-            {/* <CartIcon className="mainNavMobile_link" /> */}
+            <LinkedMobileCartIcon onClick={this.handleClick} />
           </nav>
         </Modal>
-        <LinkedCartIcon onClick={this.handleClick} />
       </header>
     );
   }
 }
 
-const MainNav = (props) =>
+const MainNav = (props: Props) =>
   props.sizes.mobile ? (
     <MobileMainNav {...props} />
   ) : (
