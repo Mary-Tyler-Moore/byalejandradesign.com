@@ -64,6 +64,7 @@ module.exports = {
     design: {
       maxWidth: 1200, // px
       contentPadding: 40, // px
+      mobileContentPadding: 15, // px
     },
   },
   plugins: [
