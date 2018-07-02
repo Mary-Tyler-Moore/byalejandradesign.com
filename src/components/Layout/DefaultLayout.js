@@ -4,38 +4,63 @@ import Helmet from 'react-helmet';
 import withSize from 'react-size-components';
 import { MainNav, FooterNav } from '../Nav';
 import Header from '../Header';
-// import Fonts from '../Fonts';
 // styles
 import 'normalize.css';
 import './index.sass';
 
-const Layout = ({ children, sizes }) => (
-  <StaticQuery
-    query={graphql`
-      query SiteTitleQuery {
-        site {
-          siteMetadata {
-            title
-            subTitle
-            navLayout {
-              mainNav
-              footerNav
+class Layout extends React.Component {
+  /** get the metadata object */
+  getSiteMetadata = (data) => data.site.siteMetadata;
+
+  /** get the design metadata object */
+  getDesign = (data) => this.getSiteMetadata(data).design;
+
+  /** get the title from metadata */
+  getTitle = (data) => {
+    const { title, subTitle } = this.getSiteMetadata(data);
+    return `${title}: ${subTitle}`;
+  };
+
+  /** get the content padding from metadata/mobile state */
+  getContentPadding = (data) => {
+    const { design } = this.getSiteMetadata(data);
+
+    return this.props.sizes.mobile
+      ? design.mobileContentPadding
+      : design.contentPadding;
+  };
+
+  render() {
+    return (
+      <StaticQuery
+        query={graphql`
+          query SiteTitleQuery {
+            site {
+              siteMetadata {
+                title
+                subTitle
+                navLayout {
+                  mainNav
+                  footerNav
+                }
+                design {
+                  maxWidth
+                  contentPadding
+                  mobileContentPadding
+                }
+              }
             }
-            design {
-              maxWidth
-              contentPadding
-            }
-          }
-        }
-        allWordpressWpHeaders {
-          edges {
-            node {
-              acf {
-                image {
-                  localFile {
-                    childImageSharp {
-                      fluid(maxWidth: 1650) {
-                        ...GatsbyImageSharpFluid
+            allWordpressWpHeaders {
+              edges {
+                node {
+                  acf {
+                    image {
+                      localFile {
+                        childImageSharp {
+                          fluid(maxWidth: 1650) {
+                            ...GatsbyImageSharpFluid
+                          }
+                        }
                       }
                     }
                   }
@@ -43,53 +68,52 @@ const Layout = ({ children, sizes }) => (
               }
             }
           }
-        }
-      }
-    `}
-    render={(data) => (
-      <div className="root">
-        <Helmet
-          title={
-            data.site.siteMetadata.title +
-            ': ' +
-            data.site.siteMetadata.subTitle
-          }
-          meta={[
-            { name: 'description', content: 'Sample' },
-            { name: 'keywords', content: 'sample, something' },
-          ]}
-        >
-          <link
-            href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900"
-            rel="stylesheet"
-          />
-        </Helmet>
-        <MainNav
-          maxWidth={data.site.siteMetadata.design.maxWidth}
-          contentPadding={data.site.siteMetadata.design.contentPadding}
-          mainNav={data.site.siteMetadata.navLayout.mainNav}
-          sizes={sizes}
-        />
-        <Header edges={data.allWordpressWpHeaders.edges} />
-        <main
-          style={{
-            maxWidth: `${data.site.siteMetadata.design.maxWidth}px`,
-            minHeight: '100vh',
-            padding: `0 ${data.site.siteMetadata.design.contentPadding}px`,
-          }}
-          className="mainContent"
-        >
-          {children}
-        </main>
-        <FooterNav
-          maxWidth={data.site.siteMetadata.design.maxWidth}
-          footerNav={data.site.siteMetadata.navLayout.footerNav}
-          sizes={sizes}
-        />
-      </div>
-    )}
-  />
-);
+        `}
+        render={(data) => (
+          <React.Fragment>
+            <div className="root">
+              <Helmet
+                title={this.getTitle(data)}
+                meta={[
+                  { name: 'description', content: 'Sample' },
+                  { name: 'keywords', content: 'sample, something' },
+                ]}
+              >
+                <link
+                  href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900"
+                  rel="stylesheet"
+                />
+              </Helmet>
+              <MainNav
+                design={this.getDesign(data)}
+                mainNav={data.site.siteMetadata.navLayout.mainNav}
+                sizes={this.props.sizes}
+              />
+              <Header edges={data.allWordpressWpHeaders.edges} />
+              <main
+                style={{
+                  maxWidth: `${data.site.siteMetadata.design.maxWidth}px`,
+                  minHeight: '100vh',
+                  padding: `0 ${this.getContentPadding(data)}px`,
+                }}
+                className="mainContent"
+              >
+                {this.props.children}
+              </main>
+              <FooterNav
+                design={this.getDesign(data)}
+                maxWidth={data.site.siteMetadata.design.maxWidth}
+                footerNav={data.site.siteMetadata.navLayout.footerNav}
+                sizes={this.props.sizes}
+              />
+            </div>
+            <div id="modal-root" />
+          </React.Fragment>
+        )}
+      />
+    );
+  }
+}
 
 export default withSize({
   mobile: true,
