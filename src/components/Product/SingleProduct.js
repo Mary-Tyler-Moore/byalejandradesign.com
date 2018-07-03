@@ -12,19 +12,7 @@ import { dollarString } from 'smalldash';
 import title from './title.js';
 import collectionFromProduct from './collection-from-product';
 // types
-import type { ProductNode } from './types';
-
-type Props = {
-  node: ProductNode,
-  addOneToCart: () => null,
-  sizes: {
-    mobile: boolean,
-  },
-};
-
-type State = {
-  images: Array<{}>,
-};
+import type { ProductNode, ImageNode } from './types';
 
 const CollectionLink = ({ node }) => (
   <Link
@@ -35,6 +23,19 @@ const CollectionLink = ({ node }) => (
   </Link>
 );
 
+type Props = {
+  node: ProductNode,
+  addOneToCart: () => null,
+  sizes: {
+    mobile: boolean,
+  },
+};
+
+type State = {
+  active: number,
+  interval: IntervalID | null,
+};
+
 /**
  * Displays single product
  * @param {ProductNode} node      graphql node of shop product
@@ -43,28 +44,33 @@ const CollectionLink = ({ node }) => (
 class SingleProduct extends React.Component<Props, State> {
   state = {
     active: 0,
+    interval: null,
   };
 
   componentDidMount() {
-    this.startCarousel();
+    if (this.images.length > 1) this.startCarousel();
   }
 
   componentWillUnmount() {
     this.stopCarousel();
   }
 
-  getFluid = (image) => image.localFile.childImageSharp.fluid;
+  fluid = (image: ImageNode) => image.localFile.childImageSharp.fluid;
 
-  getACF = () => this.props.node.acf;
-
-  getImages = () => {
-    return [
-      this.getFluid(this.getACF().main_image),
-      ...this.getACF().additional_images.map(this.getFluid),
-    ];
+  /**
+   * Safely gather all images into an array
+   * @return {array} [description]
+   */
+  getImages = (): Array<ImageNode> => {
+    return Array.isArray(this.props.node.acf.additional_images)
+      ? [
+          this.props.node.acf.main_image,
+          ...this.props.node.acf.additional_images,
+        ]
+      : [this.props.node.acf.main_image];
   };
 
-  images = this.getImages();
+  images = this.getImages().map(this.fluid);
 
   startCarousel = () => {
     this.setState({
@@ -73,11 +79,10 @@ class SingleProduct extends React.Component<Props, State> {
   };
 
   stopCarousel = () => {
-    clearInterval(this.state.interval);
+    if (this.state.interval) clearInterval(this.state.interval);
   };
 
   nextImage = () => {
-    console.log('thing');
     this.setState((state) => ({
       active: (state.active + 1) % this.images.length,
     }));
@@ -121,8 +126,5 @@ class SingleProduct extends React.Component<Props, State> {
     );
   }
 }
-//
-// const SingleProduct = ({ node, addOneToCart }: Props) => (
-// );
 
 export default withCart(SingleProduct);

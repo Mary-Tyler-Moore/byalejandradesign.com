@@ -5,7 +5,8 @@ import type { CollectionNode, TaxonomyNode } from '../Collections/types';
 export type ImageNode = {
   localFile: {
     childImageSharp: {
-      sizes: {},
+      fixed?: {},
+      fluid?: {},
     },
   },
 };
@@ -27,7 +28,7 @@ export type ProductNode = {
     product_type: string,
     provided_dimensions: string,
     main_image: ImageNode,
-    additional_images: Array<ImageNode>,
+    additional_images: Array<ImageNode> | null,
     video_type: string,
   },
 };
