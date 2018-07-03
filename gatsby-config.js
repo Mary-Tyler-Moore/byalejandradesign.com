@@ -98,6 +98,7 @@ module.exports = {
         normalizer: normalizers,
       },
     },
+    'gatsby-plugin-netlify',
     // {
     //   resolve: 'gatsby-plugin-manifest',
     //   options: {
