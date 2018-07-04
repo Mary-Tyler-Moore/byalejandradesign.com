@@ -99,16 +99,16 @@ module.exports = {
       },
     },
     'gatsby-plugin-netlify',
-    // {
-    //   resolve: 'gatsby-plugin-manifest',
-    //   options: {
-    //     name: 'Artetexture: Design Studio and Shop',
-    //     short_name: 'Artetexture',
-    //     start_url: '/',
-    //     display: 'minimal-ui',
-    //     icon: 'src/components/Logo/logo_white.png',
-    //   },
-    // },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'Artetexture: Design Studio and Shop',
+        short_name: 'Artetexture',
+        start_url: '/',
+        display: 'minimal-ui',
+        icon: 'src/components/Logo/logo_white.png',
+      },
+    },
     // 'gatsby-plugin-offline',
   ],
 };

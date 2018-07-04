@@ -5,39 +5,26 @@
  */
 const path = require('path');
 
-exports.onCreateBabelConfig = ({ actions }) => {
-  // console.log(babelrc);
-  // // const myPath = path.resolve(
-  // //   __dirname,
-  // //   'node_modules',
-  // //   'babel-plugin-syntax-dynamic-import/lib/index.js'
-  // // );
-  // //
-  // // const newBabelRc = {
-  // //   ...babelrc,
-  // //   plugins: babelrc.plugins.concat([myPath]),
-  // // };
-  // //
-  // // console.log(newBabelRc);
-  //
-  // return babelrc;
-};
-
 exports.createPages = ({ graphql, actions }) => {
   /** Creating Redirects */
   const { createRedirect } = actions;
-  const index = '/';
-  const home = '/home';
 
   createRedirect({
-    fromPath: home,
+    fromPath: '/home',
     isPermanent: true,
     redirectInBrowser: true,
-    toPath: index,
+    toPath: '/',
   });
 
   createRedirect({
     fromPath: '/collections',
+    isPermanent: true,
+    redirectInBrowser: true,
+    toPath: '/shop/collections',
+  });
+
+  createRedirect({
+    fromPath: '/shop',
     isPermanent: true,
     redirectInBrowser: true,
     toPath: '/shop/collections',
