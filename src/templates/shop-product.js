@@ -1,11 +1,10 @@
-// @flow
 import * as React from 'react';
 // import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import withSize from 'react-size-components';
 import { SingleProduct } from '../components/Product';
 // types
-import type { ProductNode } from '../components/Product/types';
+import type { ProductNode, ImageNode } from '../components/Product/types';
 
 type Props = {
   data: {
@@ -21,7 +20,8 @@ type Props = {
  * @param {[type]} props [description]
  */
 class Node extends React.Component<Props> {
-  getHeaderImage = () => {
+  /** Safely get header from collection */
+  getHeaderImage = (): ImageNode | null => {
     return this.props.data.wordpressWpShop.collections
       ? this.props.data.wordpressWpShop.collections[0].acf.header_image
       : null;
