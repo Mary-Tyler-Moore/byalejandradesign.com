@@ -1,10 +1,30 @@
 @import ../../sass/extras.sass
 
+.footer
+  width: 100%
+  background: transparentize($black, 0.1)
+  color: $white
+
+  +flexbox
+
+  flex-direction: column
+
+  &_widgets
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+
+.emailSignup
+  +flexbox
+
+  flex-direction: column
+
+  &_label
+    margin: 0 0 1.5rem 0
+
 .footerNavDesktop
   width: 100%
   display: flex
-  justify-content: space-around
-  background: transparentize($black, 0.2)
+  justify-content: flex-start
 
   &_link
     text-decoration: none
