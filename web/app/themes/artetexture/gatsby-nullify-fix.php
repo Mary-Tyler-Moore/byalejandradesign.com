@@ -22,9 +22,7 @@ if (!function_exists('acf_nullify_empty')) {
    }
 }
 
-// target specific fields
-add_filter('acf/format_value/type=image', 'acf_nullify_empty', 100, 3);
-add_filter('acf/format_value/type=gallery', 'acf_nullify_empty', 100, 3);
-add_filter('acf/format_value/type=repeater', 'acf_nullify_empty', 100, 3);
+// target all acf fields
+add_filter('acf/format_value', 'acf_nullify_empty', 100, 3);
 
 ?>
