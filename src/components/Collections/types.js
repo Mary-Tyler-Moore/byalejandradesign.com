@@ -9,9 +9,9 @@ export type TaxonomyNode = {
 
 export type CollectionNode = {
   ...TaxonomyNode,
-  acf?: {
-    subtitle: string,
+  acf: {
     image: ImageNode,
+    header_image: ImageNode,
   },
 };
 

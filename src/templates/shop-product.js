@@ -9,9 +9,7 @@ import type { ProductNode } from '../components/Product/types';
 
 type Props = {
   data: {
-    wordpressWpShop: {
-      edges: Array<{ node: ProductNode }>,
-    },
+    wordpressWpShop: ProductNode,
   },
   sizes: {
     mobile: boolean,
@@ -22,12 +20,24 @@ type Props = {
  * This is a SingleProduct Node
  * @param {[type]} props [description]
  */
-const Node = ({ data, sizes }: Props = {}) => (
-  <Layout headerImage={data.wordpressWpShop.collections[0].acf.header_image}>
-    <SingleProduct node={data.wordpressWpShop} sizes={sizes} />
-  </Layout>
-);
+class Node extends React.Component<Props> {
+  getHeaderImage = () => {
+    return this.props.data.wordpressWpShop.collections
+      ? this.props.data.wordpressWpShop.collections[0].acf.header_image
+      : null;
+  };
 
+  render() {
+    return (
+      <Layout headerImage={this.getHeaderImage()}>
+        <SingleProduct
+          node={this.props.data.wordpressWpShop}
+          sizes={this.props.sizes}
+        />
+      </Layout>
+    );
+  }
+}
 const SizedNode = withSize({ mobile: true })(Node);
 
 export default SizedNode;
