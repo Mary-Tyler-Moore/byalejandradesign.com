@@ -15,16 +15,13 @@
   // grid-template-columns: 400px 1fr
   &_img
     cursor: pointer
-    backface-visibility: hidden
 
     @extend %niceShadow
 
-    +transition(0.25s transform, 0.25s filter)
+    @extend %imageLinkTransition
 
-  &_imgLink:hover
-    .productLink_img
-      transform: scale(1.04)
-      filter: brightness(0.6)
+  &_img:hover
+    @extend %imageLinkHover
 
   &_textLine1,
   &_textLine2

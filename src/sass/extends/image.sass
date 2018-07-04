@@ -1,0 +1,10 @@
+@import ../mixins/mixins
+
+%imageLinkTransition
+  backface-visibility: hidden
+
+  +transition(0.25s transform, 0.25s filter)
+
+%imageLinkHover
+  transform: scale(1.04)
+  filter: brightness(0.6)

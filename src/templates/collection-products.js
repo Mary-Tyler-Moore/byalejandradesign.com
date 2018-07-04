@@ -3,15 +3,35 @@ import * as React from 'react';
 import Layout from '../components/Layout';
 import { SingleCollection } from '../components/Collections';
 import { ProductList } from '../components/Product';
+// types
+import type { CollectionNode } from '../components/Collections/types';
+import type { ProductEdges, ImageNode } from '../components/Product/types';
 
-const CollectionProducts = ({ data }) => (
-  <Layout headerImage={data.wordpressWpCollections.acf.header_image}>
-    <SingleCollection node={data.wordpressWpCollections} />
-    {data.allWordpressWpShop && (
-      <ProductList edges={data.allWordpressWpShop.edges} />
-    )}
-  </Layout>
-);
+type Props = {
+  data: {
+    wordpressWpCollections: CollectionNode,
+    allWordpressWpShop: ProductEdges,
+  },
+};
+
+class CollectionProducts extends React.Component<Props> {
+  /** Safely get header image from this collection node */
+  getHeaderImage = (): ImageNode | null =>
+    this.props.data.wordpressWpCollections.acf.header_image
+      ? this.props.data.wordpressWpCollections.acf.header_image
+      : null;
+
+  render() {
+    return (
+      <Layout headerImage={this.getHeaderImage()}>
+        <SingleCollection node={this.props.data.wordpressWpCollections} />
+        {this.props.data.allWordpressWpShop && (
+          <ProductList edges={this.props.data.allWordpressWpShop.edges} />
+        )}
+      </Layout>
+    );
+  }
+}
 
 export default CollectionProducts;
 

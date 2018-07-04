@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
@@ -16,7 +15,7 @@ import type { ProductNode, ImageNode } from './types';
 
 const CollectionLink = ({ node }) => (
   <Link
-    element="button"
+    className="singleProduct_buttonLink"
     to={`/shop/collection/${collectionFromProduct(node).slug}`}
   >
     <Button className="greyButton">Shop this Collection</Button>

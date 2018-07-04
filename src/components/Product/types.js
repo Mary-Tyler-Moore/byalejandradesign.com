@@ -1,4 +1,3 @@
-
 import type { Actions } from '../Cart/cart-actions';
 import type { CollectionNode, TaxonomyNode } from '../Collections/types';
 
@@ -36,3 +35,5 @@ export type ProductNode = {
     video_type: string,
   },
 };
+
+export type ProductEdges = { edges: Array<{ node: ProductNode }> };
