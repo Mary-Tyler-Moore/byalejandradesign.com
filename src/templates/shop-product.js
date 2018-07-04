@@ -78,8 +78,11 @@ export const fragment = graphql`
       price
       sale_price
       description
-      provided_dimensions
-      video_type
+      dimensions {
+        length
+        width
+        height
+      }
       main_image {
         ...SharpImage
       }

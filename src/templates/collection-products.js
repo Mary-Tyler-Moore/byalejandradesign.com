@@ -21,9 +21,6 @@ export const sparseFragment = graphql`
     id
     description
     slug
-    acf {
-      subtitle
-    }
   }
 `;
 
