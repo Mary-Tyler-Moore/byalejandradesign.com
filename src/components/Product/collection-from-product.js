@@ -1,4 +1,4 @@
-// @flow
+
 import type { ProductNode } from './types';
 import type { CollectionNode } from '../Collections/types';
 

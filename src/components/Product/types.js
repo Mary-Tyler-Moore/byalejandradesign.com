@@ -1,4 +1,4 @@
-// @flow
+
 import type { Actions } from '../Cart/cart-actions';
 import type { CollectionNode, TaxonomyNode } from '../Collections/types';
 

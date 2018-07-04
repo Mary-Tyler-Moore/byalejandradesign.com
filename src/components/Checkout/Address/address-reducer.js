@@ -1,4 +1,4 @@
-// @flow
+
 import type { Actions } from './address-actions';
 
 export type State = {

@@ -1,4 +1,4 @@
-// @flow
+
 /**
  * Saves an authorized braintree client to redux state
  * @param {object} payload an authorized created braintree client

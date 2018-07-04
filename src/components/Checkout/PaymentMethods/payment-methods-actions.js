@@ -1,4 +1,4 @@
-// @flow
+
 import { compose } from 'smalldash';
 import type { methods } from './payment-methods-reducer';
 

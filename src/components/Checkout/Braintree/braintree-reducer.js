@@ -1,4 +1,4 @@
-// @flow
+
 import type { Actions } from './braintree-actions';
 
 export type State = {

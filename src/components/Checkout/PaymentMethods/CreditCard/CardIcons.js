@@ -1,4 +1,4 @@
-// @flow
+
 import React from 'react';
 // icons
 import americanExpressMono from 'payment-icons/svg/mono/amex.svg';

@@ -1,4 +1,4 @@
-// @flow
+
 
 /**
  * Creates an action for submitting the form

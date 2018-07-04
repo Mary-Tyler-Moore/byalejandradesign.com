@@ -1,4 +1,4 @@
-// @flow
+
 import { uniq, compose } from 'smalldash';
 import invariant from 'invariant';
 

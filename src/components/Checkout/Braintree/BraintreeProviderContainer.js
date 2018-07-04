@@ -1,4 +1,4 @@
-// @flow
+
 import * as React from 'react'; // eslint-disable-line
 import { connect } from 'react-redux';
 import BraintreeProvider from './BraintreeProvider';

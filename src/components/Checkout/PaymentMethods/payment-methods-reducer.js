@@ -1,4 +1,4 @@
-// @flow
+
 import type { Actions } from './payment-methods-actions';
 
 export type methods = 'paypal' | 'venmo' | 'hostedFields' | '';

@@ -1,4 +1,4 @@
-// @flow
+
 type fields = {
   slice: string,
   payload: string,

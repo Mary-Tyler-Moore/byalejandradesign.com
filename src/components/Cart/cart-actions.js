@@ -1,4 +1,3 @@
-// @flow
 import type { ProductEntry } from './cart-reducer';
 /**
  * Updates a product in cart BY the specified quantity

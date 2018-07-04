@@ -1,4 +1,4 @@
-// @flow
+
 import * as React from 'react';
 import { connect } from 'react-redux';
 import dataCollector from 'braintree-web/data-collector';

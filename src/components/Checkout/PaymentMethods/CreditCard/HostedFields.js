@@ -1,4 +1,4 @@
-// @flow
+
 import React, { PureComponent } from 'react';
 import { hostedFields } from 'braintree-web';
 import { equals } from 'smalldash';

@@ -1,4 +1,4 @@
-// @flow
+
 import React from 'react';
 import { camelToKebab, camelToTitle } from 'smalldash';
 import { BEM } from 'njmyers-component-library';

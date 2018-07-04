@@ -1,4 +1,4 @@
-// @flow
+
 import * as React from 'react';
 import { venmo } from 'braintree-web';
 import withPaymentActions from '../with-payment-actions';
