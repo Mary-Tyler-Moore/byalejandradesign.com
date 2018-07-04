@@ -1,10 +1,15 @@
 import * as React from 'react';
 import Layout from '../components/Layout';
+import ReturnPolicy from '../components/ReturnPolicy';
 
-class ReturnPolicy extends React.Component {
+class ReturnPolicyPage extends React.Component {
   render() {
-    return <Layout />;
+    return (
+      <Layout>
+        <ReturnPolicy />
+      </Layout>
+    );
   }
 }
 
-export default ReturnPolicy;
+export default ReturnPolicyPage;
