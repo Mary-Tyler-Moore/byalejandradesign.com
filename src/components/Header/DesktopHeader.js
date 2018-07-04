@@ -3,41 +3,31 @@ import * as React from 'react';
 import Img from 'gatsby-image';
 import { BEM } from 'njmyers-component-library';
 import './header.sass';
+import ByAlejandra from './ByAlejandra.js';
 
-type Edge = {
-  node: {
-    acf: {
-      image: {
-        localFile: {
-          childImageSharp: {
-            fluid: {},
-          },
-        },
-      },
-    },
-  },
-};
+import type { ImageNode } from '../Product/types';
 
 type Props = {
-  edges: Array<Edge>,
+  headerImage: ImageNode,
 };
 
 class DesktopHeader extends React.PureComponent<Props> {
-  getActiveIndex = () => {
-    return Math.floor(Math.random() * this.props.edges.length);
-  };
-
-  getActiveImage = () => {
-    const { node } = this.props.edges[this.getActiveIndex()];
-    return node.acf.image.localFile.childImageSharp.fluid;
-  };
-
   render() {
     return (
       <BEM block="header">
-        <div element="imgContainer">
-          <Img className="header_img" fluid={this.getActiveImage()} />
-        </div>
+        <header>
+          <figure element="imgContainer">
+            {this.props.headerImage ? (
+              <Img
+                className="header_img"
+                fluid={this.props.headerImage.localFile.childImageSharp.fluid}
+              />
+            ) : null}
+          </figure>
+          <figure element="logo">
+            <ByAlejandra />
+          </figure>
+        </header>
       </BEM>
     );
   }
