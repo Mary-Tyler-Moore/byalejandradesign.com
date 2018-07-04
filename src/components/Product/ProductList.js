@@ -47,7 +47,7 @@ const ProductList = ({ edges, addOneToCart, sizes }: Props) => (
             <p element="dimensions">12" x 12"</p>
           </div>
           <Button element="button" onClick={addOneToCart} name={node.id}>
-            Add to Cart
+            Add to Bag
           </Button>
         </article>
       </BEM>

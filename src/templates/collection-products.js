@@ -5,7 +5,7 @@ import { SingleCollection } from '../components/Collections';
 import { ProductList } from '../components/Product';
 
 const CollectionProducts = ({ data }) => (
-  <Layout>
+  <Layout headerImage={data.wordpressWpCollections.acf.header_image}>
     <SingleCollection node={data.wordpressWpCollections} />
     {data.allWordpressWpShop && (
       <ProductList edges={data.allWordpressWpShop.edges} />
@@ -34,7 +34,16 @@ export const fragement = graphql`
       image {
         localFile {
           childImageSharp {
-            fluid(maxWidth: 1200, maxHeight: 800) {
+            fluid(maxWidth: 600) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+      header_image {
+        localFile {
+          childImageSharp {
+            fluid(maxWidth: 1920, quality: 80, cropFocus: NORTH) {
               ...GatsbyImageSharpFluid
             }
           }

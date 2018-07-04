@@ -50,23 +50,6 @@ class Layout extends React.Component {
                 }
               }
             }
-            allWordpressWpHeaders {
-              edges {
-                node {
-                  acf {
-                    image {
-                      localFile {
-                        childImageSharp {
-                          fluid(maxWidth: 1650) {
-                            ...GatsbyImageSharpFluid
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
           }
         `}
         render={(data) => (
@@ -83,13 +66,27 @@ class Layout extends React.Component {
                   href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900"
                   rel="stylesheet"
                 />
+                <link
+                  href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300i,700"
+                  rel="stylesheet"
+                />
+
+                <link
+                  href="https://fonts.googleapis.com/css?family=Fjalla+One"
+                  rel="stylesheet"
+                />
+
+                <link
+                  href="https://fonts.googleapis.com/css?family=Pathway+Gothic+One"
+                  rel="stylesheet"
+                />
               </Helmet>
               <MainNav
                 design={this.getDesign(data)}
                 mainNav={data.site.siteMetadata.navLayout.mainNav}
                 sizes={this.props.sizes}
               />
-              <Header edges={data.allWordpressWpHeaders.edges} />
+              <Header headerImage={this.props.headerImage} />
               <main
                 style={{
                   maxWidth: `${data.site.siteMetadata.design.maxWidth}px`,

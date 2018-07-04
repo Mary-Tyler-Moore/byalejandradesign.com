@@ -23,7 +23,7 @@ type Props = {
  * @param {[type]} props [description]
  */
 const Node = ({ data, sizes }: Props = {}) => (
-  <Layout>
+  <Layout headerImage={data.wordpressWpShop.collections[0].acf.header_image}>
     <SingleProduct node={data.wordpressWpShop} sizes={sizes} />
   </Layout>
 );

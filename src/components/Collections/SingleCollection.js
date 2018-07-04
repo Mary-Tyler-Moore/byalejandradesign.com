@@ -17,10 +17,9 @@ class SingleCollection extends React.Component<Props> {
     return (
       <BEM block="singleCollection">
         <section>
-          <article key={this.props.node.id}>
-            <h2>{this.props.node.name} Collection</h2>
-            <h3>{this.props.node.acf.subtitle}</h3>
-            <p>{this.props.node.description}</p>
+          <article element="article" key={this.props.node.id}>
+            <h2 element="title">{this.props.node.name} Collection</h2>
+            <p element="description">{this.props.node.description}</p>
           </article>
         </section>
       </BEM>
