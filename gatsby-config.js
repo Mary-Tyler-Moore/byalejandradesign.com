@@ -48,18 +48,12 @@ const normalizers = compose(
 
 module.exports = {
   siteMetadata: {
+    siteUrl: 'https://artetexture.com',
     title: 'Artetexture',
     subTitle: 'Design Studio and Shop',
     navLayout: {
       mainNav: ['/home', '/cloud-studio', '/shop', '/contact'],
-      footerNav: [
-        '/cloud-studio',
-        '/shop',
-        '/faq',
-        '/privacy-policy',
-        '/return-policy',
-        '/contact',
-      ],
+      footerNav: ['/faq', '/privacy-policy', '/return-policy', '/contact'],
     },
     design: {
       maxWidth: 1200, // px
@@ -97,6 +91,9 @@ module.exports = {
         ],
         normalizer: normalizers,
       },
+    },
+    {
+      resolve: 'gatsby-plugin-sitemap',
     },
     'gatsby-plugin-netlify',
     {
