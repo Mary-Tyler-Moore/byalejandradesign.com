@@ -1,24 +1,24 @@
 {
-	"name": "braintree_server",
+	"name": "@njmyers/serverless-braintree",
 	"version": "0.0.1",
 	"description": "a braintree server",
-	"main": "app.js",
-	"scripts": {
-		"serverless": "serverless offline start",
-		"start": "run-p serverless",
-		"deploy-scripts": "deploy-scripts",
-		"test": "jest --watchAll",
-		"jest": "jest",
-		"deploy": "serverless deploy -v",
-		"precommit": "lint-staged",
-		"prettier": "prettier --write '**/*.{js,json,md}'",
-		"webpack": "webpack --watch"
-	},
 	"keywords": [
 		"mailserver"
 	],
-	"author": "Nick Myers",
 	"license": "ISC",
+	"author": "Nick Myers",
+	"main": "app.js",
+	"scripts": {
+		"precommit": "lint-staged",
+		"deploy": "serverless deploy -v",
+		"deploy-scripts": "deploy-scripts",
+		"jest": "jest",
+		"serverless": "serverless offline start",
+		"start": "run-p serverless",
+		"test": "jest --watchAll",
+		"prettier": "prettier --write '**/*.{js,json,md}'",
+		"webpack": "webpack --watch"
+	},
 	"dependencies": {
 		"axios": "^0.18.0",
 		"bluebird": "^3.5.1",
@@ -27,6 +27,7 @@
 		"dotenv": "^4.0.0",
 		"express": "^4.16.2",
 		"serverless-http": "^1.5.3",
+		"smalldash": "^1.1.9",
 		"xml2js": "^0.4.19"
 	},
 	"devDependencies": {
@@ -44,6 +45,7 @@
 		"nodemon": "^1.14.11",
 		"npm-run-all": "^4.1.2",
 		"prettier": "^1.10.2",
+		"serverless": "^1.28.0",
 		"serverless-domain-manager": "^2.3.0",
 		"serverless-offline": "^3.16.0",
 		"serverless-webpack": "^5.1.5",
