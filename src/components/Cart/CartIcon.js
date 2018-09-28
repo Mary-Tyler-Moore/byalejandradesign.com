@@ -17,7 +17,7 @@ class CartIcon extends PureComponent {
     return (
       <div className={this.mergeClassNames()}>
         <div className="cartIcon_svgContainer">
-          <img className="cartIcon_svg" src={icon} />
+          <img className="cartIcon_svg" src={icon} alt="cart" />
           <p className="cartIcon_itemText">{this.props.cart.totalQuantity}</p>
         </div>
       </div>

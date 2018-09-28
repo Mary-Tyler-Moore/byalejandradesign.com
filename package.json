@@ -65,6 +65,7 @@
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
+    "@babel/preset-flow": "^7.0.0",
     "babel-jest": "^23.2.0",
     "babel-plugin-object-rest-spread": "^0.0.0",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",

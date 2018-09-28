@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 
 type Props = {
@@ -7,7 +8,19 @@ type Props = {
   interval: IntervalID | null,
 };
 
-class ByAlejandra extends React.Component<Props> {
+type InitialAnimationState = {
+  strokeDashoffset: void,
+  strokeDasharray: void,
+  status: boolean,
+  interval: null | IntervalID,
+};
+
+type State = {
+  by: InitialAnimationState,
+  alejandra: InitialAnimationState,
+};
+
+class ByAlejandra extends React.Component<Props, State> {
   static defaultProps = {
     stroke: '#ffffff',
     strokeWidth: '3',
@@ -29,7 +42,7 @@ class ByAlejandra extends React.Component<Props> {
   by: HTMLElement;
   alejandra: HTMLElement;
 
-  animateStroke = (element) => () => {
+  animateStroke = (element: ReactDOM$SVGElementJSXIntrinsic) => () => {
     this.setState((state) => {
       if (state[element].strokeDashoffset > 0) {
         return {
@@ -80,6 +93,12 @@ class ByAlejandra extends React.Component<Props> {
   componentDidUpdate(prevProps, prevState) {
     if (!prevState.by.status && this.state.by.status) {
       this.startAnimation('alejandra');
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.state.interval) {
+      clearInterval(this.state.interval);
     }
   }
 

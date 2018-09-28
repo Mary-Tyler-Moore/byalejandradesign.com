@@ -30,6 +30,12 @@ class Layout extends React.Component {
       : design.contentPadding;
   };
 
+  getHeaderImage = (data) => {
+    return this.props.headerImage
+      ? this.props.headerImage
+      : data.allWordpressAcfOptions.edges[0].node.options.default_header;
+  };
+
   render() {
     return (
       <StaticQuery
@@ -47,6 +53,19 @@ class Layout extends React.Component {
                   maxWidth
                   contentPadding
                   mobileContentPadding
+                }
+              }
+            }
+            allWordpressAcfOptions {
+              edges {
+                node {
+                  options {
+                    default_header {
+                      localFile {
+                        ...HeaderImage
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -86,7 +105,7 @@ class Layout extends React.Component {
                 mainNav={data.site.siteMetadata.navLayout.mainNav}
                 sizes={this.props.sizes}
               />
-              <Header headerImage={this.props.headerImage} />
+              <Header headerImage={this.getHeaderImage(data)} />
               <main
                 style={{
                   maxWidth: `${data.site.siteMetadata.design.maxWidth}px`,

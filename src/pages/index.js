@@ -5,7 +5,7 @@ import { CollectionList } from '../components/Collections';
 import Layout from '../components/Layout';
 
 const IndexPage = ({ data }) => (
-  <Layout>
+  <Layout allWordpressAcfOptions={data.allWordpressAcfOptions}>
     <section>
       <h1>New from the Cloud Studio</h1>
       <AllPosts edges={data.allWordpressPost.edges} />

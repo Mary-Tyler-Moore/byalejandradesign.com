@@ -44,6 +44,16 @@ export const sparseFragment = graphql`
   }
 `;
 
+export const headerFragmet = graphql`
+  fragment HeaderImage on File {
+    childImageSharp {
+      fluid(maxWidth: 1920, quality: 80, cropFocus: NORTH) {
+        ...GatsbyImageSharpFluid
+      }
+    }
+  }
+`;
+
 export const fragement = graphql`
   fragment CollectionData on wordpress__wp_collections {
     ...SparseCollectionData
@@ -59,11 +69,7 @@ export const fragement = graphql`
       }
       header_image {
         localFile {
-          childImageSharp {
-            fluid(maxWidth: 1920, quality: 80, cropFocus: NORTH) {
-              ...GatsbyImageSharpFluid
-            }
-          }
+          ...HeaderImage
         }
       }
     }
