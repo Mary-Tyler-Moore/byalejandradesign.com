@@ -2,8 +2,7 @@
   "name": "roots/bedrock",
   "type": "project",
   "license": "MIT",
-  "description":
-    "WordPress boilerplate with modern development tools, easier configuration, and an improved folder structure",
+  "description": "WordPress boilerplate with modern development tools, easier configuration, and an improved folder structure",
   "homepage": "https://roots.io/bedrock/",
   "authors": [
     {
@@ -42,12 +41,11 @@
       "type": "package",
       "package": {
         "name": "advanced-custom-fields/advanced-custom-fields-pro",
-        "version": "5.6.10",
+        "version": "5.7.6",
         "type": "wordpress-plugin",
         "dist": {
           "type": "zip",
-          "url":
-            "https://connect.advancedcustomfields.com/index.php?p=pro&a=download"
+          "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download"
         },
         "require": {
           "philippbaschke/acf-pro-installer": "^1.0",
@@ -79,14 +77,24 @@
   },
   "extra": {
     "installer-paths": {
-      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
-      "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
-      "web/app/themes/{$name}/": ["type:wordpress-theme"]
+      "web/app/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
+      ],
+      "web/app/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "web/app/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
     },
     "wordpress-install-dir": "web/wp"
   },
   "scripts": {
-    "post-root-package-install": ["php -r \"copy('.env.example', '.env');\""],
-    "test": ["phpcs"]
+    "post-root-package-install": [
+      "php -r \"copy('.env.example', '.env');\""
+    ],
+    "test": [
+      "phpcs"
+    ]
   }
 }
