@@ -6,4 +6,8 @@
 
 [context.production]
 
-  environment = { YARN_VERSION = "1.10.1" }
+  environment = { YARN_VERSION = "1.10.1", GATSBY_BRAINTREE_SERVER="http://localhost:3000" }
+
+[context.staging]
+
+  environment = { YARN_VERSION = "1.10.1", GATSBY_BRAINTREE_SERVER="http://localhost:3000" }
