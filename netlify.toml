@@ -2,7 +2,7 @@
   # subdirectory to publish from
   # base = "subdirectory"
   publish = "public/"
-  command = "npm run build-web"
+  command = "gatsby build"
 
 [context.production]
 
