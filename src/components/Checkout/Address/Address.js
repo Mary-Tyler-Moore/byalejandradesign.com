@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link } from 'gatsby';
 // actions
 import { updateAddressField, validateAddress } from './address-actions';
 // components

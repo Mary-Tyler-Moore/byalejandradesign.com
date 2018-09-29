@@ -1,5 +1,5 @@
 import * as React from 'react';
-// import { graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import withSize from 'react-size-components';
 import { SingleProduct } from '../components/Product';
