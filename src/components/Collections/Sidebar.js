@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-import { LazyImage } from 'njmyers-component-library';
+import { LazyImage } from '@njmyers/component-library';
 // styles
 import './sidebar.sass';
 

@@ -7,7 +7,7 @@ import { Link } from 'gatsby';
 import withCart from './with-cart';
 import title from '../Product/title';
 import type { State } from './cart-reducer';
-import { BEM } from 'njmyers-component-library';
+import { BEM } from '@njmyers/component-library';
 
 import './cart.sass';
 

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BEM } from 'njmyers-component-library';
+import { BEM } from '@njmyers/component-library';
 import { withCart } from '../Cart';
 // style
 import './single-collection.sass';

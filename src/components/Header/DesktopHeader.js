@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import Img from 'gatsby-image';
-import { BEM } from 'njmyers-component-library';
+import { BEM } from '@njmyers/component-library';
 import './header.sass';
 import ByAlejandra from './ByAlejandra.js';
 

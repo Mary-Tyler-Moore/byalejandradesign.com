@@ -7,7 +7,7 @@ import type { State } from './contact-reducer';
 import { updateContactForm, submitContactForm } from './contact-actions';
 import type { Actions } from './contact-actions';
 // components
-import { Form, StatusSwitch } from 'njmyers-component-library';
+import { Form, StatusSwitch } from '@njmyers/component-library';
 // styles
 import './contact.sass';
 

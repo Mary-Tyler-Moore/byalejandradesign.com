@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
-import { Form } from 'njmyers-component-library';
+import { Form } from '@njmyers/component-library';
 import URLToTitle from './url-to-title';
 // style
 import './footer-nav.sass';

@@ -10,7 +10,7 @@ import withPaymentActions from '../with-payment-actions';
 import CardIcons from './CardIcons';
 import Field from './Field';
 import BillingAddress from '../../Address/BillingAddress';
-import { BEM } from 'njmyers-component-library';
+import { BEM } from '@njmyers/component-library';
 // misc
 import './hosted-fields.sass';
 

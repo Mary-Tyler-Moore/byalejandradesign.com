@@ -4,7 +4,7 @@ import axios from 'axios';
 import client from 'braintree-web/client';
 import base from './base';
 // components
-import { StatusSwitch } from 'njmyers-component-library';
+import { StatusSwitch } from '@njmyers/component-library';
 
 type Props = {
   loadedAt: number,

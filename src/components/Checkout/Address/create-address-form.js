@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { camelToTitle, camelToPascal } from 'smalldash';
 // components
-import { Form, BEM } from 'njmyers-component-library';
+import { Form, BEM } from '@njmyers/component-library';
 // actions
 import { updateAddressField } from './address-actions';
 // datasets

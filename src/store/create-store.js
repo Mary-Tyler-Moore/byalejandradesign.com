@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
-import throttle from 'lodash/throttle';
+import { throttle } from 'lodash-es';
 import reducer from './root-reducer';
 import useStorage from './use-storage';
 import { loadLocalApplication, saveLocalApplication } from './local-storage';

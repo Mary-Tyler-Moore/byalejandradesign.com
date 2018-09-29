@@ -2,7 +2,7 @@ import * as React from 'react';
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 import { withCart } from '../Cart';
-import { BEM } from 'njmyers-component-library';
+import { BEM } from '@njmyers/component-library';
 import Button from '../Button';
 // helpers
 import title from './title';

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { camelToKebab, camelToTitle } from 'smalldash';
-import { BEM } from 'njmyers-component-library';
+import { BEM } from '@njmyers/component-library';
 
 import type { FieldState } from './HostedFields';
 

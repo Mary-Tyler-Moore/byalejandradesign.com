@@ -15,7 +15,7 @@ import visa from 'payment-icons/svg/flat/visa.svg';
 // style
 import './card-icons.sass';
 // components
-import { BEM } from 'njmyers-component-library';
+import { BEM } from '@njmyers/component-library';
 
 // card keys come from hostedFieldsInstance event emitters
 const cards = [

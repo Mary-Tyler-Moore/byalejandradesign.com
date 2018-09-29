@@ -2,12 +2,18 @@
   # subdirectory to publish from
   # base = "subdirectory"
   publish = "public/"
-  command = "gatsby build"
+  command = "yarn run build-web"
 
-[context.production]
+[build.environment]
+  YARN_VERSION = "1.10.1"
 
-  environment = { YARN_VERSION = "1.10.1", GATSBY_BRAINTREE_SERVER="http://localhost:3000" }
+[context.production.environment]
+  GATSBY_BRAINTREE_SERVER="http://localhost:3000"
 
-[context.staging]
+[context.staging.environment]
+  GATSBY_BRAINTREE_SERVER="http://localhost:3000"
 
-  environment = { YARN_VERSION = "1.10.1", GATSBY_BRAINTREE_SERVER="http://localhost:3000" }
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
