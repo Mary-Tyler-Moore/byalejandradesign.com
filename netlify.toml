@@ -1,10 +1,8 @@
 [build]
-
-# subdirectory to publish from
-# base = "subdirectory"
-publish = "public"
-command = "yarn run build-web"
+  # subdirectory to publish from
+  # base = "subdirectory"
+  publish = "public"
+  command = "yarn run build-web"
 
 [context]
-
-environment = { YARN_VERSION = "1.10.1" }
+  environment = { YARN_VERSION = "1.10.1" }
