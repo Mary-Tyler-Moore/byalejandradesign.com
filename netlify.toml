@@ -1,0 +1,9 @@
+[build]
+
+# subdirectory to publish from
+# base = "subdirectory"
+publish = "public"
+command = "yarn run build-web"
+
+[environment]
+  YARN_VERSION = 1.10.1
