@@ -1,7 +1,7 @@
 [build]
   # subdirectory to publish from
   # base = "subdirectory"
-  publish = "public"
+  publish = "public/"
   command = "yarn run build-web"
 
 [context.production]

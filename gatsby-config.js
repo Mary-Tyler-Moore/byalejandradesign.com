@@ -95,7 +95,6 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-sitemap',
     },
-    'gatsby-plugin-netlify',
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
