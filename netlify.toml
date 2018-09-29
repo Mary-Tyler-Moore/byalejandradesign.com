@@ -4,5 +4,6 @@
   publish = "public"
   command = "yarn run build-web"
 
-[context]
+[context.production]
+
   environment = { YARN_VERSION = "1.10.1" }
