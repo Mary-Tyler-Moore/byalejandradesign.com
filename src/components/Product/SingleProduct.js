@@ -91,11 +91,15 @@ class SingleProduct extends React.Component<Props, State> {
     return (
       <article className="singleProduct">
         <section className="singleProduct_imgContainer">
-          {this.images.slice(0, 1).map((fluid, index) => (
+          {this.images.map((fluid, index) => (
             <figure
               key={index}
               className={`singleProduct_img ${
                 index === this.state.active ? `singleProduct_img-active` : ``
+              }${
+                index === this.state.active - 1 ? `singleProduct_img-last` : ``
+              }${
+                index === this.state.active + 1 ? `singleProduct_img-next` : ``
               }`}
             >
               <Img fluid={fluid} />
