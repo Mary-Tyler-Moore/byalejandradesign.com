@@ -2,8 +2,8 @@ import * as React from 'react';
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 import Button from '../Button';
-import { BEM } from '@njmyers/component-library';
 import { withCart } from '../Cart';
+import icon from '../Cart/icon.svg';
 // styles
 import './single-product.sass';
 // string helpers
@@ -89,28 +89,36 @@ class SingleProduct extends React.Component<Props, State> {
 
   render() {
     return (
-      <BEM block="singleProduct">
-        <article>
-          <aside element="imgContainer">
-            {this.images.map((fluid, index) => (
-              <div
-                key={index}
-                element="img"
-                modifiers={index === this.state.active ? 'active' : ''}
-              >
-                <Img fluid={fluid} />
-              </div>
-            ))}
-          </aside>
-          <aside element="content">
-            <h1 element="h1">{title(this.props.node)}</h1>
-            <p element="description">{this.props.node.acf.description}</p>
-            <p element="price">{dollarString(this.props.node.acf.price)}</p>
-            <p element="quantity">
-              Quantity Available: {this.props.node.acf.quantity}
+      <article className="singleProduct">
+        <section className="singleProduct_imgContainer">
+          {this.images.slice(0, 1).map((fluid, index) => (
+            <figure
+              key={index}
+              className={`singleProduct_img ${
+                index === this.state.active ? `singleProduct_img-active` : ``
+              }`}
+            >
+              <Img fluid={fluid} />
+            </figure>
+          ))}
+        </section>
+        <section className="singleProduct_content">
+          <h4 className="singleProduct_h4">{title(this.props.node)}</h4>
+          <p className="singleProduct_description">
+            {this.props.node.acf.description}
+          </p>
+          <aside className="singleProduct_bottomSection">
+            <p className="singleProduct_monetary">
+              <span>
+                <strong>Price: </strong>
+                {dollarString(this.props.node.acf.price)}
+              </span>
+              <span className="singleProduct_quantity">
+                Quantity Available: {this.props.node.acf.quantity}
+              </span>
             </p>
             <Button
-              element="button"
+              className="singleProduct_button defaultButton"
               onClick={this.props.addOneToCart}
               name={this.props.node.id}
             >
@@ -120,8 +128,8 @@ class SingleProduct extends React.Component<Props, State> {
               <CollectionLink node={this.props.node} />
             ) : null}
           </aside>
-        </article>
-      </BEM>
+        </section>
+      </article>
     );
   }
 }

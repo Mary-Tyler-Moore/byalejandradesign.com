@@ -5,6 +5,11 @@
   grid-template-columns: repeat(3, 1fr)
   grid-gap: 3rem
 
+  +tablet
+    grid-template-columns: repeat(2, 1fr)
+    grid-gap: 4rem
+
+
   +all-phone
     grid-template-columns: repeat(1, 1fr)
 
@@ -16,40 +21,23 @@
   &_img
     cursor: pointer
 
-    @extend %niceShadow
-
     @extend %imageLinkTransition
 
   &_img:hover
     @extend %imageLinkHover
 
-  &_textLine1,
-  &_textLine2
-    display: flex
-    justify-content: space-between
-    align-items: center
-
-  &_textLine1
-    margin: 0
-
   &_textLink
     @extend %a
 
-    font-size: 0.9rem
-    font-weight: 600
+  &_h5
+    @extend %h5-amiri
 
-  &_title
-    margin: 0
+    margin-top: 1rem
 
-  &_price
-    font-size: 0.9rem
-    font-style: italic
+  &_textLine
+    display: flex
+    justify-content: space-between
+    margin-top: 0.5rem
+    margin-bottom: 1.5rem
 
-  &_textLine2
-    margin: 0
-    margin-bottom: 0.6rem
-
-  &_dimensions
-    margin: 0
-    font-style: italic
-    font-size: 0.8rem
+    @extend %body-sourceSans-2

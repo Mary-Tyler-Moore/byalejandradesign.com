@@ -2,8 +2,8 @@ import * as React from 'react';
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 import { withCart } from '../Cart';
-import { BEM } from '@njmyers/component-library';
 import Button from '../Button';
+import Size from './Size';
 // helpers
 import title from './title';
 import { dollarString } from 'smalldash';
@@ -28,28 +28,31 @@ type Props = {
 const ProductList = ({ edges, addOneToCart, sizes }: Props) => (
   <section className="productList">
     {edges.map(({ node }) => (
-      <BEM block="productListItem" key={node.id}>
-        <article>
-          <Link element="imgLink" to={`/shop/${node.slug}`}>
-            <Img
-              className="productListItem_img"
-              fluid={node.acf.main_image.localFile.childImageSharp.fluid}
-            />
-          </Link>
-          <div element="textLine1">
-            <Link element="textLink" to={`/shop/${node.slug}`}>
-              <h3 className="productLink_title">{title(node)}</h3>
-            </Link>
-            <p element="price">{dollarString(node.acf.price)}</p>
-          </div>
-          <div element="textLine2">
-            <p element="dimensions">12" x 12"</p>
-          </div>
-          <Button element="button" onClick={addOneToCart} name={node.id}>
-            Add to Bag
-          </Button>
-        </article>
-      </BEM>
+      <article>
+        <Link className="productListItem_imgLink" to={`/shop/${node.slug}`}>
+          <Img
+            className="productListItem_img"
+            fluid={node.acf.main_image.localFile.childImageSharp.fluid}
+          />
+        </Link>
+        <Link className="productListItem_textLink" to={`/shop/${node.slug}`}>
+          <h5 className="productListItem_h5">{title(node)}</h5>
+        </Link>
+        {/* <Size node={node} /> */}
+        <p className="productListItem_textLine">
+          <span>
+            <strong>Price: </strong>
+            {dollarString(node.acf.price)}
+          </span>
+          <span>
+            <strong>Size: </strong>
+            12" x 12"
+          </span>
+        </p>
+        <Button className="defaultButton" onClick={addOneToCart} name={node.id}>
+          Add to Bag
+        </Button>
+      </article>
     ))}
   </section>
 );

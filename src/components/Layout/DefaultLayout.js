@@ -82,21 +82,7 @@ class Layout extends React.Component {
                 ]}
               >
                 <link
-                  href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900"
-                  rel="stylesheet"
-                />
-                <link
-                  href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300i,700"
-                  rel="stylesheet"
-                />
-
-                <link
-                  href="https://fonts.googleapis.com/css?family=Fjalla+One"
-                  rel="stylesheet"
-                />
-
-                <link
-                  href="https://fonts.googleapis.com/css?family=Pathway+Gothic+One"
+                  href="https://fonts.googleapis.com/css?family=Amiri:400,400i,700,700i|Source+Sans+Pro:300,300i,600,600i"
                   rel="stylesheet"
                 />
               </Helmet>
@@ -110,7 +96,7 @@ class Layout extends React.Component {
                 style={{
                   maxWidth: `${data.site.siteMetadata.design.maxWidth}px`,
                   minHeight: '100vh',
-                  padding: `0 ${this.getContentPadding(data)}px`,
+                  padding: `3rem ${this.getContentPadding(data)}px`,
                 }}
                 className="mainContent"
               >

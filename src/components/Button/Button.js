@@ -13,7 +13,7 @@ class Button extends React.Component {
         name={this.props.name}
         className={this.props.className}
       >
-        {this.props.children}
+        <span className="defaultButton_text">{this.props.children}</span>
       </button>
     );
   }

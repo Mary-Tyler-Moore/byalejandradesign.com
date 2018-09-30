@@ -50,7 +50,7 @@ export const sharpImageFragment = graphql`
   fragment SharpImage on wordpress__wp_media {
     localFile {
       childImageSharp {
-        fluid(maxWidth: 800, maxHeight: 600) {
+        fluid(maxWidth: 1200, maxHeight: 900) {
           ...GatsbyImageSharpFluid
         }
       }
