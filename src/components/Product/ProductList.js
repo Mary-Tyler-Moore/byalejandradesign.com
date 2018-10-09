@@ -1,3 +1,4 @@
+// @flow
 import * as React from 'react';
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
@@ -13,7 +14,7 @@ import './product-list.sass';
 import type { ProductNode } from './types';
 
 type Props = {
-  edges: Array<{ node: ProductNode }>,
+  edges: Array<ProductNode>,
   addOneToCart: () => null,
   sizes: {
     mobile: boolean,
@@ -26,8 +27,8 @@ type Props = {
  * @param {function} addOneToCart  redux connect function to add to cart
  */
 const ProductList = ({ edges, addOneToCart, sizes }: Props) => (
-  <section className="productList">
-    {edges.map(({ node }) => (
+  <section className="grid-products">
+    {edges.map(({ node }: Node) => (
       <article>
         <Link className="productListItem_imgLink" to={`/shop/${node.slug}`}>
           <Img

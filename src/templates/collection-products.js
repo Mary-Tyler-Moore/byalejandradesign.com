@@ -47,7 +47,7 @@ export const sparseFragment = graphql`
 export const headerFragmet = graphql`
   fragment HeaderImage on File {
     childImageSharp {
-      fluid(maxWidth: 1920, quality: 80, cropFocus: NORTH) {
+      fluid(maxWidth: 1920, quality: 100, cropFocus: NORTH) {
         ...GatsbyImageSharpFluid
       }
     }

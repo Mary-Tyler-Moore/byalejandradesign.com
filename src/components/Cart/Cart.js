@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
 import Button from '../Button';
-import CartContents from './CartContents';
+import CartContents from '../CartContents';
 
 import './cart.sass';
 

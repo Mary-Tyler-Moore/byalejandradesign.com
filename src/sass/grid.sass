@@ -1,0 +1,17 @@
+@import ~@njmyers/sass/mixins
+
+%grid-products
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  grid-gap: 3rem
+
+  +tablet
+    grid-template-columns: repeat(2, 1fr)
+    grid-gap: 4rem
+
+
+  +all-phone
+    grid-template-columns: repeat(1, 1fr)
+
+.grid-products
+  @extend %grid-products

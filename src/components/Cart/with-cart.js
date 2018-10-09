@@ -1,7 +1,6 @@
 // @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { compose } from 'smalldash';
 // actions
 import {
   addOneToCart,
@@ -41,11 +40,9 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const withCart = (Wrapped: React.ComponentType<any>) =>
-  compose(
-    connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
   )(Wrapped);
 
 export default withCart;

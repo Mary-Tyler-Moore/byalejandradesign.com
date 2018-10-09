@@ -9,9 +9,9 @@ class MarkdownPage extends React.Component {
   render() {
     return (
       <Layout>
-        <h2 className="h2-amiri">
+        <h3 className="h3-amiri">
           {this.props.data.markdownRemark.frontmatter.title}
-        </h2>
+        </h3>
         <section className="markdown-sourceSans">
           <ReactMarkdown
             source={this.props.data.markdownRemark.rawMarkdownBody}

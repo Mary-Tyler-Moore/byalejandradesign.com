@@ -79,7 +79,7 @@ class Contact extends React.PureComponent<{}, State> {
   render() {
     return (
       <section className="contact">
-        <h2 className="contact_h2">Contact Artetexture</h2>
+        <h3 className="contact_h3">Contact Artetexture</h3>
         <form className="contactForm" onSubmit={this.onSubmit}>
           <Form.Input
             name="name"
@@ -116,11 +116,11 @@ class Contact extends React.PureComponent<{}, State> {
             rows={8}
             required={true}
           />
-          <StatusSwitch status={this.state.status}>
-            <p className="message">{this.state.status}</p>
-          </StatusSwitch>
-          <Form.Submit value="Send" />
+          <Form.Submit block="contactFormSubmit" value="Send" />
         </form>
+        <StatusSwitch status={this.state.status}>
+          <p className="message">{this.state.status}</p>
+        </StatusSwitch>
       </section>
     );
   }

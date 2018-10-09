@@ -4,10 +4,11 @@ import Helmet from 'react-helmet';
 import withSize from 'react-size-components';
 import { MainNav, FooterNav } from '../Nav';
 import Header from '../Header';
-import library from './library';
+// icons
+import './library';
 // styles
 import 'normalize.css';
-import './index.sass';
+import './layout.sass';
 
 class Layout extends React.Component {
   /** get the metadata object */

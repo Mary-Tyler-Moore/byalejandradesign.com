@@ -2,9 +2,10 @@
 
 .collections
   margin: 0
+  margin-bottom: 3rem
 
-  &_h2
-    @extend %h2-amiri
+  &_h3
+    @extend %h3-amiri
 
     margin-top: 0
 
@@ -14,17 +15,10 @@
     margin-top: 0
 
 .collectionList
-  margin-top: 2rem
-  display: grid
-  grid-template-columns: repeat(2, 1fr)
-  grid-gap: 2rem
-
-  +all-phone
-    grid-template-columns: repeat(1, 1fr)
-
-
   &_h4
     @extend %h4-amiri
+
+    margin: 0
 
   &_description
     @extend %body-sourceSans-1

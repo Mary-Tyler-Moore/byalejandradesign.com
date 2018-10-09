@@ -3,24 +3,14 @@ import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 import Button from '../Button';
 import { withCart } from '../Cart';
-import icon from '../Cart/icon.svg';
-// styles
-import './single-product.sass';
 // string helpers
 import { dollarString } from 'smalldash';
 import title from './title.js';
 import collectionFromProduct from './collection-from-product';
 // types
 import type { ProductNode, ImageNode } from './types';
-
-const CollectionLink = ({ node }) => (
-  <Link
-    className="singleProduct_buttonLink"
-    to={`/shop/collection/${collectionFromProduct(node).slug}`}
-  >
-    <Button className="greyButton">Shop this Collection</Button>
-  </Link>
-);
+// styles
+import './single-product.sass';
 
 type Props = {
   node: ProductNode,
@@ -34,6 +24,15 @@ type State = {
   active: number,
   interval: IntervalID | null,
 };
+
+const CollectionLink = ({ node }) => (
+  <Link
+    className="singleProduct_buttonLink"
+    to={`/shop/collection/${collectionFromProduct(node).slug}`}
+  >
+    <Button className="greyButton">Shop this Collection</Button>
+  </Link>
+);
 
 /**
  * Displays single product

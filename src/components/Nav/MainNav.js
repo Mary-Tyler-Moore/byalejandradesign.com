@@ -3,7 +3,7 @@ import { Link } from 'gatsby';
 import { Modal, Icon } from '@njmyers/component-library';
 import URLToTitle from './url-to-title';
 // icons
-import CartIcon from '../Cart/CartIcon';
+import CartIcon from '../CartIcon';
 // styles
 import './main-nav.sass';
 

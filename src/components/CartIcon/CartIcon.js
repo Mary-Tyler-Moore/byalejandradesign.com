@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import withCart from './with-cart';
+import { withCart } from '../Cart';
 // style
 import './cart-icon.sass';
 // assets

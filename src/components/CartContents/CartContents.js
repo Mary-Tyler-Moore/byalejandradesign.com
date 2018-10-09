@@ -5,7 +5,7 @@ import { Form } from '@njmyers/component-library';
 import { dollarString } from 'smalldash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // actions
-import withCart from './with-cart';
+import withCart from '../Cart/with-cart';
 import title from '../Product/title';
 import type { State } from './cart-reducer';
 
@@ -13,6 +13,7 @@ import './cart-contents.sass';
 
 type Props = {
   cart: State,
+  editable: boolean,
 };
 
 class CartContents extends React.PureComponent<Props> {
@@ -45,8 +46,6 @@ class CartContents extends React.PureComponent<Props> {
     const product = this.props.cart.products.find(
       (product) => id === product.id
     );
-
-    console.log(product.quantity + num);
 
     this.props.updateCartQuantityDirectly({
       id,
@@ -90,18 +89,20 @@ class CartContents extends React.PureComponent<Props> {
                         <p>
                           <strong>Quantity: </strong>
                           {product.quantity}
-                          <span className="cartItem_quantityUpdate">
-                            <FontAwesomeIcon
-                              className="cartItem_chevron"
-                              onClick={this.onClick(product.id, 1)}
-                              icon="chevron-up"
-                            />
-                            <FontAwesomeIcon
-                              className="cartItem_chevron"
-                              onClick={this.onClick(product.id, -1)}
-                              icon="chevron-down"
-                            />
-                          </span>
+                          {this.props.editable && (
+                            <span className="cartItem_quantityUpdate">
+                              <FontAwesomeIcon
+                                className="cartItem_chevron"
+                                onClick={this.onClick(product.id, 1)}
+                                icon="chevron-up"
+                              />
+                              <FontAwesomeIcon
+                                className="cartItem_chevron"
+                                onClick={this.onClick(product.id, -1)}
+                                icon="chevron-down"
+                              />
+                            </span>
+                          )}
                         </p>
                         <p>
                           <strong>Price: </strong>

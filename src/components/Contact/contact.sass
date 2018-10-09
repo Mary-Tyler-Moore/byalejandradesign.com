@@ -1,8 +1,8 @@
 @import ../../sass/global
 
 .contact
-  &_h2
-    @extend %h2-amiri
+  &_h3
+    @extend %h3-amiri
 
 .contactForm
   @extend %form
@@ -17,3 +17,23 @@
 
 .contactFormSubmit
   &_input
+    @extend %button
+
+    @extend %button_text-sourceSans
+
+    font-weight: 600
+    padding: 0.75rem 1.5rem
+    justify-content: center
+    align-items: center
+    margin: 1rem 0
+    border-radius: 0.25rem
+    transition: 0.25s background, 0.25s border
+    background: $button-yellow
+    color: $white
+
+    &:hover
+      color: $white
+      background: darken($button-yellow, 10)
+
+.message
+  display: block

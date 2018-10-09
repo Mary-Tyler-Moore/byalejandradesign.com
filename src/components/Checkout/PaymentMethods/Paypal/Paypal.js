@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { compose } from 'smalldash';
 import { paypalCheckout } from 'braintree-web';
+import { navigate } from 'gatsby';
 // HOC to preload checkout module
 import withPaypalButton from './with-paypal-button';
 // auto connect HOC
@@ -95,6 +96,7 @@ class Paypal extends React.PureComponent<{}, State> {
     Promise.resolve(this.state.instance.tokenizePayment(data))
       .then((payload) => {
         this.props.submitNonce(payload);
+        navigate('/checkout/confirmation');
       })
       .catch((err) => {
         // this.props.paymentError({

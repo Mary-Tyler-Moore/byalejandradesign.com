@@ -18,14 +18,14 @@ class CollectionList extends React.Component<Props> {
     return (
       <React.Fragment>
         <section className="collections">
-          <h2 className="collections_h2">Collections</h2>
+          <h3 className="collections_h3">Collections</h3>
           <p className="collections_description">
             Here we should put some nice text. Explaining how all of the
             products are divided into collections based on their colors,
             textures and use.
           </p>
         </section>
-        <section className="collectionList">
+        <section className="grid-products">
           {this.props.edges.map(({ node }) => (
             <article className="collectionList_article" key={node.id}>
               <h4 className="collectionList_h4">{node.name}</h4>
