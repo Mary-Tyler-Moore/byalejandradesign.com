@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import { compose } from 'smalldash';
 import { paypalCheckout } from 'braintree-web';

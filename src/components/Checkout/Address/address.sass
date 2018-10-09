@@ -1,27 +1,23 @@
-@import '../../../sass/extras'
+@import ../../../sass/global
 
-.billingAddress,
-.shippingAddress
+.addressForm
   +transition(all 0.5s)
+
   &_h3
+    @extend %h3-amiri
+
   &_form
     @extend %form
-    
-.addressInput
-  @extend %formItem
-  &_label
-    @extend %formLabel
-  &_input
-    @extend %formInput
-      
+
++form-item("addressInput")
++form-item("addressSelect")
+
 .addressSelect
-  @extend %formItem
-  &_label
-    @extend %formLabel
   &_select
     border: solid 1px $grey-lightest
     background: none
     padding: 0.5rem
+
     &:focus
       outline: none
 
@@ -30,8 +26,12 @@
   &-capOptions
     .addressSelect
       &_select
+
       &_option
         text-transform: capitalize
+
+        @extend %body-sourceSans-1
+
   &-allCapOptions
     .addressSelect_select
       text-transform: uppercase
@@ -41,22 +41,28 @@
 .addressSelect
   &-third
     grid-column: span 4
+
     // @include tablet
     //   grid-column: span 6
-    @include all-phone
+    +all-phone
       grid-column: span 12
+
   &-fourth
     grid-column: span 3
+
     // @include tablet
     //   grid-column: span 6
-    @include all-phone
+    +all-phone
       grid-column: span 12
+
   &-half
     grid-column: span 6
-    @include all-phone
+
+    +all-phone
       grid-column: span 12
+
   &-sixth
     grid-column: span 2
-    @include all-phone
+
+    +all-phone
       grid-column: span 12
-  

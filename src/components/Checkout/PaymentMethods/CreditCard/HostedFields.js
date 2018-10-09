@@ -1,5 +1,5 @@
-
 import React, { PureComponent } from 'react';
+import Button from '../../../Button';
 import { hostedFields } from 'braintree-web';
 import { equals } from 'smalldash';
 // types
@@ -8,17 +8,12 @@ import type { PaymentState } from '../payment-methods-reducer';
 import withPaymentActions from '../with-payment-actions';
 // components
 import CardIcons from './CardIcons';
-import Field from './Field';
+import HostedField from './Field';
 import BillingAddress from '../../Address/BillingAddress';
-import { BEM } from '@njmyers/component-library';
-// misc
+//types
+import type { FieldState } from './types';
+// style
 import './hosted-fields.sass';
-
-export type FieldState = {
-  isPotentiallyValid: boolean,
-  isValid: boolean,
-  isFocused: boolean,
-};
 
 type State = {
   cardType: string,
@@ -40,11 +35,9 @@ class HostedFields extends PureComponent<Props, State> {
   // options for hosted fields instantiation
   options = {
     styles: {
-      input: 'hostedField_input',
-      '.number': 'hostedField_input-cardNumber',
-      '.expirationDate': 'hostedField_input-expirationDate',
-      '.valid': 'hostedField_input-valid',
-      '.invalid': 'hostedField_input-invalid',
+      input: 'brainTreeIframe_input',
+      '.valid': 'brainTreeIframe_input-valid',
+      '.invalid': 'brainTreeIframe_input-invalid',
     },
     fields: {
       number: {
@@ -79,6 +72,7 @@ class HostedFields extends PureComponent<Props, State> {
       cvv: this.initialFieldState,
     },
     status: 'initial',
+    instance: null,
   };
 
   componentDidMount() {
@@ -200,29 +194,35 @@ class HostedFields extends PureComponent<Props, State> {
 
   render() {
     return (
-      <BEM block="hostedFields">
+      <section className="hostedFields">
+        {/* <BillingAddress /> */}
         <section>
-          <BillingAddress />
-          <h3 element="h3">Credit Card Details</h3>
+          <h5 className="hostedFields_h5">Credit Card Details</h5>
           <CardIcons active={this.state.cardType} />
-          <form element="form">
-            <Field type="cardNumber" state={this.state.fields.cardNumber} />
-            <Field
-              type="expirationDate"
-              state={this.state.fields.expirationDate}
+          <form className="hostedFields_form">
+            <HostedField
+              type="cardNumber"
+              fieldState={this.state.fields.cardNumber}
             />
-            <Field type="cvv" state={this.state.fields.cvv} />
+            <HostedField
+              type="expirationDate"
+              fieldState={this.state.fields.expirationDate}
+            />
+            <HostedField type="cvv" fieldState={this.state.fields.cvv} />
           </form>
-          <section element="feedbackRow">
-            <p element="invalidNotice" modifiers={this.state.status}>
+          <section className="hostedFields_feedbackRow">
+            <p
+              className="hostedFields_invalidNotice"
+              modifiers={this.state.status}
+            >
               Your credit card information is invalid
             </p>
-            <button element="submit" onClick={this.onSubmit}>
-              Submit Payment
-            </button>
+            <Button className="hostedFields_button" onClick={this.onSubmit}>
+              Submit Credit Card
+            </Button>
           </section>
         </section>
-      </BEM>
+      </section>
     );
   }
 }

@@ -1,31 +1,19 @@
-@import ../../sass/extras
+@import ../../sass/global
+
+.contact
+  &_h2
+    @extend %h2-amiri
 
 .contactForm
   @extend %form
 
++form-item("contactFormItem")
+
 .contactFormItem
-  @extend %formItem
-
-  &_label
-    @extend %formLabel
-
-  &_input
-    @extend %formInput
-
-.contactFormTextArea
-  @extend %formItem
-
-  &_label
-    @extend %formLabel
-
   &_textArea
-    @extend %formInput
+    @extend .contactFormItem_input
 
     resize: vertical
 
 .contactFormSubmit
   &_input
-    // @extend %button-styled
-
-    font-family: "FontAwesome"
-    font-size: 1.4rem

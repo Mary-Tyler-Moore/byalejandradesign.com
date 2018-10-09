@@ -11,19 +11,6 @@ import { Form, StatusSwitch } from '@njmyers/component-library';
 // styles
 import './contact.sass';
 
-const Input = Form.Input;
-Input.defaultProps = {
-  ...Form.Input.defaultProps,
-  required: true,
-  block: 'contactFormItem',
-};
-
-const Submit = Form.Submit;
-Submit.defaultProps = {
-  ...Form.Submit.defaultProps,
-  block: 'contactFormSubmit',
-};
-
 class Contact extends React.PureComponent<{}, State> {
   state = {
     name: '',
@@ -91,32 +78,38 @@ class Contact extends React.PureComponent<{}, State> {
 
   render() {
     return (
-      <section className="contact" onSubmit={this.onSubmit}>
-        <h1 className="contact_heading">Contact Artetexture</h1>
-        <form className="contactForm">
-          <Input
+      <section className="contact">
+        <h2 className="contact_h2">Contact Artetexture</h2>
+        <form className="contactForm" onSubmit={this.onSubmit}>
+          <Form.Input
             name="name"
+            block="contactFormItem"
             label="Full Name"
             placeholder="Nicholas"
             value={this.state.name}
             onChange={this.onChange}
-            focus={true}
+            required
+            focus
           />
-          <Input
+          <Form.Input
             name="subject"
+            block="contactFormItem"
             placeholder="Customer Support"
             value={this.state.subject}
             onChange={this.onChange}
+            required
           />
-          <Input
+          <Form.Input
             name="email"
             type="email"
+            block="contactFormItem"
             value={this.state.email}
             placeholder="nick@artetexture.com"
             onChange={this.onChange}
+            required
           />
           <Form.TextArea
-            block="contactFormTextArea"
+            block="contactFormItem"
             name="message"
             onChange={this.onChange}
             value={this.state.message}
@@ -126,7 +119,7 @@ class Contact extends React.PureComponent<{}, State> {
           <StatusSwitch status={this.state.status}>
             <p className="message">{this.state.status}</p>
           </StatusSwitch>
-          <Submit value="&#xf1d8;" />
+          <Form.Submit value="Send" />
         </form>
       </section>
     );

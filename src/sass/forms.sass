@@ -1,0 +1,48 @@
+@import colors/colors
+@import ~@njmyers/sass/mixins
+@import typography
+
+// base classes
+
+%form
+  display: grid
+  grid-template-columns: repeat(12, 1fr)
+  grid-gap: 1.8rem
+
+%input
+  @extend %body-sourceSans-1
+
+  margin: 0
+  border: none
+  border-bottom: solid 2px $grey-lightest
+  box-shadow: none
+  padding: 0.5rem 0
+
+  +transition(background 0.35s, border 0.35s, padding 0.35s)
+
+  &:focus
+    outline: none
+    border-bottom: solid 2px $cobalt-lightest
+
+%label
+  @extend %h6-amiri
+
+  text-transform: capitalize
+
+// mixin to create base class from name
+
+=form-item($class-name)
+  .#{$class-name}
+    // parent grid
+    grid-column: span 12
+
+    // for children
+    display: grid
+    grid-auto-columns: 1fr
+    grid-gap: 0.6rem
+
+    &_label
+      @extend %label
+
+    &_input
+      @extend %input

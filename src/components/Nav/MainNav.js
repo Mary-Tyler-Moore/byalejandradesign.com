@@ -1,10 +1,8 @@
-
 import * as React from 'react';
 import { Link } from 'gatsby';
 import { Modal, Icon } from '@njmyers/component-library';
 import URLToTitle from './url-to-title';
 // icons
-import Logo from '../Logo';
 import CartIcon from '../Cart/CartIcon';
 // styles
 import './main-nav.sass';
@@ -37,7 +35,6 @@ class DesktopMainNav extends React.Component<Props> {
   render() {
     return (
       <nav style={this.getStyle()} className="mainNavDesktop">
-        <Logo className="mainNavDesktop_logo" />
         {this.props.mainNav.map((nav) => (
           <Link
             key={nav}

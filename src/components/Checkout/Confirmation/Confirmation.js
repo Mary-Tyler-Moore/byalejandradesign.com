@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { compose } from 'smalldash';
 
@@ -41,6 +40,5 @@ export default compose(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  ),
-  withRouter
+  )
 )(Confirmation);

@@ -1,5 +1,3 @@
-
-
 /**
  * Creates an action for submitting the form
  * @return {[type]} [description]

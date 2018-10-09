@@ -1,4 +1,3 @@
-
 import * as React from 'react';
 import { venmo } from 'braintree-web';
 import withPaymentActions from '../with-payment-actions';
@@ -64,11 +63,11 @@ class Venmo extends React.PureComponent<{}, State> {
   render() {
     return (
       <DataCollectorProvider>
-        <div className="venmoOption_container">
+        <section className="venmoOption">
           <button className="venmoButton" onClick={this.onVenmoClick}>
             <img className="venmoButton_img" src={logo} alt="venmo_logo" />
           </button>
-        </div>
+        </section>
       </DataCollectorProvider>
     );
   }

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { camelToTitle, camelToPascal } from 'smalldash';
 // components
-import { Form, BEM } from '@njmyers/component-library';
+import { Form } from '@njmyers/component-library';
 // actions
 import { updateAddressField } from './address-actions';
 // datasets
@@ -121,61 +121,59 @@ const createAddressForm = (slice) => {
 
     render() {
       return (
-        <BEM block={slice}>
-          <section>
-            <h3 element="h3">{this.titleCase}</h3>
-            <form element="form" onSubmit={this.props.onSubmit}>
-              <Input
-                focus
-                name="fullName"
-                label="Full Name"
-                value={this.props[slice].fullName}
-                onChange={this.props.updateAddressField}
-              />
-              <Input
-                name="streetAddress1"
-                label="Address Line 1"
-                value={this.props[slice].streetAddress1}
-                onChange={this.props.updateAddressField}
-              />
-              <Input
-                name="streetAddress2"
-                label="Address Line 2"
-                value={this.props[slice].streetAddress2}
-                onChange={this.props.updateAddressField}
-              />
-              <Input
-                name="city"
-                value={this.props[slice].city}
-                onChange={this.props.updateAddressField}
-                modifiers="half"
-              />
-              <Select
-                name="province"
-                label={geography[this.props[slice].countryCode].provincialKey}
-                options={this.getProvinceOptions()}
-                value={this.props[slice].province}
-                onChange={this.props.updateAddressField}
-                modifiers={['allCapOptions', 'sixth']}
-              />
-              <Input
-                name="postalCode"
-                label="Postal Code"
-                type="text"
-                value={this.props[slice].postalCode}
-                onChange={this.validatePostalCode}
-                modifiers="third"
-              />
-              <Select
-                name="countryCode"
-                options={this.getCountryOptions()}
-                value={this.props[slice].countryCode}
-                onChange={this.onSelectCountry}
-                modifier="capOptions"
-              />
-            </form>
-          </section>
-        </BEM>
+        <section className="addressForm">
+          <h3 className="addressForm_h3">{this.titleCase}</h3>
+          <form className="addressForm_form" onSubmit={this.props.onSubmit}>
+            <Input
+              focus
+              name="fullName"
+              label="Full Name"
+              value={this.props[slice].fullName}
+              onChange={this.props.updateAddressField}
+            />
+            <Input
+              name="streetAddress1"
+              label="Address Line 1"
+              value={this.props[slice].streetAddress1}
+              onChange={this.props.updateAddressField}
+            />
+            <Input
+              name="streetAddress2"
+              label="Address Line 2"
+              value={this.props[slice].streetAddress2}
+              onChange={this.props.updateAddressField}
+            />
+            <Input
+              name="city"
+              value={this.props[slice].city}
+              onChange={this.props.updateAddressField}
+              modifiers="half"
+            />
+            <Select
+              name="province"
+              label={geography[this.props[slice].countryCode].provincialKey}
+              options={this.getProvinceOptions()}
+              value={this.props[slice].province}
+              onChange={this.props.updateAddressField}
+              modifiers={['allCapOptions', 'sixth']}
+            />
+            <Input
+              name="postalCode"
+              label="Postal Code"
+              type="text"
+              value={this.props[slice].postalCode}
+              onChange={this.validatePostalCode}
+              modifiers="third"
+            />
+            <Select
+              name="countryCode"
+              options={this.getCountryOptions()}
+              value={this.props[slice].countryCode}
+              onChange={this.onSelectCountry}
+              modifiers="capOptions"
+            />
+          </form>
+        </section>
       );
     }
   }

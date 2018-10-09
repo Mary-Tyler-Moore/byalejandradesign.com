@@ -1,9 +1,9 @@
-
-import React from 'react';
+import * as React from 'react';
 import { camelToKebab, camelToTitle } from 'smalldash';
-import { BEM } from '@njmyers/component-library';
-
-import type { FieldState } from './HostedFields';
+// types
+import type { FieldState } from './types';
+// styles
+import './field.sass';
 
 /**
  * Maps the field states to valid css class modifiers
@@ -20,22 +20,38 @@ const fieldStateClasses = (state: FieldState) => {
 
 type Props = {
   type: string,
-  state: FieldState,
+  fieldState: FieldState,
 };
 
-const Field = ({ type, state }: Props) => (
-  <BEM block="hostedField">
-    <div modifiers={type}>
-      <label element="label" htmlFor={camelToKebab(type)}>
-        {type !== 'cvv' ? camelToTitle(type) : type.toUpperCase()}
-      </label>
-      <div
-        element="inputContainer"
-        modifiers={fieldStateClasses(state)}
-        id={camelToKebab(type)}
-      />
-    </div>
-  </BEM>
-);
+class HostedField extends React.Component<Props> {
+  getLabel = () => {
+    return this.props.type !== 'cvv'
+      ? camelToTitle(this.props.type)
+      : this.props.type.toUpperCase();
+  };
 
-export default Field;
+  getClassNames = () => {
+    const modifiers = fieldStateClasses(this.props.fieldState);
+
+    return `field_input${modifiers.reduce(
+      (prevString, modifier) => `${prevString} field_input-${modifier}`,
+      ''
+    )}`;
+  };
+
+  render() {
+    return (
+      <div className="field">
+        <label className="field_label" htmlFor={camelToKebab(this.props.type)}>
+          {this.getLabel()}
+        </label>
+        <div
+          className={this.getClassNames()}
+          id={camelToKebab(this.props.type)}
+        />
+      </div>
+    );
+  }
+}
+
+export default HostedField;

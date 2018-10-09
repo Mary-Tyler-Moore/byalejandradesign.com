@@ -1,0 +1,52 @@
+@import ../../sass/global
+
+.cartContents
+  margin-top: 2rem
+  display: grid
+  grid-template-columns: repeat(1, 1fr)
+  grid-gap: 3rem
+
+.cartItem
+  // border: 1px solid black
+  display: grid
+  grid-template-columns: 250px 2fr 1fr
+  grid-gap: 2rem
+
+  &_middle,
+  &_end
+    +flex
+
+    flex-direction: column
+    justify-content: flex-start
+    align-items: flex-start
+
+  &_h5
+    @extend %h5-amiri
+
+    margin: 0
+    margin-top: -5px
+
+  &_floatDown
+    @extend %body-sourceSans-2
+
+    margin-top: auto
+
+    p
+      @extend %textline
+
+    p:last-child
+      margin-bottom: 0
+
+  &_quantityUpdate
+    margin-left: 0.25rem
+    cursor: pointer
+
+  &_chevron
+    margin-left: 0.5rem
+    vertical-align: -0.15rem
+    color: $black
+
+    +transition(0.2s color)
+
+    &:hover
+      color: $grey

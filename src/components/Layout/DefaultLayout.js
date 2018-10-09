@@ -4,6 +4,7 @@ import Helmet from 'react-helmet';
 import withSize from 'react-size-components';
 import { MainNav, FooterNav } from '../Nav';
 import Header from '../Header';
+import library from './library';
 // styles
 import 'normalize.css';
 import './index.sass';

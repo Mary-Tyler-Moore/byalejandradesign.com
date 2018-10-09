@@ -1,14 +1,14 @@
 /**
- * @flow
  * Implement Gatsby's Node APIs in this file.
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 const path = require('path');
+const { pipeAsync } = require('smalldash');
 
 exports.createPages = ({ graphql, actions }) => {
-  /** Creating Redirects */
-  const { createRedirect } = actions;
+  const { createRedirect, createPage } = actions;
 
+  /** Creating Redirects */
   createRedirect({
     fromPath: '/home',
     isPermanent: true,
@@ -30,115 +30,142 @@ exports.createPages = ({ graphql, actions }) => {
     toPath: '/shop/collections',
   });
 
-  /** Creating Pages */
-  const { createPage } = actions;
+  const stub = 'src/templates';
 
-  return new Promise((res, rej) => {
-    const stub = 'src/templates';
+  // Create a request/callback api
+  // We can define our queries/side effects with less boilerplate
+  const createGatsbyPages = (query, callback) => () =>
+    new Promise((res, rej) => {
+      return query
+        .then((results) => {
+          if (results.errors) {
+            rej(results.errors);
+          } else {
+            res(callback(results));
+          }
+        })
+        .catch((errors) => rej(errors));
+    });
 
-    const shopItemTemplate = path.resolve(stub, 'shop-product.js');
-    const cloudStudioTemplate = path.resolve(stub, 'cloud-studio.js');
-    const collectionTemplate = path.resolve(stub, 'collection-products.js');
+  const createShop = createGatsbyPages(
+    graphql(
+      `
+        {
+          allWordpressWpShop {
+            edges {
+              node {
+                id
+                slug
+              }
+            }
+          }
+        }
+      `
+    ),
+    (results) => {
+      results.data.allWordpressWpShop.edges.forEach(({ node }) => {
+        createPage({
+          path: `shop/${node.slug}`,
+          component: path.resolve(stub, 'shop-product.js'),
+          context: {
+            id: node.id,
+          },
+        });
+      });
+    }
+  );
 
-    res(
-      graphql(
-        `
-          {
-            allWordpressWpShop {
-              edges {
-                node {
-                  id
+  const createCloudStudio = createGatsbyPages(
+    graphql(
+      `
+        {
+          allWordpressPost {
+            edges {
+              node {
+                id
+                slug
+              }
+            }
+          }
+        }
+      `
+    ),
+    (result) => {
+      result.data.allWordpressPost.edges.forEach(({ node }) => {
+        createPage({
+          path: `cloud-studio/${node.slug}`,
+          component: path.resolve(stub, 'cloud-studio.js'),
+          context: {
+            id: node.id,
+          },
+        });
+      });
+    }
+  );
+
+  const createCollections = createGatsbyPages(
+    graphql(
+      `
+        {
+          allWordpressWpCollections {
+            edges {
+              node {
+                id
+                slug
+              }
+            }
+          }
+        }
+      `
+    ),
+    (result) => {
+      result.data.allWordpressWpCollections.edges.forEach(({ node }) => {
+        createPage({
+          path: `shop/collection/${node.slug}`,
+          component: path.resolve(stub, 'collection-products.js'),
+          context: {
+            id: node.id,
+          },
+        });
+      });
+    }
+  );
+
+  const createMarkdown = createGatsbyPages(
+    graphql(
+      `
+        {
+          allMarkdownRemark {
+            edges {
+              node {
+                frontmatter {
                   slug
                 }
               }
             }
           }
-        `
-      )
-        .then((result) => {
-          if (result.errors) {
-            rej(result.errors);
-          }
+        }
+      `
+    ),
+    (result) => {
+      result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+        createPage({
+          path: node.frontmatter.slug,
+          component: path.resolve(stub, 'markdown.js'),
+          context: {
+            slug: node.frontmatter.slug,
+          },
+        });
+      });
+    }
+  );
 
-          result.data.allWordpressWpShop.edges.forEach(({ node }) => {
-            const path = `shop/${node.slug}`;
+  const pipeline = pipeAsync(
+    createShop,
+    createCollections,
+    createCloudStudio,
+    createMarkdown
+  );
 
-            createPage({
-              path,
-              component: shopItemTemplate,
-              context: {
-                id: node.id,
-              },
-            });
-          });
-        })
-        .then(() => {
-          return graphql(
-            `
-              {
-                allWordpressPost {
-                  edges {
-                    node {
-                      id
-                      slug
-                    }
-                  }
-                }
-              }
-            `
-          );
-        })
-        .then((result) => {
-          if (result.errors) {
-            rej(result.errors);
-          }
-
-          result.data.allWordpressPost.edges.forEach(({ node }) => {
-            const path = `cloud-studio/${node.slug}`;
-
-            createPage({
-              path,
-              component: cloudStudioTemplate,
-              context: {
-                id: node.id,
-              },
-            });
-          });
-        })
-        .then(() => {
-          return graphql(
-            `
-              {
-                allWordpressWpCollections {
-                  edges {
-                    node {
-                      id
-                      slug
-                    }
-                  }
-                }
-              }
-            `
-          );
-        })
-        .then((result) => {
-          if (result.errors) {
-            rej(result.errors);
-          }
-
-          result.data.allWordpressWpCollections.edges.forEach(({ node }) => {
-            const path = `shop/collection/${node.slug}`;
-
-            createPage({
-              path,
-              component: collectionTemplate,
-              context: {
-                id: node.id,
-              },
-            });
-          });
-        })
-        .catch((e) => console.log(e))
-    );
-  });
+  return pipeline();
 };

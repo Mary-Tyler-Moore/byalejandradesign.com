@@ -7,9 +7,7 @@ import Layout from '../components/Layout';
 const IndexPage = ({ data }) => (
   <Layout allWordpressAcfOptions={data.allWordpressAcfOptions}>
     <section>
-      <h1>New from the Cloud Studio</h1>
       <AllPosts edges={data.allWordpressPost.edges} />
-      <h1>Collections</h1>
       <CollectionList edges={data.allWordpressWpCollections.edges} />
     </section>
   </Layout>

@@ -1,9 +1,9 @@
 import * as React from 'react';
-import PaymentMethods from '../../components/Checkout/PaymentMethods';
+import Address from '../../components/Checkout/Address';
 import Layout from '../../components/Layout';
 
 export default () => (
   <Layout>
-    <PaymentMethods />
+    <Address />;
   </Layout>
 );

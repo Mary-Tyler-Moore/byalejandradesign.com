@@ -1,8 +1,8 @@
 @import ~@njmyers/sass/mixins
-@import ../colors/colors
-@import ../fonts
+@import colors/colors
+@import typography
 
-%list__generic
+%list-generic
   box-sizing: border-box
   box-shadow: none
   color: $grey
@@ -10,12 +10,15 @@
   padding: 0
 
 %ul
-  @extend %list__generic
+  @extend %list-generic
 
   list-style-type: circle
 
 %ol
-  @extend %list__generic
+  @extend %list-generic
 
 %li
-  @extend %list__generic
+  @extend %list-generic
+
+%textline
+  margin: 0.5rem 0

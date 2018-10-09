@@ -70,6 +70,14 @@ module.exports = {
       options: { precision: 8 },
     },
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        path: `${__dirname}/src/markdown`,
+        name: 'markdown-pages',
+      },
+    },
+    'gatsby-transformer-remark',
+    {
       resolve: 'gatsby-source-wordpress',
       options: {
         // The base url to your WP site.

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import * as React from 'react';
 import { connect } from 'react-redux';
 // actions
 import { paymentMethodType } from './payment-methods-actions';
@@ -7,13 +7,15 @@ import CreditCard from './CreditCard';
 import Paypal from './Paypal';
 import Venmo from './Venmo';
 import BrainTreeClient from '../Braintree';
-import { CreditCardOption, PaypalOption, VenmoOption } from './Options';
+import PaymentOption from './PaymentOption';
 // style
 import './payment-methods.sass';
+// assets
+import paypalLogo from 'payment-icons/svg/flat/paypal.svg';
+import venmoLogo from './blue_venmo_acceptance_mark.svg';
+import creditLogo from 'payment-icons/svg/flat/default.svg';
 
-// const
-
-class PaymentMethods extends PureComponent {
+class PaymentMethods extends React.PureComponent {
   renderPaymentMethod = () => {
     switch (this.props.method) {
       case 'venmo':
@@ -32,12 +34,24 @@ class PaymentMethods extends PureComponent {
     return (
       // Preloads BrainTreeClient before loading PaymentMethods
       <BrainTreeClient>
-        <section>
-          <h3>Choose Your Payment Method</h3>
+        <section className="paymentMethods">
+          <h5 className="h5-amiri">Choose Your Payment Method</h5>
           <section className="paymentOptions">
-            <VenmoOption onClick={this.props.chooseVenmo} />
-            <CreditCardOption onClick={this.props.chooseCredit} />
-            <PaypalOption onClick={this.props.choosePaypal} />
+            <PaymentOption
+              label="Venmo"
+              image={venmoLogo}
+              onClick={this.props.chooseVenmo}
+            />
+            <PaymentOption
+              label="Credit Card"
+              image={creditLogo}
+              onClick={this.props.chooseCredit}
+            />
+            <PaymentOption
+              label="Paypal"
+              image={paypalLogo}
+              onClick={this.props.choosePaypal}
+            />
           </section>
           <section className="paymentMethod">
             {this.renderPaymentMethod()}
