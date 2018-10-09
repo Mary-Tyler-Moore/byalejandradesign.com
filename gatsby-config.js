@@ -110,7 +110,6 @@ module.exports = {
         short_name: 'Artetexture',
         start_url: '/',
         display: 'minimal-ui',
-        icon: 'src/components/Logo/logo_white.png',
       },
     },
     // 'gatsby-plugin-offline',

@@ -36,15 +36,22 @@ const updateCart = (products, action: Actions) => {
   // error check actions
   invariant(action.id, `${action.type} must contain a product id`);
   // find old product quantity
-  const product = products.find((product) => product.id === action.id);
+  const index = products.findIndex((product) => product.id === action.id);
+  const product = products[index];
+  // safe add quantity
   const quantity = product
     ? safeAddQuantity(product.quantity, action.quantity)
     : action.quantity;
   // update array uniq by product id with new product then removing all products with 0 quantity
-  return uniq(
-    [{ id: action.id, quantity }, ...products],
-    (product) => product.id
-  ).filter((product) => product.quantity > 0);
+  return (
+    [
+      ...products.slice(0, index),
+      { id: action.id, quantity },
+      ...products.slice(index + 1),
+    ]
+      // remove zero quatity
+      .filter((product) => product.quantity > 0)
+  );
 };
 
 /**
@@ -53,11 +60,18 @@ const updateCart = (products, action: Actions) => {
  * @param {object} action a redux style action
  */
 const updateCartDirectly = (products, { id, quantity, type }: Actions) => {
-  // error check actions
   invariant(id, `${type} must contain a product id`);
-  // update array uniq by product id with new product then removing all products with 0 quantity
-  return uniq([{ id, quantity }, ...products], (product) => product.id).filter(
-    (product) => product.quantity > 0
+  // find old product quantity
+  const index = products.findIndex((product) => product.id === id);
+  const product = products[index];
+  return (
+    [
+      ...products.slice(0, index),
+      { id, quantity },
+      ...products.slice(index + 1),
+    ]
+      // remove zero quatity
+      .filter((product) => product.quantity > 0)
   );
 };
 
