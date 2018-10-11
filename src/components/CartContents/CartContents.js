@@ -22,14 +22,21 @@ class CartContents extends React.PureComponent<Props> {
    * @return {number} total price of cart
    */
   reduceTotal = (data) => {
-    return this.props.cart.products.length > 0
-      ? this.props.cart.products
-          .map((product) => {
-            const price = this.getNodeByID(product.id, data).acf.price;
-            return price * product.quantity;
-          })
-          .reduce((a, b) => a + b)
-      : 0;
+    const total =
+      this.props.cart.products.length > 0
+        ? this.props.cart.products
+            .map((product) => {
+              const price = this.getNodeByID(product.id, data).acf.price;
+              return price * product.quantity;
+            })
+            .reduce((a, b) => a + b)
+        : 0;
+
+    if (this.props.totalCallback) {
+      this.props.totalCallback(total);
+    }
+
+    return total;
   };
 
   getNodeByID = (id, data) => {
@@ -119,10 +126,16 @@ class CartContents extends React.PureComponent<Props> {
                   </section>
                 );
               })}
-            <p className="body-sourceSans-2">
-              <strong>Total: </strong>
-              {dollarString(this.reduceTotal(data))}
-            </p>
+            {this.props.cart.products.length > 0 ? (
+              <p className="body-sourceSans-2">
+                <strong>Total: </strong>
+                {dollarString(this.reduceTotal(data))}
+              </p>
+            ) : (
+              <p className="body-sourceSans-2">
+                Oh no you have nothing in your cart!
+              </p>
+            )}
           </section>
         )}
       />

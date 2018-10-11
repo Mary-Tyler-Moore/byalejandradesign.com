@@ -1,0 +1,27 @@
+@import ../../../sass/global
+
+.cardIcons
+  margin-top: 0.75rem
+  display: grid
+  grid-template-columns: repeat(16, 1fr)
+  grid-column-gap: 0.75rem
+  padding: 0.5rem 0 1rem 0
+  border-bottom: 1px solid $grey-lightest
+
+  &_forceAspect
+    position: relative
+
+    &:before
+      display: block
+      content: ""
+      width: 100%
+      padding-top: 157 / 250 * 100%
+
+  &_svg
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    width: 100%
+    height: auto

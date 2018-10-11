@@ -1,13 +1,13 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 // actions
-import { paymentMethodType } from './payment-methods-actions';
+import { paymentMethodType } from '../redux/actions/payment-methods-actions';
 // components
-import CreditCard from './CreditCard';
-import Paypal from './Paypal';
-import Venmo from './Venmo';
-import BrainTreeClient from '../Braintree';
-import PaymentOption from './PaymentOption';
+import CreditCard from '../CreditCard';
+import Paypal from '../Paypal';
+import Venmo from '../Venmo';
+import BrainTreeClient from '../BraintreeProvider';
+import PaymentOption from '../PaymentOption';
 // style
 import './payment-methods.sass';
 // assets

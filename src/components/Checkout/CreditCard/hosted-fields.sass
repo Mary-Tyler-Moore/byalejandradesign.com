@@ -1,0 +1,56 @@
+@import ../../../sass/global
+
+%invalidText
+  color: $invalid
+  font-style: italic
+  font-size: 0.8rem
+
+.hostedFields
+  &_form
+    margin: 2rem 0
+    width: 100%
+    display: grid
+    grid-column-gap: 4rem
+    grid-template-columns: 1fr 150px 60px
+
+  &_h5
+    @extend %h5-amiri
+
+  &_feedbackRow
+    width: 100%
+    display: grid
+    grid-template-columns: repeat(1, 1fr)
+    grid-row-gap: 1rem
+
+  &_submit
+    @extend %button
+
+  &_invalidNotice
+    @extend %invalidText
+
+    // opacity: 0
+    // margin: 0
+    // padding: 0
+
+    +transition(0.35s opacity)
+
+    &-error
+      // opacity: 1
+
+  &_button
+    @extend %button
+
+    background: $button-yellow
+    color: $white
+    height: 55px
+    width: 100%
+    border-radius: 4px
+
+    +transition(300ms background)
+
+    &:hover
+      color: $white
+      background: lighten($button-yellow, 5)
+
+    .defaultButton_text
+      font-size: 1.25rem
