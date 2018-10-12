@@ -20,22 +20,6 @@ import './create-address-form.sass';
  * countryCode: '',
  */
 
-const Input = Form.Input;
-/** stub with defaults */
-Input.defaultProps = {
-  ...Input.defaultProps,
-  required: true,
-  block: 'addressInput',
-};
-
-const Select = Form.Select;
-/** stub with defaults */
-Select.defaultProps = {
-  ...Select.defaultProps,
-  required: true,
-  block: 'addressSelect',
-};
-
 // TODO: FIX CANADIAN ZIP REGEX
 
 /**
@@ -126,63 +110,78 @@ const createAddressForm = (slice) => {
         <React.Fragment>
           <h4 className="addressForm_h4">{this.titleCase}</h4>
           <form className="addressForm_form" onSubmit={this.props.onSubmit}>
-            <Input
+            <Form.Input
               focus
               name="firstName"
               label="First Name"
+              block="addressField"
               value={this.props[slice].firstName}
               onChange={this.props.updateAddressField}
               modifiers={['half']}
+              required
             />
-            <Input
+            <Form.Input
               focus
               name="lastName"
               label="Last Name"
+              block="addressField"
               value={this.props[slice].lastName}
               onChange={this.props.updateAddressField}
               modifiers={['half']}
+              required
             />
-            <Input
+            <Form.Input
               name="streetAddress1"
               label="Address Line 1"
+              block="addressField"
               value={this.props[slice].streetAddress1}
               onChange={this.props.updateAddressField}
+              required
             />
-            <Input
+            <Form.Input
               name="streetAddress2"
               label="Address Line 2"
+              block="addressField"
               value={this.props[slice].streetAddress2}
               onChange={this.props.updateAddressField}
+              required
             />
-            <Input
+            <Form.Input
               name="city"
+              block="addressField"
               value={this.props[slice].city}
               onChange={this.props.updateAddressField}
               modifiers="half"
+              required
             />
-            <Select
+            <Form.Select
               name="province"
+              block="addressSelect"
               label={geography[this.props[slice].countryCode].provincialKey}
               options={this.getProvinceOptions()}
               value={this.props[slice].province}
               onChange={this.props.updateAddressField}
-              modifiers={['allCapOptions', 'sixth']}
+              modifiers="sixth"
+              required
             />
-            <Input
+            <Form.Input
               name="postalCode"
               label="Postal Code"
+              block="addressField"
               type="text"
               value={this.props[slice].postalCode}
               onChange={this.validatePostalCode}
               modifiers="third"
+              required
             />
-            <Select
+            <Form.Select
               name="countryCode"
+              block="addressSelect"
               label="Country"
               options={this.getCountryOptions()}
               value={this.props[slice].countryCode}
               onChange={this.onSelectCountry}
-              modifiers="capOptions"
+              required
             />
           </form>
         </React.Fragment>

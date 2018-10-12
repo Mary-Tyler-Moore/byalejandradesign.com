@@ -3,7 +3,7 @@ import Img from 'gatsby-image';
 import './header.sass';
 import ByAlejandra from './ByAlejandra.js';
 
-import type { ImageNode } from '../Product/types';
+import type { ImageNode } from 'data';
 
 type Props = {
   headerImage: ImageNode,

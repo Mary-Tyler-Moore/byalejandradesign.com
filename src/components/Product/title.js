@@ -1,5 +1,5 @@
 /** @flow */
-import type { ProductNode } from './types';
+import type { ProductNode } from 'data';
 
 /**
  * Fallback to title if no display title

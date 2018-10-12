@@ -1,9 +1,10 @@
+/** @flow */
 import * as React from 'react';
 import { withCart } from '../Cart';
 // style
 import './single-collection.sass';
 // types
-import type { CollectionNode } from './types';
+import type { CollectionNode } from 'data';
 
 type Props = {
   node: CollectionNode,

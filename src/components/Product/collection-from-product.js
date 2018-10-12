@@ -1,6 +1,5 @@
 /** @flow */
-import type { ProductNode } from './types';
-import type { CollectionNode } from '../Collections/types';
+import type { CollectionNode, ProductNode } from 'data';
 
 /**
  * Safely retrieve the collection node from a product node

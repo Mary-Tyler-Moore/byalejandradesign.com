@@ -6,7 +6,6 @@ import server from '../server';
 // components
 import Loading from '../../Loading';
 import ErrorMessage from '../../ErrorMessage';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { StatusSwitch } from '@njmyers/component-library';
 // style
 import './braintree.sass';

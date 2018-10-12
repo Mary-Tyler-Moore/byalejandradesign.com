@@ -5,13 +5,17 @@
 // base classes
 
 %form
-  display: grid
-  grid-template-columns: repeat(12, 1fr)
-  grid-gap: 2rem
+  width: 100%
+
+  +flex
+
+  justify-content: space-between
+  flex-wrap: wrap
 
 %input
   @extend %body-sourceSans-1
 
+  width: 100%
   margin: 0
   border: none
   border-radius: 0
@@ -27,24 +31,49 @@
     border-bottom: solid 0.125rem $paypal-blue
 
 %label
-  @extend %h6-amiri
+  @extend %h6-sourceSans
 
+  margin-bottom: 0.5rem
+  display: block
+  grid-column: inherit
   text-transform: capitalize
 
 // mixin to create base class from name
 
 =form-item($class-name)
   .#{$class-name}
-    // parent grid
-    grid-column: span 12
-
-    // for children
-    display: grid
-    grid-auto-columns: 1fr
-    grid-gap: 0.6rem
+    width: 100%
+    margin-top: 1.5rem
 
     &_label
       @extend %label
 
     &_input
       @extend %input
+
+    &_select
+      @extend %input
+
+    &-third
+      width: calc(33.3333% - 1.5rem)
+
+      +all-phone
+        width: 100%
+
+    &-fourth
+      width: calc(25% - 1.5rem)
+
+      +all-phone
+        width: 100%
+
+    &-half
+      width: calc(50% - 1.5rem)
+
+      +all-phone
+        width: 100%
+
+    &-sixth
+      width: calc(16.6666% - 1.5rem)
+
+      +all-phone
+        width: 100%

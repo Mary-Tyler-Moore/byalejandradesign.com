@@ -1,10 +1,11 @@
+/** @flow */
 import * as React from 'react';
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import Button from '../Button';
 import './collection-list.sass';
 // types
-import type { CollectionEdges } from './types';
+import type { CollectionEdges } from 'data';
 
 type Props = {
   edges: CollectionEdges,

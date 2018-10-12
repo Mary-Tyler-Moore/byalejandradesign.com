@@ -83,7 +83,7 @@ class Contact extends React.PureComponent<{}, State> {
         <form className="contactForm" onSubmit={this.onSubmit}>
           <Form.Input
             name="name"
-            block="contactFormItem"
+            block="contactFormField"
             label="Full Name"
             placeholder="Nicholas"
             value={this.state.name}
@@ -93,7 +93,7 @@ class Contact extends React.PureComponent<{}, State> {
           />
           <Form.Input
             name="subject"
-            block="contactFormItem"
+            block="contactFormField"
             placeholder="Customer Support"
             value={this.state.subject}
             onChange={this.onChange}
@@ -102,14 +102,14 @@ class Contact extends React.PureComponent<{}, State> {
           <Form.Input
             name="email"
             type="email"
-            block="contactFormItem"
+            block="contactFormField"
             value={this.state.email}
             placeholder="nick@artetexture.com"
             onChange={this.onChange}
             required
           />
           <Form.TextArea
-            block="contactFormItem"
+            block="contactFormField"
             name="message"
             onChange={this.onChange}
             value={this.state.message}

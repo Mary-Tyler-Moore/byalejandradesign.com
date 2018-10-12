@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import { Form } from '@njmyers/component-library';
 import { dollarString } from 'smalldash';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // actions

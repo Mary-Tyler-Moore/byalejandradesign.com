@@ -45,7 +45,7 @@ class AddressForms extends React.PureComponent {
         <section className="shippingAddress">
           <ShippingAddressForm />
           <Form.Input
-            className="address_email"
+            block="addressField"
             value={this.props.email}
             name="email"
             onChange={this.onEmail}
