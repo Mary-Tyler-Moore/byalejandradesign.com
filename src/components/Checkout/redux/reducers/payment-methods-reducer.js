@@ -1,14 +1,41 @@
 import type { Actions } from './payment-methods-actions';
 
-export type methods = 'paypal' | 'venmo' | 'hostedFields' | '';
+export type PaymentMethods = 'paypal' | 'venmo' | 'hostedFields' | '';
+
+type CreditCardNonce = {
+  binData: {
+    prepaid: string,
+  },
+  description: string,
+  details: {
+    cardType: string,
+    lastFour: string,
+    lastTwo: string,
+  },
+  nonce: string,
+  type: 'CreditCard',
+};
+
+type PaypalNonce = {
+  details: {
+    countryCode: string,
+    email: string,
+    firstName: string,
+    lastName: string,
+    payerId: string,
+  },
+  shippingAddress: {},
+  nonce: string,
+  type: 'PayPalAccount',
+};
 
 export type State = {
-  +method: methods,
+  +method: PaymentMethods,
   +instance: {} | null,
   +billingAddress: boolean,
   +email: string,
   +status: string,
-  +nonce: {} | null,
+  +nonce: null | PaypalNonce | CreditCardNonce,
   +error: string,
 };
 
@@ -25,23 +52,23 @@ const payment = {
 
 const paymentReducer = (state: State = payment, action: Actions) => {
   switch (action.type) {
-    case '@PAYMENT_METHOD/EMAIL':
+    case '@FLOW/EMAIL':
       return {
         ...state,
         email: action.value,
       };
 
-    case '@PAYMENT_METHOD/BILLING_ADDRESS':
+    case '@FLOW/BILLING_ADDRESS':
       return {
         ...state,
         billingAddress: action.value,
       };
-    case '@PAYMENT_METHOD/CHOOSE':
+    case '@FLOW/CHOOSE':
       return {
         ...state,
         method: action.method,
       };
-    case '@PAYMENT_METHOD/SAVE_NONCE':
+    case '@FLOW/SAVE_NONCE':
       return {
         ...state,
         nonce: action.payload,

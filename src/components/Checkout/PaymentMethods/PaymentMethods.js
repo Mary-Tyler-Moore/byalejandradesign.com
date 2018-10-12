@@ -6,7 +6,7 @@ import { paymentMethodType } from '../redux/actions/payment-methods-actions';
 import CreditCard from '../CreditCard';
 import Paypal from '../Paypal';
 import Venmo from '../Venmo';
-import Braintree from '../BraintreeProvider';
+import Braintree from '../Braintree';
 import PaymentOption from '../PaymentOption';
 // style
 import './payment-methods.sass';

@@ -2,7 +2,7 @@ import * as React from 'react'; // eslint-disable-line
 import { connect } from 'react-redux';
 import Braintree from './Braintree';
 // actions
-import { saveClient, braintreeError } from '../redux/actions/braintree-actions';
+import { saveClient, saveError } from './braintree-actions';
 
 import type { Dispatch } from '../../../store/types';
 
@@ -13,7 +13,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  braintreeError: (err) => dispatch(braintreeError(err)),
+  saveError: (err) => dispatch(saveError(err)),
   saveClient: (client) => dispatch(saveClient(client)),
 });
 

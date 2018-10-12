@@ -1,8 +1,11 @@
+/** @flow */
 import * as React from 'react';
 import { CancelToken } from 'axios';
 import client from 'braintree-web/client';
 import server from '../server';
 // components
+import Loading from '../../Loading';
+import ErrorMessage from '../../ErrorMessage';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { StatusSwitch } from '@njmyers/component-library';
 // style
@@ -11,24 +14,15 @@ import './braintree.sass';
 type Props = {
   loadedAt: number,
   status: string,
-  clientTokenRequest: Function,
-  clientTokenCancelRequest: Function,
+  saveError: (error: Error | null) => any,
+  saveClient: (client: {}) => any,
   children?: React.Node,
+  client: {} | null,
 };
 
 type State = {
   status: 'initial' | 'loading' | 'resolved' | 'error',
 };
-
-const ErrorMessage = (props) => (
-  <p className="braintree_error">Error loading. Please reload this page.</p>
-);
-
-const Loading = (props) => (
-  <section className="braintree_spinner">
-    <FontAwesomeIcon icon="spinner" size="2x" pulse />
-  </section>
-);
 
 class Braintree extends React.PureComponent<Props, State> {
   state = {
@@ -42,6 +36,28 @@ class Braintree extends React.PureComponent<Props, State> {
     this.createBraintreeClient();
   }
 
+  onError = (error: Error | null) => {
+    if (error) {
+      this.setState({ status: 'error' });
+      this.props.saveError(error);
+    }
+  };
+
+  onResponse = (response) => {
+    // returns a promise
+    return client.create({
+      authorization: response.data.clientToken,
+    });
+  };
+
+  onInstance = (client) => {
+    this.setState({
+      status: 'resolved',
+    });
+
+    this.props.saveClient(client);
+  };
+
   createBraintreeClient = () => {
     server
       .get('/client_token', {
@@ -49,24 +65,18 @@ class Braintree extends React.PureComponent<Props, State> {
           this.cancel = c;
         }),
       })
-      .then((res) =>
-        client.create({
-          authorization: res.data.clientToken,
-        })
-      )
-      .then((instance) => {
-        this.props.saveClient(instance);
-        this.setState({ status: 'resolved' });
-      })
-      .catch((err) => {
-        this.props.braintreeError(err);
-        this.setState({ status: 'error' });
-      });
+      .then(this.onResponse)
+      .then(this.onInstance)
+      .catch(this.onError);
   };
 
   componentWillUnmount() {
     if (this.state.status !== 'resolved' && typeof this.cancel === 'function') {
       this.cancel('cancelling token request');
+    }
+
+    if (this.props.client) {
+      this.props.client.teardown(this.onError);
     }
   }
 
