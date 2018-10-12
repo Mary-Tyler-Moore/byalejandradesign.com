@@ -1,54 +1,56 @@
-import type { ProductEntry } from './cart-reducer';
-/**
- * Updates a product in cart BY the specified quantity
- * @param {string} id the id number of the product to update
- * @param {number} quantity the amount  by which to increase the quantity
- */
-export const updateCartQuantity = ({ id, quantity = 1 }: ProductEntry) => ({
-  type: 'CART_UPDATE_QUANTITY',
-  id,
-  quantity,
-});
+/** params needed for an update action */
+export type Product = {
+  /** id number or string */
+  +id: string | number,
+  /** number of quantity */
+  +quantity: number,
+};
 
-/**
- * Updates a product in cart TO the specified quantity
- * @param {string} id the id number of the product to update
- * @param {number} quantity the desired quantity amount
- */
-export const updateCartQuantityDirectly = ({
-  id,
-  quantity = 0,
-}: ProductEntry) => ({
-  type: 'CART_UPDATE_QUANTITY_DIRECTLY',
-  id,
-  quantity,
-});
+/** Action Types */
+export type Action =
+  | { type: '@CART/UPDATE_QUANTITY', ...$Exact<Product> }
+  | { type: '@CART/UPDATE_QUANTITY_DIRECTLY', ...$Exact<Product> }
+  | { type: '@CART/EMPTY' };
 
-/**
- * Empties the cart
- */
-export const emptyCart = () => ({ type: 'CART_EMPTY' });
+/** Updates a product in cart BY the specified quantity */
+function updateCart({ id, quantity = 1 }: Product): Action {
+  return {
+    type: '@CART/UPDATE_QUANTITY',
+    id,
+    quantity,
+  };
+}
 
-/**
- * Shortcut method to add one quantity to a specified product
- * @param {string} id the id of the product to update
- */
-export const addOneToCart = (id: string) =>
-  updateCartQuantity({ id, quantity: 1 });
+/** Updates a product in cart TO the specified quantity */
+function updateCartDirectly({ id, quantity = 0 }: Product): Action {
+  return {
+    type: '@CART/UPDATE_QUANTITY_DIRECTLY',
+    id,
+    quantity,
+  };
+}
 
-/**
- * Shortcut method to remove one quantity to a specified product
- * @param {string} id the id of the product to update
- */
-export const removeOneFromCart = (id: string) =>
-  updateCartQuantity({ id, quantity: -1 });
+/** Empties the cart */
+function emptyCart(): Action {
+  return {
+    type: '@CART/EMPTY',
+  };
+}
 
-type Fn<T> = (...args: Array<any>) => T;
-type ExtractReturn = <T>(Fn<T>) => T;
+/** Shortcut method to add one quantity to a specified product */
+function addOneToCart(id: string | number): Action {
+  return updateCart({ id, quantity: 1 });
+}
 
-export type Actions =
-  | $Call<ExtractReturn, typeof updateCartQuantity>
-  | $Call<ExtractReturn, typeof updateCartQuantityDirectly>
-  | $Call<ExtractReturn, typeof emptyCart>
-  | $Call<ExtractReturn, typeof addOneToCart>
-  | $Call<ExtractReturn, typeof removeOneFromCart>;
+/** Shortcut method to remove one quantity to a specified product */
+function removeOneFromCart(id: string | number): Action {
+  return updateCart({ id, quantity: -1 });
+}
+
+export {
+  updateCart,
+  updateCartDirectly,
+  emptyCart,
+  addOneToCart,
+  removeOneFromCart,
+};
