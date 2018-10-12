@@ -6,6 +6,7 @@
 [include]
 ./src/*.js
 ./*.js
+
 [libs]
 flow-typed
 
@@ -17,4 +18,5 @@ module.file_ext=.jsx
 module.file_ext=.json
 module.file_ext=.css
 module.file_ext=.sass
+
 [strict]

@@ -42,8 +42,12 @@ class HostedFields extends React.PureComponent<Props, State> {
     fields: {
       number: {
         selector: '#card-number',
-        placeholder: '1111 1111 1111 1111',
+        placeholder: '4111 1111 1111 1111',
         maskInput: true,
+      },
+      postalCode: {
+        selector: '#postal-code',
+        placeholder: '10003',
       },
       cvv: {
         selector: '#cvv',
@@ -69,6 +73,7 @@ class HostedFields extends React.PureComponent<Props, State> {
     fields: {
       cardNumber: this.initialFieldState,
       expirationDate: this.initialFieldState,
+      postalCode: this.initialFieldState,
       cvv: this.initialFieldState,
     },
     status: 'initial',
@@ -214,6 +219,10 @@ class HostedFields extends React.PureComponent<Props, State> {
               fieldState={this.state.fields.expirationDate}
             />
             <HostedField type="cvv" fieldState={this.state.fields.cvv} />
+            <HostedField
+              type="postalCode"
+              fieldState={this.state.fields.postalCode}
+            />
           </form>
           <section className="hostedFields_feedbackRow">
             {this.state.status === 'error' && (
@@ -227,9 +236,7 @@ class HostedFields extends React.PureComponent<Props, State> {
             {this.state.status === 'loading' && (
               <FontAwesomeIcon icon="spinner" pulse />
             )}
-            <Button className="hostedFields_button" onClick={this.onSubmit}>
-              Submit Credit Card
-            </Button>
+            <Button onClick={this.onSubmit}>Submit Credit Card</Button>
           </section>
         </section>
       </section>

@@ -12,6 +12,15 @@ import {
 // flow
 import type { State } from './cart-reducer';
 
+type DiffProps = {
+  cart: State,
+  addOneToCart: () => any,
+  removeOneFromCart: () => any,
+  updateCart: () => any,
+  updateCartDirectly: () => any,
+  emptyCart: () => any,
+};
+
 const mapStateToProps = (state) => ({
   cart: state.cart,
 });
@@ -40,10 +49,13 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-const withCart = (Wrapped: React.ComponentType<any>) =>
-  connect(
+function withCart<Props: {}>(
+  Wrapped: React.ComponentType<Props>
+): React.ComponentType<$Diff<Props, DiffProps>> {
+  return connect(
     mapStateToProps,
     mapDispatchToProps
   )(Wrapped);
+}
 
 export default withCart;

@@ -1,4 +1,4 @@
-// @flow
+/** @flow */
 import * as React from 'react';
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
@@ -12,10 +12,10 @@ import getQuantity from './get-quantity';
 // style
 import './product-list.sass';
 // types
-import type { ProductNode } from './types';
+import type { ProductEdges } from 'data';
 
 type Props = {
-  edges: Array<ProductNode>,
+  edges: ProductEdges,
   addOneToCart: () => null,
   sizes: {
     mobile: boolean,
@@ -29,7 +29,7 @@ type Props = {
  */
 const ProductList = ({ edges, addOneToCart, sizes, cart }: Props) => (
   <section className="grid-products">
-    {edges.map(({ node }: Node) => {
+    {edges.map(({ node }) => {
       const quantity = getQuantity(node, cart.products);
 
       return (

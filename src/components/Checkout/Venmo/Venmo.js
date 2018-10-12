@@ -2,7 +2,6 @@ import * as React from 'react';
 import { navigate } from 'gatsby';
 import { venmo } from 'braintree-web';
 import { withPaymentActions } from '../redux/containers';
-import DataCollector from '../DataCollector';
 // assets
 import './venmo.sass';
 import logo from './white_logo.svg';
@@ -70,13 +69,11 @@ class Venmo extends React.PureComponent<{}, State> {
 
   render() {
     return (
-      <DataCollector>
-        <section className="venmoOption">
-          <button className="venmoButton" onClick={this.onVenmoClick}>
-            <img className="venmoButton_img" src={logo} alt="venmo_logo" />
-          </button>
-        </section>
-      </DataCollector>
+      <section className="venmoOption">
+        <button className="venmoButton" onClick={this.onVenmoClick}>
+          <img className="venmoButton_img" src={logo} alt="venmo_logo" />
+        </button>
+      </section>
     );
   }
 }

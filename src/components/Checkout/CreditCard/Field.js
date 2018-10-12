@@ -25,9 +25,12 @@ type Props = {
 
 class HostedField extends React.Component<Props> {
   getLabel = () => {
-    return this.props.type !== 'cvv'
-      ? camelToTitle(this.props.type)
-      : this.props.type.toUpperCase();
+    switch (this.props.type) {
+      case 'cvv':
+        return 'CVV';
+      default:
+        return camelToTitle(this.props.type);
+    }
   };
 
   getClassNames = () => {

@@ -7,6 +7,7 @@ import CreditCard from '../CreditCard';
 import Paypal from '../Paypal';
 import Venmo from '../Venmo';
 import Braintree from '../Braintree';
+import DataCollector from '../DataCollector';
 import PaymentOption from '../PaymentOption';
 // style
 import './payment-methods.sass';
@@ -34,29 +35,31 @@ class PaymentMethods extends React.PureComponent {
     return (
       // Preloads Braintree before loading PaymentMethods
       <Braintree>
-        <section className="paymentMethods">
-          <h5 className="h5-amiri">Choose Your Payment Method</h5>
-          <section className="paymentOptions">
-            <PaymentOption
-              label="Venmo"
-              image={venmoLogo}
-              onClick={this.props.chooseVenmo}
-            />
-            <PaymentOption
-              label="Credit Card"
-              image={creditLogo}
-              onClick={this.props.chooseCredit}
-            />
-            <PaymentOption
-              label="Paypal"
-              image={paypalLogo}
-              onClick={this.props.choosePaypal}
-            />
+        <DataCollector>
+          <section className="paymentMethods">
+            <h5 className="h5-amiri">Choose Your Payment Method</h5>
+            <section className="paymentOptions">
+              <PaymentOption
+                label="Venmo"
+                image={venmoLogo}
+                onClick={this.props.chooseVenmo}
+              />
+              <PaymentOption
+                label="Credit Card"
+                image={creditLogo}
+                onClick={this.props.chooseCredit}
+              />
+              <PaymentOption
+                label="Paypal"
+                image={paypalLogo}
+                onClick={this.props.choosePaypal}
+              />
+            </section>
+            <section className="paymentMethod">
+              {this.renderPaymentMethod()}
+            </section>
           </section>
-          <section className="paymentMethod">
-            {this.renderPaymentMethod()}
-          </section>
-        </section>
+        </DataCollector>
       </Braintree>
     );
   }

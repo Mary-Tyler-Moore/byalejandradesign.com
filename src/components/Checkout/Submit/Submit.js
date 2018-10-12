@@ -1,3 +1,4 @@
+/** @flow */
 import * as React from 'react';
 import { Link, navigate } from 'gatsby';
 import { connect } from 'react-redux';
@@ -16,10 +17,21 @@ import serverAddress from '../redux/transformers/server-address';
 // styles
 import './submit.sass';
 
+import type { allWordpressWpShop } from 'data';
+
 const ShippingAddress = createAddressDisplay('shippingAddress');
 const BillingAddress = createAddressDisplay('billingAddress');
 
-class Submit extends React.PureComponent {
+type Props = {
+  data: { allWordpressWpShop: allWordpressWpShop },
+};
+
+type State = {
+  total: number,
+  status: 'initial' | 'loading' | 'error' | 'resolved',
+};
+
+class Submit extends React.PureComponent<Props, State> {
   state = {
     total: 0,
     status: 'initial',
@@ -86,8 +98,6 @@ class Submit extends React.PureComponent {
       const { node } = this.props.data.allWordpressWpShop.edges.find(
         ({ node }) => node.id === product.id
       );
-
-      console.log(node);
 
       return {
         name: this.generateProductName(node),

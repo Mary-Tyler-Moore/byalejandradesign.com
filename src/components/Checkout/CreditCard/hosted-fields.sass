@@ -5,8 +5,8 @@
     margin: 2rem 0
     width: 100%
     display: grid
-    grid-column-gap: 4rem
-    grid-template-columns: 1fr 150px 60px
+    grid-row-gap: 1rem
+    grid-template-columns: repeat(1, 1fr)
 
   &_h5
     @extend %h5-amiri
@@ -23,29 +23,9 @@
   &_invalidNotice
     @extend %invalidText
 
-    // opacity: 0
-    // margin: 0
-    // padding: 0
+    margin: 0
 
     +transition(0.35s opacity)
 
     &-error
       // opacity: 1
-
-  &_button
-    @extend %button
-
-    background: $button-yellow
-    color: $white
-    height: 55px
-    width: 100%
-    border-radius: 4px
-
-    +transition(300ms background)
-
-    &:hover
-      color: $white
-      background: lighten($button-yellow, 5)
-
-    .defaultButton_text
-      font-size: 1.25rem

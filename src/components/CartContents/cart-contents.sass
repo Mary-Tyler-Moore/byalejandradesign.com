@@ -5,6 +5,10 @@
   grid-template-columns: repeat(1, 1fr)
   grid-gap: 3rem
 
+  +all-phone
+    grid-gap: 2rem
+
+
   .cartItem:first-child
     margin-top: 2rem
 
@@ -19,6 +23,12 @@
   display: grid
   grid-template-columns: 250px 3fr 2fr
   grid-gap: 2rem
+
+  +all-phone
+    grid-template-columns: repeat(1, 1fr)
+    padding-bottom: 1rem
+    border-bottom: solid 0.125rem $grey-lightest
+
 
   &_middle,
   &_end

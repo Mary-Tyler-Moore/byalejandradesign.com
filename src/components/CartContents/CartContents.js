@@ -56,7 +56,7 @@ class CartContents extends React.PureComponent<Props> {
       (product) => id === product.id
     );
 
-    this.props.updateCartQuantityDirectly({
+    this.props.updateCartDirectly({
       id,
       quantity: product.quantity + num,
     });

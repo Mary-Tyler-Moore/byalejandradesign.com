@@ -1,26 +1,28 @@
-import React, { PureComponent } from 'react';
+import * as React from 'react';
 import { withCart } from '../Cart';
 // style
 import './cart-icon.sass';
 // assets
 import icon from './icon.svg';
 
+type Props = {
+  className?: string,
+  cart: {
+    totalQuantity: number,
+  },
+};
+
 /**
  * A cart icon displaying quantity and linking to the shopping cart page
  * @param {object} props react props
  */
-class CartIcon extends PureComponent {
-  mergeClassNames = () =>
-    this.props.className ? `cartIcon ${this.props.className}` : 'cartIcon';
-
+class CartIcon extends React.PureComponent<Props> {
   render() {
     return (
-      <div className={this.mergeClassNames()}>
-        <div className="cartIcon_svgContainer">
-          <img className="cartIcon_svg" src={icon} alt="cart" />
-          <p className="cartIcon_itemText">{this.props.cart.totalQuantity}</p>
-        </div>
-      </div>
+      <figure className={`cartIcon ${this.props.className || ''}`}>
+        <img className="cartIcon_svg" src={icon} alt="cart" />
+        <p className="cartIcon_itemText">{this.props.cart.totalQuantity}</p>
+      </figure>
     );
   }
 }

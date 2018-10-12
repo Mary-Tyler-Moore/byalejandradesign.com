@@ -1,3 +1,4 @@
+/** @flow */
 import * as React from 'react';
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
@@ -8,7 +9,7 @@ import { dollarString } from 'smalldash';
 import title from './title.js';
 import collectionFromProduct from './collection-from-product';
 // types
-import type { ProductNode, ImageNode } from './types';
+import type { ProductNode, ImageNode } from 'data';
 // styles
 import './single-product.sass';
 // utils
