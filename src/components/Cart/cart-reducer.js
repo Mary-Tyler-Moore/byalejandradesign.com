@@ -25,6 +25,7 @@ function filterQuantity(product) {
   return product.quantity > 0;
 }
 
+/** Gets the product and index by id */
 function getProduct(products, id) {
   const index = products.findIndex((product) => product.id === id);
   const product = products[index];
