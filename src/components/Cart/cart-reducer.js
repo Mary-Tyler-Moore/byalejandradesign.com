@@ -1,4 +1,4 @@
-import { uniq, compose } from 'smalldash';
+import { compose } from 'smalldash';
 import invariant from 'invariant';
 
 import type { Actions } from './cart-actions';
@@ -45,9 +45,9 @@ const updateCart = (products, action: Actions) => {
   // update array uniq by product id with new product then removing all products with 0 quantity
   return (
     [
-      ...products.slice(0, index),
+      ...(index >= 0 ? products.slice(0, index) : products),
       { id: action.id, quantity },
-      ...products.slice(index + 1),
+      ...(index >= 0 ? products.slice(index + 1) : []),
     ]
       // remove zero quatity
       .filter((product) => product.quantity > 0)
@@ -63,12 +63,12 @@ const updateCartDirectly = (products, { id, quantity, type }: Actions) => {
   invariant(id, `${type} must contain a product id`);
   // find old product quantity
   const index = products.findIndex((product) => product.id === id);
-  const product = products[index];
+
   return (
     [
-      ...products.slice(0, index),
+      ...(index >= 0 ? products.slice(0, index) : products),
       { id, quantity },
-      ...products.slice(index + 1),
+      ...(index >= 0 ? products.slice(index + 1) : []),
     ]
       // remove zero quatity
       .filter((product) => product.quantity > 0)
