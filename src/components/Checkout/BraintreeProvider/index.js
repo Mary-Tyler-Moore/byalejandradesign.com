@@ -1,1 +1,1 @@
-export { default } from './BraintreeProviderContainer';
+export { default } from './BraintreeContainer';

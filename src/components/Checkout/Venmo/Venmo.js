@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { navigate } from 'gatsby';
 import { venmo } from 'braintree-web';
 import { withPaymentActions } from '../redux/containers';
 import DataCollector from '../DataCollector';
@@ -44,11 +45,18 @@ class Venmo extends React.PureComponent<{}, State> {
     }
   }
 
+  goToNextStep = () => {
+    navigate('/checkout/submit');
+  };
+
   onVenmoClick = (event) => {
     event.preventDefault();
     if (this.state.instance && this.props.payment.method === 'venmo') {
       Promise.resolve(this.state.instance.tokenize())
-        .then((payload) => this.props.submitNonce(payload))
+        .then((payload) => {
+          this.props.submitNonce(payload);
+          this.goToNextStep();
+        })
         .catch((error) => {
           // this.props.paymentError({
           //   type: error.code,

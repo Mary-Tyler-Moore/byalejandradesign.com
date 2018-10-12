@@ -11,6 +11,8 @@ import collectionFromProduct from './collection-from-product';
 import type { ProductNode, ImageNode } from './types';
 // styles
 import './single-product.sass';
+// utils
+import getQuantity from './get-quantity';
 
 type Props = {
   node: ProductNode,
@@ -39,7 +41,7 @@ const CollectionLink = ({ node }) => (
  * @param {ProductNode} node      graphql node of shop product
  * @param {function} addOneToCart  redux connect function to add to cart
  */
-class SingleProduct extends React.Component<Props, State> {
+class SingleProduct extends React.PureComponent<Props, State> {
   state = {
     active: 0,
     interval: null,
@@ -86,6 +88,10 @@ class SingleProduct extends React.Component<Props, State> {
     }));
   };
 
+  quantity = () => {
+    return getQuantity(this.props.node, this.props.cart.products);
+  };
+
   render() {
     return (
       <article className="singleProduct">
@@ -114,15 +120,20 @@ class SingleProduct extends React.Component<Props, State> {
             <p className="singleProduct_monetary">
               <span>
                 <strong>Price: </strong>
-                {dollarString(this.props.node.acf.price)}
+                <span
+                  className={this.quantity() < 1 ? 'singleProduct-strike' : ''}
+                >
+                  {dollarString(this.props.node.acf.price)}
+                </span>
+                {this.quantity() < 1 && <span> Sold Out</span>}
               </span>
               <span className="singleProduct_quantity">
-                Quantity Available: {this.props.node.acf.quantity}
+                Quantity Available: {this.quantity()}
               </span>
             </p>
             <Button
               className="singleProduct_button defaultButton"
-              onClick={this.props.addOneToCart}
+              onClick={this.quantity() > 0 ? this.props.addOneToCart : null}
               name={this.props.node.id}
             >
               Add To Cart

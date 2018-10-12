@@ -46,6 +46,10 @@ class Paypal extends React.PureComponent<{}, State> {
     }
   }
 
+  goToNextStep = () => {
+    navigate('/checkout/submit');
+  };
+
   /**
    * Paypal button function
    */
@@ -63,7 +67,7 @@ class Paypal extends React.PureComponent<{}, State> {
     Promise.resolve(this.state.instance.tokenizePayment(data))
       .then((payload) => {
         this.props.submitNonce(payload);
-        navigate('/checkout/confirmation');
+        this.goToNextStep();
       })
       .catch((err) => {
         // this.props.paymentError({

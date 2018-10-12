@@ -25,7 +25,7 @@ class CollectionList extends React.Component<Props> {
             textures and use.
           </p>
         </section>
-        <section className="grid-products">
+        <section className="collectionList">
           {this.props.edges.map(({ node }) => (
             <article className="collectionList_article" key={node.id}>
               <h4 className="collectionList_h4">{node.name}</h4>

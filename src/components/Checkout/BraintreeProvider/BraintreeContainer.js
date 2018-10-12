@@ -1,6 +1,6 @@
 import * as React from 'react'; // eslint-disable-line
 import { connect } from 'react-redux';
-import BraintreeProvider from './BraintreeProvider';
+import Braintree from './Braintree';
 // actions
 import { saveClient, braintreeError } from '../redux/actions/braintree-actions';
 
@@ -20,4 +20,4 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(BraintreeProvider);
+)(Braintree);

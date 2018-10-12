@@ -1,6 +1,11 @@
 import { compose } from 'smalldash';
 import type { methods } from './payment-methods-reducer';
 
+export const updateEmail = (value) => ({
+  type: '@PAYMENT_METHOD/EMAIL',
+  value,
+});
+
 export const billingAddress = (value) => ({
   type: '@PAYMENT_METHOD/BILLING_ADDRESS',
   value,

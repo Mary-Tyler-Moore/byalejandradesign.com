@@ -39,6 +39,7 @@ export const sparseFragment = graphql`
   fragment SparseCollectionData on wordpress__wp_collections {
     name
     id
+    wordpress_id
     description
     slug
   }

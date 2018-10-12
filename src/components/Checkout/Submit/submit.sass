@@ -1,0 +1,27 @@
+@import ../../../sass/global
+
+.orderSubmit
+  &_contactSection
+    @extend %body-sourceSans-2
+
+    margin-top: 2em
+
+  &_addressSection
+    margin-top: 3rem
+
+  &_addressGrid
+    margin-top: 1rem
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+
+    +small-phone
+      grid-template-columns: repeat(1, 1fr)
+
+  &_paymentSection
+    @extend %body-sourceSans-2
+
+    margin: 0
+    margin-top: 3rem
+
+  &_statusSection
+    margin-top: 3rem

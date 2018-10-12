@@ -8,7 +8,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import withCart from '../Cart/with-cart';
 import title from '../Product/title';
 import type { State } from './cart-reducer';
-
+// utils
+import getQuantity from '../Product/get-quantity';
+// styles
 import './cart-contents.sass';
 
 type Props = {
@@ -75,59 +77,64 @@ class CartContents extends React.PureComponent<Props> {
           }
         `}
         render={(data) => (
-          <section className="cartContents">
-            {this.props.cart.products.length > 0 &&
-              Object.values(this.props.cart.products).map((product) => {
-                const node = this.getNodeByID(product.id, data);
-                // map node product info to values
-                return (
-                  <section key={product.id} className="cartItem">
-                    <Img
-                      fluid={
-                        node.acf.main_image.localFile.childImageSharp.fluid
-                      }
-                    />
-                    <div className="cartItem_middle">
-                      <h5 className="cartItem_h5">{title(node)}</h5>
-                      <p className="body-sourceSans-2">
-                        {node.acf.description}
-                      </p>
-                      <div className="cartItem_floatDown">
-                        <p>
-                          <strong>Quantity: </strong>
-                          {product.quantity}
-                          {this.props.editable && (
-                            <span className="cartItem_quantityUpdate">
-                              <FontAwesomeIcon
-                                className="cartItem_chevron"
-                                onClick={this.onClick(product.id, 1)}
-                                icon="chevron-up"
-                              />
-                              <FontAwesomeIcon
-                                className="cartItem_chevron"
-                                onClick={this.onClick(product.id, -1)}
-                                icon="chevron-down"
-                              />
-                            </span>
-                          )}
+          <React.Fragment>
+            <section className="cartContents">
+              {this.props.cart.products.length > 0 &&
+                Object.values(this.props.cart.products).map((product) => {
+                  const node = this.getNodeByID(product.id, data);
+                  const quantity = getQuantity(node, this.props.cart.products);
+                  // map node product info to values
+                  return (
+                    <section key={product.id} className="cartItem">
+                      <Img
+                        fluid={
+                          node.acf.main_image.localFile.childImageSharp.fluid
+                        }
+                      />
+                      <div className="cartItem_middle">
+                        <h5 className="cartItem_h5">{title(node)}</h5>
+                        <p className="body-sourceSans-2">
+                          {node.acf.description}
                         </p>
+                        <div className="cartItem_floatDown">
+                          <p>
+                            <strong>Quantity: </strong>
+                            {product.quantity}
+                            {this.props.editable && (
+                              <span className="cartItem_quantityUpdate">
+                                {quantity > 0 && (
+                                  <FontAwesomeIcon
+                                    className="cartItem_chevron"
+                                    onClick={this.onClick(product.id, 1)}
+                                    icon="chevron-up"
+                                  />
+                                )}
+                                <FontAwesomeIcon
+                                  className="cartItem_chevron"
+                                  onClick={this.onClick(product.id, -1)}
+                                  icon="chevron-down"
+                                />
+                              </span>
+                            )}
+                          </p>
+                          <p>
+                            <strong>Price: </strong>
+                            {dollarString(node.acf.price)}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="cartItem_end cartItem_floatDown">
                         <p>
-                          <strong>Price: </strong>
-                          {dollarString(node.acf.price)}
+                          <strong>Subtotal: </strong>
+                          {dollarString(product.quantity * node.acf.price)}
                         </p>
                       </div>
-                    </div>
-                    <div className="cartItem_end cartItem_floatDown">
-                      <p>
-                        <strong>Subtotal: </strong>
-                        {dollarString(product.quantity * node.acf.price)}
-                      </p>
-                    </div>
-                  </section>
-                );
-              })}
+                    </section>
+                  );
+                })}
+            </section>
             {this.props.cart.products.length > 0 ? (
-              <p className="body-sourceSans-2">
+              <p className="cartContents_total">
                 <strong>Total: </strong>
                 {dollarString(this.reduceTotal(data))}
               </p>
@@ -136,7 +143,7 @@ class CartContents extends React.PureComponent<Props> {
                 Oh no you have nothing in your cart!
               </p>
             )}
-          </section>
+          </React.Fragment>
         )}
       />
     );

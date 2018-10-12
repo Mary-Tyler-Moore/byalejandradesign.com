@@ -124,13 +124,13 @@ const createAddressForm = (slice) => {
     render() {
       return (
         <React.Fragment>
-          <h3 className="addressForm_h3">{this.titleCase}</h3>
+          <h4 className="addressForm_h4">{this.titleCase}</h4>
           <form className="addressForm_form" onSubmit={this.props.onSubmit}>
             <Input
               focus
               name="firstName"
               label="First Name"
-              value={this.props[slice].fullName}
+              value={this.props[slice].firstName}
               onChange={this.props.updateAddressField}
               modifiers={['half']}
             />
@@ -138,7 +138,7 @@ const createAddressForm = (slice) => {
               focus
               name="lastName"
               label="Last Name"
-              value={this.props[slice].fullName}
+              value={this.props[slice].lastName}
               onChange={this.props.updateAddressField}
               modifiers={['half']}
             />
@@ -178,6 +178,7 @@ const createAddressForm = (slice) => {
             />
             <Select
               name="countryCode"
+              label="Country"
               options={this.getCountryOptions()}
               value={this.props[slice].countryCode}
               onChange={this.onSelectCountry}

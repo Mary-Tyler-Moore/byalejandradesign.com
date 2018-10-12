@@ -2,10 +2,14 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { navigate } from 'gatsby';
 import Button from '../../Button';
+import { Form } from '@njmyers/component-library';
 // components
 import { createAddressForm } from '../create-address';
 // actions
-import { billingAddress } from '../redux/actions/payment-methods-actions';
+import {
+  billingAddress,
+  updateEmail,
+} from '../redux/actions/payment-methods-actions';
 // styles
 import './address-forms.sass';
 
@@ -30,11 +34,23 @@ class AddressForms extends React.PureComponent {
     navigate('/checkout/payment-method');
   };
 
+  onEmail = (event) => {
+    event.preventDefault();
+    this.props.updateEmail(event.currentTarget.value);
+  };
+
   render() {
     return (
       <React.Fragment>
         <section className="shippingAddress">
           <ShippingAddressForm />
+          <Form.Input
+            className="address_email"
+            value={this.props.email}
+            name="email"
+            onChange={this.onEmail}
+            type="email"
+          />
         </section>
         <section className="addressToggle">
           <input
@@ -62,10 +78,12 @@ class AddressForms extends React.PureComponent {
 
 const mapStateToProps = (state) => ({
   billingAddress: state.checkout.payment.billingAddress,
+  email: state.checkout.payment.email,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setBillingAddress: (value) => dispatch(billingAddress(value)),
+  updateEmail: (value) => dispatch(updateEmail(value)),
 });
 
 export default connect(

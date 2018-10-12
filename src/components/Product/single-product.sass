@@ -10,6 +10,9 @@
     grid-template-columns: repeat(1, 1fr)
 
 
+  &-strike
+    text-decoration: line-through
+
   &_imgContainer
     margin: 0
     padding: 0
@@ -63,6 +66,9 @@
     +flexbox
 
     justify-content: space-between
+
+  &_soldOut
+    @extend %body-sourceSans-1
 
   &_button
     width: 100%

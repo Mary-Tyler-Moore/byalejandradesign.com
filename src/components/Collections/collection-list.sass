@@ -15,6 +15,14 @@
     margin-top: 0
 
 .collectionList
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  grid-gap: 4rem
+
+  +all-phone
+    grid-template-columns: repeat(1, 1fr)
+
+
   &_h4
     @extend %h4-amiri
 

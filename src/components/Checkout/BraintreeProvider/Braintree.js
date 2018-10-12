@@ -1,9 +1,12 @@
 import * as React from 'react';
-import axios, { CancelToken } from 'axios';
+import { CancelToken } from 'axios';
 import client from 'braintree-web/client';
 import server from '../server';
 // components
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { StatusSwitch } from '@njmyers/component-library';
+// style
+import './braintree.sass';
 
 type Props = {
   loadedAt: number,
@@ -17,14 +20,25 @@ type State = {
   status: 'initial' | 'loading' | 'resolved' | 'error',
 };
 
-class BraintreeProvider extends React.PureComponent<Props, State> {
+const ErrorMessage = (props) => (
+  <p className="braintree_error">Error loading. Please reload this page.</p>
+);
+
+const Loading = (props) => (
+  <section className="braintree_spinner">
+    <FontAwesomeIcon icon="spinner" size="2x" pulse />
+  </section>
+);
+
+class Braintree extends React.PureComponent<Props, State> {
   state = {
-    status: 'initial',
+    status: 'loading',
   };
 
   cancel = null;
 
   componentDidMount() {
+    this.setState({ status: 'loading' });
     this.createBraintreeClient();
   }
 
@@ -58,11 +72,15 @@ class BraintreeProvider extends React.PureComponent<Props, State> {
 
   render() {
     return (
-      <StatusSwitch status={this.state.status}>
+      <StatusSwitch
+        status={this.state.status}
+        error={ErrorMessage}
+        loading={Loading}
+      >
         {this.props.children}
       </StatusSwitch>
     );
   }
 }
 
-export default BraintreeProvider;
+export default Braintree;

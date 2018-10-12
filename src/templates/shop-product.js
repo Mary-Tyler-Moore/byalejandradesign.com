@@ -63,6 +63,7 @@ export const sparseFragment = graphql`
     title
     slug
     id
+    wordpress_id
   }
 `;
 

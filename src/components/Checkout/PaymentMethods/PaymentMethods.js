@@ -6,7 +6,7 @@ import { paymentMethodType } from '../redux/actions/payment-methods-actions';
 import CreditCard from '../CreditCard';
 import Paypal from '../Paypal';
 import Venmo from '../Venmo';
-import BrainTreeClient from '../BraintreeProvider';
+import Braintree from '../BraintreeProvider';
 import PaymentOption from '../PaymentOption';
 // style
 import './payment-methods.sass';
@@ -32,8 +32,8 @@ class PaymentMethods extends React.PureComponent {
 
   render() {
     return (
-      // Preloads BrainTreeClient before loading PaymentMethods
-      <BrainTreeClient>
+      // Preloads Braintree before loading PaymentMethods
+      <Braintree>
         <section className="paymentMethods">
           <h5 className="h5-amiri">Choose Your Payment Method</h5>
           <section className="paymentOptions">
@@ -57,7 +57,7 @@ class PaymentMethods extends React.PureComponent {
             {this.renderPaymentMethod()}
           </section>
         </section>
-      </BrainTreeClient>
+      </Braintree>
     );
   }
 }

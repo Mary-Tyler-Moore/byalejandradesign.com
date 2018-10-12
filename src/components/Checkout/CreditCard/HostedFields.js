@@ -5,6 +5,7 @@ import { equals } from 'smalldash';
 // actions
 import { withPaymentActions } from '../redux/containers';
 // components
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '../../Button';
 import CardIcons from './CardIcons';
 import HostedField from './Field';
@@ -118,7 +119,7 @@ class HostedFields extends React.PureComponent<Props, State> {
   };
 
   goToNextStep = () => {
-    navigate('/checkout/confirmation');
+    navigate('/checkout/submit');
   };
 
   /**
@@ -222,6 +223,9 @@ class HostedFields extends React.PureComponent<Props, State> {
               >
                 Your credit card information is invalid
               </p>
+            )}
+            {this.state.status === 'loading' && (
+              <FontAwesomeIcon icon="spinner" pulse />
             )}
             <Button className="hostedFields_button" onClick={this.onSubmit}>
               Submit Credit Card
