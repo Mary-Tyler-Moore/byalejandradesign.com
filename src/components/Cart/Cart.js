@@ -3,8 +3,14 @@ import { Link } from 'gatsby';
 import Button from '../Button';
 import CartContents from '../CartContents';
 import withCart from './with-cart';
-
+// types
+import type { State } from '../cart-reducer';
+// style
 import './cart.sass';
+
+type Props = {
+  cart: State,
+};
 
 class Cart extends React.PureComponent<Props> {
   render() {

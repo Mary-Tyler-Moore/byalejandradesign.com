@@ -1,3 +1,6 @@
+/** @flow */
+type $ExtractReturn<Fn> = $Call<<T>((...Array<any>) => T) => T, Fn>;
+
 /** params needed for an update action */
 export type Product = {
   /** id number or string */
@@ -6,14 +9,8 @@ export type Product = {
   +quantity: number,
 };
 
-/** Action Types */
-export type Action =
-  | { type: '@CART/UPDATE_QUANTITY', ...$Exact<Product> }
-  | { type: '@CART/UPDATE_QUANTITY_DIRECTLY', ...$Exact<Product> }
-  | { type: '@CART/EMPTY' };
-
 /** Updates a product in cart BY the specified quantity */
-function updateCart({ id, quantity = 1 }: Product): Action {
+function updateCart({ id, quantity = 1 }: Product) {
   return {
     type: '@CART/UPDATE_QUANTITY',
     id,
@@ -22,7 +19,7 @@ function updateCart({ id, quantity = 1 }: Product): Action {
 }
 
 /** Updates a product in cart TO the specified quantity */
-function updateCartDirectly({ id, quantity = 0 }: Product): Action {
+function updateCartDirectly({ id, quantity = 0 }: Product) {
   return {
     type: '@CART/UPDATE_QUANTITY_DIRECTLY',
     id,
@@ -31,21 +28,26 @@ function updateCartDirectly({ id, quantity = 0 }: Product): Action {
 }
 
 /** Empties the cart */
-function emptyCart(): Action {
+function emptyCart() {
   return {
     type: '@CART/EMPTY',
   };
 }
 
 /** Shortcut method to add one quantity to a specified product */
-function addOneToCart(id: string | number): Action {
+function addOneToCart(id: string | number) {
   return updateCart({ id, quantity: 1 });
 }
 
 /** Shortcut method to remove one quantity to a specified product */
-function removeOneFromCart(id: string | number): Action {
+function removeOneFromCart(id: string | number) {
   return updateCart({ id, quantity: -1 });
 }
+
+export type Action =
+  | $ExtractReturn<typeof updateCart>
+  | $ExtractReturn<typeof updateCartDirectly>
+  | $ExtractReturn<typeof emptyCart>;
 
 export {
   updateCart,

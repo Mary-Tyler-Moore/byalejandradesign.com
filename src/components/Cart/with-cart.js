@@ -1,14 +1,16 @@
-// @flow
+/** @flow */
 import * as React from 'react';
 import { connect } from 'react-redux';
 // actions
 import {
   addOneToCart,
   removeOneFromCart,
-  updateCartQuantity,
-  updateCartQuantityDirectly,
+  updateCart,
+  updateCartDirectly,
   emptyCart,
 } from './cart-actions';
+// flow
+import type { State } from './cart-reducer';
 
 const mapStateToProps = (state) => ({
   cart: state.cart,
@@ -30,9 +32,8 @@ const mapDispatchToProps = (dispatch) => ({
     const id = event.currentTarget.name;
     dispatch(removeOneFromCart(id));
   },
-  updateCartQuantity: (obj) => dispatch(updateCartQuantity(obj)),
-  updateCartQuantityDirectly: (obj) =>
-    dispatch(updateCartQuantityDirectly(obj)),
+  updateCart: (obj) => dispatch(updateCart(obj)),
+  updateCartDirectly: (obj) => dispatch(updateCartDirectly(obj)),
   emptyCart: (event: SyntheticEvent<HTMLButtonElement>) => {
     event.preventDefault();
     dispatch(emptyCart);

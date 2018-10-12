@@ -1,15 +1,10 @@
+/** @flow */
 import { compose } from 'smalldash';
-import invariant from 'invariant';
-
-import type { Actions } from './cart-actions';
-
-export type ProductEntry = {
-  id: number | string,
-  quantity: number,
-};
+// types
+import type { Product, Action } from './cart-actions';
 
 export type State = {
-  products: Array<ProductEntry>,
+  products: Array<Product>,
   status: string,
   totalQuantity: number,
 };
@@ -20,50 +15,38 @@ const initialCart: State = {
   totalQuantity: 0,
 };
 
-/**
- * Safely add quantities together so that they never go below 0
- * @param {number} a
- * @param {number} b
- */
-const safeAddQuantity = (a: number, b: number) => (a + b > 0 ? a + b : 0);
+/** Safely add quantities together so that they never go below 0 */
+function safeAddQuantity(a, b) {
+  return a + b > 0 ? a + b : 0;
+}
 
-/**
- * Reducer logic for updating quantity of a product BY an amount
- * @param {array} products array of objects 'products'
- * @param {object} action a redux style action
- */
-const updateCart = (products, action: Actions) => {
-  // error check actions
-  invariant(action.id, `${action.type} must contain a product id`);
-  // find old product quantity
-  const index = products.findIndex((product) => product.id === action.id);
-  const product = products[index];
-  // safe add quantity
-  const quantity = product
-    ? safeAddQuantity(product.quantity, action.quantity)
-    : action.quantity;
-  // update array uniq by product id with new product then removing all products with 0 quantity
-  return (
-    [
-      ...(index >= 0 ? products.slice(0, index) : products),
-      { id: action.id, quantity },
-      ...(index >= 0 ? products.slice(index + 1) : []),
-    ]
-      // remove zero quatity
-      .filter((product) => product.quantity > 0)
-  );
-};
+/** Filters for products which contain a quantity > 0 */
+function filterQuantity(product) {
+  return product.quantity > 0;
+}
 
-/**
- * Reducer logic for updating quantity of a product TO an amount
- * @param {array} products array of objects 'products'
- * @param {object} action a redux style action
- */
-const updateCartDirectly = (products, { id, quantity, type }: Actions) => {
-  invariant(id, `${type} must contain a product id`);
-  // find old product quantity
+function getProduct(products, id) {
   const index = products.findIndex((product) => product.id === id);
+  const product = products[index];
 
+  return {
+    index,
+    product,
+  };
+}
+
+/** Reducer logic for updating quantity of a products by or with amount */
+const updateCart = (products, action, direct = false) => {
+  const { id, quantity: nextQuantity } = action;
+  // find old product
+  const { index, product } = getProduct(products, id);
+  // safe add quantity
+  const quantity =
+    index >= 0 && !direct
+      ? safeAddQuantity(product.quantity, nextQuantity)
+      : nextQuantity;
+
+  // slice array depending on if product was found
   return (
     [
       ...(index >= 0 ? products.slice(0, index) : products),
@@ -71,23 +54,21 @@ const updateCartDirectly = (products, { id, quantity, type }: Actions) => {
       ...(index >= 0 ? products.slice(index + 1) : []),
     ]
       // remove zero quatity
-      .filter((product) => product.quantity > 0)
+      .filter(filterQuantity)
   );
 };
 
-const cartReducer = (state: State = initialCart, action: Actions) => {
+/** Cart reducer */
+function cartReducer(state: State = initialCart, action: Action) {
   switch (action.type) {
-    case 'CART_UPDATE_QUANTITY':
+    case '@CART/UPDATE_QUANTITY':
+    case '@CART/UPDATE_QUANTITY_DIRECTLY':
+      const direct = action.type === '@CART/UPDATE_QUANTITY_DIRECTLY';
       return {
         ...state,
-        products: updateCart(state.products, action),
+        products: updateCart(state.products, action, direct),
       };
-    case 'CART_UPDATE_QUANTITY_DIRECTLY':
-      return {
-        ...state,
-        products: updateCartDirectly(state.products, action),
-      };
-    case 'CART_EMPTY':
+    case '@CART/EMPTY':
       return {
         ...state,
         products: [],
@@ -95,25 +76,20 @@ const cartReducer = (state: State = initialCart, action: Actions) => {
     default:
       return state;
   }
-};
+}
 
-// After reducer lets run our state through some functions to add global flags
+/** Reduce cart to total quantity */
+function reduceQuantity(products) {
+  return products.map((p) => p.quantity).reduce((a, b) => a + b, 0);
+}
 
-/**
- * Reduce cart to total quantity
- * @param {*} products
- */
-const reduceQuantity = (products) =>
-  products.map((p) => p.quantity).reduce((a, b) => a + b, 0);
-
-/**
- * Updates cart property totalQuantity
- * @param {object} state redux state
- */
-const updateTotalQuantity = (state: State) => ({
-  ...state,
-  totalQuantity: reduceQuantity(state.products),
-});
+/** Updates cart property totalQuantity */
+function updateTotalQuantity(state: State) {
+  return {
+    ...state,
+    totalQuantity: reduceQuantity(state.products),
+  };
+}
 
 export default compose(
   updateTotalQuantity,
