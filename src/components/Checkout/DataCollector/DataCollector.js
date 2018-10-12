@@ -35,9 +35,10 @@ class DataCollector extends React.PureComponent<Props, State> {
   };
 
   onInstance = (dataCollectorInstance) => {
+    this.props.saveTeardown(dataCollectorInstance.teardown);
+    this.props.saveData(dataCollectorInstance.deviceData);
+    // set state after saving instances please
     this.setState({ status: 'resolved' });
-    this.props.saveTeardown(dataCollectorInstance);
-    this.props.saveData(dataCollectorInstance.saveData);
   };
 
   onError = (error) => {

@@ -16,7 +16,7 @@ type Props = {
   status: string,
   saveError: (error: Error | null) => any,
   saveClient: (client: {}) => any,
-  children?: React.Node,
+  children: React.Node,
   client: {} | null,
 };
 
@@ -24,9 +24,9 @@ type State = {
   status: 'initial' | 'loading' | 'resolved' | 'error',
 };
 
-class Braintree extends React.PureComponent<Props, State> {
+class Braintree extends React.Component<Props, State> {
   state = {
-    status: 'loading',
+    status: 'initial',
   };
 
   cancel = null;
@@ -51,11 +51,11 @@ class Braintree extends React.PureComponent<Props, State> {
   };
 
   onInstance = (client) => {
+    this.props.saveClient(client);
+    // set state after saving client please
     this.setState({
       status: 'resolved',
     });
-
-    this.props.saveClient(client);
   };
 
   createBraintreeClient = () => {
