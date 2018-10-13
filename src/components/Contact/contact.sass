@@ -4,6 +4,8 @@
   &_h3
     @extend %h3-amiri
 
+    margin-bottom: -0.5rem
+
 .contactForm
   @extend %form
 
@@ -17,23 +19,14 @@
 
 .contactFormSubmit
   &_input
-    @extend %button
+    @extend %button-yellow
 
     @extend %button_text-sourceSans
 
-    font-weight: 600
-    padding: 0.75rem 1.5rem
-    justify-content: center
-    align-items: center
-    margin: 1rem 0
-    border-radius: 0.25rem
-    transition: 0.25s background, 0.25s border
-    background: $button-yellow
-    color: $white
+    @extend %ripple-grey
 
-    &:hover
-      color: $white
-      background: darken($button-yellow, 10)
+    margin: 1.5rem 0
+    padding: 0.5rem 1rem
 
 .message
   display: block

@@ -5,7 +5,7 @@ import { equals } from 'smalldash';
 // actions
 import { withPaymentActions } from '../redux/containers';
 // components
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Loading from '../../Loading';
 import Button from '../../Button';
 import CardIcons from './CardIcons';
 import HostedField from './Field';
@@ -233,10 +233,10 @@ class HostedFields extends React.PureComponent<Props, State> {
                 Your credit card information is invalid
               </p>
             )}
-            {this.state.status === 'loading' && (
-              <FontAwesomeIcon icon="spinner" pulse />
-            )}
-            <Button onClick={this.onSubmit}>Submit Credit Card</Button>
+            <Loading status={this.state.status === 'loading' ? 'on' : 'off'} />
+            <Button fullWidth margin onClick={this.onSubmit}>
+              Submit Credit Card
+            </Button>
           </section>
         </section>
       </section>

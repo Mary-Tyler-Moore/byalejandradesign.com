@@ -1,4 +1,15 @@
-%button
+@import ~@njmyers/sass/material/button
+@import colors/colors
+
++button("yellow", $button-yellow)
++button("grey", $grey-darker)
+
++ripple("grey", $black, 800)
+
++button-size("large", 2)
++button-size("medium", 1)
+
+%button-reset
   border: none
   box-shadow: none
   cursor: pointer

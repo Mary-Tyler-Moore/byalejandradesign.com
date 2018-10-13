@@ -901,10 +901,10 @@
     react-size-components "^2.0.11"
     smalldash "^1.1.18"
 
-"@njmyers/sass@^0.0.11":
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/@njmyers/sass/-/sass-0.0.11.tgz#fa876e5299e485c011ac14db1d6b871d42ff150f"
-  integrity sha512-aM14jpLMUpfbeC4XBYavv4Ycqb+00GreAk86oJw8QRZOiQzZLOWJ45YhO5BCJhPSFNtT9+0iPRVajNZkyOznvA==
+"@njmyers/sass@^0.0.15":
+  version "0.0.15"
+  resolved "https://registry.yarnpkg.com/@njmyers/sass/-/sass-0.0.15.tgz#fe3a2eb86870c898c03981b138d665c274b3c18a"
+  integrity sha512-C41a/b13nxAdDgYTROdqD35q04vfHOuP0gWRJ+yQiJEqEudW9NYI8b4ppce3sBiu93ExQyIVLOKv9YClucWKOw==
   dependencies:
     "@babel/runtime" "^7.1.2"
     "@njmyers/babel-runtime-files" "^0.0.4"

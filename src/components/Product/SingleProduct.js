@@ -28,15 +28,6 @@ type State = {
   interval: IntervalID | null,
 };
 
-const CollectionLink = ({ node }) => (
-  <Link
-    className="singleProduct_buttonLink"
-    to={`/shop/collection/${collectionFromProduct(node).slug}`}
-  >
-    <Button className="greyButton">Shop this Collection</Button>
-  </Link>
-);
-
 /**
  * Displays single product
  * @param {ProductNode} node      graphql node of shop product
@@ -133,15 +124,26 @@ class SingleProduct extends React.PureComponent<Props, State> {
               </span>
             </p>
             <Button
-              className="singleProduct_button defaultButton"
+              className="button-yellow ripple-grey"
+              fullWidth
+              margin
               onClick={this.quantity() > 0 ? this.props.addOneToCart : null}
               name={this.props.node.id}
             >
               Add To Cart
             </Button>
-            {this.props.node.collections ? (
-              <CollectionLink node={this.props.node} />
-            ) : null}
+            {this.props.node.collections && (
+              <Link
+                className="singleProduct_buttonLink"
+                to={`/shop/collection/${
+                  collectionFromProduct(this.props.node).slug
+                }`}
+              >
+                <Button fullWidth margin className="button-grey">
+                  Shop this Collection
+                </Button>
+              </Link>
+            )}
           </aside>
         </section>
       </article>

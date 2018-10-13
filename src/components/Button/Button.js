@@ -3,7 +3,7 @@ import './button.sass';
 
 class Button extends React.Component {
   static defaultProps = {
-    className: 'defaultButton',
+    className: 'button-yellow',
   };
 
   render() {
@@ -12,8 +12,12 @@ class Button extends React.Component {
         onClick={this.props.onClick}
         name={this.props.name}
         className={this.props.className}
+        style={{
+          width: this.props.fullWidth ? '100%' : 'inherit',
+          margin: this.props.margin ? '1rem 0' : '0',
+        }}
       >
-        <span className="defaultButton_text">{this.props.children}</span>
+        <span className="button_text-sourceSans">{this.props.children}</span>
       </button>
     );
   }

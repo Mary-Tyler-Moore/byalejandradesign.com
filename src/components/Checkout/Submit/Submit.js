@@ -3,11 +3,11 @@ import * as React from 'react';
 import { Link, navigate } from 'gatsby';
 import { connect } from 'react-redux';
 // components
+import { StatusSwitch } from '@njmyers/component-library';
 import Button from '../../Button';
 import CartContents from '../../CartContents';
 import { createAddressDisplay } from '../create-address';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Modal } from '@njmyers/component-library';
+import Loading from '../../Loading';
 // actions
 import { emptyCart } from '../../Cart/cart-actions';
 // api
@@ -34,7 +34,7 @@ type State = {
 class Submit extends React.PureComponent<Props, State> {
   state = {
     total: 0,
-    status: 'initial',
+    status: 'resolved',
   };
 
   paymentMethodDisplay = () => {
@@ -154,58 +154,64 @@ class Submit extends React.PureComponent<Props, State> {
   };
 
   render() {
-    console.log(this.props);
     return (
-      <section className="orderSubmit">
-        <section className="orderSubmit_cartSection">
-          <h4 className="h4-amiri">Order Contents</h4>
-          <CartContents totalCallback={(total) => this.setState({ total })} />
-        </section>
-        {this.props.cart.products.length > 0 ? (
-          <React.Fragment>
-            <section className="orderSubmit_contactSection">
-              <h4 className="h4-amiri">Contact Info</h4>
-              <p>
-                <strong>Phone: </strong>
-                {this.props.shippingAddress.phone}
-              </p>
-              <p>
-                <strong>Email: </strong>
-                {this.props.payment.email}
-              </p>
-            </section>
-            <section className="orderSubmit_addressSection">
-              <h4 className="h4-amiri">Address</h4>
-              <div className="orderSubmit_addressGrid">
-                <ShippingAddress />
-                {this.props.payment.billingAddress ? (
+      <StatusSwitch
+        status={this.state.status}
+        loading={Loading}
+        error={() => <p>error</p>}
+      >
+        <section className="orderSubmit">
+          <section className="orderSubmit_cartSection">
+            <h4 className="h4-amiri">Order Contents</h4>
+            <CartContents totalCallback={(total) => this.setState({ total })} />
+          </section>
+          {this.props.cart.products.length > 0 ? (
+            <React.Fragment>
+              <section className="orderSubmit_contactSection">
+                <h4 className="h4-amiri">Contact Info</h4>
+                <p>
+                  <strong>Phone: </strong>
+                  {this.props.shippingAddress.phone}
+                </p>
+                <p>
+                  <strong>Email: </strong>
+                  {this.props.payment.email}
+                </p>
+              </section>
+              <section className="orderSubmit_addressSection">
+                <h4 className="h4-amiri">Address</h4>
+                <div className="orderSubmit_addressGrid">
                   <ShippingAddress />
-                ) : (
-                  <BillingAddress />
-                )}
-              </div>
-            </section>
-            <section className="orderSubmit_paymentSection">
-              <h4 className="h4-amiri">Payment Details</h4>
-              <p>
-                <strong>Payment Method: </strong> {this.paymentMethodDisplay()}
-              </p>
-              {this.paymentMethodDetailsDisplay()}
-            </section>
-            <section className="orderSubmit_statusSection">
-              <Modal status={this.state.status === 'loading' ? 'on' : 'off'}>
-                <FontAwesomeIcon icon="spinner" pulse size="4x" />
-              </Modal>
-              {this.state.status === 'error' && <p>error</p>}
-              <Button onClick={this.onSubmit}>Submit Order</Button>
-            </section>
-          </React.Fragment>
-        ) : (
-          <Link to="/shop" className="link-reset">
-            <Button>Continue Shopping</Button>
-          </Link>
-        )}
-      </section>
+                  {this.props.payment.billingAddress ? (
+                    <ShippingAddress />
+                  ) : (
+                    <BillingAddress />
+                  )}
+                </div>
+              </section>
+              <section className="orderSubmit_paymentSection">
+                <h4 className="h4-amiri">Payment Details</h4>
+                <p>
+                  <strong>Payment Method: </strong>{' '}
+                  {this.paymentMethodDisplay()}
+                </p>
+                {this.paymentMethodDetailsDisplay()}
+              </section>
+              <section className="orderSubmit_statusSection">
+                <Button fullWidth onClick={this.onSubmit}>
+                  Submit Order
+                </Button>
+              </section>
+            </React.Fragment>
+          ) : (
+            <Link to="/shop" className="link-reset">
+              <Button fullWidth margin>
+                Continue Shopping
+              </Button>
+            </Link>
+          )}
+        </section>
+      </StatusSwitch>
     );
   }
 }

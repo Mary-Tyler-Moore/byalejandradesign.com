@@ -18,7 +18,6 @@ const ShippingAddressForm = createAddressForm('shippingAddress');
 
 class AddressForms extends React.PureComponent {
   onSubmit = (event) => {
-    console.log(event.currentTarget);
     navigate('/checkout/payment-method');
   };
 
@@ -69,7 +68,9 @@ class AddressForms extends React.PureComponent {
           </section>
         )}
         <section className="addressNavigation">
-          <Button onClick={this.onClick}>Payment Info</Button>
+          <Button fullWidth margin onClick={this.onClick}>
+            Payment Info
+          </Button>
         </section>
       </React.Fragment>
     );

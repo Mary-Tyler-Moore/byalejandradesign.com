@@ -58,7 +58,8 @@ const ProductList = ({ edges, addOneToCart, sizes, cart }: Props) => (
             </span>
           </p>
           <Button
-            className="defaultButton"
+            className="button-yellow ripple-grey"
+            fullWidth
             onClick={quantity > 0 ? addOneToCart : null}
             name={node.id}
           >

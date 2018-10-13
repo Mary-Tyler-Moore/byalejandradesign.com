@@ -43,7 +43,9 @@ class CollectionList extends React.Component<Props> {
                 className="collectionList_buttonLink"
                 to={`/shop/collection/${node.slug}`}
               >
-                <Button>View Collection</Button>
+                <Button fullWidth margin>
+                  View Collection
+                </Button>
               </Link>
             </article>
           ))}
