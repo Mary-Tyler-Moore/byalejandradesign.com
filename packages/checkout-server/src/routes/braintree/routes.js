@@ -1,58 +1,14 @@
+/** @flow */
+import express from 'express';
 import gateway from './gateway';
+import checkout from './checkout';
+import token from './client-token';
+// types
+import type { Router, $Request, $Response } from 'express';
+// initialize router
+const router: Router = express.Router();
 
-const routes = (app) => {
-	app.get('/client_token', async (req, res) => {
-		try {
-			const clientToken = await gateway.clientToken.generate({});
-			res.status(200).json({
-				status: 200,
-				...clientToken,
-			});
-		} catch (e) {
-			res.status(404).json({
-				status: 404,
-				message: e,
-			});
-		}
-	});
+router.get('/client_token', token);
+router.post('/checkout', checkout);
 
-	app.post('/checkout', async (req, res) => {
-		const {
-			paymentMethodNonce,
-			amount,
-			billing,
-			shipping,
-			customer,
-			lineItems,
-			orderId,
-		} = req.body;
-
-		try {
-			// const customer = await gateway.customer;
-			const result = await gateway.transaction.sale({
-				amount,
-				paymentMethodNonce,
-				billing,
-				shipping,
-				customer,
-				lineItems,
-				orderId,
-				options: {
-					submitForSettlement: true,
-				},
-			});
-
-			res.status(200).json({
-				result,
-			});
-		} catch (e) {
-			console.log(e);
-			res.status(404).json({
-				status: 404,
-				error: e,
-			});
-		}
-	});
-};
-
-export default routes;
+export default router;

@@ -19,7 +19,6 @@ service: braintree
 
 plugins:
   - serverless-offline
-  - serverless-webpack
   # - serverless-domain-manager
 
 provider:
@@ -28,46 +27,20 @@ provider:
   state: dev
   region: us-east-1
 
-# you can overwrite defaults here
-#  stage: dev
-#  region: us-east-1
-
-# you can add statements to the Lambda function's IAM Role here
-#  iamRoleStatements:
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:ListBucket"
-#      Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
-#    - Effect: "Allow"
-#      Action:
-#        - "s3:PutObject"
-#      Resource:
-#        Fn::Join:
-#          - ""
-#          - - "arn:aws:s3:::"
-#            - "Ref" : "ServerlessDeploymentBucket"
-#            - "/*"
-
-# you can define service wide environment variables here
-#  environment:
-#    variable1: value1
-
-# you can add packaging information here
-#package:
-#  include:
-#    - include-me.js
-#    - include-me-dir/**
-#  exclude:
-#    - exclude-me.js
-#    - exclude-me-dir/**
+custom:
+  webpack:
+    webpackConfig: 'webpack.config.js'
+    includeModules: true
+    packager: 'yarn'
 
 package:
+  individually: true
   exclude:
     - __tests__/**
 
 functions:
   server:
-    handler: src/app.handler
+    handler: build/app.cjs.handler
     events:
       - http: ANY /
         cors: true
@@ -119,14 +92,7 @@ functions:
 #       Description: "Description for the output"
 #       Value: "Some output value"
 
-
-
-custom:
-  webpack:
-    webpackConfig: 'webpack.config.js'
-    includeModules: true
-    packager: 'yarn'
-    # packagePath: './package.json'
+# packagePath: './package.json'
 # customDomain:
 #   domainName: mailpassage.com
 #   basePath: ''

@@ -1,12 +1,15 @@
-function secure(req, res, next) {
-	const isSecure = req.protocol;
+// @flow
+import type { $Request, $Response, NextFunction } from 'express';
 
-	if (isSecure) next();
-	else
-		res.status(401).json({
-			status: 401,
-			error: 'only secure origins are allowed',
-		});
+function secure(req: $Request, res: $Response, next: NextFunction) {
+  const isSecure = req.protocol;
+
+  if (isSecure) next();
+  else
+    res.status(401).json({
+      status: 401,
+      error: 'only secure origins are allowed',
+    });
 }
 
-module.exports = secure;
+export default secure;

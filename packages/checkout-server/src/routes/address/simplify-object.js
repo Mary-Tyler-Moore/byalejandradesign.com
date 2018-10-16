@@ -14,21 +14,21 @@
 // };
 
 const simplifyObject = (obj) => {
-	const hash = {};
+  const hash = {};
 
-	Object.keys(obj).forEach((key) => {
-		if (typeof obj[key] !== 'object') {
-			hash[key] === obj[key];
-		} else if (Array.isArray(obj[key])) {
-			const arr = obj[key];
-			hash[key] = arr.length <= 1 ? arr[0] : arr;
-		} else {
-			simplifyObject(obj[key]);
-		}
-	});
+  Object.keys(obj).forEach((key) => {
+    if (typeof obj[key] !== 'object') {
+      hash[key] === obj[key];
+    } else if (Array.isArray(obj[key])) {
+      const arr = obj[key];
+      hash[key] = arr.length <= 1 ? arr[0] : arr;
+    } else {
+      simplifyObject(obj[key]);
+    }
+  });
 
-	console.log(hash);
-	return hash;
+  console.log(hash);
+  return hash;
 };
 
 export default simplifyObject;

@@ -1,10 +1,13 @@
-function responseHeaders(req, res, next) {
-	res.header({
-		'Access-Control-Allow-Origin': '*',
-		'Access-Control-Allow-Credentials': true,
-	});
+// @flow
+import type { $Request, $Response, NextFunction } from 'express';
 
-	next();
+function responseHeaders(req: $Request, res: $Response, next: NextFunction) {
+  res.header({
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Credentials': true,
+  });
+
+  next();
 }
 
-module.exports = responseHeaders;
+export default responseHeaders;
