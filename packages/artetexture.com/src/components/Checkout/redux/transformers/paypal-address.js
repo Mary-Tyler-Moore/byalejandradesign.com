@@ -1,9 +1,8 @@
-/**
- * Converts a redux address to an address compatible with paypal
- * @param  {object} address
- * @return {object}
- */
-const paypalAddress = (address) => ({
+/** @flow */
+import type { Address, PaypalAddress } from 'checkout';
+
+/** Converts a redux address to an address compatible with paypal */
+const paypalAddress = (address: Address): PaypalAddress => ({
   recipientName: `${address.firstName} ${address.lastName}`,
   line1: address.streetAddress1,
   line2: address.streetAddress2,

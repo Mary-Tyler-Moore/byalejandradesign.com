@@ -1,9 +1,8 @@
-/**
- * Converts a redux address to an address compatiable with the braintree server
- * @param  {object} address
- * @return {object}
- */
-const serverAddress = (address) => ({
+/** @flow */
+import type { Address, ServerAddress } from 'checkout';
+
+/** Converts a redux address to an address compatiable with the braintree server */
+const serverAddress = (address: Address): ServerAddress => ({
   firstName: address.firstName,
   lastName: address.lastName,
   streetAddress: address.streetAddress1,

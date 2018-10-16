@@ -1,33 +1,8 @@
-import type { Actions } from './payment-methods-actions';
+/** @flow */
+import type { CreditCardNonce, PaypalNonce } from 'checkout';
+import type { Actions } from '../actions/payment-methods-actions';
 
 export type PaymentMethods = 'paypal' | 'venmo' | 'hostedFields' | '';
-
-type CreditCardNonce = {
-  binData: {
-    prepaid: string,
-  },
-  description: string,
-  details: {
-    cardType: string,
-    lastFour: string,
-    lastTwo: string,
-  },
-  nonce: string,
-  type: 'CreditCard',
-};
-
-type PaypalNonce = {
-  details: {
-    countryCode: string,
-    email: string,
-    firstName: string,
-    lastName: string,
-    payerId: string,
-  },
-  shippingAddress: {},
-  nonce: string,
-  type: 'PayPalAccount',
-};
 
 export type State = {
   +method: PaymentMethods,

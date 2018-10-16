@@ -1,3 +1,5 @@
+/** @flow */
+type $ExtractReturn<Fn> = $Call<<T>((...Array<any>) => T) => T, Fn>;
 
 type fields = {
   slice: string,
@@ -14,9 +16,6 @@ export const updateAddressField = ({ slice, payload, key }: fields) => ({
 
 export const validateAddress = () => ({ type: 'VALIDATE_ADDRESS' });
 
-type Fn<T> = (...args: Array<any>) => T;
-type ExtractReturn = <T>(Fn<T>) => T;
-
 export type Actions =
-  | $Call<ExtractReturn, typeof validateAddress>
-  | $Call<ExtractReturn, typeof updateAddressField>;
+  | $ExtractReturn<typeof validateAddress>
+  | $ExtractReturn<typeof updateAddressField>;

@@ -1,16 +1,6 @@
-import type { Actions } from './address-actions';
-
-export type State = {
-  +firstName: string,
-  +lastName: string,
-  +streetAddress1: string,
-  +streetAddress2: string,
-  +city: string,
-  +countryCode: string,
-  +postalCode: string,
-  +province: string,
-  +phone: string,
-};
+/** @flow */
+import type { Actions } from '../actions/address-actions';
+import type { Address } from 'checkout';
 
 /** Initial Fake Address for Development */
 const fakeAddress = {
@@ -41,11 +31,11 @@ const blankAddress = {
   phone: '',
 };
 
-const initial: State =
+const initial =
   process.env.NODE_ENV === 'development' ? fakeAddress : blankAddress;
 
 const addressReducer = (slice: string) => (
-  state: State = initial,
+  state: Address = initial,
   action: Actions
 ) => {
   if (action.slice !== slice) return state;

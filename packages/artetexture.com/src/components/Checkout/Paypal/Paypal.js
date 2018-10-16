@@ -1,3 +1,4 @@
+/** @flow */
 import * as React from 'react';
 import { compose } from 'smalldash';
 import { paypalCheckout } from 'braintree-web';
@@ -9,6 +10,10 @@ import { withPaymentActions } from '../redux/containers';
 import paypalAddress from '../redux/transformers/paypal-address';
 // styles
 import './paypal.sass';
+
+type Props = {
+  braintree: {},
+};
 
 type State = {
   instance: {
@@ -22,7 +27,7 @@ type State = {
  * https://developers.braintreepayments.com/guides/paypal/overview/javascript/v3
  * https://github.com/paypal/paypal-checkout/blob/master/docs/frameworks.md
  */
-class Paypal extends React.PureComponent<{}, State> {
+class Paypal extends React.PureComponent<Props, State> {
   state = {
     instance: null,
   };
