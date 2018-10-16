@@ -1,16 +1,12 @@
 {
   "name": "root",
   "private": true,
-  "devDependencies": {
-    "lerna": "^3.3.2"
+  "scripts": {
+    "prebuild-web": "lerna bootstrap && lerna link",
+    "build-web": "lerna run build-web"
   },
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ],
-    "nohoist": [
-      "**/gatsby",
-      "**/gatsby/**"
-    ]
+  "devDependencies": {
+    "flow-bin": "^0.83.0",
+    "lerna": "^3.3.2"
   }
 }

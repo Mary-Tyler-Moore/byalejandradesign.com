@@ -1,7 +1,7 @@
 [build]
   # subdirectory to publish from
   # base = "subdirectory"
-  publish = "public/"
+  publish = "packages/artetexture.com/public/"
   command = "yarn run build-web"
 
 [build.environment]
