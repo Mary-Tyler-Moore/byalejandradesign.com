@@ -14,6 +14,7 @@ import { emptyCart } from '../../Cart/cart-actions';
 import server from '../server';
 // util
 import serverAddress from '../redux/transformers/server-address';
+import orderId from './order-id';
 // styles
 import './submit.sass';
 
@@ -135,6 +136,7 @@ class Submit extends React.PureComponent<Props, State> {
           phone: this.props.shippingAddress.phone,
         },
         lineItems: this.lineItems(),
+        orderId: orderId(),
         // deviceData: this.props.braintree.deviceData,
       })
       .then((response) => {
