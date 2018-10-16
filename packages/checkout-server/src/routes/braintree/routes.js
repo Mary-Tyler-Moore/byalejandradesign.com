@@ -17,12 +17,26 @@ const routes = (app) => {
 	});
 
 	app.post('/checkout', async (req, res) => {
-		const { payment_method_nonce, amount } = req.body;
+		const {
+			paymentMethodNonce,
+			amount,
+			billing,
+			shipping,
+			customer,
+			lineItems,
+			orderId,
+		} = req.body;
 
 		try {
+			// const customer = await gateway.customer;
 			const result = await gateway.transaction.sale({
 				amount,
-				paymentMethodNonce: payment_method_nonce,
+				paymentMethodNonce,
+				billing,
+				shipping,
+				customer,
+				lineItems,
+				orderId,
 				options: {
 					submitForSettlement: true,
 				},
