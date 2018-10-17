@@ -1,7 +1,6 @@
 import braintree from 'braintree';
-import dotenv from 'dotenv';
 
-dotenv.config();
+console.log(process.env.BRAINTREE_MERCHANT_ID);
 
 const gateway = braintree.connect({
   environment: braintree.Environment.Sandbox,

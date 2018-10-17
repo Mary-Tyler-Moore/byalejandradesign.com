@@ -1,4 +1,5 @@
 // @flow
+// import './env';
 import express from 'express';
 import serverless from 'serverless-http';
 // routes and middleware

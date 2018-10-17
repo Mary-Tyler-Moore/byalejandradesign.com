@@ -13,7 +13,7 @@
     "deploy": "serverless deploy -v",
     "rollup": "rollup -c rollup.config.js --watch",
     "jest": "jest",
-    "serverless": "serverless offline start",
+    "serverless": "serverless offline start --stage development",
     "start": "run-p serverless",
     "test": "jest --watchAll",
     "prettier": "prettier --write '**/*.{js,json,md}'"
@@ -24,7 +24,6 @@
     "body-parser": "^1.18.3",
     "braintree": "^2.11.0",
     "cors": "^2.8.4",
-    "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "serverless-http": "^1.6.0",
     "smalldash": "^1.1.9",

@@ -6,3 +6,10 @@ jspm_packages
 .serverless
 .env
 .webpack
+
+build/
+
+env.json
+env.*.json
+
+yarn-error.log
