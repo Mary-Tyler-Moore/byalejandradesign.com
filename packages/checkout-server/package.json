@@ -6,15 +6,15 @@
     "mailserver"
   ],
   "license": "ISC",
-  "author": "Nick Myers",
+  "author": "Nick Myers <nickmyers111@gmail.com>",
   "main": "build/app.cjs.js",
   "scripts": {
     "precommit": "lint-staged",
-    "deploy": "serverless deploy -v",
+    "develop": "serverless offline start --stage development",
+    "stage": "serverless deploy -v --stage staging",
+    "deploy": "serverless deploy -v --stage production",
     "rollup": "rollup -c rollup.config.js --watch",
-    "jest": "jest",
-    "serverless": "serverless offline start --stage development",
-    "start": "run-p serverless",
+    "start": "run-p develop",
     "test": "jest --watchAll",
     "prettier": "prettier --write '**/*.{js,json,md}'"
   },
