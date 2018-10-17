@@ -71,6 +71,7 @@ declare module 'checkout' {
 
   declare export type LineItem = {
     +name: string,
+    +productCode: string,
     +description: string,
     +quantity: number,
     +unitAmount: number,
