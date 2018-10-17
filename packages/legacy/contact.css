@@ -1,0 +1,56 @@
+p {
+	font-size: 1.2em;
+	margin-bottom: 15px;
+}
+
+#page-wrap {
+	width: 800px;
+	background: white;
+  padding: 0 0 0 0;
+  margin: 5px auto;
+	min-height: 500px;
+	height: auto !important;
+	height: 500px;
+}
+
+#contact-area {
+	width: 800px;
+	margin-top: 25px;
+}
+
+#contact-area input, #contact-area textarea {
+	padding: 5px;
+	width: 800px;
+	font-size: 1.2em;
+	margin: 0px 0px 10px 0px;
+	border: 2px solid #ccc;
+}
+
+#contact-area textarea {
+	height: 90px;
+}
+
+#contact-area textarea:focus, #contact-area input:focus {
+	border: 2px solid #900;
+}
+
+#contact-area input.submit-button {
+	width: 100px;
+	float: right;
+	font-family: OratorStd;
+	background: #E0495A;
+	color: white;
+	font-size: 1.1em;
+	border: 1px solid white;
+	margin-right: -15px;
+	padding-top: 8px;
+	margin-top: 5px;
+}
+
+label {
+	float: left;
+	text-align: right;
+	margin-right: 15px;
+	padding-top: 5px;
+	font-size: 1.2em;
+}
