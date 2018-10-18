@@ -7,12 +7,12 @@ import type { LineItem } from './line-item';
 import type { Customer } from './customer';
 
 export type Transaction = {
-  paymentMethodNonce: {},
-  shipping: ServerAddress,
-  billing: ServerAddress,
-  customer: Customer,
-  lineItems: Array<LineItem>,
-  orderId: string,
+  +paymentMethodNonce: {},
+  +shipping: ServerAddress,
+  +billing: ServerAddress,
+  +customer: Customer,
+  +lineItems: Array<LineItem>,
+  +orderId: string,
 };
 
 const defaultTransaction: Transaction = {

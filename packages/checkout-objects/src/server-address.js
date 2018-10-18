@@ -1,13 +1,13 @@
 /** @flow */
 export type ServerAddress = {
-  firstName: string,
-  lastName: string,
-  streetAddress: string,
-  extendedAddress: string,
-  locality: string,
-  region: string,
-  postalCode: string,
-  countryCodeAlpha2: string,
+  +firstName: string,
+  +lastName: string,
+  +streetAddress: string,
+  +extendedAddress: string,
+  +locality: string,
+  +region: string,
+  +postalCode: string,
+  +countryCodeAlpha2: string,
 };
 
 const serverAddress: ServerAddress = {

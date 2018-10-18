@@ -2,13 +2,13 @@
 import defaults from './defaults';
 
 export type LineItem = {
-  name: string,
-  productCode: string,
-  description: string,
-  quantity: number,
-  unitAmount: number,
-  totalAmount: number,
-  kind: 'debit' | 'credit',
+  +name: string,
+  +productCode: string,
+  +description: string,
+  +quantity: number,
+  +unitAmount: number,
+  +totalAmount: number,
+  +kind: 'debit' | 'credit',
 };
 
 const lineItem: LineItem = {

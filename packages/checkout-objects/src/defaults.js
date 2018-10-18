@@ -1,6 +1,7 @@
 /** @flow */
-function defaults<T, A>(prod: T, dev: A): T | A {
-  return process.env.NODE_ENV !== 'production' ? dev : prod;
-}
+type Defaults = <A, B>(prod: A, dev: B) => A | B;
+
+const defaults: Defaults = (prod, dev) =>
+  process.env.NODE_ENV !== 'production' ? dev : prod;
 
 export default defaults;

@@ -2,10 +2,10 @@
 import defaults from './defaults';
 
 export type Customer = {
-  email: string,
-  firstName: string,
-  lastName: string,
-  phone: string,
+  +email: string,
+  +firstName: string,
+  +lastName: string,
+  +phone: string,
 };
 
 const customer: Customer = {
