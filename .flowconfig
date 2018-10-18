@@ -1,16 +1,11 @@
 [ignore]
-./packages/**/build/
-./packages/**/public/
-./pacakges/**/scripts/
-./packages/**/node_modules
-node_modules/
 
 [include]
-./packages/**/*.js
-./*.js
+node_modules/@artetexture
 
 [libs]
 flow-typed
+custom-types
 
 [lints]
 
@@ -20,5 +15,7 @@ module.file_ext=.jsx
 module.file_ext=.json
 module.file_ext=.css
 module.file_ext=.sass
-
-[strict]
+; add support for local pacakages
+module.name_mapper='^@artetexture\/\([a-zA-Z0-9_\-]+\)$' -> '<PROJECT_ROOT>/packages/\1'
+; strict mode
+module.use_strict=true

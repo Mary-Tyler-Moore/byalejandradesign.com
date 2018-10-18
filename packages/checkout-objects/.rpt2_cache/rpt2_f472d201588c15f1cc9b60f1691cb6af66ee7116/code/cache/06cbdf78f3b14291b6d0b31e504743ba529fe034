@@ -1,0 +1,1 @@
+{"code":"var paypalAddress = {\r\n    recipientName: '',\r\n    line1: '',\r\n    line2: '',\r\n    city: '',\r\n    state: '',\r\n    postalCode: '',\r\n    countryCode: '',\r\n};\r\nexport default paypalAddress;\r\n"}

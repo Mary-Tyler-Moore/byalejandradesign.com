@@ -19,6 +19,7 @@ import orderId from './order-id';
 import './submit.sass';
 
 import type { allWordpressWpShop } from 'data';
+import type { Transaction, LineItem } from 'checkout';
 
 const ShippingAddress = createAddressDisplay('shippingAddress');
 const BillingAddress = createAddressDisplay('billingAddress');
@@ -94,7 +95,7 @@ class Submit extends React.PureComponent<Props, State> {
     }-${node.acf.display_title.toLowerCase().replace(' ', '-')}`.slice(0, 35);
   };
 
-  lineItems = () => {
+  lineItems = (): Array<LineItem> => {
     return this.props.cart.products.map((product) => {
       const { node } = this.props.data.allWordpressWpShop.edges.find(
         ({ node }) => node.id === product.id
@@ -113,39 +114,42 @@ class Submit extends React.PureComponent<Props, State> {
     });
   };
 
+  transaction = (): Transaction => ({
+    paymentMethodNonce: this.props.payment.nonce.nonce,
+    amount: this.state.total,
+    shipping: serverAddress(this.props.shippingAddress),
+    billing: serverAddress(
+      this.props.payment.billingAddress
+        ? this.props.billingAddress
+        : this.props.shippingAddress
+    ),
+    customer: {
+      email: this.props.payment.email,
+      firstName: this.props.shippingAddress.firstName,
+      lastName: this.props.shippingAddress.lastName,
+      phone: this.props.shippingAddress.phone,
+    },
+    lineItems: this.lineItems(),
+    orderId: orderId(),
+  });
+
   onSubmit = (event) => {
     event.preventDefault();
     this.setState({
       status: 'loading',
     });
 
+    const transaction = this.transaction();
+
     server
-      .post('/checkout', {
-        paymentMethodNonce: this.props.payment.nonce.nonce,
-        amount: this.state.total,
-        shipping: serverAddress(this.props.shippingAddress),
-        billing: serverAddress(
-          this.props.payment.billingAddress
-            ? this.props.billingAddress
-            : this.props.shippingAddress
-        ),
-        customer: {
-          email: this.props.payment.email,
-          firstName: this.props.shippingAddress.firstName,
-          lastName: this.props.shippingAddress.lastName,
-          phone: this.props.shippingAddress.phone,
-        },
-        lineItems: this.lineItems(),
-        orderId: orderId(),
-        // deviceData: this.props.braintree.deviceData,
-      })
+      .post('/checkout', transaction)
       .then((response) => {
         this.setState({
           status: 'resolved',
         });
-        // this.props.emptyCart();
-        console.log(response);
-        navigate('/checkout/confirmation');
+        navigate('/checkout/confirmation', {
+          state: { ...transaction },
+        });
       })
       .catch((error) => {
         this.setState({

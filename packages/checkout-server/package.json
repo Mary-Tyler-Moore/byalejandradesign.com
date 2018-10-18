@@ -1,24 +1,26 @@
 {
-  "name": "@njmyers/serverless-braintree",
+  "name": "@artetexture/checkout-server",
   "version": "0.0.1",
   "description": "a braintree server",
+  "private": true,
   "keywords": [
-    "mailserver"
+    "braintree"
   ],
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
   "main": "build/app.cjs.js",
   "scripts": {
-    "precommit": "lint-staged",
-    "develop": "serverless offline start --stage development",
-    "stage": "serverless deploy -v --stage staging",
-    "deploy": "serverless deploy -v --stage production",
-    "rollup": "rollup -c rollup.config.js --watch",
-    "start": "run-p develop",
-    "test": "jest --watchAll",
-    "prettier": "prettier --write '**/*.{js,json,md}'"
+    "develop": "run-p rollup:watch serverless:development",
+    "stage": "run-p rollup serverless:staging",
+    "deploy": "run-p rollup serverless:production",
+    "rollup": "rollup -c rollup.config.js",
+    "rollup:watch": "rollup -c rollup.config.js --watch",
+    "serverless:development": "serverless offline start --stage development",
+    "serverless:staging": "serverless deploy -v --stage staging",
+    "serverless:production": "serverless deploy -v --stage production"
   },
   "dependencies": {
+    "@artetexture/checkout-objects": "^0.0.1",
     "axios": "^0.18.0",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.3",
@@ -30,33 +32,13 @@
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.2",
-    "@babel/core": "^7.1.2",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
-    "@babel/preset-flow": "^7.0.0",
-    "eslint": "^4.3.0",
-    "eslint-watch": "^3.1.2",
-    "husky": "^0.14.3",
-    "jest": "^22.1.4",
-    "lint-staged": "^6.1.0",
-    "npm-run-all": "^4.1.2",
+    "flow-bin": "^0.83.0",
+    "npm-run-all": "^4.1.3",
     "prettier": "^1.14.3",
     "rollup": "^0.66.6",
-    "rollup-plugin-babel": "^4.0.3",
-    "rollup-plugin-commonjs": "^9.2.0",
-    "rollup-plugin-node-builtins": "^2.1.2",
-    "rollup-plugin-node-globals": "^1.4.0",
-    "rollup-plugin-node-resolve": "^3.4.0",
-    "rollup-plugin-uglify": "^6.0.0",
+    "shx": "^0.3.2",
     "serverless": "^1.28.0",
     "serverless-domain-manager": "^2.3.0",
     "serverless-offline": "^3.16.0"
-  },
-  "lint-staged": {
-    "**/*.{js,json,md}": [
-      "prettier --write",
-      "git add"
-    ]
   }
 }

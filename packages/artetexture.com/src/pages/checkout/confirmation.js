@@ -1,9 +1,15 @@
 import * as React from 'react';
-import Confirmation from '../../components/Checkout/Confirmation';
+import { OrderConfirmation } from '@artetexture/templates';
 import Layout from '../../components/Layout';
 
-export default () => (
-  <Layout>
-    <Confirmation />
-  </Layout>
-);
+class ConfirmationPage extends React.Component {
+  render() {
+    return (
+      <Layout>
+        <OrderConfirmation transaction={{ ...this.props.location.state }} />
+      </Layout>
+    );
+  }
+}
+
+export default ConfirmationPage;

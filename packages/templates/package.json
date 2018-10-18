@@ -1,0 +1,36 @@
+{
+  "name": "@artetexture/templates",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Reusable templates for artetexture front-end",
+  "license": "ISC",
+  "author": "Nick Myers <nickmyers111@gmail.com>",
+  "files": [
+    "build"
+  ],
+  "main": "build/templates.cjs.js",
+  "module": "build/templates.esm.js",
+  "scripts": {
+    "prebuild": "shx rm -rf build",
+    "build": "rollup -c rollup.config.js",
+    "develop": "run-p watch",
+    "test": "yarn run --watchAll",
+    "watch": "rollup -c rollup.config.js --watch"
+  },
+  "dependencies": {
+    "@artetexture/checkout-objects": "^0.0.1",
+    "@babel/runtime": "^7.1.2",
+    "smalldash": "^1.1.18"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.83.0",
+    "npm-run-all": "^4.1.3",
+    "prettier": "^1.14.3",
+    "rollup": "^0.66.6",
+    "shx": "^0.3.2"
+  },
+  "peerDependencies": {
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  }
+}

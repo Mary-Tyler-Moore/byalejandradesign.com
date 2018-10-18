@@ -1,0 +1,1 @@
+{"code":"import developmentDefault from './development-default';\r\nvar customer = {\r\n    email: developmentDefault('', 'nick@email.com'),\r\n    firstName: developmentDefault('', 'Nick'),\r\n    lastName: developmentDefault('', 'Myers'),\r\n    phone: developmentDefault('', '212-192-1222'),\r\n};\r\nexport default customer;\r\n"}
