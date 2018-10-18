@@ -1,1 +1,0 @@
-{"code":"var serverAddress = {\r\n    firstName: '',\r\n    lastName: '',\r\n    streetAddress: '',\r\n    extendedAddress: '',\r\n    locality: '',\r\n    region: '',\r\n    postalCode: '',\r\n    countryCodeAlpha2: '',\r\n};\r\nexport default serverAddress;\r\n"}

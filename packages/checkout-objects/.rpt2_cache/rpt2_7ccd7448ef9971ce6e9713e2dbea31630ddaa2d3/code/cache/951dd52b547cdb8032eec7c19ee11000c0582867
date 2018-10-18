@@ -1,1 +1,0 @@
-{"code":"import defaultServerAddress from './server-address';\r\nimport defaultCustomer from './customer';\r\nvar defaultTransaction = {\r\n    paymentMethodNonce: {},\r\n    billing: defaultServerAddress,\r\n    shipping: defaultServerAddress,\r\n    customer: defaultCustomer,\r\n    lineItems: [],\r\n    orderId: '',\r\n};\r\nexport default defaultTransaction;\r\n"}

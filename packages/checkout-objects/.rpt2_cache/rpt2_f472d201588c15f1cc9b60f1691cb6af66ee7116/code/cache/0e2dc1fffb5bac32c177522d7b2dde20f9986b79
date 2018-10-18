@@ -1,1 +1,0 @@
-{"code":"var lineItem = {\r\n    name: '',\r\n    productCode: '',\r\n    description: '',\r\n    quantity: 0,\r\n    unitAmount: 0,\r\n    totalAmount: 0,\r\n    kind: 'debit',\r\n};\r\nexport default lineItem;\r\n"}
