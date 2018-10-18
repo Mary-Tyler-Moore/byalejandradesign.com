@@ -5,23 +5,17 @@ import ServerAddress from '../ServerAddress';
 import Customer from '../Customer';
 // defaults
 import { transaction } from '@artetexture/checkout-objects';
-import type { Transaction } from '@artetexture/checkout-objects';
 // types
+import type { Transaction } from '@artetexture/checkout-objects';
 import { camelToTitle } from 'smalldash';
 
-type Props = {
+export type Props = {
   transaction: Transaction,
 };
 
 class OrderConfirmation extends React.Component<Props> {
   static defaultProps = {
     transaction: transaction,
-  };
-
-  billing = () => {
-    return this.props.transaction.billing
-      ? this.props.transaction.billing
-      : this.props.transaction.shipping;
   };
 
   render() {
@@ -38,7 +32,10 @@ class OrderConfirmation extends React.Component<Props> {
           address={this.props.transaction.shipping}
           label="Shipping Address"
         />
-        <ServerAddress address={this.billing()} label="Billing Address" />
+        <ServerAddress
+          address={this.props.transaction.billing}
+          label="Billing Address"
+        />
       </section>
     );
   }

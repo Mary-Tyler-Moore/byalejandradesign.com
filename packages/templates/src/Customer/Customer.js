@@ -2,9 +2,9 @@
 import * as React from 'react';
 import Line from '../Line';
 // types
-import type { Customer as CustomerType } from 'checkout';
+import type { Customer as CustomerType } from '@artetexture/checkout-objects';
 
-type Props = {
+export type Props = {
   customer: CustomerType,
 };
 

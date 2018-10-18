@@ -1,11 +1,12 @@
+/** @flow */
 import * as React from 'react';
 import Line from '../Line';
-import { ServerAddress as ServerAddressType } from '@artetexture/checkout-objects';
+import type { ServerAddress as ServerAddressType } from '@artetexture/checkout-objects';
 
-interface Props {
-  address: ServerAddressType;
-  label?: string;
-}
+export type Props = {
+  address: ServerAddressType,
+  label?: string,
+};
 
 const ServerAddress = ({ address, label }: Props) => (
   <section className="confirmation_billingAddress">
