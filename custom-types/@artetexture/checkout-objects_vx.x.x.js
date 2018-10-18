@@ -1,4 +1,5 @@
-declare module '@artetexture/checkout-objects' {
+/** @flow */
+declare module '@artetexture/checkout-objects_temp' {
   /** different types of address formats */
   declare export type Address = {
     +firstName: string,

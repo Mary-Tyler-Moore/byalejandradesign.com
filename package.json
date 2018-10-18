@@ -1,12 +1,12 @@
 {
-  "name": "root",
+  "name": "@artetexture/root",
   "private": true,
   "scripts": {
     "bootstrap": "yarn && lerna bootstrap && lerna link",
     "prebuild-web": "run-s bootstrap",
     "build-web": "lerna run build-web",
     "unlink-flow": "lerna exec \"unlink .flowconfig\"",
-    "link-flow": " lerna exec \"ln -s ../../config/.flowconfig .flowconfig\"",
+    "link-flow": " lerna exec \"ln -s ../../.flowconfig .flowconfig\"",
     "types": "node scripts/install-types.js",
     "predevelop": "run-s bootstrap",
     "develop": "lerna run --parallel develop",
@@ -30,6 +30,7 @@
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "flow-bin": "^0.83.0",
+    "flow-mono-cli": "^1.4.2",
     "flow-typed": "^2.5.1",
     "jest": "^23.6.0",
     "lerna": "^3.3.2",

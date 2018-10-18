@@ -1,7 +1,7 @@
 // @flow
 import cors from 'cors';
 
-const origins = ['https://artetexture.netlify.com'];
+const origins: string[] = ['https://artetexture.netlify.com'];
 
 const corsMiddleware = cors({
   origin: origins,

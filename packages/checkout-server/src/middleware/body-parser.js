@@ -1,7 +1,8 @@
 // @flow
-import bodyParser from 'body-parser';
+import { urlencoded, json } from 'body-parser';
+// types
+import type { Middleware } from 'express';
 
-const urlEncoded = bodyParser.urlencoded({ extended: false });
-const json = bodyParser.json();
+const body: Middleware[] = [urlencoded({ extended: false }), json()];
 
-export default [urlEncoded, json];
+export default body;

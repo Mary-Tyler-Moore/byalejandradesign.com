@@ -13,7 +13,6 @@
   "scripts": {
     "prebuild": "shx rm -rf build",
     "build": "rollup -c rollup.config.js",
-    "postbuild": "flow gen-flow-files src --out-dir build",
     "develop": "run-p watch",
     "test": "yarn run --watchAll",
     "watch": "rollup -c rollup.config.js --watch"

@@ -1,7 +1,8 @@
 [ignore]
+node_modules
 
 [include]
-node_modules/@artetexture
+; node_modules/@artetexture
 
 [libs]
 flow-typed
@@ -15,7 +16,7 @@ module.file_ext=.jsx
 module.file_ext=.json
 module.file_ext=.css
 module.file_ext=.sass
-; add support for local pacakages
-module.name_mapper='^@artetexture\/\([a-zA-Z0-9_\-]+\)$' -> '<PROJECT_ROOT>/packages/\1'
+; add support for local packages
+module.name_mapper='^@artetexture\/\([a-zA-Z0-9_\-]+\)$' -> '<PROJECT_ROOT>/../packages/\1'
 ; strict mode
 module.use_strict=true
