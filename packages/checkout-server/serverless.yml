@@ -28,6 +28,7 @@ provider:
   region: us-east-1
   environment:
     STAGE: ${self:provider.stage}
+    NODE_ENV: ${self:provider.stage}
     BRAINTREE_MERCHANT_ID: ${file(./env.${self:provider.stage}.json):BRAINTREE_MERCHANT_ID}
     BRAINTREE_PUBLIC_KEY: ${file(./env.${self:provider.stage}.json):BRAINTREE_PUBLIC_KEY}
     BRAINTREE_PRIVATE_KEY: ${file(./env.${self:provider.stage}.json):BRAINTREE_PRIVATE_KEY}

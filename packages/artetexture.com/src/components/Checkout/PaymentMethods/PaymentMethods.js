@@ -20,9 +20,17 @@ class PaymentMethods extends React.PureComponent {
   renderPaymentMethod = () => {
     switch (this.props.method) {
       case 'venmo':
-        return <Venmo />;
+        return (
+          <DataCollector>
+            <Venmo />
+          </DataCollector>
+        );
       case 'paypal':
-        return <Paypal />;
+        return (
+          <DataCollector>
+            <Paypal />
+          </DataCollector>
+        );
       case 'hostedFields':
         return <CreditCard />;
       case '':
@@ -35,31 +43,29 @@ class PaymentMethods extends React.PureComponent {
     return (
       // Preloads Braintree before loading PaymentMethods
       <Braintree>
-        <DataCollector>
-          <section className="paymentMethods">
-            <h5 className="h5-amiri">Choose Your Payment Method</h5>
-            <section className="paymentOptions">
-              <PaymentOption
-                label="Venmo"
-                image={venmoLogo}
-                onClick={this.props.chooseVenmo}
-              />
-              <PaymentOption
-                label="Credit Card"
-                image={creditLogo}
-                onClick={this.props.chooseCredit}
-              />
-              <PaymentOption
-                label="Paypal"
-                image={paypalLogo}
-                onClick={this.props.choosePaypal}
-              />
-            </section>
-            <section className="paymentMethod">
-              {this.renderPaymentMethod()}
-            </section>
+        <section className="paymentMethods">
+          <h5 className="h5-amiri">Choose Your Payment Method</h5>
+          <section className="paymentOptions">
+            <PaymentOption
+              label="Venmo"
+              image={venmoLogo}
+              onClick={this.props.chooseVenmo}
+            />
+            <PaymentOption
+              label="Credit Card"
+              image={creditLogo}
+              onClick={this.props.chooseCredit}
+            />
+            <PaymentOption
+              label="Paypal"
+              image={paypalLogo}
+              onClick={this.props.choosePaypal}
+            />
           </section>
-        </DataCollector>
+          <section className="paymentMethod">
+            {this.renderPaymentMethod()}
+          </section>
+        </section>
       </Braintree>
     );
   }

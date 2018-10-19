@@ -1,22 +1,26 @@
+/** @flow */
 import { compose } from 'smalldash';
-import type { methods } from './payment-methods-reducer';
+import type { PaymentMethods } from '../reducers/payment-methods-reducer';
+import type { Nonce } from '@artetexture/checkout-objects';
 
-export const updateEmail = (value) => ({
+// (compose: $Compose);
+
+export const updateEmail = (value: string) => ({
   type: '@FLOW/EMAIL',
   value,
 });
 
-export const billingAddress = (value) => ({
+export const billingAddress = (value: string) => ({
   type: '@FLOW/BILLING_ADDRESS',
   value,
 });
 
-export const paymentMethodType = (method: methods) => ({
+export const paymentMethodType = (method: PaymentMethods) => ({
   type: '@FLOW/CHOOSE',
   method,
 });
 
-export const submitNonce = (payload: {}) => ({
+export const submitNonce = (payload: Nonce) => ({
   type: '@FLOW/SAVE_NONCE',
   payload,
 });
@@ -28,16 +32,11 @@ const defaultError = {
   error: new Error('Payment method error'),
 };
 
-const paymentMethodErrorAction = (error) => {
+const paymentMethodErrorAction = (error: Error) => {
   return {
     ...defaultError,
     ...error,
   };
-};
-
-const logAction = (action: Actions) => {
-  if (process.env.NODE_ENV !== 'production') console.error(action);
-  return action;
 };
 
 export const paymentMethodError = compose(
@@ -52,3 +51,8 @@ export type Actions =
   | $Call<ExtractReturn, typeof paymentMethodType>
   | $Call<ExtractReturn, typeof submitNonce>
   | $Call<ExtractReturn, typeof paymentMethodErrorAction>;
+
+function logAction(action) {
+  if (process.env.NODE_ENV !== 'production') console.error(action);
+  return action;
+}

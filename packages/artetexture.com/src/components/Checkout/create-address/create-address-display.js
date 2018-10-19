@@ -1,11 +1,20 @@
+/** @flow */
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { camelToTitle } from 'smalldash';
-
+// types
+import type { Address } from '@artetexture/checkout-objects';
+// styles
 import './create-address-display.sass';
 
-const createAddressDisplay = (slice) => {
-  class DisplayAddress extends React.PureComponent {
+type Props = {
+  shippingAddress: Address,
+  BillingAddress: Address,
+  isBillingAddress: boolean,
+};
+
+const createAddressDisplay = (slice: string): React.Component<Props> => {
+  class DisplayAddress extends React.PureComponent<Props> {
     key = this.props.isBillingAddress ? slice : 'shippingAddress';
 
     render() {

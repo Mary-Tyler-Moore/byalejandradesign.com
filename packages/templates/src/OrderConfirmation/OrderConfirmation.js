@@ -7,7 +7,8 @@ import Customer from '../Customer';
 import { transaction } from '@artetexture/checkout-objects';
 // types
 import type { Transaction } from '@artetexture/checkout-objects';
-import { camelToTitle } from 'smalldash';
+// style
+import './order-confirmation.sass';
 
 export type Props = {
   transaction: Transaction,

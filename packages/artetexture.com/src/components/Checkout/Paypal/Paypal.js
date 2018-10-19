@@ -7,12 +7,13 @@ import { navigate } from 'gatsby';
 import withPaypalButton from './with-paypal-button';
 // auto connect HOC
 import { withPaymentActions } from '../redux/containers';
-import paypalAddress from '../redux/transformers/paypal-address';
+import { addressToPaypalAddress } from '@artetexture/checkout-objects';
 // styles
 import './paypal.sass';
 
 type Props = {
   braintree: {},
+  PaypalButton: React.Component<mixed>,
 };
 
 type State = {
@@ -65,7 +66,9 @@ class Paypal extends React.PureComponent<Props, State> {
       amount: 10.0, // TODO: Make amount from redux cart.
       enableShippingAddress: true,
       shippingAddressEditable: false,
-      shippingAddressOverride: paypalAddress(this.props.shippingAddress),
+      shippingAddressOverride: addressToPaypalAddress(
+        this.props.shippingAddress
+      ),
     });
 
   onAuthorize = (data) => {

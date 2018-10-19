@@ -13,19 +13,24 @@ import { emptyCart } from '../../Cart/cart-actions';
 // api
 import server from '../server';
 // util
-import serverAddress from '../redux/transformers/server-address';
-import orderId from './order-id';
+import { addressToServerAddress, orderId } from '@artetexture/checkout-objects';
 // styles
 import './submit.sass';
 
-import type { allWordpressWpShop } from 'data';
-import type { Transaction, LineItem } from 'checkout';
+import type { allWordpressWpShop } from '@artetexture/data-objects';
+import type {
+  Transaction,
+  LineItem,
+  Address,
+} from '@artetexture/checkout-objects';
 
 const ShippingAddress = createAddressDisplay('shippingAddress');
 const BillingAddress = createAddressDisplay('billingAddress');
 
 type Props = {
   data: { allWordpressWpShop: allWordpressWpShop },
+  billingAddress: Address,
+  shippingAddress: Address,
 };
 
 type State = {
@@ -117,8 +122,8 @@ class Submit extends React.PureComponent<Props, State> {
   transaction = (): Transaction => ({
     paymentMethodNonce: this.props.payment.nonce.nonce,
     amount: this.state.total,
-    shipping: serverAddress(this.props.shippingAddress),
-    billing: serverAddress(
+    shipping: addressToServerAddress(this.props.shippingAddress),
+    billing: addressToServerAddress(
       this.props.payment.billingAddress
         ? this.props.billingAddress
         : this.props.shippingAddress

@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = (api) => {
   api.cache(true);
 
@@ -5,22 +7,54 @@ module.exports = (api) => {
 
   return {
     babelrcRoots: ['packages/*'],
-    plugins: [
-      '@babel/plugin-proposal-class-properties',
-      '@babel/plugin-proposal-object-rest-spread',
-      'dynamic-import-node',
-      '@babel/plugin-syntax-dynamic-import',
-    ],
     presets: [
-      ['@babel/preset-env'],
+      [
+        '@babel/preset-env',
+        {
+          loose: true,
+          modules: false,
+          useBuiltIns: 'usage',
+          shippedProposals: true,
+          targets: {
+            browsers: ['>0.25%', 'not dead'],
+          },
+        },
+      ],
       [
         '@babel/preset-react',
         {
-          development: env === 'development',
+          useBuiltIns: true,
+          pragma: 'React.createElement',
         },
       ],
       '@babel/preset-flow',
-      // https://github.com/storybooks/storybook/pull/4262
     ],
+    plugins: [
+      [
+        '@babel/plugin-proposal-class-properties',
+        {
+          loose: true,
+        },
+      ],
+      '@babel/plugin-syntax-dynamic-import',
+      'babel-plugin-macros',
+      [
+        '@babel/plugin-transform-runtime',
+        {
+          helpers: true,
+          regenerator: true,
+        },
+      ],
+    ],
+    env: {
+      test: {
+        presets: [
+          ['@babel/preset-env'],
+          '@babel/preset-react',
+          '@babel/preset-flow',
+        ],
+        plugins: ['dynamic-import-node'],
+      },
+    },
   };
 };

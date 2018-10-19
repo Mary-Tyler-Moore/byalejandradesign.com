@@ -1,5 +1,8 @@
 /** @flow */
-import type { CreditCardNonce, PaypalNonce } from 'checkout';
+import type {
+  CreditCardNonce,
+  PaypalNonce,
+} from '@artetexture/checkout-objects';
 import type { Actions } from '../actions/payment-methods-actions';
 
 export type PaymentMethods = 'paypal' | 'venmo' | 'hostedFields' | '';

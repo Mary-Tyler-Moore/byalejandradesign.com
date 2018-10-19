@@ -8,12 +8,8 @@ const validateBody = (body): boolean %checks => {
   return typeof body === 'object' && body !== null;
 };
 
-const validateTransaction = (body): boolean %checks => {
-  return typeof body.transaction === 'object' && body !== null;
-};
-
 const checkout = async (req: $Request, res: $Response) => {
-  if (validateBody(req.body) && validateTransaction(req.body)) {
+  if (validateBody(req.body)) {
     const {
       paymentMethodNonce,
       amount,
