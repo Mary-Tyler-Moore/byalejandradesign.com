@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "bootstrap": "yarn && lerna bootstrap && lerna link",
+    "postbootstrap": "lerna run build",
     "prebuild-web": "run-s bootstrap",
     "build-web": "lerna run build-web",
     "build-objects": "lerna run build --scope @artetexture/checkout-objects",
