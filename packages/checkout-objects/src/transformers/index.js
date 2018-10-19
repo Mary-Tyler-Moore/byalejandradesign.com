@@ -4,3 +4,4 @@ export { default as addressToServerAddress } from './address-to-server-address';
 
 export * from './address-to-paypal-address';
 export * from './address-to-server-address';
+export * from './types';
