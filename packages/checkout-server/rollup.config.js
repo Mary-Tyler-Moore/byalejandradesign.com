@@ -3,8 +3,7 @@ import builtins from 'rollup-plugin-node-builtins';
 import globals from 'rollup-plugin-node-globals';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
-import postcss from 'rollup-plugin-postcss';
-import autoprefixer from 'autoprefixer';
+import runtimes from '@njmyers/babel-runtime-files';
 import pkg from './package.json';
 
 const dependencies = {
@@ -12,16 +11,24 @@ const dependencies = {
   ...(pkg.peerDependencies || {}),
 };
 
-const { '@artetexture/checkout-objects': bad, ...rest } = dependencies;
+const external = [...Object.keys(dependencies), ...runtimes(), 'fs', 'path'];
 
-const external = [...Object.keys(rest), 'react-dom/server', 'fs', 'path'];
-
-const plugins = [
-  postcss({
-    plugins: [autoprefixer],
-    extract: 'build/style.css',
-    sourceMap: true,
+const basePlugins = [
+  resolve({
+    jsnext: true,
+    main: true,
   }),
+  globals({
+    process: false,
+    dirname: false,
+  }),
+  builtins(),
+  babel({
+    runtimeHelpers: true,
+    exclude: 'node_modules/**',
+    plugins: ['@babel/plugin-transform-runtime'],
+  }),
+  // commonjs(),
 ];
 
 export default [
@@ -33,18 +40,6 @@ export default [
       format: 'cjs',
       sourcemap: true,
     },
-    plugins: [
-      resolve(),
-      globals({
-        process: false,
-      }),
-      builtins(),
-      babel({
-        runtimeHelpers: true,
-        exclude: 'node_modules/**',
-      }),
-      commonjs(),
-      ...plugins,
-    ],
+    plugins: [...basePlugins],
   },
 ];

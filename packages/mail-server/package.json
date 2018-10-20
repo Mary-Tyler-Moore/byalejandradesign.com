@@ -1,35 +1,34 @@
 {
-  "name": "@artetexture/checkout-server",
+  "name": "@artetexture/mail-server",
   "version": "0.0.1",
-  "description": "a braintree server",
-  "private": true,
-  "keywords": [
-    "braintree"
-  ],
-  "license": "ISC",
-  "author": "Nick Myers <nickmyers111@gmail.com>",
+  "description": "for sending mails",
   "main": "build/app.cjs.js",
   "scripts": {
     "develop": "run-p rollup:watch serverless:development",
-    "stage": "run-p rollup:build serverless:staging",
-    "deploy": "run-p rollup:build serverless:production",
-    "rollup:build": "shx rm -rf build && rollup -c rollup.config.js",
-    "rollup:watch": "shx rm -rf build && rollup -c rollup.config.js --watch",
+    "stage": "run-p rollup serverless:staging",
+    "deploy": "run-p rollup serverless:production",
+    "prerollup": "shx rm -rf build",
+    "rollup": "rollup -c rollup.config.js",
+    "prerollup:watch": "shx rm -rf build",
+    "rollup:watch": "rollup -c rollup.config.js --watch",
     "serverless:development": "serverless offline start --stage development",
     "serverless:staging": "serverless deploy -v --stage staging",
     "serverless:production": "serverless deploy -v --stage production"
   },
+  "author": "Nick Myers <nickmyers111@gmail.com>",
+  "license": "ISC",
   "dependencies": {
     "@artetexture/checkout-objects": "^0.0.1",
     "@artetexture/server-middleware": "^0.0.1",
+    "@artetexture/templates": "^0.0.1",
     "@babel/runtime": "^7.1.2",
     "axios": "^0.18.0",
     "bluebird": "^3.5.1",
-    "braintree": "^2.11.0",
     "express": "^4.16.2",
+    "react": "16.4",
+    "react-dom": "16.4",
     "serverless-http": "^1.6.0",
-    "smalldash": "^1.1.9",
-    "xml2js": "^0.4.19"
+    "smalldash": "^1.1.9"
   },
   "devDependencies": {
     "flow-bin": "^0.83.0",

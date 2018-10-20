@@ -6,6 +6,8 @@ import routes from './routes';
 import middleware from '@artetexture/server-middleware';
 // initialize app
 const app = express();
+// add static build files
+app.use(express.static(__dirname + 'build/static'));
 // apply all middleware
 middleware.forEach((middlware) => app.use(middlware));
 // apply all top level routes

@@ -1,0 +1,16 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+.env
+.webpack
+
+build/
+
+env.json
+env.*.json
+!env.example.json
+
+yarn-error.log

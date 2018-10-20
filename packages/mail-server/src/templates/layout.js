@@ -1,3 +1,6 @@
+/** @flow */
+import './layout.sass';
+
 type Head = {
   title: string,
   style: string,

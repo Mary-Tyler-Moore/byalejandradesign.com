@@ -4,7 +4,7 @@ import type { $Request, $Response, NextFunction } from 'express';
 const requestAPIKey = process.env.REQUEST_API_KEY;
 
 const auth = (req: $Request, res: $Response, next: NextFunction) => {
-  const key: string = req.get('Authorization');
+  const key: string | void = req.get('Authorization');
 
   if (key === requestAPIKey) next();
   else

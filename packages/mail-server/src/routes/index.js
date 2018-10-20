@@ -1,7 +1,6 @@
 // @flow
 import fallback from './fallback';
-import braintree from './braintree/routes';
-// import address from './address/routes';
+import email from './email';
 // types
 import type { Router } from 'express';
 
@@ -10,6 +9,6 @@ import type { Router } from 'express';
  * Express will map through these and apply them with app.use()
  * @type {array}
  */
-const routes: Array<Router> = [braintree, fallback];
+const routes: Array<Router> = [email, fallback];
 
 export default routes;

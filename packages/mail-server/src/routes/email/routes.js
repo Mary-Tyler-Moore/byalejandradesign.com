@@ -6,6 +6,6 @@ import type { Router, $Request, $Response } from 'express';
 // initialize router
 const router: Router = express.Router();
 
-router.post('/email/order-confirmation', orderConfirmation);
+router.all('/email/order-confirmation', orderConfirmation);
 
 export default router;
