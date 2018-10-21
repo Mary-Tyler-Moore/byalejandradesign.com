@@ -2,7 +2,7 @@
   "name": "@artetexture/root",
   "private": true,
   "scripts": {
-    "bootstrap": "yarn --offline && lerna bootstrap -- --offline && lerna link",
+    "bootstrap": "yarn && lerna bootstrap && lerna link",
     "postbootstrap": "lerna run build",
     "prebuild-web": "run-s bootstrap",
     "build-web": "lerna run build-web",
