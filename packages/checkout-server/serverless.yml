@@ -33,6 +33,7 @@ provider:
     BRAINTREE_PUBLIC_KEY: ${file(./env.${self:provider.stage}.json):BRAINTREE_PUBLIC_KEY}
     BRAINTREE_PRIVATE_KEY: ${file(./env.${self:provider.stage}.json):BRAINTREE_PRIVATE_KEY}
     USPS_USER_ID: ${file(./env.${self:provider.stage}.json):USPS_USER_ID}
+    REQUEST_API_KEY: ${file(./env.${self:provider.stage}.json):REQUEST_API_KEY}
 
 package:
   exclude:

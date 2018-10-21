@@ -14,10 +14,7 @@ const dependencies = {
 const external = [...Object.keys(dependencies), ...runtimes(), 'fs', 'path'];
 
 const basePlugins = [
-  resolve({
-    jsnext: true,
-    main: true,
-  }),
+  resolve(),
   globals({
     process: false,
     dirname: false,
@@ -28,7 +25,7 @@ const basePlugins = [
     exclude: 'node_modules/**',
     plugins: ['@babel/plugin-transform-runtime'],
   }),
-  // commonjs(),
+  commonjs(),
 ];
 
 export default [
