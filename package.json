@@ -11,6 +11,7 @@
     "types": "node scripts/install-types.js",
     "predevelop": "run-s bootstrap",
     "develop": "lerna run --parallel develop",
+    "develop:servers": "lerna run --parallel --ignore @artetexture/web develop",
     "test": "jest --watchAll"
   },
   "devDependencies": {
