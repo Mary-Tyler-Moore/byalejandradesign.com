@@ -1,8 +1,9 @@
 /** @flow */
 import { transaction as defaultTransaction } from '@artetexture/checkout-objects';
-import { orderConfirmationTemplate } from './templates';
+import { orderConfirmationTemplate } from '../../templates';
 // types
 import type { $Request, $Response } from 'express';
+import type { Transaction } from '@artetexture/checkout-objects';
 
 const orderConfirmation = (req: $Request, res: $Response) => {
   const transaction: Transaction =

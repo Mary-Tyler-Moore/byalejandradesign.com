@@ -40,14 +40,12 @@ const basePlugins = [
   commonjs(),
 ];
 
-const cssEntries = directory('src/routes/email/templates', {
+const cssEntries = directory('src/templates', {
   filter: '.js',
-  recursive: true,
+  recursive: false,
 })
   .filter((obj) => !/(index|styles)/gi.test(obj.path))
   .map((obj) => obj.path);
-
-console.log(cssEntries);
 
 export default [
   {

@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: braintree
+service: mailserver
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -29,10 +29,10 @@ provider:
   environment:
     STAGE: ${self:provider.stage}
     NODE_ENV: ${self:provider.stage}
-    BRAINTREE_MERCHANT_ID: ${file(./env.${self:provider.stage}.json):BRAINTREE_MERCHANT_ID}
-    BRAINTREE_PUBLIC_KEY: ${file(./env.${self:provider.stage}.json):BRAINTREE_PUBLIC_KEY}
-    BRAINTREE_PRIVATE_KEY: ${file(./env.${self:provider.stage}.json):BRAINTREE_PRIVATE_KEY}
-    USPS_USER_ID: ${file(./env.${self:provider.stage}.json):USPS_USER_ID}
+    MAILGUN_API_KEY: ${file(./env.${self:provider.stage}.json):MAILGUN_API_KEY}
+    MAILGUN_DOMAIN: ${file(./env.${self:provider.stage}.json):MAILGUN_DOMAIN}
+    MAILGUN_DEV_RECIPIENT: ${file(./env.${self:provider.stage}.json):MAILGUN_DEV_RECIPIENT}
+    REQUEST_API_KEY: ${file(./env.${self:provider.stage}.json):REQUEST_API_KEY}
 
 package:
   exclude:
@@ -49,7 +49,7 @@ functions:
 
 packagePath: './package.json'
 customDomain:
-  domainName: ${self:provider.stage}-checkout.artetexture.com
+  domainName: ${self:provider.stage}-mail.artetexture.com
   basePath: ''
   stage: ${self:provider.stage}
   createRoute53Record: true

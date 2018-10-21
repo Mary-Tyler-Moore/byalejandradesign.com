@@ -22,6 +22,7 @@
     "@artetexture/server-middleware": "^0.0.1",
     "@artetexture/templates": "^0.0.1",
     "@babel/runtime": "^7.1.2",
+    "@njmyers/sass": "^0.0.15",
     "axios": "^0.18.0",
     "bluebird": "^3.5.1",
     "express": "^4.16.2",
