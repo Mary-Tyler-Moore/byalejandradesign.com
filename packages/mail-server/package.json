@@ -11,7 +11,7 @@
     "rollup": "rollup -c rollup.config.js",
     "prerollup:watch": "shx rm -rf build",
     "rollup:watch": "rollup -c rollup.config.js --watch",
-    "serverless:development": "serverless offline start --stage development",
+    "serverless:development": "serverless offline start --port 3001 --stage development",
     "serverless:staging": "serverless deploy -v --stage staging",
     "serverless:production": "serverless deploy -v --stage production"
   },
