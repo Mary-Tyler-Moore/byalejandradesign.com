@@ -1,4 +1,5 @@
-import React, { PureComponent } from 'react';
+/** @flow */
+import * as React from 'react';
 import { connect } from 'react-redux';
 import { camelToTitle, camelToPascal } from 'smalldash';
 // components
@@ -9,16 +10,8 @@ import { updateAddressField } from '../redux/actions/address-actions';
 import geography from './geography';
 // styles
 import './create-address-form.sass';
-
-/**
- * fullName: '',
- * streetAddress1: '',
- * streetAddress2: '',
- * city: '',
- * province: '',
- * postalCode: '',
- * countryCode: '',
- */
+// types
+import type { Address } from '@artetexture/checkout-objects';
 
 // TODO: FIX CANADIAN ZIP REGEX
 
@@ -27,14 +20,22 @@ import './create-address-form.sass';
  * @param {string} slice redux key for which slice of redux state to access
  * @return {class} returns a react class with all redux plumbing
  */
-const createAddressForm = (slice) => {
-  class Address extends PureComponent {
-    constructor(props) {
-      super(props);
-      // transform keyword to different cases
-      this.pascalCase = camelToPascal(slice);
-      this.titleCase = camelToTitle(slice);
-    }
+const createAddressForm = (slice: string) => {
+  type Props = {
+    [slice: string]: Address,
+    focus: $Keys<Address>,
+    updateAddressField: () => mixed,
+    manuallyUpdateAddressField: () => mixed,
+  };
+
+  class Address extends React.PureComponent<Props> {
+    // transform keyword to different cases
+    pascalCase = camelToPascal(slice);
+    titleCase = camelToTitle(slice);
+
+    static defaultProps = {
+      focus: ['firstName'],
+    };
 
     createPostalRegex = () => {
       switch (this.props[slice].countryCode) {
@@ -111,7 +112,7 @@ const createAddressForm = (slice) => {
           <h4 className="addressForm_h4">{this.titleCase}</h4>
           <form className="addressForm_form" onSubmit={this.props.onSubmit}>
             <Form.Input
-              focus
+              focus={this.props.focus.includes('firstName')}
               name="firstName"
               label="First Name"
               block="addressField"
@@ -121,7 +122,7 @@ const createAddressForm = (slice) => {
               required
             />
             <Form.Input
-              focus
+              focus={this.props.focus.includes('lastName')}
               name="lastName"
               label="Last Name"
               block="addressField"
@@ -131,6 +132,7 @@ const createAddressForm = (slice) => {
               required
             />
             <Form.Input
+              focus={this.props.focus.includes('streetAddress1')}
               name="streetAddress1"
               label="Address Line 1"
               block="addressField"
@@ -139,6 +141,7 @@ const createAddressForm = (slice) => {
               required
             />
             <Form.Input
+              focus={this.props.focus.includes('streetAddress2')}
               name="streetAddress2"
               label="Address Line 2"
               block="addressField"
@@ -147,6 +150,7 @@ const createAddressForm = (slice) => {
               required
             />
             <Form.Input
+              focus={this.props.focus.includes('city')}
               name="city"
               block="addressField"
               value={this.props[slice].city}
@@ -155,6 +159,7 @@ const createAddressForm = (slice) => {
               required
             />
             <Form.Select
+              focus={this.props.focus.includes('province')}
               name="province"
               block="addressSelect"
               label={geography[this.props[slice].countryCode].provincialKey}
@@ -165,6 +170,7 @@ const createAddressForm = (slice) => {
               required
             />
             <Form.Input
+              focus={this.props.focus.includes('postalCode')}
               name="postalCode"
               label="Postal Code"
               block="addressField"
@@ -175,6 +181,7 @@ const createAddressForm = (slice) => {
               required
             />
             <Form.Select
+              focus={this.props.focus.includes('countryCode')}
               name="countryCode"
               block="addressSelect"
               label="Country"

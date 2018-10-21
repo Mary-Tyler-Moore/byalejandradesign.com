@@ -1,7 +1,9 @@
+/** @flow */
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { navigate } from 'gatsby';
 import Button from '../../Button';
+import { validateAddress } from '@artetexture/checkout-objects';
 import { Form } from '@njmyers/component-library';
 // components
 import { createAddressForm } from '../create-address';
@@ -12,11 +14,28 @@ import {
 } from '../redux/actions/payment-methods-actions';
 // styles
 import './address-forms.sass';
+// types
+import type { Address } from '@artetexture/checkout-objects';
 
 const BillingAddressForm = createAddressForm('billingAddress');
 const ShippingAddressForm = createAddressForm('shippingAddress');
 
-class AddressForms extends React.PureComponent {
+type Props = {
+  billingAddress: Address,
+  shippingAddress: Address,
+};
+
+type State = {
+  focusFields: Array<string>,
+  status: 'initial' | 'invalid',
+};
+
+class AddressForms extends React.PureComponent<Props, State> {
+  state = {
+    focusFields: [''],
+    status: 'initial',
+  };
+
   onSubmit = (event) => {
     navigate('/checkout/payment-method');
   };
@@ -30,7 +49,26 @@ class AddressForms extends React.PureComponent {
   };
 
   onClick = () => {
-    navigate('/checkout/payment-method');
+    const { valid: shippingValid, fields: shippingFields } = validateAddress(
+      this.props.shippingAddress
+    );
+
+    const { valid: billingValid, fields: billingFields } = validateAddress(
+      this.props.billingAddress
+    );
+
+    if (shippingValid || (this.props.hasBillingAddress && billingValid)) {
+      navigate('/checkout/payment-method');
+    } else {
+      this.setState((state) => ({
+        focusFields: [
+          ...shippingFields,
+          ...(this.props.hasBillingAddress ? billingFields : []),
+        ],
+        status: 'invalid',
+      }));
+    }
+    fields;
   };
 
   onEmail = (event) => {
@@ -42,7 +80,7 @@ class AddressForms extends React.PureComponent {
     return (
       <React.Fragment>
         <section className="shippingAddress">
-          <ShippingAddressForm />
+          <ShippingAddressForm focus={this.state.focusFields} />
           <Form.Input
             block="addressField"
             value={this.props.email}
@@ -56,13 +94,13 @@ class AddressForms extends React.PureComponent {
             className="addressToggle_input"
             type="checkbox"
             onChange={this.onChange}
-            checked={this.props.billingAddress}
+            checked={this.props.hasBillingAddress}
           />
           <span>
             Click Here if Billing Address is different then Shipping Address
           </span>
         </section>
-        {this.props.billingAddress && (
+        {this.props.hasBillingAddress && (
           <section className="billingAddress">
             <BillingAddressForm />
           </section>
@@ -78,7 +116,9 @@ class AddressForms extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  billingAddress: state.checkout.payment.billingAddress,
+  billingAddress: state.checkout.billingAddress,
+  shippingAddress: state.checkout.shippingAddress,
+  hasBillingAddress: state.checkout.payment.billingAddress,
   email: state.checkout.payment.email,
 });
 
