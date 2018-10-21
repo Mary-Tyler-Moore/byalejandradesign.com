@@ -2,7 +2,7 @@
 import gateway from './gateway';
 // types
 import type { Router, $Request, $Response } from 'express';
-import type { Transaction } from 'checkout';
+import type { Transaction } from '@artetexture/checkout-objects';
 
 const clientToken = async (req: $Request, res: $Response) => {
   try {
