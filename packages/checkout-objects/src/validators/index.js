@@ -1,8 +1,8 @@
 /** @flow */
-import { default as validateAddress } from './validate-address';
-import { default as validateServerAddress } from './validate-server-address';
-import { default as validatePaypalAddress } from './validate-paypal-address';
-import { default as validateCustomer } from './validate-customer';
+export { default as validateAddress } from './validate-address';
+export { default as validateServerAddress } from './validate-server-address';
+export { default as validatePaypalAddress } from './validate-paypal-address';
+export { default as validateCustomer } from './validate-customer';
 
 export * from './validate-address';
 export * from './validate-server-address';

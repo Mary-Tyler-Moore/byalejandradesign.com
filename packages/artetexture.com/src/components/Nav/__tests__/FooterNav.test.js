@@ -8,6 +8,8 @@ configure({ adapter: new Adapter() });
 
 const footerNav = ['/link', '/other-link'];
 
+window.__PATH_PREFIX__ = '';
+
 describe('it renders the footer navs', () => {
   test('it displays the desktop version', () => {
     const wrapper = shallow(
