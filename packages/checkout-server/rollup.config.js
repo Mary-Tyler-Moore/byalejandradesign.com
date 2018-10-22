@@ -23,7 +23,6 @@ const basePlugins = [
   babel({
     runtimeHelpers: true,
     exclude: 'node_modules/**',
-    plugins: ['@babel/plugin-transform-runtime'],
   }),
   commonjs(),
 ];

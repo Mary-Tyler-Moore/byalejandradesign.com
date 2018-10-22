@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = {
   presets: [
     [
@@ -40,14 +38,4 @@ module.exports = {
       },
     ],
   ],
-  env: {
-    test: {
-      presets: [
-        ['@babel/preset-env'],
-        '@babel/preset-react',
-        '@babel/preset-flow',
-      ],
-      plugins: ['dynamic-import-node'],
-    },
-  },
 };

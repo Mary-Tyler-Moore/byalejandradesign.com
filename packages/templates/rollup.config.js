@@ -13,6 +13,11 @@ const external = [
 ];
 
 const plugins = [
+  resolve(),
+  babel({
+    runtimeHelpers: true,
+    exclude: 'node_modules/**',
+  }),
   postcss({
     plugins: [autoprefixer],
     extract: 'build/style.css',
@@ -29,42 +34,16 @@ export default [
       format: 'cjs',
       sourcemap: true,
     },
-    plugins: [
-      resolve({
-        jsnext: true,
-        main: true,
-      }),
-      babel({
-        runtimeHelpers: true,
-        exclude: 'node_modules/**',
-        plugins: ['@babel/plugin-transform-runtime'],
-      }),
-      ...plugins,
-    ],
+    plugins,
   },
   {
     input: 'src/index.js',
     external,
     output: {
       file: pkg.module,
-      format: 'es',
+      format: 'esm',
       sourcemap: true,
     },
-    plugins: [
-      resolve(),
-      babel({
-        runtimeHelpers: true,
-        exclude: 'node_modules/**',
-        plugins: [
-          [
-            '@babel/plugin-transform-runtime',
-            {
-              useESModules: true,
-            },
-          ],
-        ],
-      }),
-      ...plugins,
-    ],
+    plugins,
   },
 ];

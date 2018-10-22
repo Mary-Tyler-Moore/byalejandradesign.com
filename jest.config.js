@@ -5,11 +5,11 @@ module.exports = {
   },
   testPathIgnorePatterns: [
     'node_modules/',
-    '<rootDir>/.cache/',
-    '<rootDir>/public',
+    '.cache/',
+    'public/',
+    'build/',
     'helpers/',
   ],
   roots: ['packages/'],
-  // projects: ['<rootDir>/jest.config.js', '<rootDir>/packages/*/jest.config.js'],
-  transformIgnorePatterns: ['node_modules/(?!(gatsby)/)'],
+  transformIgnorePatterns: ['node_modules/(?!(gatsby|@artetexture)/)'],
 };

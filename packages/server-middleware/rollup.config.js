@@ -12,7 +12,31 @@ const external = [
   ...runtimes(),
 ];
 
+const plugins = [
+  resolve(),
+  globals({
+    process: false,
+    dirname: false,
+  }),
+  builtins(),
+  babel({
+    runtimeHelpers: true,
+    exclude: 'node_modules/**',
+  }),
+  commonjs(),
+];
+
 export default [
+  {
+    input: 'src/index.js',
+    external,
+    output: {
+      file: pkg.module,
+      format: 'esm',
+      sourcemap: true,
+    },
+    plugins,
+  },
   {
     input: 'src/index.js',
     external,
@@ -21,19 +45,6 @@ export default [
       format: 'cjs',
       sourcemap: true,
     },
-    plugins: [
-      resolve(),
-      globals({
-        process: false,
-        dirname: false,
-      }),
-      builtins(),
-      babel({
-        runtimeHelpers: true,
-        exclude: 'node_modules/**',
-        plugins: ['@babel/plugin-transform-runtime'],
-      }),
-      commonjs(),
-    ],
+    plugins,
   },
 ];
