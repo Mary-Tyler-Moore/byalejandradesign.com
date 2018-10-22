@@ -21,6 +21,8 @@ const BillingAddressForm = createAddressForm('billingAddress');
 const ShippingAddressForm = createAddressForm('shippingAddress');
 
 type Props = {
+  hasBillingAddress: boolean,
+  setBillingAddress: (param: boolean) => mixed,
   billingAddress: Address,
   shippingAddress: Address,
 };
@@ -57,6 +59,8 @@ class AddressForms extends React.PureComponent<Props, State> {
       this.props.billingAddress
     );
 
+    console.log(shippingFields, billingFields);
+
     if (shippingValid || (this.props.hasBillingAddress && billingValid)) {
       navigate('/checkout/payment-method');
     } else {
@@ -68,7 +72,6 @@ class AddressForms extends React.PureComponent<Props, State> {
         status: 'invalid',
       }));
     }
-    fields;
   };
 
   onEmail = (event) => {

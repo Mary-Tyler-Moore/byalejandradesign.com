@@ -11,7 +11,7 @@ import geography from './geography';
 // styles
 import './create-address-form.sass';
 // types
-import type { Address } from '@artetexture/checkout-objects';
+import type { Address as AddressType } from '@artetexture/checkout-objects';
 
 // TODO: FIX CANADIAN ZIP REGEX
 
@@ -22,8 +22,8 @@ import type { Address } from '@artetexture/checkout-objects';
  */
 const createAddressForm = (slice: string) => {
   type Props = {
-    [slice: string]: Address,
-    focus: $Keys<Address>,
+    [slice: string]: AddressType,
+    focus: $Keys<AddressType>,
     updateAddressField: () => mixed,
     manuallyUpdateAddressField: () => mixed,
   };
