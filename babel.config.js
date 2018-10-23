@@ -5,8 +5,6 @@ module.exports = (api) => {
 
   const env = process.env.BABEL_ENV;
 
-  console.log(env);
-
   return {
     babelrcRoots: ['/packages/*'],
     presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-flow'],
