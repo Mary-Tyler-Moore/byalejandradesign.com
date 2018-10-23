@@ -4,10 +4,15 @@
   margin: 0
   padding: 0
 
-  @extend %imageLinkTransition
+  &_clickable
+    cursor: pointer
+    backface-visibility: hidden
 
-  &:hover
-    @extend %imageLinkHover
+    +transition(0.25s transform, 0.25s filter)
+
+    &:hover
+      transform: scale(1.02)
+      filter: brightness(0.8)
 
   &_link
     @extend %a

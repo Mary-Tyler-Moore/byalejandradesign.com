@@ -11,27 +11,36 @@ export type FluidImageProps = {
       fluid?: {},
     },
   },
-  to?: string,
+  to: string,
+  className: string,
 };
 
-const FluidImage = ({ localFile, to }: FluidImageProps) =>
+const FluidImageLink = ({ children, to }) =>
   to ? (
     <Link to={to} className="fluidImage_link">
-      <figure className="fluidImage">
-        <Img
-          className="fluidImage_gatsby"
-          fluid={localFile.childImageSharp.fluid}
-        />
-      </figure>
+      {children}
     </Link>
   ) : (
-    <figure className="fluidImage">
+    children
+  );
+
+const FluidImage = ({ localFile, to, className }: FluidImageProps) => (
+  <FluidImageLink to={to}>
+    <figure
+      className={`fluidImage${to && ' fluidImage_clickable'}${' ' + className}`}
+    >
       <Img
         className="fluidImage_gatsby"
         fluid={localFile.childImageSharp.fluid}
       />
     </figure>
-  );
+  </FluidImageLink>
+);
+
+FluidImage.defaultProps = {
+  className: '',
+  to: '',
+};
 
 /** Default image sharp fragment for wp media */
 export const query = graphql`
