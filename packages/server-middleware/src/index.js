@@ -3,6 +3,7 @@ import cors from './cors';
 import body from './body-parser';
 import auth from './auth';
 import secure from './secure';
+import validateBody from './validate-body';
 import responseHeaders from './response-headers';
 
 import type { Middleware } from 'express';
@@ -17,6 +18,7 @@ const middleware: Array<Middleware> = [
   ...body,
   auth,
   secure,
+  validateBody,
   responseHeaders,
 ];
 
