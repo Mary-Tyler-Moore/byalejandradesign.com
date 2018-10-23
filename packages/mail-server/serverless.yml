@@ -33,6 +33,7 @@ provider:
     MAILGUN_DOMAIN: ${file(./env.${self:provider.stage}.json):MAILGUN_DOMAIN}
     MAILGUN_DEV_RECIPIENT: ${file(./env.${self:provider.stage}.json):MAILGUN_DEV_RECIPIENT}
     REQUEST_API_KEY: ${file(./env.${self:provider.stage}.json):REQUEST_API_KEY}
+    DOMAIN: ${file(./env.${self:provider.stage}.json):DOMAIN}
 
 package:
   exclude:
@@ -48,8 +49,10 @@ functions:
         cors: true
 
 packagePath: './package.json'
-customDomain:
-  domainName: ${self:provider.stage}-mail.artetexture.com
-  basePath: ''
-  stage: ${self:provider.stage}
-  createRoute53Record: true
+
+custom:
+  customDomain:
+    domainName: ${file(./env.${self:provider.stage}.json):DOMAIN}
+    basePath: ''
+    stage: ${self:provider.stage}
+    createRoute53Record: true
