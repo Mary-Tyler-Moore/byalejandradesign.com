@@ -17,20 +17,36 @@ const dependencies = []
     )
   )
   .filter((obj) => /package.json/.test(obj.path))
-  .map((obj) => JSON.parse(obj.file))
+  .map((obj) => ({ ...obj, json: JSON.parse(obj.file) }))
   .map((obj) => ({
-    ...(obj.dependencies || {}),
-    ...(obj.peerDependencies || {}),
+    ...obj,
+    dependencies: {
+      ...(obj.json.dependencies || {}),
+      ...(obj.json.peerDependencies || {}),
+    },
   }))
-  .reduce((prevObj, nextObj) => ({ ...prevObj, ...(nextObj || {}) }), {});
+  .map((obj) => ({
+    dependencies: Object.entries(obj.dependencies),
+    path: obj.path.split('/package.json')[0],
+  }))
+  .reduce(
+    (prevDeps, nextPackage) => [
+      ...prevDeps,
+      ...nextPackage.dependencies.map((entry) => ({
+        pkg: entry[0],
+        version: entry[1],
+        cwd: nextPackage.path,
+      })),
+    ],
+    []
+  );
 
 const pipeline = pipeAsync(
-  ...Object.entries(dependencies).map((entry) => () =>
+  ...dependencies.map(({ pkg, version, cwd }) => () =>
     new Promise((res, rej) => {
-      const [pkg, version] = entry;
-
       const proc = spawn('flow-typed', ['install', '-s', `${pkg}@${version}`], {
         stdio: 'inherit',
+        cwd,
       });
 
       proc.on('close', (code) => {
