@@ -4,19 +4,21 @@ import gateway from './gateway';
 import type { Router, $Request, $Response } from 'express';
 import type { Transaction } from '@artetexture/checkout-objects';
 
-const clientToken = async (req: $Request, res: $Response) => {
-  try {
-    const clientToken = await gateway.clientToken.generate({});
-    res.status(200).json({
-      status: 200,
-      ...clientToken,
+const clientToken = (req: $Request, res: $Response) => {
+  gateway.clientToken
+    .generate({})
+    .then((clientToken) =>
+      res.status(200).json({
+        status: 200,
+        ...clientToken,
+      })
+    )
+    .catch((error) => {
+      res.status(404).json({
+        status: 404,
+        message: 'client token not approved',
+      });
     });
-  } catch (e) {
-    res.status(404).json({
-      status: 404,
-      message: e,
-    });
-  }
 };
 
 export default clientToken;

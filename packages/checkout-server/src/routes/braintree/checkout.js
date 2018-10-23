@@ -1,56 +1,115 @@
 /** @flow */
+import { nullish, pipeAsync } from 'smalldash';
+import axios from 'axios';
 import gateway from './gateway';
+import { validateTransaction } from '@artetexture/checkout-objects';
 // types
 import type { $Request, $Response } from 'express';
 import type { Transaction } from '@artetexture/checkout-objects';
 
-const validateBody = (body): boolean %checks => {
-  return typeof body === 'object' && body !== null;
+type CTX = {
+  transaction: Transaction,
+  body: {
+    ...?Transaction,
+  },
+  gatewayResponse?: {},
+  mailResponse?: {},
 };
 
-const checkout = async (req: $Request, res: $Response) => {
-  if (validateBody(req.body)) {
-    const {
-      paymentMethodNonce,
-      amount,
-      billing,
-      shipping,
-      customer,
-      lineItems,
-      orderId,
-    } = (req.body: Transaction);
+/** validate our transaction data */
+const validate = (ctx: CTX): Promise<CTX> =>
+  new Promise((resolve, reject) => {
+    const transaction = validateTransaction(ctx.body);
+    resolve({
+      ...ctx,
+      transaction,
+    });
+  });
 
-    try {
-      // const customer = await gateway.customer;
-      const result = await gateway.transaction.sale({
-        amount,
-        paymentMethodNonce,
-        billing,
-        shipping,
-        customer,
-        lineItems,
-        orderId,
+/** send the transaction to the payment gateway */
+const checkout = (ctx: CTX): Promise<CTX> =>
+  new Promise((resolve, reject) => {
+    gateway.transaction
+      .sale({
+        ...ctx.transaction,
         options: {
           submitForSettlement: true,
         },
-      });
+      })
+      .then((response) =>
+        resolve({
+          ...ctx,
+          gatewayResponse: response,
+        })
+      )
+      .catch((error) =>
+        resolve({
+          ...ctx,
+          gatewayResponse: error,
+        })
+      );
+  });
 
-      res.status(200).json({
-        result,
-      });
-    } catch (e) {
-      console.log(e);
-      res.status(404).json({
-        status: 404,
-        error: e,
-      });
+/** send a confirmation email */
+const confirmation = (ctx): Promise<CTX> =>
+  new Promise((resolve, reject) => {
+    if (ctx.gatewayResponse.success === true) {
+      axios({
+        url: `${process.env.MAIL_DOMAIN || ''}/order-confirmation`,
+        method: 'POST',
+        body: {
+          transaction: ctx.transaction,
+        },
+        headers: {
+          Authorization: process.env.API_KEY,
+        },
+      })
+        .then((response) =>
+          resolve({
+            ...ctx,
+            mailResponse: response,
+          })
+        )
+        .catch((error) =>
+          resolve({
+            ...ctx,
+            mailResponse: error,
+          })
+        );
     }
-  } else {
-    res.status(404).json({
-      status: 404,
-      error: 'error validation request body',
+
+    resolve({
+      ...ctx,
+      mailResponse: {},
     });
-  }
+  });
+
+const pipeline = (req: $Request, res: $Response) => {
+  pipeAsync(validate, checkout, confirmation)({
+    body: req.body,
+  })
+    .then((ctx) => {
+      if (ctx.gatewayResponse.success === true && ctx.mailResponse === 200) {
+        res.status(200).json({
+          message: 'transaction approved',
+          status: 200,
+        });
+      } else {
+        // log specifics to all failed transactions
+        console.log({
+          orderId: ctx.transaction.orderId,
+          mailResponse: ctx.mailResponse.status,
+          gatewayResponse: ctx.gatewayResponse.success,
+        });
+
+        res.status(404).json({
+          message: 'transaction not accepted',
+          status: 404,
+        });
+      }
+    })
+    // no promises reject so all errors should trickle up to the pipeline handler
+    .catch((error) => console.log(error));
 };
 
-export default checkout;
+export default pipeline;
