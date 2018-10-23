@@ -1,3 +1,2 @@
-export { default as AllPosts } from './AllPosts';
-export { default as SinglePostDesktop } from './SinglePostDesktop';
-export { default as SinglePostMobile } from './SinglePostMobile';
+export { default as SinglePost } from './SinglePost';
+export { default as PostExcerpt } from './PostExcerpt';

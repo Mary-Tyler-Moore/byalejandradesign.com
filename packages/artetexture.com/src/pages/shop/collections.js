@@ -29,11 +29,18 @@ class CollectionEdges extends React.Component {
 export default CollectionEdges;
 
 export const query = graphql`
-  query AllCollectionsOr {
+  query AllCollections {
     allWordpressWpCollections {
       edges {
         node {
-          ...CollectionData
+          ...CollectionExcerptFragment
+          acf {
+            header_image {
+              localFile {
+                ...HeaderImageFragment
+              }
+            }
+          }
         }
       }
     }

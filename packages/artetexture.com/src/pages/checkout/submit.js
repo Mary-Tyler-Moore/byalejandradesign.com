@@ -1,16 +1,9 @@
-/** @flow */
 import * as React from 'react';
 import { graphql } from 'gatsby';
 import Submit from '../../components/Checkout/Submit';
 import Layout from '../../components/Layout';
-// types
-import type { allWordpressWpShop } from 'data';
 
-type Props = {
-  data: { allWordpressWpShop: allWordpressWpShop },
-};
-
-export default (props: Props) => (
+export default (props) => (
   <Layout>
     <Submit {...props} />
   </Layout>

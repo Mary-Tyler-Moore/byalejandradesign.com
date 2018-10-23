@@ -1,28 +1,34 @@
 /** @flow */
 import * as React from 'react';
-import { withCart } from '../Cart';
+import { graphql } from 'gatsby';
+// import { withCart } from '../Cart';
 // style
 import './single-collection.sass';
 // types
-import type { CollectionNode } from 'data';
+import type { CollectionNode } from '@artetexture/data-objects';
 
 type Props = {
   node: CollectionNode,
 };
 
-class SingleCollection extends React.Component<Props> {
-  render() {
-    return (
-      <section className="singleCollection">
-        <article className="singleCollection_article" key={this.props.node.id}>
-          <h2 className="singleCollection_h2">{this.props.node.name}</h2>
-          <p className="singleCollection_description">
-            <em>{this.props.node.description}</em>
-          </p>
-        </article>
-      </section>
-    );
-  }
-}
+const SingleCollection = ({ node }: Props) => (
+  <section className="singleCollection">
+    <article className="singleCollection_article" key={node.id}>
+      <h2 className="singleCollection_h2">{node.name}</h2>
+      <p className="singleCollection_description">
+        <em>{node.description}</em>
+      </p>
+    </article>
+  </section>
+);
 
-export default withCart(SingleCollection);
+export const query = graphql`
+  fragment SingleCollectionFragment on wordpress__wp_collections {
+    name
+    id
+    wordpress_id
+    description
+  }
+`;
+
+export default SingleCollection;
