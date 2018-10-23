@@ -16,8 +16,6 @@ const key = () => {
   return process.env.GATSBY_API_KEY;
 };
 
-console.log(process.env);
-
 const server = axios.create({
   baseURL: base(),
   headers: {

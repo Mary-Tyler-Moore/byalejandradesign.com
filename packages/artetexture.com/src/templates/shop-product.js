@@ -42,22 +42,6 @@ const SizedNode = withSize({ mobile: true })(Node);
 
 export default SizedNode;
 
-/**
- * Default image sharp fragment for wp media
- * @type {wordpress__wp_media}
- */
-export const sharpImageFragment = graphql`
-  fragment SharpImage on wordpress__wp_media {
-    localFile {
-      childImageSharp {
-        fluid(maxWidth: 1200, maxHeight: 900) {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  }
-`;
-
 export const sparseFragment = graphql`
   fragment SparseProductData on wordpress__wp_shop {
     title
@@ -75,7 +59,14 @@ export const fragment = graphql`
   fragment ProductData on wordpress__wp_shop {
     ...SparseProductData
     collections {
-      ...CollectionData
+      slug
+      acf {
+        header_image {
+          localFile {
+            ...HeaderImageFragment
+          }
+        }
+      }
     }
     sizes {
       slug
@@ -95,10 +86,10 @@ export const fragment = graphql`
         height
       }
       main_image {
-        ...SharpImage
+        ...FluidImageFragment
       }
       additional_images {
-        ...SharpImage
+        ...FluidImageFragment
       }
     }
   }

@@ -4,7 +4,6 @@ import { Link } from 'gatsby';
 import { withCart } from '../Cart';
 import Button from '../Button';
 import FluidImage from '../FluidImage';
-// import Size from './Size';
 // helpers
 import title from './title';
 import { dollarString } from 'smalldash';

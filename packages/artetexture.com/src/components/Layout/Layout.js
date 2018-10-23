@@ -64,7 +64,7 @@ class Layout extends React.Component {
                   options {
                     default_header {
                       localFile {
-                        ...HeaderImage
+                        ...HeaderImageFragment
                       }
                     }
                   }

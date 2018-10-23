@@ -35,52 +35,17 @@ class CollectionProducts extends React.Component<Props> {
 
 export default CollectionProducts;
 
-export const sparseFragment = graphql`
-  fragment SparseCollectionData on wordpress__wp_collections {
-    name
-    id
-    wordpress_id
-    description
-    slug
-  }
-`;
-
-export const headerFragmet = graphql`
-  fragment HeaderImage on File {
-    childImageSharp {
-      fluid(maxWidth: 1920, quality: 100, cropFocus: NORTH) {
-        ...GatsbyImageSharpFluid
-      }
-    }
-  }
-`;
-
-export const fragement = graphql`
-  fragment CollectionData on wordpress__wp_collections {
-    ...SparseCollectionData
-    acf {
-      image {
-        localFile {
-          childImageSharp {
-            fluid(maxWidth: 600, maxHeight: 400) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-      }
-      header_image {
-        localFile {
-          ...HeaderImage
-        }
-      }
-    }
-  }
-`;
-
 export const query = graphql`
   query CollectionById($id: String!) {
     wordpressWpCollections(id: { eq: $id }) {
-      ...CollectionData
+      ...SingleCollectionFragment
+      acf {
+        header_image {
+          localFile {
+            ...HeaderImageFragment
+          }
+        }
+      }
     }
     allWordpressWpShop(filter: { collections: { id: { eq: $id } } }) {
       edges {

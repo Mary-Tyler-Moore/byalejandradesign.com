@@ -1,6 +1,5 @@
 /** @flow */
 import * as React from 'react';
-import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 import Button from '../Button';
 import { withCart } from '../Cart';
