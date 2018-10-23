@@ -1,0 +1,30 @@
+@import ../../sass/global
+
+.slideshow
+  &_imgContainer
+    margin: 0
+    padding: 0
+    position: relative
+    width: 100%
+
+  &_img
+    position: absolute
+    margin: 0
+    width: 100%
+    opacity: 0
+    top: 0
+    left: 0
+
+    +transition(0.45s opacity)
+
+    &-active
+      position: relative
+      opacity: 1
+
+    &-last
+      position: absolute
+      opacity: 1
+
+    &-next
+      position: absolute
+      opacity: 1

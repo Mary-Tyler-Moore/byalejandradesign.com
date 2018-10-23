@@ -1,9 +1,9 @@
 /** @flow */
 import * as React from 'react';
-import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 import { withCart } from '../Cart';
 import Button from '../Button';
+import FluidImage from '../FluidImage';
 // import Size from './Size';
 // helpers
 import title from './title';
@@ -34,12 +34,10 @@ const ProductList = ({ edges, addOneToCart, sizes, cart }: Props) => (
 
       return (
         <article key={node.id}>
-          <Link className="productListItem_imgLink" to={`/shop/${node.slug}`}>
-            <Img
-              className="productListItem_img"
-              fluid={node.acf.main_image.localFile.childImageSharp.fluid}
-            />
-          </Link>
+          <FluidImage
+            to={`/shop/${node.slug}`}
+            localFile={node.acf.main_image.localFile}
+          />
           <Link className="productListItem_textLink" to={`/shop/${node.slug}`}>
             <h5 className="productListItem_h5">{title(node)}</h5>
           </Link>
