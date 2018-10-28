@@ -48,8 +48,8 @@ const normalizers = compose(
 
 module.exports = {
   siteMetadata: {
-    siteUrl: 'https://artetexture.com',
-    title: 'Artetexture',
+    siteUrl: 'https://byalejandradesign.com',
+    title: 'By Alejandra',
     subTitle: 'Design Studio and Shop',
     navLayout: {
       mainNav: ['/home', '/cloud-studio', '/shop', '/contact'],
@@ -106,8 +106,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Artetexture: Design Studio and Shop',
-        short_name: 'Artetexture',
+        name: 'By Alejandra: Design Studio and Shop',
+        short_name: 'By Alejandra',
         start_url: '/',
         display: 'minimal-ui',
       },
