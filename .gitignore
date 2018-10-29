@@ -5,3 +5,23 @@ yarn-error.log
 
 .env
 .env.*
+[ignore]
+node_modules
+
+[include]
+
+[libs]
+flow-typed
+
+[lints]
+
+[options]
+module.file_ext=.js
+module.file_ext=.jsx
+module.file_ext=.json
+module.file_ext=.css
+module.file_ext=.sass
+; add support for local packages
+module.name_mapper='^@artetexture\/\([a-zA-Z0-9_\-]+\)$' -> '<PROJECT_ROOT>/../packages/\1'
+; strict mode
+module.use_strict=true

@@ -3,7 +3,7 @@ import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 import { OrderConfirmation } from '@artetexture/templates';
 import layout from './layout';
-import stylesheets from './lib/stylesheets';
+import stylesheets from '../lib/stylesheets';
 import './order-confirmation.sass';
 // types
 import type { Transaction } from '@artetexture/checkout-objects';

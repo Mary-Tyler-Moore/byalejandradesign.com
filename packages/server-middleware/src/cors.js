@@ -1,10 +1,9 @@
 // @flow
 import cors from 'cors';
-
-const origins: string[] = ['https://artetexture.netlify.com'];
+import domain from './domain';
 
 const corsMiddleware = cors({
-  origin: origins,
+  origin: `https://${domain()}`,
   methods: 'POST, GET',
   allowedHeaders: ['Content-Type', 'Authorization'],
 });

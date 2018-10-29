@@ -2,6 +2,8 @@
 import mailgun from './mailgun-init';
 import { transaction as defaultTransaction } from '@artetexture/checkout-objects';
 import { orderConfirmationTemplate } from '../../templates';
+import domain from '../../lib/domain';
+import recipient from '../../lib/domain';
 // types
 import type { $Request, $Response } from 'express';
 import type { Transaction } from '@artetexture/checkout-objects';
@@ -12,14 +14,14 @@ const orderConfirmation = async (req: $Request, res: $Response) => {
 
   const html = orderConfirmationTemplate(transaction);
   const to =
-    process.env.STAGE === 'development'
-      ? process.env.MAILGUN_DEV_RECIPIENT
+    process.env.STAGE !== 'production'
+      ? process.env.MAILGUN_RECIPIENT
       : transaction.customer.email;
 
   const message = {
-    from: `Alejandra Rojas <artetexture@gmail.com>`,
+    from: `Alejandra Rojas <${recipient()}>`,
     to,
-    subject: `Order Confirmation from artetexture.com`,
+    subject: `Order Confirmation from ${domain()}`,
     html,
   };
 

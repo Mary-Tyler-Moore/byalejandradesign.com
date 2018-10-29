@@ -20,6 +20,7 @@ service: braintree
 plugins:
   - serverless-offline
   - serverless-domain-manager
+  - serverless-plugin-monorepo
 
 provider:
   name: aws

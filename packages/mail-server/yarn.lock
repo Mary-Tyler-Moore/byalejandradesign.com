@@ -1886,6 +1886,15 @@ fs-extra@^5.0.0:
     jsonfile "^4.0.0"
     universalify "^0.1.0"
 
+fs-extra@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-7.0.0.tgz#8cc3f47ce07ef7b3593a11b9fb245f7e34c041d6"
+  integrity sha512-EglNDLRpmaTWiD/qraZn6HREAEAHJcJOmxNEYwq6xeMKnVMAy3GUcFB+wXt2C6k4CNvB/mP1y/U3dzvKKj5OtQ==
+  dependencies:
+    graceful-fs "^4.1.2"
+    jsonfile "^4.0.0"
+    universalify "^0.1.0"
+
 fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
@@ -4231,6 +4240,13 @@ serverless-offline@^3.16.0:
     lodash "^4.17.10"
     uuid "^3.3.2"
     velocityjs "^1.1.2"
+
+serverless-plugin-monorepo@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/serverless-plugin-monorepo/-/serverless-plugin-monorepo-0.4.0.tgz#ead08efff335a12ab76ce2c44defbaac0933105e"
+  integrity sha512-OXWSuDFXF2CWwzz+ZWl/HcDpmLr8NYIW6Q/mbLqc5Jb7uzS97w9KvrdLc3XKFcUYhcTYF7WL1fmRV0uj0ExYfw==
+  dependencies:
+    fs-extra "^7.0.0"
 
 serverless@^1.28.0:
   version "1.32.0"
