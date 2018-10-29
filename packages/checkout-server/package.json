@@ -1,8 +1,8 @@
 {
   "name": "@artetexture/checkout-server",
   "version": "0.0.1",
-  "description": "a braintree server",
   "private": true,
+  "description": "a braintree server",
   "keywords": [
     "braintree"
   ],
@@ -10,14 +10,14 @@
   "author": "Nick Myers <nickmyers111@gmail.com>",
   "main": "build/app.cjs.js",
   "scripts": {
-    "develop": "run-p rollup:watch serverless:development",
-    "stage": "run-p rollup:build serverless:staging",
     "deploy": "run-p rollup:build serverless:production",
+    "develop": "run-p rollup:watch serverless:development",
     "rollup:build": "shx rm -rf build && rollup -c rollup.config.js",
     "rollup:watch": "shx rm -rf build && rollup -c rollup.config.js --watch",
     "serverless:development": "serverless offline start --stage development",
+    "serverless:production": "serverless deploy -v --stage production",
     "serverless:staging": "serverless deploy -v --stage staging",
-    "serverless:production": "serverless deploy -v --stage production"
+    "stage": "run-p rollup:build serverless:staging"
   },
   "dependencies": {
     "@artetexture/checkout-objects": "^0.0.1",
@@ -41,6 +41,7 @@
     "serverless": "^1.28.0",
     "serverless-domain-manager": "^2.3.0",
     "serverless-offline": "^3.16.0",
+    "serverless-plugin-monorepo": "^0.4.0",
     "shx": "^0.3.2"
   }
 }

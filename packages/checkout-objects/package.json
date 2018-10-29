@@ -11,10 +11,10 @@
   "main": "build/index.cjs.js",
   "module": "build/index.esm.js",
   "scripts": {
+    "build": "run-s build:files build:flow",
     "prebuild:files": "shx rm -rf build",
     "build:files": "rollup -c rollup.config.js",
     "build:flow": "flow gen-flow-files src --out-dir build",
-    "build": "run-s build:files build:flow",
     "develop": "rollup -c rollup.config.js --watch"
   },
   "dependencies": {

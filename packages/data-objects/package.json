@@ -2,21 +2,27 @@
   "name": "@artetexture/data-objects",
   "version": "0.0.1",
   "description": "types of data objects from our api",
+  "license": "ISC",
+  "author": "Nick Myers <nickmyers111@gmail.com>",
   "files": [
     "build",
     "src"
   ],
   "main": "build/index.cjs.js",
-  "module": "src/index.js",
+  "module": "build/index.esm.js",
   "scripts": {
+    "build": "run-s build:files build:flow",
     "prebuild:files": "shx rm -rf build",
     "build:files": "rollup -c rollup.config.js",
     "build:flow": "flow gen-flow-files src --out-dir build",
-    "build": "run-s build:files build:flow",
     "develop": "rollup -c rollup.config.js --watch"
   },
-  "author": "Nick Myers <nickmyers111@gmail.com>",
-  "license": "ISC",
+  "dependencies": {
+    "@babel/runtime": "^7.1.2",
+    "gatsby": "^2.0.28",
+    "graphql": "^0.13.2",
+    "graphql-type-json": "^0.2.1"
+  },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
     "flow-bin": "^0.83.0",
@@ -27,11 +33,5 @@
     "prettier": "^1.14.3",
     "rollup": "^0.66.6",
     "shx": "^0.3.2"
-  },
-  "dependencies": {
-    "@babel/runtime": "^7.1.2",
-    "gatsby": "^2.0.28",
-    "graphql": "^0.13.2",
-    "graphql-type-json": "^0.2.1"
   }
 }

@@ -4,6 +4,7 @@
   "scripts": {
     "bootstrap": "yarn && lerna bootstrap && lerna link",
     "postbootstrap": "lerna run build",
+    "symlink": "flow-mono create-symlinks .flowconfig",
     "prebuild-web": "run-s bootstrap",
     "build-web": "lerna run build-web",
     "build-objects": "lerna run build --scope @artetexture/checkout-objects",
@@ -50,6 +51,8 @@
     "rollup": "^0.66.6",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-flow": "^1.1.1",
+    "rollup-plugin-json": "^3.1.0",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-node-resolve": "^3.4.0",
@@ -57,5 +60,14 @@
     "shx": "^0.3.2",
     "sinon": "^6.0.1",
     "smalldash": "^1.1.20"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/artetexture.com",
+      "**/artetexture.com/**"
+    ]
   }
 }

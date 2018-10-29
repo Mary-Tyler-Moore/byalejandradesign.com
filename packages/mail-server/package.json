@@ -2,21 +2,21 @@
   "name": "@artetexture/mail-server",
   "version": "0.0.1",
   "description": "for sending mails",
+  "license": "ISC",
+  "author": "Nick Myers <nickmyers111@gmail.com>",
   "main": "build/app.cjs.js",
   "scripts": {
+    "deploy": "run-s rollup serverless:production",
     "develop": "run-p rollup:watch serverless:development",
-    "stage": "run-p rollup serverless:staging",
-    "deploy": "run-p rollup serverless:production",
     "prerollup": "shx rm -rf build",
     "rollup": "rollup -c rollup.config.js",
     "prerollup:watch": "shx rm -rf build",
     "rollup:watch": "rollup -c rollup.config.js --watch",
     "serverless:development": "serverless offline start --port 3001 --stage development",
+    "serverless:production": "serverless deploy -v --stage production",
     "serverless:staging": "serverless deploy -v --stage staging",
-    "serverless:production": "serverless deploy -v --stage production"
+    "stage": "run-s rollup serverless:staging"
   },
-  "author": "Nick Myers <nickmyers111@gmail.com>",
-  "license": "ISC",
   "dependencies": {
     "@artetexture/checkout-objects": "^0.0.1",
     "@artetexture/server-middleware": "^0.0.1",
@@ -42,6 +42,7 @@
     "serverless": "^1.28.0",
     "serverless-domain-manager": "^2.3.0",
     "serverless-offline": "^3.16.0",
+    "serverless-plugin-monorepo": "^0.4.0",
     "shx": "^0.3.2"
   }
 }
