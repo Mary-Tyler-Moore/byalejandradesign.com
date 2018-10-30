@@ -17,8 +17,7 @@
     "postbuild-web": "mv public/ build",
     "deploy": "STAGE=production gatsby build",
     "develop": "gatsby develop",
-    "stage": "STAGE=staging gatsby build",
-    "poststage": "mv public/ build/ && yarn s3-deploy deploy"
+    "stage": "STAGE=staging gatsby build"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",
