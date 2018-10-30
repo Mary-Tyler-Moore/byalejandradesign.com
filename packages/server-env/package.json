@@ -11,14 +11,16 @@
   "module": "build/env.esm.js",
   "scripts": {
     "prebuild": "shx rm -rf build",
-    "build": "rollup -c rollup.config.js",
-    "develop": "rollup -c rollup.config.js --watch"
+    "stage": "STAGE=staging rollup -c rollup.config.js",
+    "deploy": "STAGE=production rollup -c rollup.config.js",
+    "build": "STAGE=development rollup -c rollup.config.js",
+    "develop": "STAGE=development rollup -c rollup.config.js --watch"
   },
   "dependencies": {
-    "@babel/runtime": "^7.1.2",
-    "dotenv": "^6.1.0"
+    "@babel/runtime": "^7.1.2"
   },
   "devDependencies": {
+    "dotenv": "^6.1.0",
     "@babel/cli": "^7.1.2",
     "flow-bin": "^0.83.0",
     "flow-copy-source": "^2.0.2",

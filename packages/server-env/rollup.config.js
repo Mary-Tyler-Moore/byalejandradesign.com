@@ -1,11 +1,16 @@
+import dotEnv from 'dotenv';
+import path from 'path';
+import replace from 'rollup-plugin-replace';
 import flow from 'rollup-plugin-flow';
 import resolve from 'rollup-plugin-node-resolve';
-import globals from 'rollup-plugin-node-globals';
-import builtins from 'rollup-plugin-node-builtins';
 import babel from 'rollup-plugin-babel';
-import commonjs from 'rollup-plugin-commonjs';
 import runtimes from '@njmyers/babel-runtime-files';
 import pkg from './package.json';
+
+dotEnv.config({
+  // $FlowFixMe
+  path: path.resolve(__dirname, `.env.${process.env.STAGE}`),
+});
 
 const external = [
   ...Object.keys(pkg.dependencies || {}),
@@ -14,18 +19,36 @@ const external = [
   'path',
 ];
 
+const keys = [
+  'STAGE',
+  'ROOT_DOMAIN',
+  'CHECKOUT_DOMAIN',
+  'MAIL_DOMAIN',
+  'EMAIL_RECIPIENT',
+  'API_KEY',
+  'MAILGUN_API_KEY',
+  'BRAINTREE_MERCHANT_ID',
+  'BRAINTREE_PUBLIC_KEY',
+  'BRAINTREE_PRIVATE_KEY',
+];
+
+const values = {};
+
+keys.forEach((key) => {
+  values[key] = `'${process.env[key]}'`;
+});
+
 const plugins = [
   flow(),
-  resolve(),
-  globals({
-    process: false,
+  replace({
+    delimiters: [`'`, `'`],
+    values,
   }),
-  builtins(),
+  resolve(),
   babel({
     runtimeHelpers: true,
     exclude: 'node_modules/**',
   }),
-  commonjs(),
 ];
 
 export default [

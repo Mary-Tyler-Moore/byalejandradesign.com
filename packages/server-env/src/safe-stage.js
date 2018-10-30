@@ -1,8 +1,8 @@
 /** @flow */
-import safeEnv from './safe-env';
+import validateEnv from './validate-env';
 
 const safeStage = (): string => {
-  const mightExist = safeEnv('STAGE')();
+  const mightExist = validateEnv('STAGE');
 
   return mightExist ? mightExist : 'development';
 };
