@@ -5,7 +5,7 @@
   "description": "for sending mails",
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
-  "main": "build/app.cjs.js",
+  "main": "build/app.js",
   "scripts": {
     "clean": "shx rm -rf build",
     "stage": "run-s rollup:build serverless:staging",
@@ -15,7 +15,7 @@
     "rollup:build": "rollup -c rollup.config.js",
     "prerollup:watch": "run-s clean",
     "rollup:watch": "rollup -c rollup.config.js --watch",
-    "serverless:development": "serverless offline start --stage development",
+    "serverless:development": "serverless offline start --stage development --port 3001",
     "serverless:production": "serverless deploy -v --stage production",
     "serverless:staging": "serverless deploy -v --stage staging"
   },

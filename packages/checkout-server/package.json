@@ -8,7 +8,7 @@
   ],
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
-  "main": "build/app.cjs.js",
+  "main": "build/app.js",
   "scripts": {
     "clean": "shx rm -rf build",
     "stage": "run-s rollup:build serverless:staging",

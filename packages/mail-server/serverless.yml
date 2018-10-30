@@ -39,7 +39,7 @@ package:
 
 functions:
   server:
-    handler: build/app.cjs.handler
+    handler: build/app.handler
     events:
       - http: ANY /
         cors: true

@@ -24,7 +24,7 @@ plugins:
 
 provider:
   name: aws
-  runtime: nodejs6.10
+  runtime: nodejs8.10
   deploymentBucket: checkout.byalejandradesign.com
   stage: ${opt:stage, 'development'}
   region: us-east-1
@@ -39,7 +39,7 @@ package:
 
 functions:
   server:
-    handler: build/app.cjs.handler
+    handler: build/app.handler
     events:
       - http: ANY /
         cors: true
