@@ -5,7 +5,7 @@ import { graphql } from 'gatsby';
 // style
 import './single-collection.sass';
 // types
-import type { CollectionNode } from '@artetexture/data-objects';
+import type { CollectionNode } from '@byalejandradesign/data-objects';
 
 type Props = {
   node: CollectionNode,

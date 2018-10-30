@@ -1,13 +1,13 @@
 /** @flow */
 import mailgun from './mailgun-init';
-import { transaction as defaultTransaction } from '@artetexture/checkout-objects';
-import env from '@artetexture/server-env';
+import { transaction as defaultTransaction } from '@byalejandradesign/checkout-objects';
+import env from '@byalejandradesign/server-env';
 import { orderConfirmationTemplate } from '../../templates';
 import domain from '../../lib/domain';
 import recipient from '../../lib/domain';
 // types
 import type { $Request, $Response } from 'express';
-import type { Transaction } from '@artetexture/checkout-objects';
+import type { Transaction } from '@byalejandradesign/checkout-objects';
 
 const orderConfirmation = async (req: $Request, res: $Response) => {
   const transaction: Transaction =

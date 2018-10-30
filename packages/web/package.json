@@ -1,5 +1,5 @@
 {
-  "name": "@artetexture/web",
+  "name": "@byalejandradesign/web",
   "version": "0.0.1",
   "private": true,
   "description": "Artetexture E-commerce site using Gatsby",
@@ -8,7 +8,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/njmyers/artetexture.com.git"
+    "url": "https://github.com/njmyers/byalejandradesign.com.git"
   },
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
@@ -17,9 +17,9 @@
     "develop": "gatsby develop"
   },
   "dependencies": {
-    "@artetexture/checkout-objects": "^0.0.1",
-    "@artetexture/data-objects": "^0.0.1",
-    "@artetexture/templates": "^0.0.1",
+    "@byalejandradesign/checkout-objects": "^0.0.1",
+    "@byalejandradesign/data-objects": "^0.0.1",
+    "@byalejandradesign/templates": "^0.0.1",
     "@babel/runtime": "^7.1.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.5",
     "@fortawesome/free-brands-svg-icons": "^5.4.0",

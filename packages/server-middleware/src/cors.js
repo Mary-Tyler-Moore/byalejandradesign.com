@@ -1,6 +1,6 @@
 // @flow
 import cors from 'cors';
-import env from '@artetexture/server-env';
+import env from '@byalejandradesign/server-env';
 
 const corsMiddleware = cors({
   // $FlowFixMe

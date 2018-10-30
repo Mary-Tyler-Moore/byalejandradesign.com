@@ -1,11 +1,11 @@
 {
-  "name": "@artetexture/server-middleware",
+  "name": "@byalejandradesign/server-middleware",
   "version": "0.0.1",
   "private": true,
   "description": "shared server middleware package for express",
   "repository": {
     "type": "git",
-    "url": "https://github.com/njmyers/artetexture.com.git"
+    "url": "https://github.com/njmyers/byalejandradesign.com.git"
   },
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
@@ -22,7 +22,7 @@
     "develop": "rollup -c rollup.config.js --watch"
   },
   "dependencies": {
-    "@artetexture/server-env": "0.0.1",
+    "@byalejandradesign/server-env": "0.0.1",
     "@babel/runtime": "^7.1.2",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",

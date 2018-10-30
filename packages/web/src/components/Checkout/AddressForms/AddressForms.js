@@ -3,7 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { navigate } from 'gatsby';
 import Button from '../../Button';
-import { validateAddress } from '@artetexture/checkout-objects';
+import { validateAddress } from '@byalejandradesign/checkout-objects';
 import { Form } from '@njmyers/component-library';
 // components
 import { createAddressForm } from '../create-address';
@@ -15,7 +15,7 @@ import {
 // styles
 import './address-forms.sass';
 // types
-import type { Address } from '@artetexture/checkout-objects';
+import type { Address } from '@byalejandradesign/checkout-objects';
 
 const BillingAddressForm = createAddressForm('billingAddress');
 const ShippingAddressForm = createAddressForm('shippingAddress');

@@ -5,9 +5,9 @@ import Line from '../Line';
 import ServerAddress from '../ServerAddress';
 import Customer from '../Customer';
 // defaults
-import { transaction } from '@artetexture/checkout-objects';
+import { transaction } from '@byalejandradesign/checkout-objects';
 // types
-import type { Transaction } from '@artetexture/checkout-objects';
+import type { Transaction } from '@byalejandradesign/checkout-objects';
 // style
 import './order-confirmation.sass';
 
@@ -26,7 +26,7 @@ class OrderConfirmation extends React.Component<Props> {
         <h3 className="h3-amiri">Order Confirmation</h3>
         <p className="body-sourceSans-2">
           <em>
-            Thank you for your order from artetexture.com! Your order details
+            Thank you for your order from byalejandradesign.com! Your order details
             are summarized below.
           </em>
         </p>

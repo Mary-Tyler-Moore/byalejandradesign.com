@@ -3,7 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { camelToTitle } from 'smalldash';
 // types
-import type { Address } from '@artetexture/checkout-objects';
+import type { Address } from '@byalejandradesign/checkout-objects';
 // styles
 import './create-address-display.sass';
 

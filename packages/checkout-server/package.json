@@ -1,5 +1,5 @@
 {
-  "name": "@artetexture/checkout-server",
+  "name": "@byalejandradesign/checkout-server",
   "version": "0.0.1",
   "private": true,
   "description": "a braintree server",
@@ -8,7 +8,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/njmyers/artetexture.com.git"
+    "url": "https://github.com/njmyers/byalejandradesign.com.git"
   },
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
@@ -27,9 +27,9 @@
     "stage": "run-s rollup:build serverless:staging"
   },
   "dependencies": {
-    "@artetexture/checkout-objects": "^0.0.1",
-    "@artetexture/server-env": "^0.0.1",
-    "@artetexture/server-middleware": "^0.0.1",
+    "@byalejandradesign/checkout-objects": "^0.0.1",
+    "@byalejandradesign/server-env": "^0.0.1",
+    "@byalejandradesign/server-middleware": "^0.0.1",
     "@babel/runtime": "^7.1.2",
     "axios": "^0.18.0",
     "bluebird": "^3.5.1",

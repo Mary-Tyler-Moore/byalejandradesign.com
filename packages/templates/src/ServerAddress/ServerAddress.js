@@ -1,7 +1,7 @@
 /** @flow */
 import * as React from 'react';
 import Line from '../Line';
-import type { ServerAddress as ServerAddressType } from '@artetexture/checkout-objects';
+import type { ServerAddress as ServerAddressType } from '@byalejandradesign/checkout-objects';
 
 export type Props = {
   address: ServerAddressType,

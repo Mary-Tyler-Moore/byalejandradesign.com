@@ -1,9 +1,9 @@
 import * as React from 'react';
-import { OrderConfirmation } from '@artetexture/templates';
+import { OrderConfirmation } from '@byalejandradesign/templates';
 import Layout from '../../components/Layout';
-import { transaction } from '@artetexture/checkout-objects';
+import { transaction } from '@byalejandradesign/checkout-objects';
 // inherit styles
-import '@artetexture/templates/build/style.css';
+import '@byalejandradesign/templates/build/style.css';
 
 class ConfirmationPage extends React.Component {
   render() {

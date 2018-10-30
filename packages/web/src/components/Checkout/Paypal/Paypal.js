@@ -7,7 +7,7 @@ import { navigate } from 'gatsby';
 import withPaypalButton from './with-paypal-button';
 // auto connect HOC
 import { withPaymentActions } from '../redux/containers';
-import { addressToPaypalAddress } from '@artetexture/checkout-objects';
+import { addressToPaypalAddress } from '@byalejandradesign/checkout-objects';
 // styles
 import './paypal.sass';
 

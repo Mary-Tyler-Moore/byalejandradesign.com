@@ -1,8 +1,8 @@
 /** @flow */
-import { address } from '@artetexture/checkout-objects';
+import { address } from '@byalejandradesign/checkout-objects';
 // types
 import type { Actions } from '../actions/address-actions';
-import type { Address } from '@artetexture/checkout-objects';
+import type { Address } from '@byalejandradesign/checkout-objects';
 
 const addressReducer = (slice: string) => (
   state: Address = address,

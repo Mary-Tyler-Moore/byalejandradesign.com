@@ -11,7 +11,7 @@ import geography from './geography';
 // styles
 import './create-address-form.sass';
 // types
-import type { Address as AddressType } from '@artetexture/checkout-objects';
+import type { Address as AddressType } from '@byalejandradesign/checkout-objects';
 
 // TODO: FIX CANADIAN ZIP REGEX
 

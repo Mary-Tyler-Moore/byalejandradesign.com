@@ -1,11 +1,11 @@
 {
-  "name": "@artetexture/templates",
+  "name": "@byalejandradesign/templates",
   "version": "0.0.1",
   "private": true,
-  "description": "Reusable templates for artetexture front-end",
+  "description": "Reusable templates for byalejandradesign front-end",
   "repository": {
     "type": "git",
-    "url": "https://github.com/njmyers/artetexture.com.git"
+    "url": "https://github.com/njmyers/byalejandradesign.com.git"
   },
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
@@ -23,7 +23,7 @@
     "watch": "rollup -c rollup.config.js --watch"
   },
   "dependencies": {
-    "@artetexture/checkout-objects": "^0.0.1",
+    "@byalejandradesign/checkout-objects": "^0.0.1",
     "@babel/runtime": "^7.1.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",

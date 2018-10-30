@@ -35,7 +35,7 @@ class Contact extends React.PureComponent<{}, State> {
     //   // make request
     //   try {
     //     const response = await axios({
-    //       url: `${process.env.REACT_APP_MAIL_URL}/send/artetexture`,
+    //       url: `${process.env.REACT_APP_MAIL_URL}/send/byalejandradesign`,
     //       headers: {
     //         'Content-Type': 'application/json',
     //         Authorization: process.env.REACT_APP_MAIL_API_KEY,
@@ -104,7 +104,7 @@ class Contact extends React.PureComponent<{}, State> {
             type="email"
             block="contactFormField"
             value={this.state.email}
-            placeholder="nick@artetexture.com"
+            placeholder="nick@byalejandradesign.com"
             onChange={this.onChange}
             required
           />

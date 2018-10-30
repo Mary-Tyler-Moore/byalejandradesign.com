@@ -2,7 +2,7 @@
 import * as React from 'react';
 import FluidImage from '../FluidImage';
 // types
-import type { ImageNode } from '@artetexture/data-objects';
+import type { ImageNode } from '@byalejandradesign/data-objects';
 // styles
 import './slideshow.sass';
 

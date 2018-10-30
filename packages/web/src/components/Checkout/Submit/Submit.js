@@ -13,16 +13,16 @@ import { emptyCart } from '../../Cart/cart-actions';
 // api
 import server from '../server';
 // util
-import { addressToServerAddress, orderId } from '@artetexture/checkout-objects';
+import { addressToServerAddress, orderId } from '@byalejandradesign/checkout-objects';
 // styles
 import './submit.sass';
 
-import type { allWordpressWpShop } from '@artetexture/data-objects';
+import type { allWordpressWpShop } from '@byalejandradesign/data-objects';
 import type {
   Transaction,
   LineItem,
   Address,
-} from '@artetexture/checkout-objects';
+} from '@byalejandradesign/checkout-objects';
 
 const ShippingAddress = createAddressDisplay('shippingAddress');
 const BillingAddress = createAddressDisplay('billingAddress');

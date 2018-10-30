@@ -2,11 +2,11 @@
 import { nullish, pipeAsync } from 'smalldash';
 import axios from 'axios';
 import gateway from './gateway';
-import env from '@artetexture/server-env';
-import { validateTransaction } from '@artetexture/checkout-objects';
+import env from '@byalejandradesign/server-env';
+import { validateTransaction } from '@byalejandradesign/checkout-objects';
 // types
 import type { $Request, $Response } from 'express';
-import type { Transaction } from '@artetexture/checkout-objects';
+import type { Transaction } from '@byalejandradesign/checkout-objects';
 
 type CTX = {
   transaction: Transaction,

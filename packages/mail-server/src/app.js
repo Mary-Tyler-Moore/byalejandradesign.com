@@ -3,7 +3,7 @@ import express from 'express';
 import serverless from 'serverless-http';
 // routes and middleware
 import routes from './routes';
-import middleware from '@artetexture/server-middleware';
+import middleware from '@byalejandradesign/server-middleware';
 // initialize app
 const app = express();
 // add static build files

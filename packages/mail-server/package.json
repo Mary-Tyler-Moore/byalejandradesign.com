@@ -1,11 +1,11 @@
 {
-  "name": "@artetexture/mail-server",
+  "name": "@byalejandradesign/mail-server",
   "version": "0.0.1",
   "private": true,
   "description": "for sending mails",
   "repository": {
     "type": "git",
-    "url": "https://github.com/njmyers/artetexture.com.git"
+    "url": "https://github.com/njmyers/byalejandradesign.com.git"
   },
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
@@ -24,10 +24,10 @@
     "stage": "run-s rollup:build serverless:staging"
   },
   "dependencies": {
-    "@artetexture/checkout-objects": "^0.0.1",
-    "@artetexture/server-env": "^0.0.1",
-    "@artetexture/server-middleware": "^0.0.1",
-    "@artetexture/templates": "^0.0.1",
+    "@byalejandradesign/checkout-objects": "^0.0.1",
+    "@byalejandradesign/server-env": "^0.0.1",
+    "@byalejandradesign/server-middleware": "^0.0.1",
+    "@byalejandradesign/templates": "^0.0.1",
     "@babel/runtime": "^7.1.2",
     "@njmyers/sass": "^0.0.15",
     "axios": "^0.18.0",

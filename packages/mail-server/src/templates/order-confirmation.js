@@ -1,15 +1,15 @@
 /** @flow */
 import * as React from 'react';
 import { renderToString } from 'react-dom/server';
-import { OrderConfirmation } from '@artetexture/templates';
+import { OrderConfirmation } from '@byalejandradesign/templates';
 import layout from './layout';
 import stylesheets from '../lib/stylesheets';
 import './order-confirmation.sass';
 // types
-import type { Transaction } from '@artetexture/checkout-objects';
+import type { Transaction } from '@byalejandradesign/checkout-objects';
 
 const title = (orderId): string =>
-  `Order Confirmation for ${orderId} from artetexture.com`;
+  `Order Confirmation for ${orderId} from byalejandradesign.com`;
 
 const orderConfirmationTemplate = (transaction: Transaction): string => {
   return layout(

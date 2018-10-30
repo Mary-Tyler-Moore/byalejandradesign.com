@@ -2,7 +2,7 @@
 import gateway from './gateway';
 // types
 import type { Router, $Request, $Response } from 'express';
-import type { Transaction } from '@artetexture/checkout-objects';
+import type { Transaction } from '@byalejandradesign/checkout-objects';
 
 const clientToken = (req: $Request, res: $Response) => {
   gateway.clientToken

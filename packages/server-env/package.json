@@ -1,11 +1,11 @@
 {
-  "name": "@artetexture/server-env",
+  "name": "@byalejandradesign/server-env",
   "version": "0.0.1",
   "private": true,
   "description": "shared server env package",
   "repository": {
     "type": "git",
-    "url": "https://github.com/njmyers/artetexture.com.git"
+    "url": "https://github.com/njmyers/byalejandradesign.com.git"
   },
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",

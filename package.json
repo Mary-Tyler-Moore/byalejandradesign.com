@@ -1,9 +1,10 @@
 {
-  "name": "@artetexture/root",
+  "name": "@byalejandradesign/root",
   "private": true,
+  "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/njmyers/artetexture.com.git"
+    "url": "https://github.com/njmyers/byalejandradesign.com.git"
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
@@ -13,12 +14,13 @@
     "build-web": "lerna run build-web",
     "symlink-types": "flow-mono create-symlinks .flowconfig",
     "install-types": "node scripts/install-types.js",
-    "prestage": "lerna run stage --scope @artetexture/server-env",
-    "stage": "lerna run stage --parallel --ignore @artetexture/server-env",
-    "predeploy": "lerna run deploy --scope @artetexture/server-env",
-    "deploy": "lerna run deploy --parallel --ignore @artetexture/server-env",
+    "prestage": "lerna run stage --scope @byalejandradesign/server-env",
+    "stage": "lerna run stage --parallel --ignore @byalejandradesign/server-env",
+    "predeploy": "lerna run deploy --scope @byalejandradesign/server-env",
+    "deploy": "lerna run deploy --parallel --ignore @byalejandradesign/server-env",
     "develop": "lerna run --parallel develop",
-    "develop:servers": "lerna run --parallel --ignore @artetexture/web develop",
+    "develop:servers": "lerna run --parallel --ignore @byalejandradesign/web develop",
+    "prettier": "prettier 'packages/**/*.{.test.js,.stories.js,js,jsx,json}' --write",
     "test": "jest --watchAll"
   },
   "devDependencies": {
@@ -73,7 +75,7 @@
       "packages/*"
     ],
     "nohoist": [
-      "@artetexture/web/**/**"
+      "@byalejandradesign/web/**/**"
     ]
   }
 }

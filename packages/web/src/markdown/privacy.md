@@ -5,11 +5,11 @@ title: 'Privacy Policy'
 
 Effective date: July 04, 2018
 
-Archetexture LLC ("us", "we", or "our") operates the https://artetexture.com website (the "Service").
+Archetexture LLC ("us", "we", or "our") operates the https://byalejandradesign.com website (the "Service").
 
 This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data. This Privacy Policy for Archetexture LLC is powered by{' '} [FreePrivacyPolicy.com](https://freeprivacypolicy.com/) .
 
-We use your data to provide and improve the Service. By using the Service, you agree to the collection and use of information in accordance with this policy. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, accessible from https://artetexture.com
+We use your data to provide and improve the Service. By using the Service, you agree to the collection and use of information in accordance with this policy. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, accessible from https://byalejandradesign.com
 
 #### Information Collection And Use
 
@@ -125,6 +125,6 @@ You are advised to review this Privacy Policy periodically for any changes. Chan
 
 If you have any questions about this Privacy Policy, please contact us:
 
-- By email: alejandra@artetexture.com
-- By visiting this page on our website: https://artetexture.com/contact
+- By email: alejandra@byalejandradesign.com
+- By visiting this page on our website: https://byalejandradesign.com/contact
 - By mail: Archetexture LLC

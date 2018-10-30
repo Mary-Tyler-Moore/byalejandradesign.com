@@ -2,7 +2,7 @@
 import * as React from 'react';
 import Line from '../Line';
 // types
-import type { Customer as CustomerType } from '@artetexture/checkout-objects';
+import type { Customer as CustomerType } from '@byalejandradesign/checkout-objects';
 
 export type Props = {
   customer: CustomerType,

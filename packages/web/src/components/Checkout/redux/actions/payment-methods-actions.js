@@ -1,7 +1,7 @@
 /** @flow */
 import { compose } from 'smalldash';
 import type { PaymentMethods } from '../reducers/payment-methods-reducer';
-import type { Nonce } from '@artetexture/checkout-objects';
+import type { Nonce } from '@byalejandradesign/checkout-objects';
 
 // (compose: $Compose);
 

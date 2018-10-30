@@ -1,5 +1,5 @@
 import braintree from 'braintree';
-import env from '@artetexture/server-env';
+import env from '@byalejandradesign/server-env';
 
 const gateway = braintree.connect({
   environment:

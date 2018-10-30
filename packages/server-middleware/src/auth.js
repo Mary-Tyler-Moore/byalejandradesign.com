@@ -1,6 +1,6 @@
 // @flow
 import type { $Request, $Response, NextFunction } from 'express';
-import env from '@artetexture/server-env';
+import env from '@byalejandradesign/server-env';
 
 // $FlowFixMe
 const apiKey = env.API_KEY;

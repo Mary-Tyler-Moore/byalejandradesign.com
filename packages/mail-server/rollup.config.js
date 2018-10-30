@@ -15,7 +15,7 @@ const dependencies = {
   ...(pkg.peerDependencies || {}),
 };
 
-delete dependencies['@artetexture/server-middlware'];
+delete dependencies['@byalejandradesign/server-middlware'];
 
 const external = [
   ...Object.keys(dependencies),

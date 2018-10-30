@@ -1,17 +1,19 @@
 [build]
   # subdirectory to publish from
   # base = "subdirectory"
-  publish = "packages/artetexture.com/public/"
+  publish = "packages/web/public/"
   command = "yarn run build-web"
 
 [build.environment]
   YARN_VERSION = "1.10.1"
 
 [context.production.environment]
-  GATSBY_BRAINTREE_SERVER="http://localhost:3000"
+  GATSBY_BRAINTREE_SERVER="https://checkout.byalejandradesign.com"
+  GATSBY_MAIL_SERVER="https://mail.byalejandradesign.com"
 
 [context.staging.environment]
-  GATSBY_BRAINTREE_SERVER="http://localhost:3000"
+  GATSBY_BRAINTREE_SERVER="https://checkout--staging.byalejandradesign.com"
+  GATSBY_BRAINTREE_SERVER="https://mail--staging.byalejandradesign.com"
 
 [[redirects]]
   from = "/*"
