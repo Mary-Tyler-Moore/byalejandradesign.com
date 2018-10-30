@@ -14,7 +14,7 @@
   "author": "Nick Myers <nickmyers111@gmail.com>",
   "main": "build/app.js",
   "scripts": {
-    "clean": "shx rm -rf build",
+    "clean": "shx rm -rf build .serverless",
     "deploy": "run-s rollup:build serverless:production",
     "develop": "run-p rollup:watch serverless:development",
     "prerollup:build": "run-s clean",
