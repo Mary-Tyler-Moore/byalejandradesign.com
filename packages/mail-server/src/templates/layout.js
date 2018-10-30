@@ -1,5 +1,5 @@
 /** @flow */
-import domain from '../lib/domain';
+import env from '@byalejandradesign/server-env';
 import './layout.sass';
 
 type Head = {
@@ -8,7 +8,7 @@ type Head = {
 };
 
 const defaultHead = {
-  title: 'Message from Artetexture',
+  title: 'Message from ByAlejandraDesign',
   stylesheets: '',
 };
 
@@ -22,7 +22,9 @@ const template: Template = (body, head = defaultHead) => `
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="https://fonts.googleapis.com/css?family=Amiri:400,400i,700,700i|Source+Sans+Pro:300,300i,600,600i" rel="stylesheet">
     <title>${head.title}</title>
-    <link href="https://${domain()}/static/css/layout.css" rel="stylesheet" type="text/css">
+    <link href="${
+      env.MAIL_DOMAIN
+    }/static/css/layout.css" rel="stylesheet" type="text/css">
     ${head.stylesheets}
   </head>
   <body>

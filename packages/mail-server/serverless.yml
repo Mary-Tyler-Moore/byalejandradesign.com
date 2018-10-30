@@ -18,9 +18,9 @@ service: byalejandradesign-mailserver
 # frameworkVersion:        "=X.X.X"
 
 plugins:
+  - serverless-plugin-monorepo
   - serverless-offline
   - serverless-domain-manager
-  - serverless-plugin-monorepo
 
 provider:
   name: aws

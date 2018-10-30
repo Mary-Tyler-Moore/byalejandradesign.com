@@ -15,8 +15,6 @@ const dependencies = {
   ...(pkg.peerDependencies || {}),
 };
 
-delete dependencies['@byalejandradesign/server-middlware'];
-
 const external = [
   ...Object.keys(dependencies),
   ...runtimes(),

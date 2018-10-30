@@ -3,8 +3,6 @@ import mailgun from './mailgun-init';
 import { transaction as defaultTransaction } from '@byalejandradesign/checkout-objects';
 import env from '@byalejandradesign/server-env';
 import { orderConfirmationTemplate } from '../../templates';
-import domain from '../../lib/domain';
-import recipient from '../../lib/domain';
 // types
 import type { $Request, $Response } from 'express';
 import type { Transaction } from '@byalejandradesign/checkout-objects';
@@ -22,7 +20,7 @@ const orderConfirmation = async (req: $Request, res: $Response) => {
   const message = {
     from: `Alejandra Rojas <${env.EMAIL_RECIPIENT}>`,
     to,
-    subject: `Order Confirmation from ${env.MAIL_DOMAIN}`,
+    subject: `Order Confirmation from ${env.ROOT_DOMAIN}`,
     html,
   };
 

@@ -1,4 +1,4 @@
-import domain from './domain';
+import env from '@byalejandradesign/server-env';
 
 /** @flow */
 const stylesheets = (args: string | Array<string>): string => {
@@ -7,7 +7,9 @@ const stylesheets = (args: string | Array<string>): string => {
   return sheets
     .map(
       (sheet) =>
-        `<link href="https://${domain()}${sheet}" rel="stylesheet" type="text/css">`
+        `<link href="${
+          env.MAIL_DOMAIN
+        }${sheet}" rel="stylesheet" type="text/css">`
     )
     .reduce((prevString, string) => `${prevString}\n    ${string}`);
 };
