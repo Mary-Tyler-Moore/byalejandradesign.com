@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "description": "Reusable templates for artetexture front-end",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/njmyers/artetexture.com.git"
+  },
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
   "files": [
@@ -11,12 +15,12 @@
   "main": "build/templates.cjs.js",
   "module": "build/templates.esm.js",
   "scripts": {
-    "clean": "shx rm -rf build",
     "prebuild": "run-s clean",
     "build": "rollup -c rollup.config.js",
+    "clean": "shx rm -rf build",
+    "develop": "run-p watch",
     "prewatch": "run-s clean",
-    "watch": "rollup -c rollup.config.js --watch",
-    "develop": "run-p watch"
+    "watch": "rollup -c rollup.config.js --watch"
   },
   "dependencies": {
     "@artetexture/checkout-objects": "^0.0.1",

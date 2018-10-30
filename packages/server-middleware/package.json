@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "description": "shared server middleware package for express",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/njmyers/artetexture.com.git"
+  },
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
   "files": [
@@ -18,8 +22,8 @@
     "develop": "rollup -c rollup.config.js --watch"
   },
   "dependencies": {
-    "@babel/runtime": "^7.1.2",
     "@artetexture/server-env": "0.0.1",
+    "@babel/runtime": "^7.1.2",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "smalldash": "^1.1.20"

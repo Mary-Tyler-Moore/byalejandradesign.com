@@ -3,12 +3,15 @@
   "version": "0.0.1",
   "private": true,
   "description": "for sending mails",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/njmyers/artetexture.com.git"
+  },
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
   "main": "build/app.js",
   "scripts": {
     "clean": "shx rm -rf build",
-    "stage": "run-s rollup:build serverless:staging",
     "deploy": "run-s rollup:build serverless:production",
     "develop": "run-p rollup:watch serverless:development",
     "prerollup:build": "run-s clean",
@@ -17,12 +20,13 @@
     "rollup:watch": "rollup -c rollup.config.js --watch",
     "serverless:development": "serverless offline start --stage development --port 3001",
     "serverless:production": "serverless deploy -v --stage production",
-    "serverless:staging": "serverless deploy -v --stage staging"
+    "serverless:staging": "serverless deploy -v --stage staging",
+    "stage": "run-s rollup:build serverless:staging"
   },
   "dependencies": {
     "@artetexture/checkout-objects": "^0.0.1",
-    "@artetexture/server-middleware": "^0.0.1",
     "@artetexture/server-env": "^0.0.1",
+    "@artetexture/server-middleware": "^0.0.1",
     "@artetexture/templates": "^0.0.1",
     "@babel/runtime": "^7.1.2",
     "@njmyers/sass": "^0.0.15",

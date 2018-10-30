@@ -1,6 +1,10 @@
 {
   "name": "@artetexture/root",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/njmyers/artetexture.com.git"
+  },
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "postbootstrap": "run-s symlink-types build",

@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "description": "types of data objects from our api",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/njmyers/artetexture.com.git"
+  },
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
   "files": [

@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "private": true,
   "description": "shared server env package",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/njmyers/artetexture.com.git"
+  },
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
   "files": [
@@ -12,17 +16,17 @@
   "module": "build/env.esm.js",
   "scripts": {
     "prebuild": "shx rm -rf build",
-    "stage": "STAGE=staging rollup -c rollup.config.js",
-    "deploy": "STAGE=production rollup -c rollup.config.js",
     "build": "STAGE=development rollup -c rollup.config.js",
-    "develop": "STAGE=development rollup -c rollup.config.js --watch"
+    "deploy": "STAGE=production rollup -c rollup.config.js",
+    "develop": "STAGE=development rollup -c rollup.config.js --watch",
+    "stage": "STAGE=staging rollup -c rollup.config.js"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2"
   },
   "devDependencies": {
-    "dotenv": "^6.1.0",
     "@babel/cli": "^7.1.2",
+    "dotenv": "^6.1.0",
     "flow-bin": "^0.83.0",
     "flow-copy-source": "^2.0.2",
     "flow-mono-cli": "^1.4.2",

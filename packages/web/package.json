@@ -10,7 +10,7 @@
     "type": "git",
     "url": "https://github.com/njmyers/artetexture.com.git"
   },
-  "license": "MIT",
+  "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
   "scripts": {
     "build-web": "gatsby build",
