@@ -1,27 +1,37 @@
 {
   "name": "@byalejandradesign/root",
   "private": true,
-  "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/njmyers/byalejandradesign.com.git"
   },
+  "license": "ISC",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "@byalejandradesign/web/**/**"
+    ]
+  },
   "scripts": {
+    "prebootstrap": "run-s symlink-types",
     "bootstrap": "lerna bootstrap",
-    "postbootstrap": "run-s symlink-types build",
-    "build": "lerna run build",
+    "postbootstrap": "run-s build",
+    "prebuild": "lerna run build --scope=@byalejandradesign/{server-env,checkout-objects}",
+    "build": "lerna run build --ignore=@byalejandradesign/{server-env,checkout-objects}",
     "prebuild-web": "run-s bootstrap",
     "build-web": "lerna run build-web",
-    "symlink-types": "flow-mono create-symlinks .flowconfig",
-    "install-types": "node scripts/install-types.js",
-    "prestage": "lerna run stage --scope @byalejandradesign/server-env",
-    "stage": "lerna run stage --parallel --ignore @byalejandradesign/server-env",
-    "predeploy": "lerna run deploy --scope @byalejandradesign/server-env",
-    "deploy": "lerna run deploy --parallel --ignore @byalejandradesign/server-env",
+    "predeploy": "lerna run deploy --scope=@byalejandradesign/{server-env,checkout-objects}",
+    "deploy": "lerna run deploy --parallel --ignore=@byalejandradesign/{server-env,checkout-objects}",
     "develop": "lerna run --parallel develop",
-    "develop:servers": "lerna run --parallel --ignore @byalejandradesign/web develop",
-    "prettier": "prettier 'packages/**/*.{.test.js,.stories.js,js,jsx,json}' --write",
-    "test": "jest --watchAll"
+    "develop:servers": "lerna run --parallel --ignore=@byalejandradesign/web develop",
+    "install-types": "node scripts/install-types.js",
+    "prestage": "lerna run stage --scope=@byalejandradesign/{server-env,checkout-objects}",
+    "stage": "lerna run stage --parallel --ignore=@byalejandradesign/{server-env,checkout-objects}",
+    "symlink-types": "flow-mono create-symlinks .flowconfig",
+    "test": "jest --watchAll",
+    "prettier": "prettier 'packages/**/*.{.test.js,.stories.js,js,jsx,json}' --write"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
@@ -69,13 +79,5 @@
     "shx": "^0.3.2",
     "sinon": "^6.0.1",
     "smalldash": "^1.1.20"
-  },
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ],
-    "nohoist": [
-      "@byalejandradesign/web/**/**"
-    ]
   }
 }
