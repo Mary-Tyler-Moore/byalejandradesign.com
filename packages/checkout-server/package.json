@@ -27,10 +27,10 @@
     "stage": "run-s rollup:build serverless:staging"
   },
   "dependencies": {
+    "@babel/runtime": "^7.1.2",
     "@byalejandradesign/checkout-objects": "^0.0.1",
     "@byalejandradesign/server-env": "^0.0.1",
     "@byalejandradesign/server-middleware": "^0.0.1",
-    "@babel/runtime": "^7.1.2",
     "axios": "^0.18.0",
     "bluebird": "^3.5.1",
     "braintree": "^2.11.0",
@@ -44,7 +44,6 @@
     "flow-mono-cli": "^1.4.2",
     "flow-typed": "^2.5.1",
     "npm-run-all": "^4.1.3",
-    "prettier": "^1.14.3",
     "rollup": "^0.66.6",
     "serverless": "^1.28.0",
     "serverless-domain-manager": "^2.3.0",
