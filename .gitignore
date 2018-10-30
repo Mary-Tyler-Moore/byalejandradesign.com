@@ -1,9 +1,12 @@
 node_modules/
 build/
 
+# serverless
 .serverless/
+.webpack/
 
 lerna-debug.log
 yarn-error.log
 
 packages/*/.flowconfig
+packages/*/yarn.lock
