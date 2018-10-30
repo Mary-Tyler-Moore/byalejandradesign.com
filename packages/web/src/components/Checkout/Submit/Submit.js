@@ -13,7 +13,10 @@ import { emptyCart } from '../../Cart/cart-actions';
 // api
 import server from '../server';
 // util
-import { addressToServerAddress, orderId } from '@byalejandradesign/checkout-objects';
+import {
+  addressToServerAddress,
+  orderId,
+} from '@byalejandradesign/checkout-objects';
 // styles
 import './submit.sass';
 
@@ -147,7 +150,7 @@ class Submit extends React.PureComponent<Props, State> {
     const transaction = this.transaction();
 
     server
-      .post('/checkout', transaction)
+      .post('/submit', transaction)
       .then((response) => {
         this.setState({
           status: 'resolved',

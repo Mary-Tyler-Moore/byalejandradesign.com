@@ -46,6 +46,12 @@ const normalizers = compose(
   extractEntities
 );
 
+const stage = process.env.STAGE || process.env.NODE_ENV || 'development';
+
+require('dotenv').config({
+  path: `.env.${stage}`,
+});
+
 module.exports = {
   siteMetadata: {
     siteUrl: 'https://byalejandradesign.com',
