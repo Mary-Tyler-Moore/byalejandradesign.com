@@ -14,7 +14,6 @@ const auth = (req: $Request, res: $Response, next: NextFunction) => {
     res.status(401).json({
       status: 401,
       error: 'not authorized',
-      key,
     });
 };
 

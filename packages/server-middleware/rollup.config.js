@@ -9,6 +9,8 @@ import pkg from './package.json';
 const external = [
   ...Object.keys(pkg.dependencies || {}),
   ...Object.keys(pkg.peerDependencies | {}),
+  'body-parser/lib/types/json',
+  'body-parser/lib/types/urlencoded',
   ...runtimes(),
 ];
 

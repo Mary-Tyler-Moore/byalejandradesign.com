@@ -22,14 +22,13 @@
     "develop": "rollup -c rollup.config.js --watch"
   },
   "dependencies": {
-    "@byalejandradesign/server-env": "0.0.1",
     "@babel/runtime": "^7.1.2",
+    "@byalejandradesign/server-env": "0.0.1",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "smalldash": "^1.1.20"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.2",
     "flow-bin": "^0.83.0",
     "flow-copy-source": "^2.0.2",
     "flow-mono-cli": "^1.4.2",
