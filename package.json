@@ -2,15 +2,17 @@
   "name": "@artetexture/root",
   "private": true,
   "scripts": {
-    "bootstrap": "yarn && lerna bootstrap && lerna link",
-    "postbootstrap": "lerna run build",
-    "symlink": "flow-mono create-symlinks .flowconfig",
+    "bootstrap": "lerna bootstrap",
+    "postbootstrap": "run-s symlink-types build",
+    "build": "lerna run build",
     "prebuild-web": "run-s bootstrap",
     "build-web": "lerna run build-web",
-    "build-objects": "lerna run build --scope @artetexture/checkout-objects",
-    "link-flow": " lerna exec \"ln -sf ../../.flowconfig .flowconfig\"",
-    "types": "node scripts/install-types.js",
-    "predevelop": "run-s bootstrap",
+    "symlink-types": "flow-mono create-symlinks .flowconfig",
+    "install-types": "node scripts/install-types.js",
+    "prestage": "lerna run stage --scope @artetexture/server-env",
+    "stage": "lerna run stage --parallel --ignore @artetexture/server-env",
+    "predeploy": "lerna run deploy --scope @artetexture/server-env",
+    "deploy": "lerna run deploy --parallel --ignore @artetexture/server-env",
     "develop": "lerna run --parallel develop",
     "develop:servers": "lerna run --parallel --ignore @artetexture/web develop",
     "test": "jest --watchAll"
@@ -57,6 +59,7 @@
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-postcss": "^1.6.2",
+    "rollup-plugin-replace": "^2.1.0",
     "shx": "^0.3.2",
     "sinon": "^6.0.1",
     "smalldash": "^1.1.20"
@@ -66,8 +69,7 @@
       "packages/*"
     ],
     "nohoist": [
-      "**/artetexture.com",
-      "**/artetexture.com/**"
+      "@artetexture/web/**/**"
     ]
   }
 }

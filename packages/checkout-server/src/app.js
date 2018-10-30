@@ -11,4 +11,4 @@ middleware.forEach((middlware) => app.use(middlware));
 // apply all top level routes
 routes.forEach((router) => app.use('/', router));
 // export final route like this instead of using export for serverless
-module.exports.handler = serverless(app);
+export const handler = serverless(app);

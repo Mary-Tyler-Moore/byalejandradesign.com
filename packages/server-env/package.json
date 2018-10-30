@@ -1,6 +1,7 @@
 {
   "name": "@artetexture/server-env",
   "version": "0.0.1",
+  "private": true,
   "description": "shared server env package",
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",

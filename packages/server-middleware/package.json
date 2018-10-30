@@ -1,6 +1,7 @@
 {
   "name": "@artetexture/server-middleware",
   "version": "0.0.1",
+  "private": true,
   "description": "shared server middleware package for express",
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
@@ -10,7 +11,7 @@
   "main": "build/middleware.cjs.js",
   "module": "build/middleware.esm.js",
   "scripts": {
-    "build": "run-s build:files",
+    "build": "run-s build:files build:flow",
     "prebuild:files": "shx rm -rf build",
     "build:files": "rollup -c rollup.config.js",
     "build:flow": "flow gen-flow-files src --out-dir build",

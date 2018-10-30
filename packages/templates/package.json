@@ -11,11 +11,12 @@
   "main": "build/templates.cjs.js",
   "module": "build/templates.esm.js",
   "scripts": {
-    "prebuild": "shx rm -rf build",
+    "clean": "shx rm -rf build",
+    "prebuild": "run-s clean",
     "build": "rollup -c rollup.config.js",
-    "develop": "run-p watch",
-    "test": "yarn run --watchAll",
-    "watch": "rollup -c rollup.config.js --watch"
+    "prewatch": "run-s clean",
+    "watch": "rollup -c rollup.config.js --watch",
+    "develop": "run-p watch"
   },
   "dependencies": {
     "@artetexture/checkout-objects": "^0.0.1",

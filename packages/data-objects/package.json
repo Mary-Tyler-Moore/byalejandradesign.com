@@ -1,6 +1,7 @@
 {
   "name": "@artetexture/data-objects",
   "version": "0.0.1",
+  "private": true,
   "description": "types of data objects from our api",
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
@@ -18,10 +19,7 @@
     "develop": "rollup -c rollup.config.js --watch"
   },
   "dependencies": {
-    "@babel/runtime": "^7.1.2",
-    "gatsby": "^2.0.28",
-    "graphql": "^0.13.2",
-    "graphql-type-json": "^0.2.1"
+    "@babel/runtime": "^7.1.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",

@@ -1,5 +1,6 @@
 import dotEnv from 'dotenv';
 import path from 'path';
+import validateEnv from './validate-env';
 import replace from 'rollup-plugin-replace';
 import flow from 'rollup-plugin-flow';
 import resolve from 'rollup-plugin-node-resolve';
@@ -35,7 +36,7 @@ const keys = [
 const values = {};
 
 keys.forEach((key) => {
-  values[key] = `'${process.env[key]}'`;
+  values[key] = `'${validateEnv(key)}'`;
 });
 
 const plugins = [
