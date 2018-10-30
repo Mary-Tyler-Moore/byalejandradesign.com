@@ -8,8 +8,6 @@ import normalizeDomain from './normalize-domain';
 const nodeEnv = safeEnv('NODE_ENV');
 // get stage
 const stage = safeStage();
-
-console.log(path.resolve(__dirname, `../.env.${stage}`));
 // start dotenv
 dotEnv.config({
   // $FlowFixMe

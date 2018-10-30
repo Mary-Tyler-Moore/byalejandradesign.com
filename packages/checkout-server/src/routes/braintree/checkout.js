@@ -2,6 +2,7 @@
 import { nullish, pipeAsync } from 'smalldash';
 import axios from 'axios';
 import gateway from './gateway';
+import env from '@artetexture/server-env';
 import { validateTransaction } from '@artetexture/checkout-objects';
 // types
 import type { $Request, $Response } from 'express';
@@ -55,13 +56,13 @@ const confirmation = (ctx): Promise<CTX> =>
   new Promise((resolve, reject) => {
     if (ctx.gatewayResponse.success === true) {
       axios({
-        url: `${process.env.MAIL_DOMAIN || ''}/order-confirmation`,
+        url: `${env.MAIL_DOMAIN || ''}/order-confirmation`,
         method: 'POST',
         body: {
           transaction: ctx.transaction,
         },
         headers: {
-          Authorization: process.env.API_KEY,
+          Authorization: env.API_KEY,
         },
       })
         .then((response) =>

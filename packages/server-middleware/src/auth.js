@@ -1,13 +1,14 @@
 // @flow
 import type { $Request, $Response, NextFunction } from 'express';
-import isDev from './is-dev';
+import env from '@artetexture/server-env';
 
-const requestAPIKey = process.env.REQUEST_API_KEY;
+// $FlowFixMe
+const apiKey = env.API_KEY;
 
 const auth = (req: $Request, res: $Response, next: NextFunction) => {
   const key: string | void = req.get('Authorization');
 
-  if (key === requestAPIKey) {
+  if (key === apiKey) {
     next();
   } else
     res.status(401).json({

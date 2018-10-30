@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: artetexture-mailserver
+service: byalejandradesign-mailserver
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -28,14 +28,6 @@ provider:
   deploymentBucket: mail.byalejandradesign.com
   stage: ${opt:stage, 'development'}
   region: us-east-1
-  environment:
-    STAGE: ${self:provider.stage}
-    NODE_ENV: ${self:provider.stage}
-    MAILGUN_API_KEY: ${file(./env.${self:provider.stage}.json):MAILGUN_API_KEY}
-    MAILGUN_DOMAIN: ${file(./env.${self:provider.stage}.json):MAILGUN_DOMAIN}
-    MAILGUN_RECIPIENT: ${file(./env.${self:provider.stage}.json):MAILGUN_RECIPIENT}
-    REQUEST_API_KEY: ${file(./env.${self:provider.stage}.json):REQUEST_API_KEY}
-    DOMAIN: ${file(./env.${self:provider.stage}.json):DOMAIN}
 
 package:
   exclude:
@@ -58,7 +50,7 @@ packagePath: './package.json'
 
 custom:
   customDomain:
-    domainName: ${file(./env.${self:provider.stage}.json):DOMAIN}
+    domainName: mail--${self:provider.stage}.byalejandradesign.com
     basePath: ''
     stage: ${self:provider.stage}
     createRoute53Record: true

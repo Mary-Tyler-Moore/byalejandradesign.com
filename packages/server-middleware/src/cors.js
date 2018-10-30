@@ -1,9 +1,10 @@
 // @flow
 import cors from 'cors';
-import domain from './domain';
+import env from '@artetexture/server-env';
 
 const corsMiddleware = cors({
-  origin: `https://${domain()}`,
+  // $FlowFixMe
+  origin: env.ROOT_DOMAIN,
   methods: 'POST, GET',
   allowedHeaders: ['Content-Type', 'Authorization'],
 });

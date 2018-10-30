@@ -1,15 +1,14 @@
 import braintree from 'braintree';
-
-const stage = process.env.STAGE;
+import env from '@artetexture/server-env';
 
 const gateway = braintree.connect({
   environment:
-    stage !== 'production '
+    env.STAGE !== 'production '
       ? braintree.Environment.Sandbox
       : braintree.Environment.Production,
-  merchantId: process.env.BRAINTREE_MERCHANT_ID,
-  publicKey: process.env.BRAINTREE_PUBLIC_KEY,
-  privateKey: process.env.BRAINTREE_PRIVATE_KEY,
+  merchantId: env.BRAINTREE_MERCHANT_ID,
+  publicKey: env.BRAINTREE_PUBLIC_KEY,
+  privateKey: env.BRAINTREE_PRIVATE_KEY,
 });
 
 export default gateway;

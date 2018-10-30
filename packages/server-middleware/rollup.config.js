@@ -28,7 +28,7 @@ const plugins = [
 
 export default [
   {
-    input: 'src/index.js',
+    input: 'src/middleware.js',
     external,
     output: {
       file: pkg.module,
@@ -38,7 +38,7 @@ export default [
     plugins,
   },
   {
-    input: 'src/index.js',
+    input: 'src/middleware.js',
     external,
     output: {
       file: pkg.main,

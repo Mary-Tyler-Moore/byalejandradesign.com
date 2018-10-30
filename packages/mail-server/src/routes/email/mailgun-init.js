@@ -1,6 +1,7 @@
 import Mailgun from './mailgun';
+import env from '@artetexture/server-env';
 
 export default new Mailgun({
-  apiKey: process.env.MAILGUN_API_KEY,
-  domain: process.env.MAILGUN_DOMAIN,
+  apiKey: env.MAILGUN_API_KEY,
+  domain: env.EMAIL_DOMAIN,
 });

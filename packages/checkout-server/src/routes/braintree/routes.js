@@ -9,6 +9,6 @@ import type { Router, $Request, $Response } from 'express';
 const router: Router = express.Router();
 
 router.get('/client_token', token);
-router.post('/checkout', checkout);
+router.post('/submit', checkout);
 
 export default router;

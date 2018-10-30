@@ -10,18 +10,22 @@
   "author": "Nick Myers <nickmyers111@gmail.com>",
   "main": "build/app.cjs.js",
   "scripts": {
-    "deploy": "run-p rollup:build serverless:production",
+    "clean": "shx rm -rf build",
+    "stage": "run-s rollup:build serverless:staging",
+    "deploy": "run-s rollup:build serverless:production",
     "develop": "run-p rollup:watch serverless:development",
-    "rollup:build": "shx rm -rf build && rollup -c rollup.config.js",
-    "rollup:watch": "shx rm -rf build && rollup -c rollup.config.js --watch",
+    "prerollup:build": "run-s clean",
+    "rollup:build": "rollup -c rollup.config.js",
+    "prerollup:watch": "run-s clean",
+    "rollup:watch": "rollup -c rollup.config.js --watch",
     "serverless:development": "serverless offline start --stage development",
     "serverless:production": "serverless deploy -v --stage production",
-    "serverless:staging": "serverless deploy -v --stage staging",
-    "stage": "run-p rollup:build serverless:staging"
+    "serverless:staging": "serverless deploy -v --stage staging"
   },
   "dependencies": {
     "@artetexture/checkout-objects": "^0.0.1",
     "@artetexture/server-middleware": "^0.0.1",
+    "@artetexture/server-env": "^0.0.1",
     "@babel/runtime": "^7.1.2",
     "axios": "^0.18.0",
     "bluebird": "^3.5.1",
