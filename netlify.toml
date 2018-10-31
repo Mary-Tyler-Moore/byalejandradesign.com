@@ -4,6 +4,10 @@
   publish = "packages/web/public"
   command = "npm run build-web"
 
+[build.environment]
+  YARN_VERSION = "1.10.1"
+
+
 [context.production.environment]
   GATSBY_BRAINTREE_SERVER="https://checkout--staging.byalejandradesign.com"
   GATSBY_MAIL_SERVER="https://mail--staging.byalejandradesign.com"
