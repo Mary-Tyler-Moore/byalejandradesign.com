@@ -14,7 +14,6 @@
   "author": "Nick Myers <nickmyers111@gmail.com>",
   "scripts": {
     "build-web": "STAGE=staging gatsby build",
-    "postbuild-web": "mv public/ build",
     "develop": "gatsby develop"
   },
   "dependencies": {

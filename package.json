@@ -15,8 +15,7 @@
     ]
   },
   "scripts": {
-    "prebootstrap": "run-s symlink-types",
-    "bootstrap": "lerna bootstrap",
+    "bootstrap": "lerna bootstrap && lerna link",
     "postbootstrap": "run-s build",
     "prebuild": "lerna run build --scope=@byalejandradesign/{server-env,checkout-objects}",
     "build": "lerna run build --ignore=@byalejandradesign/{server-env,checkout-objects}",

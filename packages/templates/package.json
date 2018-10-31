@@ -18,9 +18,8 @@
     "prebuild": "run-s clean",
     "build": "rollup -c rollup.config.js",
     "clean": "shx rm -rf build",
-    "develop": "run-p watch",
-    "prewatch": "run-s clean",
-    "watch": "rollup -c rollup.config.js --watch"
+    "develop": "rollup -c rollup.config.js --watch",
+    "predevelop": "run-s clean"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",

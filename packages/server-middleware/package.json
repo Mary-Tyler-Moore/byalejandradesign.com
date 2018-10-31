@@ -15,10 +15,11 @@
   "main": "build/middleware.cjs.js",
   "module": "build/middleware.esm.js",
   "scripts": {
-    "build": "run-s build:files build:flow",
-    "prebuild:files": "shx rm -rf build",
-    "build:files": "rollup -c rollup.config.js",
+    "clean": "shx rm -rf build",
+    "prebuild": "run-s clean",
+    "build": "rollup -c rollup.config.js",
     "build:flow": "flow gen-flow-files src --out-dir build",
+    "predevelop": "run-s build:flow",
     "develop": "rollup -c rollup.config.js --watch"
   },
   "dependencies": {

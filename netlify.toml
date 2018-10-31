@@ -1,7 +1,7 @@
 [build]
   # subdirectory to publish from
   # base = "subdirectory"
-  publish = "packages/web/build/"
+  publish = "packages/web/public"
   command = "yarn build-web"
 
 [build.environment]
