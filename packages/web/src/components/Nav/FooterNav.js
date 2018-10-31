@@ -1,11 +1,16 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
 import { Form } from '@njmyers/component-library';
+import Button from '../Button';
 import URLToTitle from './url-to-title';
 // style
 import './footer-nav.sass';
 
 class DesktopFooterNav extends React.Component {
+  onSubmit = () => {
+    console.log('clicked');
+  };
+
   render() {
     return (
       <footer className="footer">
@@ -13,8 +18,7 @@ class DesktopFooterNav extends React.Component {
           <form
             name="emailSignup"
             className="emailSignup"
-            method="POST"
-            data-netlify="true"
+            onSubmit={this.onSubmit}
           >
             <Form.Input
               block="emailSignup"
@@ -22,7 +26,7 @@ class DesktopFooterNav extends React.Component {
               label="Signup For Our Newsletter"
               required
             />
-            <Form.Submit value="Sign Up" />
+            <Button type="submit">Sign Up</Button>
           </form>
         </section>
         <nav className="footerNavDesktop">
