@@ -15,9 +15,7 @@
   "scripts": {
     "build-web": "STAGE=staging gatsby build",
     "postbuild-web": "mv public/ build",
-    "deploy": "STAGE=production gatsby build",
-    "develop": "gatsby develop",
-    "stage": "STAGE=staging gatsby build"
+    "develop": "gatsby develop"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",

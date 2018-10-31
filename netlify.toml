@@ -10,10 +10,12 @@
 [context.production.environment]
   GATSBY_BRAINTREE_SERVER="https://checkout--staging.byalejandradesign.com"
   GATSBY_MAIL_SERVER="https://mail--staging.byalejandradesign.com"
+  STAGE="production"
 
 [context.staging.environment]
   GATSBY_BRAINTREE_SERVER="https://checkout--staging.byalejandradesign.com"
   GATSBY_MAIL_SERVER="https://mail--staging.byalejandradesign.com"
+  STAGE="staging"
 
 [[redirects]]
   from = "/*"

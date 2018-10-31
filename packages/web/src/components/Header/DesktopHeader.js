@@ -33,7 +33,7 @@ class DesktopHeader extends React.PureComponent<Props> {
 export const query = graphql`
   fragment HeaderImageFragment on File {
     childImageSharp {
-      fluid(maxWidth: 1920, quality: 100, cropFocus: NORTH) {
+      fluid(maxWidth: 1920, quality: 70, cropFocus: NORTH) {
         ...GatsbyImageSharpFluid
       }
     }
