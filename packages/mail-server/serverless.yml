@@ -49,8 +49,12 @@ functions:
 packagePath: './package.json'
 
 custom:
+  domainNames:
+    development: localhost:3001
+    staging: mail--staging.byalejandradesign.com
+    production: mail.byalejandradesign.com
   customDomain:
-    domainName: mail--${self:provider.stage}.byalejandradesign.com
+    domainName: ${self:custom.domainNames.${self:provider.stage}}
     basePath: ''
     stage: ${self:provider.stage}
     createRoute53Record: true
