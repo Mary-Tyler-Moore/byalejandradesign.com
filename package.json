@@ -16,7 +16,7 @@
     ]
   },
   "scripts": {
-    "bootstrap": "lerna bootstrap && lerna link",
+    "bootstrap": "yarn && lerna bootstrap && lerna link",
     "postbootstrap": "run-s build",
     "prebuild": "lerna run build --scope=@byalejandradesign/{server-env,checkout-objects}",
     "build": "lerna run build --ignore=@byalejandradesign/{server-env,checkout-objects}",
@@ -27,7 +27,7 @@
     "develop": "lerna run --parallel develop",
     "develop:servers": "lerna run --parallel --ignore=@byalejandradesign/web develop",
     "install-types": "node scripts/install-types.js",
-    "prestage": "lerna clean --yes && lerna bootstrap && lerna link && lerna run stage --scope=@byalejandradesign/{server-env,checkout-objects}",
+    "prestage": "lerna clean --yes && lerna bootstrap && lerna run stage --scope=@byalejandradesign/{server-env,checkout-objects}",
     "stage": "lerna run stage --parallel --ignore=@byalejandradesign/{server-env,checkout-objects}",
     "symlink-types": "flow-mono create-symlinks .flowconfig",
     "test": "jest --watchAll",
