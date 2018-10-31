@@ -31,11 +31,21 @@ provider:
 
 package:
   exclude:
-    - __tests__/**
-    - flow-typed/**
-    - src/**
+    # first exclude everything
+    - '.*/**'
+    - '!package.json'
   include:
     - build/**
+    - node_modules/**
+    # exlude all code from local modules
+    - '!node_modules/@byalejandradesign/**'
+    # include built code from local modules
+    - node_modules/@byalejandradesign/**/build/**
+    - node_modules/@byalejandradesign/**/package.json
+    # include dependencies from local modules
+    - node_modules/@byalejandradesign/**/node_modules/**
+    # exclude unhoisted dependency from local modules
+    - '!**/@byalejandradesign/**/node_modules/flow-bin/**'
 
 functions:
   server:
@@ -45,8 +55,6 @@ functions:
         cors: true
       - http: 'ANY {proxy+}'
         cors: true
-
-packagePath: './package.json'
 
 custom:
   domainNames:
