@@ -19,7 +19,6 @@
     "prebuild": "run-s clean",
     "build": "rollup -c rollup.config.js",
     "build:flow": "flow gen-flow-files src --out-dir build",
-    "predevelop": "run-s build:flow",
     "develop": "rollup -c rollup.config.js --watch"
   },
   "dependencies": {
@@ -28,12 +27,8 @@
     "uuid": "^3.3.2"
   },
   "devDependencies": {
-    "flow-bin": "^0.83.0",
-    "flow-copy-source": "^2.0.2",
+    "flow-bin": "^0.85.0",
     "flow-mono-cli": "^1.4.2",
-    "flow-typed": "^2.5.1",
-    "npm-run-all": "^4.1.3",
-    "rollup": "^0.66.6",
-    "shx": "^0.3.2"
+    "flow-typed": "^2.5.1"
   }
 }
