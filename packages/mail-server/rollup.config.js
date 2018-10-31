@@ -1,5 +1,3 @@
-import path from 'path';
-import directory from '@njmyers/directory';
 import resolve from 'rollup-plugin-node-resolve';
 import builtins from 'rollup-plugin-node-builtins';
 import globals from 'rollup-plugin-node-globals';
@@ -37,13 +35,6 @@ const basePlugins = [
   commonjs(),
 ];
 
-const cssEntries = directory('src/templates', {
-  filter: '.js',
-  recursive: false,
-})
-  .filter((obj) => !/(index|styles)/gi.test(obj.path))
-  .map((obj) => obj.path);
-
 export default [
   {
     input: 'src/app.js',
@@ -60,22 +51,4 @@ export default [
       }),
     ],
   },
-  ...cssEntries.map((absolutePath) => ({
-    input: absolutePath,
-    external,
-    output: {
-      file: `build/static/js/${path.basename(absolutePath, '.js')}.js`,
-      format: 'cjs',
-      sourcemap: true,
-    },
-    plugins: [
-      ...basePlugins,
-      postcss({
-        plugins: [autoprefixer],
-        extract: `build/static/css/${path.basename(absolutePath, '.js')}.css`,
-        sourceMap: true,
-        minimize: true,
-      }),
-    ],
-  })),
 ];
