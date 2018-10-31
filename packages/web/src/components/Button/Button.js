@@ -4,6 +4,7 @@ import './button.sass';
 class Button extends React.Component {
   static defaultProps = {
     className: 'button-yellow',
+    type: 'button',
   };
 
   render() {
@@ -16,6 +17,7 @@ class Button extends React.Component {
           width: this.props.fullWidth ? '100%' : 'inherit',
           margin: this.props.margin ? '1rem 0' : '0',
         }}
+        type={this.props.type}
       >
         <span className="button_text-sourceSans">{this.props.children}</span>
       </button>
