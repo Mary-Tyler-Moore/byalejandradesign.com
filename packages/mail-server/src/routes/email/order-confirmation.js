@@ -1,46 +1,77 @@
 /** @flow */
-import mailgun from './mailgun-init';
-import { transaction as defaultTransaction } from '@byalejandradesign/checkout-objects';
-import env from '@byalejandradesign/server-env';
+import mailgun from '../../lib/mailgun-init';
+import pipeline from '../../lib/pipeline';
 import { orderConfirmationTemplate } from '../../templates';
+import env from '@byalejandradesign/server-env';
+import {
+  transaction as defaultTransaction,
+  validateTransaction,
+} from '@byalejandradesign/checkout-objects';
 // types
 import type { $Request, $Response } from 'express';
 import type { Transaction } from '@byalejandradesign/checkout-objects';
 
-const orderConfirmation = async (req: $Request, res: $Response) => {
-  const transaction: Transaction =
-    env.STAGE === 'development' ? defaultTransaction : req.body;
-
-  const html = orderConfirmationTemplate(transaction);
-  const to =
-    env.STAGE !== 'production'
-      ? env.EMAIL_RECIPIENT
-      : transaction.customer.email;
-
-  const message = {
-    from: `Alejandra Rojas <${env.EMAIL_RECIPIENT}>`,
-    to,
-    subject: `Order Confirmation from ${env.ROOT_DOMAIN}`,
-    html,
-  };
-
-  try {
-    const response = await mailgun.send(message);
-    // const listResponse = await mailgun.lists();
-
-    res.status(200).json({
-      status: 200,
-      response,
-    });
-  } catch (error) {
-    const { statusCode, ...rest } = error;
-
-    res.status(statusCode).json({
-      status: statusCode,
-      error:
-        Object.keys(rest).length > 0 ? error : 'mailgun error sending message',
-    });
-  }
+type CTX = {
+  body: Transaction,
+  transaction: Transaction,
+  mailgunMessage: {
+    from: string,
+    to: string,
+    subject: string,
+    html: string,
+  },
 };
 
-export default orderConfirmation;
+const validateMessage = (ctx: CTX): Promise<CTX> =>
+  new Promise((res, rej) => {
+    // stub transaction for development
+    const transaction: Transaction =
+      env.STAGE === 'development' ? defaultTransaction : ctx.body;
+
+    if (validateTransaction(transaction)) {
+      const html = orderConfirmationTemplate(transaction);
+      const to =
+        env.STAGE !== 'production'
+          ? env.EMAIL_RECIPIENT
+          : transaction.customer.email;
+
+      const mailgunMessage = {
+        from: `Alejandra Rojas <${env.EMAIL_RECIPIENT}>`,
+        to,
+        subject: `Order Confirmation from ${env.ROOT_DOMAIN}`,
+        html,
+      };
+
+      res({
+        ...ctx,
+        mailgunMessage,
+      });
+    } else {
+      rej({
+        ...ctx,
+        status: 402,
+        message: 'transaction body is invalid',
+      });
+    }
+  });
+
+const sendMessage = (ctx: CTX): Promise<CTX> =>
+  new Promise((res, rej) => {
+    mailgun
+      .send(ctx.mailgunMessage)
+      .then((response) => {
+        res({
+          ...ctx,
+          ...response,
+        });
+      })
+      .catch((error) => {
+        rej({
+          ...ctx,
+          status: 402,
+          message: 'message body invalid',
+        });
+      });
+  });
+
+export default pipeline(validateMessage, sendMessage);

@@ -67,8 +67,10 @@ class Mailgun<T> {
             this.api.messages().send(message, (error, body) => {
               if (error) {
                 rej(error);
-              } else {
+              } else if (body) {
                 res(body);
+              } else {
+                rej('no mailgun response');
               }
             });
           }
