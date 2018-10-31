@@ -2,10 +2,6 @@
   "lerna": "3.3.0",
   "packages": ["packages/*"],
   "version": "0.0.1",
-  "command": {
-    "bootstrap": {
-      "hoist": true,
-      "nohoist": ["@byalejandradesign/web/**/**", "**/flow-bin"]
-    }
-  }
+  "npmClient": "yarn",
+  "useWorkspaces": true
 }

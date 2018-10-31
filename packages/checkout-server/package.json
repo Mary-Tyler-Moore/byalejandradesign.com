@@ -34,6 +34,7 @@
     "axios": "^0.18.0",
     "bluebird": "^3.5.1",
     "braintree": "^2.11.0",
+    "browserify": "^16.2.3",
     "express": "^4.16.2",
     "serverless-http": "^1.6.0",
     "smalldash": "^1.1.20",
@@ -43,9 +44,12 @@
     "flow-bin": "^0.85.0",
     "flow-mono-cli": "^1.4.2",
     "flow-typed": "^2.5.1",
+    "npm-run-all": "^4.1.3",
+    "rollup": "^0.66.6",
     "serverless": "^1.28.0",
     "serverless-domain-manager": "^2.3.0",
     "serverless-offline": "^3.16.0",
-    "serverless-plugin-monorepo": "^0.4.0"
+    "serverless-plugin-monorepo": "^0.4.0",
+    "shx": "^0.3.2"
   }
 }

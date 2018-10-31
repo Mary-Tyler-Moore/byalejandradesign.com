@@ -13,7 +13,9 @@ const dependencies = {
 const external = [...Object.keys(dependencies), ...runtimes()];
 
 const plugins = [
-  resolve(),
+  resolve({
+    preferBuiltins: true,
+  }),
   globals({
     process: false,
     dirname: false,

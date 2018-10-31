@@ -1,7 +1,6 @@
 import resolve from 'rollup-plugin-node-resolve';
 import builtins from 'rollup-plugin-node-builtins';
 import globals from 'rollup-plugin-node-globals';
-import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import runtimes from '@njmyers/babel-runtime-files';
 import postcss from 'rollup-plugin-postcss';
@@ -21,7 +20,7 @@ const external = [
   'path',
 ];
 
-const basePlugins = [
+const plugins = [
   resolve(),
   globals({
     process: false,
@@ -32,7 +31,9 @@ const basePlugins = [
     runtimeHelpers: true,
     exclude: 'node_modules/**',
   }),
-  commonjs(),
+  postcss({
+    plugins: [autoprefixer],
+  }),
 ];
 
 export default [
@@ -44,11 +45,6 @@ export default [
       format: 'cjs',
       sourcemap: true,
     },
-    plugins: [
-      ...basePlugins,
-      postcss({
-        plugins: [autoprefixer],
-      }),
-    ],
+    plugins,
   },
 ];
