@@ -7,5 +7,20 @@
   &_date
     @extend %body-sourceSans-2
 
+    margin: 0
+
   &_content
-    @extend %markdown-sourceSans
+    section
+      margin-top: 2rem
+
+  &_buttons
+    margin-top: 1rem
+    width: 100%
+
+    +flex
+
+    justify-content: space-between
+    flex-wrap: wrap
+
+    .link-reset
+      width: calc(50% - 1rem)
