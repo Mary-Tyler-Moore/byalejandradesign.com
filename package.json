@@ -25,6 +25,7 @@
     "predeploy": "lerna run deploy --scope=@byalejandradesign/{server-env,checkout-objects}",
     "deploy": "lerna run deploy --parallel --ignore=@byalejandradesign/{server-env,checkout-objects}",
     "develop": "lerna run --parallel develop",
+    "develop:web": "lerna run --parallel --scope=@byalejandradesign/web develop",
     "develop:servers": "lerna run --parallel --ignore=@byalejandradesign/web develop",
     "install-types": "node scripts/install-types.js",
     "prestage": "lerna run stage --scope=@byalejandradesign/{server-env,checkout-objects}",
