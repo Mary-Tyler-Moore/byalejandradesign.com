@@ -3,7 +3,6 @@ import Text from './Text';
 import YouTube from './YouTube';
 import Gallery from './Gallery';
 import SingleImage from './SingleImage';
-import FluidImage from '../FluidImage';
 // styles
 import './modulizer.sass';
 

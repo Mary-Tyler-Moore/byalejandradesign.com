@@ -9,7 +9,7 @@ import { dollarString } from 'smalldash';
 import title from './title.js';
 import collectionFromProduct from './collection-from-product';
 // types
-import type { ProductNode, ImageNode } from 'data';
+import type { ProductNode } from '@byalejandradesign/data-objects';
 // styles
 import './single-product.sass';
 // utils

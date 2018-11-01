@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
 import { Modal, Icon } from '@njmyers/component-library';
-import withSize from 'react-size-components';
 import URLToTitle from './url-to-title';
 // icons
 import CartIcon from '../CartIcon';
@@ -131,4 +130,3 @@ const MainNav = (props: Props) =>
   );
 
 export default MainNav;
-// export default withSize({ mobile: true, windowSize: true })(MainNav);

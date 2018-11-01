@@ -3,18 +3,19 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import ReactMarkdown from 'react-markdown';
 
-import '../sass/global.sass';
+import './markdown.sass';
 
 class MarkdownPage extends React.Component {
   render() {
     return (
       <Layout>
-        <h3 className="h3-amiri">
+        <h3 className="h3-sourceSans">
           {this.props.data.markdownRemark.frontmatter.title}
         </h3>
-        <section className="markdown-sourceSans">
+        <section className="markdownPage">
           <ReactMarkdown
             source={this.props.data.markdownRemark.rawMarkdownBody}
+            className="markdown-sourceSans"
           />
         </section>
       </Layout>

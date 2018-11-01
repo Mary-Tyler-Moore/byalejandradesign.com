@@ -190,6 +190,7 @@ const createAddressForm = (slice: string) => {
               onChange={this.onSelectCountry}
               required
             />
+            {this.props.children}
           </form>
         </React.Fragment>
       );
