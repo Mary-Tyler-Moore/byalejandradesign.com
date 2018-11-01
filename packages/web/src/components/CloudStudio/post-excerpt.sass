@@ -1,6 +1,11 @@
 @import ../../sass/global
 
 .postExcerpt
+  margin-top: 3rem
+
+  &:first-child
+    margin-top: 1rem
+
   &_titleLink
     @extend %link-reset
 
@@ -14,3 +19,8 @@
 
   &_content
     @extend %markdown-sourceSans
+
+    margin-bottom: 1.5rem
+
+  &_link
+    @extend %link-reset

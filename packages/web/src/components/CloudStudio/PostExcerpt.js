@@ -23,8 +23,10 @@ const PostExcerpt = ({ node }) => {
       <section className="postExcerpt_content">
         <Text slide={slide} excerpt />
       </section>
-      <Link className="link-reset" to={`/cloud-studio/${node.slug}`}>
-        <Button margin>Read More</Button>
+      <Link className="postExcerpt_link" to={`/cloud-studio/${node.slug}`}>
+        <Button className="greyButton" margin>
+          Read More
+        </Button>
       </Link>
     </article>
   );

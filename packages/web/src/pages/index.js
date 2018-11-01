@@ -6,12 +6,12 @@ import Layout from '../components/Layout';
 
 const IndexPage = ({ data }) => (
   <Layout allWordpressAcfOptions={data.allWordpressAcfOptions}>
-    <h3 className="h3-amiri">CloudStudio</h3>
     <section>
+      <CollectionList edges={data.allWordpressWpCollections.edges} />
+      <h3 className="h3-amiri">Cloud Studio</h3>
       {data.allWordpressPost.edges.map(({ node }) => (
         <PostExcerpt key={node.id} node={node} />
       ))}
-      <CollectionList edges={data.allWordpressWpCollections.edges} />
     </section>
   </Layout>
 );

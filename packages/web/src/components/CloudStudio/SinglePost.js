@@ -21,14 +21,7 @@ const SinglePost = ({ node }) => {
       </section>
       <section className="singlePost_buttons">
         <Link className="link-reset" to="/cloud-studio">
-          <Button fullWidth margin>
-            {`Back to Cloud Studio`}
-          </Button>
-        </Link>
-        <Link className="link-reset" to="/shop/collections">
-          <Button className="greyButton" fullWidth margin>
-            {`Shop Collections`}
-          </Button>
+          <Button className="greyButton">{`Back to Cloud Studio`}</Button>
         </Link>
       </section>
     </article>

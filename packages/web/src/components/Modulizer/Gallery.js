@@ -18,7 +18,7 @@ const Gallery = ({ slide } = {}) => (
     style={{ gridTemplateColumns: columns(slide.display) }}
   >
     {slide.images.map((image) => (
-      <FluidImage localFile={image.localFile} />
+      <FluidImage key={image.id} localFile={image.localFile} />
     ))}
   </section>
 );

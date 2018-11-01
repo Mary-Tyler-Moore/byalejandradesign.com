@@ -9,8 +9,9 @@ const CollectionList = ({ edges }) => (
     <section className="collections">
       <h3 className="collections_h3">Collections</h3>
       <p className="collections_description">
-        Here we should put some nice text. Explaining how all of the products
-        are divided into collections based on their colors, textures and use.
+        Collections are ceramic items that are grouped by technique, color and
+        or material. Items in a collection are made to work easily with one
+        another but feel free to mix and match if it suits your taste!
       </p>
     </section>
     <section className="collectionList">

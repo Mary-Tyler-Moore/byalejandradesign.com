@@ -47,6 +47,7 @@ export const query = graphql`
   fragment FluidImageFragment on wordpress__wp_media {
     localFile {
       childImageSharp {
+        id
         fluid(maxWidth: 1200, maxHeight: 900) {
           ...GatsbyImageSharpFluid
         }
