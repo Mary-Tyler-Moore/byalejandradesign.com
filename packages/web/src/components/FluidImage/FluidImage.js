@@ -29,10 +29,12 @@ const FluidImage = ({ localFile, to, className }: FluidImageProps) => (
     <figure
       className={`fluidImage${to && ' fluidImage_clickable'}${' ' + className}`}
     >
-      <Img
-        className="fluidImage_gatsby"
-        fluid={localFile.childImageSharp.fluid}
-      />
+      {localFile && (
+        <Img
+          className="fluidImage_gatsby"
+          fluid={localFile.childImageSharp.fluid}
+        />
+      )}
     </figure>
   </FluidImageLink>
 );
