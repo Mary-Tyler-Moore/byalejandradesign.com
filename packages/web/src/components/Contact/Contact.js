@@ -12,7 +12,7 @@ import {
 } from './contact-actions';
 import type { Actions } from './contact-actions';
 // components
-import { Form, StatusSwitch } from '@njmyers/component-library';
+import { Form } from '@njmyers/component-library';
 import Loading from '../Loading';
 // styles
 import './contact.sass';
