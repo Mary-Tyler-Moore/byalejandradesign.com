@@ -57,6 +57,8 @@ class AddressForms extends React.PureComponent<Props, State> {
   };
 
   onSubmit = (e: SyntheticEvent<HTMLButtonElement>) => {
+    console.log('submit!');
+
     e.preventDefault();
 
     const { valid: shippingValid, fields: shippingFields } = validateAddress(
