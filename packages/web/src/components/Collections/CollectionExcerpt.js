@@ -7,7 +7,7 @@ import './collection-excerpt.sass';
 
 /** renders a collection excerpt */
 const CollectionExcerpt = ({ node }) => (
-  <article className="collectionExcerpt_article">
+  <article className="collectionExcerpt">
     <h4 className="collectionExcerpt_h4">{node.name}</h4>
     <FluidImage
       localFile={node.acf.image.localFile}

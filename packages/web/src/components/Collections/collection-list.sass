@@ -14,10 +14,29 @@
 
     margin-top: 0
 
+/**
+ * Grid CSS doesn't make 'masonry'
+ * .collectionList
+ *   display: grid
+ *   grid-template-columns: repeat(2, 1fr)
+ *   grid-gap: 4rem
+ *
+ *   +all-phone
+ *     grid-template-columns: repeat(1, 1fr)
+
 .collectionList
-  display: grid
-  grid-template-columns: repeat(2, 1fr)
-  grid-gap: 4rem
+  column-count: 2
+  column-gap: 3rem
+
+  +desktop
+    column-gap: 4rem
+
+
+  .collectionExcerpt
+    break-inside: avoid
+    page-break-inside: avoid
+    margin-bottom: 3rem
 
   +all-phone
-    grid-template-columns: repeat(1, 1fr)
+    column-count: 1
+    column-gap: 0
