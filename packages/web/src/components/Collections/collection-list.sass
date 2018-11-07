@@ -32,11 +32,15 @@
     column-gap: 4rem
 
 
+  +all-phone
+    column-count: 1
+    column-gap: 0
+
+
   .collectionExcerpt
     break-inside: avoid
     page-break-inside: avoid
     margin-bottom: 3rem
 
-  +all-phone
-    column-count: 1
-    column-gap: 0
+    +all-phone
+      margin-bottom: 2rem

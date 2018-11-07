@@ -87,9 +87,7 @@ class MobileMainNav extends React.Component<Props, MobileNavState> {
     status: 'off',
   };
 
-  handleClick = (e: SyntheticEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-
+  handleClick = (e: SyntheticEvent<HTMLLinkElement>) => {
     this.setState(({ status }) => ({
       status: status === 'on' ? 'off' : 'on',
     }));
