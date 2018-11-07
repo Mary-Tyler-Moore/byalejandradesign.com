@@ -46,14 +46,12 @@ class AddressForms extends React.PureComponent<Props, State> {
     status: 'initial',
   };
 
-  onSubmit = (event) => {
-    navigate('/checkout/payment-method');
-  };
+  onChange = (e: SyntheticEvent<HTMLInputElement>) => {
+    e.preventDefault();
 
-  onChange = (event) => {
     const {
       currentTarget: { checked },
-    } = event;
+    } = e;
 
     this.props.setBillingAddress(checked);
   };
@@ -84,9 +82,14 @@ class AddressForms extends React.PureComponent<Props, State> {
     }
   };
 
-  onEmail = (event) => {
-    event.preventDefault();
-    this.props.updateEmail(event.currentTarget.value);
+  onEmail = (e: SyntheticEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
+    const {
+      currentTarget: { value },
+    } = e;
+
+    this.props.updateEmail(value);
   };
 
   render() {
