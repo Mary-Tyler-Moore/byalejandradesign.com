@@ -32,6 +32,14 @@ type State = {
   status: 'initial' | 'invalid',
 };
 
+const SubmitButton = () => (
+  <section className="addressNavigation">
+    <Button fullWidth margin type="submit">
+      Payment Info
+    </Button>
+  </section>
+);
+
 class AddressForms extends React.PureComponent<Props, State> {
   state = {
     focusFields: [''],
@@ -50,7 +58,9 @@ class AddressForms extends React.PureComponent<Props, State> {
     this.props.setBillingAddress(checked);
   };
 
-  onClick = () => {
+  onSubmit = (e: SyntheticEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
     const { valid: shippingValid, fields: shippingFields } = validateAddress(
       this.props.shippingAddress
     );
@@ -83,14 +93,20 @@ class AddressForms extends React.PureComponent<Props, State> {
     return (
       <React.Fragment>
         <section className="shippingAddress">
-          <ShippingAddressForm focus={this.state.focusFields} />
-          <Form.Input
-            block="addressField"
-            value={this.props.email}
-            name="email"
-            onChange={this.onEmail}
-            type="email"
-          />
+          <ShippingAddressForm
+            focus={this.state.focusFields}
+            onSubmit={this.onSubmit}
+          >
+            <Form.Input
+              block="addressField"
+              value={this.props.email}
+              name="email"
+              onChange={this.onEmail}
+              type="email"
+              required
+            />
+            {!this.props.hasBillingAddress && <SubmitButton />}
+          </ShippingAddressForm>
         </section>
         <section className="addressToggle">
           <input
@@ -105,14 +121,11 @@ class AddressForms extends React.PureComponent<Props, State> {
         </section>
         {this.props.hasBillingAddress && (
           <section className="billingAddress">
-            <BillingAddressForm />
+            <BillingAddressForm onSubmit={this.onSubmit}>
+              <SubmitButton />
+            </BillingAddressForm>
           </section>
         )}
-        <section className="addressNavigation">
-          <Button fullWidth margin onClick={this.onClick}>
-            Payment Info
-          </Button>
-        </section>
       </React.Fragment>
     );
   }
