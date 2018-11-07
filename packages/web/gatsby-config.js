@@ -48,9 +48,13 @@ const normalizers = compose(
 
 const stage = process.env.STAGE || process.env.NODE_ENV || 'development';
 
-require('dotenv').config({
-  path: `.env.${stage}`,
-});
+try {
+  require('dotenv').config({
+    path: `.env.${stage}`,
+  });
+} catch (e) {
+  console.log('no enivornment file for this stage specified');
+}
 
 module.exports = {
   siteMetadata: {
