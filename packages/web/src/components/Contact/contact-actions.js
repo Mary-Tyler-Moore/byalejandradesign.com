@@ -21,7 +21,7 @@ export const updateContactForm = (key: string, value: string) => ({
  * @param  {[type]} value [description]
  * @return {[type]}       [description]
  */
-export const submitFormSucess = (value: string) => ({
+export const submitFormSuccess = (value: string) => ({
   type: 'SUBMIT_CONTACT_FORM_SUCCESS',
   value,
 });
@@ -43,4 +43,4 @@ export type Actions =
   | $Call<ExtractReturn, typeof submitContactForm>
   | $Call<ExtractReturn, typeof updateContactForm>
   | $Call<ExtractReturn, typeof submitFormError>
-  | $Call<ExtractReturn, typeof submitFormSucess>;
+  | $Call<ExtractReturn, typeof submitFormSuccess>;

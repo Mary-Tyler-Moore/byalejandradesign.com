@@ -1,13 +1,19 @@
 import * as React from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 // reducer
 import contactReducer from './contact-reducer';
 import type { State } from './contact-reducer';
 // actions
-import { updateContactForm, submitContactForm } from './contact-actions';
+import {
+  updateContactForm,
+  submitContactForm,
+  submitFormError,
+  submitFormSuccess,
+} from './contact-actions';
 import type { Actions } from './contact-actions';
 // components
 import { Form, StatusSwitch } from '@njmyers/component-library';
+import Loading from '../Loading';
 // styles
 import './contact.sass';
 
@@ -18,6 +24,7 @@ class Contact extends React.PureComponent<{}, State> {
     email: '',
     message: '',
     status: 'initial',
+    userMessage: '',
   };
 
   logAction = (prev: State) => (action: Actions) => (next: State) => {
@@ -28,31 +35,43 @@ class Contact extends React.PureComponent<{}, State> {
     });
   };
 
-  submitRequest = (action: Actions, state: State) => {
-    // if (action.type === 'SUBMIT_CONTACT_FORM') {
-    //   // set state to loading
-    //   this.setState({ status: 'loading' });
-    //   // make request
-    //   try {
-    //     const response = await axios({
-    //       url: `${process.env.REACT_APP_MAIL_URL}/send/byalejandradesign`,
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //         Authorization: process.env.REACT_APP_MAIL_API_KEY,
-    //       },
-    //       data: this.state,
-    //     });
-    //
-    //     console.log(response);
-    //   } catch (e) {
-    //     this.dispatch(submitFormError(e));
-    //   }
-    // }
+  submitRequest = async () => {
+    // make request
+    try {
+      const response = await axios({
+        url: `${process.env.GATSBY_MAIL_SERVER}/contact`,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: process.env.GATSBY_API_KEY,
+        },
+        data: this.state,
+        method: 'POST',
+      });
+
+      const status = response.data.status;
+
+      if (status >= 200 && status < 300) {
+        this.dispatch(submitFormSuccess());
+      } else {
+        this.dispatch(submitFormError(response.data));
+      }
+    } catch (e) {
+      this.dispatch(submitFormError(e));
+    }
+  };
+
+  sideEffects = (action: Actions) => {
+    // return function
+    // dispatch will take care of executing the function at the correct time
+    switch (action.type) {
+      case 'SUBMIT_CONTACT_FORM':
+        return this.submitRequest;
+      default:
+        return () => null;
+    }
   };
 
   dispatch = (action: Actions) => {
-    // do side effects
-    this.submitRequest(action, this.state);
     // do reduction
     this.setState((prevState) => {
       // generate next state
@@ -61,19 +80,36 @@ class Contact extends React.PureComponent<{}, State> {
       if (process.env.NODE_ENV !== 'production') {
         this.logAction(prevState)(action)(nextState);
       }
-      // return next state to react
+
       return nextState;
-    });
+      // do side effects AFTER state is async set by react.
+    }, this.sideEffects(action));
   };
 
-  onChange = (event: SyntheticEvent<HTMLInputElement>) => {
-    const { name, value } = event.currentTarget;
+  onChange = (e: SyntheticEvent<HTMLInputElement>) => {
+    const { name, value } = e.currentTarget;
     this.dispatch(updateContactForm(name, value));
   };
 
-  onSubmit = (event: SyntheticEvent<HTMLInputElement>) => {
-    event.preventDefault();
+  onSubmit = (e: SyntheticEvent<HTMLInputElement>) => {
+    e.preventDefault();
     this.dispatch(submitContactForm());
+  };
+
+  statusMessage = () => {
+    switch (this.state.status) {
+      case 'resolved':
+      case 'error':
+        return (
+          <p className={`message message-${this.state.status}`}>
+            <em>{this.state.userMessage}</em>
+          </p>
+        );
+      case 'loading':
+        return <Loading />;
+      default:
+        return null;
+    }
   };
 
   render() {
@@ -114,13 +150,11 @@ class Contact extends React.PureComponent<{}, State> {
             onChange={this.onChange}
             value={this.state.message}
             rows={8}
-            required={true}
+            required
           />
           <Form.Submit block="contactFormSubmit" value="Send" />
         </form>
-        <StatusSwitch status={this.state.status}>
-          <p className="message">{this.state.status}</p>
-        </StatusSwitch>
+        {this.statusMessage()}
       </section>
     );
   }

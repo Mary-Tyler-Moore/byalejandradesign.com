@@ -1,4 +1,3 @@
-
 import type { Actions } from './contact-actions';
 
 export type State = {
@@ -28,18 +27,18 @@ const contactReducer = (state: State = contactFields, action: Actions) => {
     case 'SUBMIT_CONTACT_FORM':
       return { ...state, status: 'loading' };
     case 'UPDATE_CONTACT_FORM':
-      return { ...state, [action.key]: action.value };
+      return { ...state, userMessage: '', [action.key]: action.value };
     case 'SUBMIT_CONTACT_FORM_SUCCESS':
       return {
         ...state,
-        contactFields,
+        ...contactFields,
         status: 'resolved',
         userMessage: successMessage,
       };
     case 'SUBMIT_CONTACT_FORM_ERROR':
       return { ...state, status: 'error', userMessage: errorMessage };
     default:
-      return { ...state };
+      return state;
   }
 };
 

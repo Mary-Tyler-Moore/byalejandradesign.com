@@ -1,3 +1,4 @@
+/** @flow */
 import * as React from 'react';
 import { Link } from 'gatsby';
 import { Modal, Icon } from '@njmyers/component-library';
@@ -86,7 +87,9 @@ class MobileMainNav extends React.Component<Props, MobileNavState> {
     status: 'off',
   };
 
-  handleClick = () => {
+  handleClick = (e: SyntheticEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
     this.setState(({ status }) => ({
       status: status === 'on' ? 'off' : 'on',
     }));
@@ -96,8 +99,15 @@ class MobileMainNav extends React.Component<Props, MobileNavState> {
     return (
       <header style={this.getStyle()} className="mainHeaderMobile">
         <div className="mainHeaderMobile_hamburger" onClick={this.handleClick}>
-          <Icon.Hamburger color="#ffffff" radius={1} />
+          {this.state.status === 'off' ? (
+            <Icon.Hamburger color="#ffffff" radius={1} />
+          ) : (
+            <Icon.Cross color="#ffffff" radius={1} />
+          )}
         </div>
+        <Link to="/cart">
+          <CartIcon />
+        </Link>
         <Modal
           status={this.state.status}
           style={{ background: 'rgba(0, 0, 0, 0.7)' }}
