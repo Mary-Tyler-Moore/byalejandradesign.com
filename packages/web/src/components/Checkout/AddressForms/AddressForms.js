@@ -32,14 +32,6 @@ type State = {
   status: 'initial' | 'invalid',
 };
 
-const SubmitButton = () => (
-  <section className="addressNavigation">
-    <Button fullWidth margin type="submit">
-      Payment Info
-    </Button>
-  </section>
-);
-
 class AddressForms extends React.PureComponent<Props, State> {
   state = {
     focusFields: [''],
@@ -97,40 +89,40 @@ class AddressForms extends React.PureComponent<Props, State> {
   render() {
     return (
       <React.Fragment>
-        <section className="shippingAddress">
-          <ShippingAddressForm
-            focus={this.state.focusFields}
-            onSubmit={this.onSubmit}
-          >
-            <Form.Input
-              block="addressField"
-              value={this.props.email}
-              name="email"
-              onChange={this.onEmail}
-              type="email"
-              required
-            />
-            {!this.props.hasBillingAddress && <SubmitButton />}
-          </ShippingAddressForm>
-        </section>
-        <section className="addressToggle">
-          <input
-            className="addressToggle_input"
-            type="checkbox"
-            onChange={this.onChange}
-            checked={this.props.hasBillingAddress}
+        <h4 className="h4-amiri">Shipping Address</h4>
+        <form className="addressForm_form" onSubmit={this.onSubmit}>
+          <ShippingAddressForm focus={this.state.focusFields} />
+          <Form.Input
+            block="addressField"
+            value={this.props.email}
+            name="email"
+            onChange={this.onEmail}
+            type="email"
+            required
           />
-          <span>
-            Click Here if Billing Address is different then Shipping Address
-          </span>
-        </section>
-        {this.props.hasBillingAddress && (
-          <section className="billingAddress">
-            <BillingAddressForm onSubmit={this.onSubmit}>
-              <SubmitButton />
-            </BillingAddressForm>
+          <section className="addressToggle">
+            <input
+              className="addressToggle_input"
+              type="checkbox"
+              onChange={this.onChange}
+              checked={this.props.hasBillingAddress}
+            />
+            <span>
+              Click Here if Billing Address is different then Shipping Address
+            </span>
           </section>
-        )}
+          {this.props.hasBillingAddress && (
+            <React.Fragment>
+              <h4 className="h4-amiri">Billing Address</h4>
+              <BillingAddressForm />
+            </React.Fragment>
+          )}
+          <section className="addressNavigation">
+            <Button fullWidth margin type="submit">
+              Payment&nbsp;Info
+            </Button>
+          </section>
+        </form>
       </React.Fragment>
     );
   }

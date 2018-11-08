@@ -109,89 +109,84 @@ const createAddressForm = (slice: string) => {
     render() {
       return (
         <React.Fragment>
-          <h4 className="addressForm_h4">{this.titleCase}</h4>
-          <form className="addressForm_form" onSubmit={this.props.onSubmit}>
-            <Form.Input
-              focus={this.props.focus.includes('firstName')}
-              name="firstName"
-              label="First Name"
-              block="addressField"
-              value={this.props[slice].firstName}
-              onChange={this.props.updateAddressField}
-              modifiers={['half']}
-              required
-            />
-            <Form.Input
-              focus={this.props.focus.includes('lastName')}
-              name="lastName"
-              label="Last Name"
-              block="addressField"
-              value={this.props[slice].lastName}
-              onChange={this.props.updateAddressField}
-              modifiers={['half']}
-              required
-            />
-            <Form.Input
-              focus={this.props.focus.includes('streetAddress1')}
-              name="streetAddress1"
-              label="Address Line 1"
-              block="addressField"
-              value={this.props[slice].streetAddress1}
-              onChange={this.props.updateAddressField}
-              required
-            />
-            <Form.Input
-              focus={this.props.focus.includes('streetAddress2')}
-              name="streetAddress2"
-              label="Address Line 2"
-              block="addressField"
-              value={this.props[slice].streetAddress2}
-              onChange={this.props.updateAddressField}
-              required
-            />
-            <Form.Input
-              focus={this.props.focus.includes('city')}
-              name="city"
-              block="addressField"
-              value={this.props[slice].city}
-              onChange={this.props.updateAddressField}
-              modifiers="half"
-              required
-            />
-            <Form.Select
-              focus={this.props.focus.includes('province')}
-              name="province"
-              block="addressSelect"
-              label={geography[this.props[slice].countryCode].provincialKey}
-              options={this.getProvinceOptions()}
-              value={this.props[slice].province}
-              onChange={this.props.updateAddressField}
-              modifiers="sixth"
-              required
-            />
-            <Form.Input
-              focus={this.props.focus.includes('postalCode')}
-              name="postalCode"
-              label="Postal Code"
-              block="addressField"
-              type="text"
-              value={this.props[slice].postalCode}
-              onChange={this.validatePostalCode}
-              modifiers="third"
-              required
-            />
-            <Form.Select
-              focus={this.props.focus.includes('countryCode')}
-              name="countryCode"
-              block="addressSelect"
-              label="Country"
-              options={this.getCountryOptions()}
-              value={this.props[slice].countryCode}
-              onChange={this.onSelectCountry}
-              required
-            />
-            {this.props.children}
-          </form>
+          <Form.Input
+            focus={this.props.focus.includes('firstName')}
+            name="firstName"
+            label="First Name"
+            block="addressField"
+            value={this.props[slice].firstName}
+            onChange={this.props.updateAddressField}
+            modifiers={['half']}
+            required
+          />
+          <Form.Input
+            focus={this.props.focus.includes('lastName')}
+            name="lastName"
+            label="Last Name"
+            block="addressField"
+            value={this.props[slice].lastName}
+            onChange={this.props.updateAddressField}
+            modifiers={['half']}
+            required
+          />
+          <Form.Input
+            focus={this.props.focus.includes('streetAddress1')}
+            name="streetAddress1"
+            label="Address Line 1"
+            block="addressField"
+            value={this.props[slice].streetAddress1}
+            onChange={this.props.updateAddressField}
+            required
+          />
+          <Form.Input
+            focus={this.props.focus.includes('streetAddress2')}
+            name="streetAddress2"
+            label="Address Line 2"
+            block="addressField"
+            value={this.props[slice].streetAddress2}
+            onChange={this.props.updateAddressField}
+          />
+          <Form.Input
+            focus={this.props.focus.includes('city')}
+            name="city"
+            block="addressField"
+            value={this.props[slice].city}
+            onChange={this.props.updateAddressField}
+            modifiers="half"
+            required
+          />
+          <Form.Select
+            focus={this.props.focus.includes('province')}
+            name="province"
+            block="addressSelect"
+            label={geography[this.props[slice].countryCode].provincialKey}
+            options={this.getProvinceOptions()}
+            value={this.props[slice].province}
+            onChange={this.props.updateAddressField}
+            modifiers="sixth"
+            required
+          />
+          <Form.Input
+            focus={this.props.focus.includes('postalCode')}
+            name="postalCode"
+            label="Postal Code"
+            block="addressField"
+            type="text"
+            value={this.props[slice].postalCode}
+            onChange={this.validatePostalCode}
+            modifiers="third"
+            required
+          />
+          <Form.Select
+            focus={this.props.focus.includes('countryCode')}
+            name="countryCode"
+            block="addressSelect"
+            label="Country"
+            options={this.getCountryOptions()}
+            value={this.props[slice].countryCode}
+            onChange={this.onSelectCountry}
+            required
+          />
         </React.Fragment>
       );
     }
