@@ -5,7 +5,6 @@ import Button from '../Button';
 import './single-post.sass';
 
 const SinglePost = ({ node }) => {
-  console.log(node);
   return (
     <article className="singlePost">
       <h4 className="singlePost_title">{node.title}</h4>
