@@ -17176,7 +17176,7 @@ slide@^1.1.6:
   resolved "https://registry.yarnpkg.com/slide/-/slide-1.1.6.tgz#56eb027d65b4d2dce6cb2e2d32c4d4afc9e1d707"
   integrity sha1-VusCfWW00tzmyy4tMsTUr8nh1wc=
 
-smalldash@^1.1.18, smalldash@^1.1.20, smalldash@^1.1.21:
+smalldash@^1.0.0, smalldash@^1.1.18, smalldash@^1.1.20, smalldash@^1.1.21:
   version "1.1.21"
   resolved "https://registry.yarnpkg.com/smalldash/-/smalldash-1.1.21.tgz#aeddd770b624b27e69f33b3aae599655dd2aac07"
   integrity sha512-oV9iYt87OVXiwb+/ot2BwzaNefAapRWCu1u+u1bZIetaOtquEDbMJVsYmUalLa0QiG3cwQzsV3fk22FTeW/oHQ==
