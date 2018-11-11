@@ -88,7 +88,7 @@ module.exports = {
     },
     'gatsby-transformer-remark',
     {
-      resolve: 'gatsby-source-wordpress',
+      resolve: '@local/gatsby-source-wordpress',
       options: {
         // The base url to your WP site.
         baseUrl: 'api.artetexture.com',
@@ -122,6 +122,5 @@ module.exports = {
         display: 'minimal-ui',
       },
     },
-    // 'gatsby-plugin-offline',
   ],
 };

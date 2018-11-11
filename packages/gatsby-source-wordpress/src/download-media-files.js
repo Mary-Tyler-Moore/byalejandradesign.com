@@ -1,8 +1,11 @@
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`);
 const { pipeAsync } = require('smalldash');
 
-const reuseFileNode = ({ cache, touchNode }) => ({ e, fileNodeID }) =>
+const reuseFileNode = ({ e, fileNodeID, ...ctx }) =>
   new Promise((res, rej) => {
+    // extract functions
+    const { cache, touchNode } = ctx;
+
     const mediaDataCacheKey = `wordpress-media-${e.wordpress_id}`;
 
     cache.get(mediaDataCacheKey).then((cacheMediaData) => {
@@ -12,16 +15,17 @@ const reuseFileNode = ({ cache, touchNode }) => ({ e, fileNodeID }) =>
         fileNodeID = cacheMediaData.fileNodeID;
         touchNode({ nodeId: cacheMediaData.fileNodeID });
       }
-      res({ e, fileNodeID, mediaDataCacheKey });
+      res({ e, fileNodeID, mediaDataCacheKey, ...ctx });
     });
   });
 
-const downloadFile = ({ store, cache, createNode, createNodeId, _auth }) => ({
-  e,
-  fileNodeID,
-  mediaDataCacheKey,
-}) =>
+const throttle = 10;
+
+const downloadFile = ({ e, fileNodeID, mediaDataCacheKey, ...ctx }) =>
   new Promise((res, rej) => {
+    // extract functions
+    const { store, cache, createNode, createNodeId, _auth } = ctx;
+
     // If we don't have cached data, download the file
     if (!fileNodeID) {
       createRemoteFileNode({
@@ -41,18 +45,18 @@ const downloadFile = ({ store, cache, createNode, createNodeId, _auth }) => ({
               modified: e.modified,
             })
             .then(() => {
-              res({ e, fileNodeID });
+              res({ e, fileNodeID, mediaDataCacheKey, ...ctx });
             });
         } else {
-          res({ e, fileNodeID });
+          res(downloadFile({ e, fileNodeID, mediaDataCacheKey, ...ctx }));
         }
       });
     } else {
-      res({ e, fileNodeID });
+      res({ e, fileNodeID, mediaDataCacheKey, ...ctx });
     }
   });
 
-const removeSizes = ({ e, fileNodeID }) =>
+const removeSizes = ({ e, fileNodeID, ...ctx }) =>
   new Promise((res, rej) => {
     if (fileNodeID) {
       e.localFile___NODE = fileNodeID;
@@ -65,15 +69,19 @@ const removeSizes = ({ e, fileNodeID }) =>
 // Downloads media files and removes "sizes" data as useless in Gatsby context.
 const downloadMediaFiles = (ctx) =>
   Promise.all(
-    ctx.entities.map((e) => {
-      if (e.__type === `wordpress__wp_media`) {
-        return pipeAsync(reuseFileNode(ctx), downloadFile(ctx), removeSizes)({
-          e,
-        });
-      } else {
-        return Promise.resolve(e);
-      }
-    })
+    ctx.entities.map(
+      (e) =>
+        new Promise((res, rej) => {
+          if (e.__type === `wordpress__wp_media`) {
+            return pipeAsync(reuseFileNode, downloadFile, removeSizes)({
+              e,
+              ...ctx,
+            }).then((e) => res(e));
+          } else {
+            res(e);
+          }
+        })
+    )
   );
 
 module.exports = downloadMediaFiles;

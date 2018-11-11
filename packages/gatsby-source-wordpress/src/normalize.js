@@ -462,6 +462,7 @@ exports.mapEntitiesToMedia = (entities) => {
   });
 };
 
+// Downloads media files and removes "sizes" data as useless in Gatsby context.
 exports.downloadMediaFiles = require('./download-media-files');
 
 const prepareACFChildNodes = (
