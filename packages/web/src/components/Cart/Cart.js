@@ -19,7 +19,7 @@ class Cart extends React.PureComponent<Props> {
         <h4 className="cart_h4">Shopping Bag Contents</h4>
         <CartContents editable />
         {this.props.cart.products.length > 0 ? (
-          <Link to="/checkout/shipping-address" className="link-reset">
+          <Link to="/checkout/address" className="link-reset">
             <Button fullWidth margin>
               Checkout
             </Button>

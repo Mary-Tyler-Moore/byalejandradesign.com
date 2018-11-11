@@ -47,7 +47,9 @@ export const query = graphql`
         }
       }
     }
-    allWordpressWpShop(filter: { collections: { id: { eq: $id } } }) {
+    allWordpressWpShop(
+      filter: { collections: { elemMatch: { id: { eq: $id } } } }
+    ) {
       edges {
         node {
           ...ProductData

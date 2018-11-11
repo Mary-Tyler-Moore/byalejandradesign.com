@@ -7,7 +7,9 @@ import URLToTitle from './url-to-title';
 import './footer-nav.sass';
 
 class DesktopFooterNav extends React.Component {
-  onSubmit = () => {
+  onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
     console.log('clicked');
   };
 

@@ -235,7 +235,7 @@ class HostedFields extends React.PureComponent<Props, State> {
             )}
             <Loading status={this.state.status === 'loading' ? 'on' : 'off'} />
             <Button fullWidth margin onClick={this.onSubmit}>
-              Submit&nbps;Credit&nbsp;Card
+              Submit&nbsp;Credit&nbsp;Card
             </Button>
           </section>
         </section>
