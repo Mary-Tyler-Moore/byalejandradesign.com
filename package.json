@@ -12,7 +12,7 @@
     "nohoist": [
       "@byalejandradesign/web/**/**",
       "**/flow-bin",
-      "**/flow-mono-cli"
+      "packages/**/flow-mono-cli"
     ]
   },
   "license": "ISC",
