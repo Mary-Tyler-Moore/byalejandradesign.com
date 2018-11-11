@@ -11,7 +11,8 @@
     ],
     "nohoist": [
       "@byalejandradesign/web/**/**",
-      "**/flow-bin"
+      "**/flow-bin",
+      "packages/**/flow-mono-cli"
     ]
   },
   "license": "ISC",

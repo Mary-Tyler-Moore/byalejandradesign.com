@@ -15,7 +15,7 @@ class DesktopHeader extends React.PureComponent<Props> {
     return (
       <header className="header">
         <figure className="header_imgContainer">
-          {this.props.headerImage ? (
+          {this.props.headerImage.localFile ? (
             <Img
               className="header_img"
               fluid={this.props.headerImage.localFile.childImageSharp.fluid}

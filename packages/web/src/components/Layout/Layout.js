@@ -10,6 +10,39 @@ import './library';
 import 'normalize.css';
 import './layout.sass';
 
+const SITE_DATA = graphql`
+  query SiteTitleQuery {
+    site {
+      siteMetadata {
+        title
+        subTitle
+        navLayout {
+          mainNav
+          footerNav
+        }
+        design {
+          maxWidth
+          contentPadding
+          mobileContentPadding
+        }
+      }
+    }
+    allWordpressAcfOptions {
+      edges {
+        node {
+          options {
+            default_header {
+              localFile {
+                ...HeaderImageFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 class Layout extends React.Component {
   /** get the metadata object */
   getSiteMetadata = (data) => data.site.siteMetadata;
@@ -41,38 +74,7 @@ class Layout extends React.Component {
   render() {
     return (
       <StaticQuery
-        query={graphql`
-          query SiteTitleQuery {
-            site {
-              siteMetadata {
-                title
-                subTitle
-                navLayout {
-                  mainNav
-                  footerNav
-                }
-                design {
-                  maxWidth
-                  contentPadding
-                  mobileContentPadding
-                }
-              }
-            }
-            allWordpressAcfOptions {
-              edges {
-                node {
-                  options {
-                    default_header {
-                      localFile {
-                        ...HeaderImageFragment
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        `}
+        query={SITE_DATA}
         render={(data) => (
           <React.Fragment>
             <div className="root">
