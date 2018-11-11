@@ -1,26 +1,19 @@
 @import ../../sass/global
 
 .postExcerpt
-  margin-top: 3rem
+  background: #f0ebe6
 
-  &:first-child
-    margin-top: 1rem
+  &_image
+    &:hover
+      transform: none
 
   &_titleLink
     @extend %link-reset
 
-  &_title
-    @extend %h5-amiri
-
-  &_date
-    @extend %body-sourceSans-2
-
-    margin: 0
-
   &_content
+    padding: 1.5rem
+
     @extend %markdown-sourceSans
 
-    margin-bottom: 1.5rem
-
-  &_link
-    @extend %link-reset
+  &_title
+    margin-top: 0 !important

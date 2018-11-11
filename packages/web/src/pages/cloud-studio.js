@@ -3,6 +3,8 @@ import { graphql } from 'gatsby';
 import { PostExcerpt } from '../components/CloudStudio';
 import Layout from '../components/Layout';
 
+import './cloud-studio.sass';
+
 const CloudStudio = ({ data }) => (
   <Layout>
     <h3 className="h3-amiri">Cloud Studio</h3>

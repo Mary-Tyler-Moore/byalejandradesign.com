@@ -2,6 +2,7 @@ import * as React from 'react';
 import { graphql, Link } from 'gatsby';
 import Button from '../Button';
 import Text from '../Modulizer/Text';
+import FluidImage from '../FluidImage';
 // style
 import './post-excerpt.sass';
 
@@ -12,22 +13,20 @@ const PostExcerpt = ({ node }) => {
 
   return (
     <article className="postExcerpt">
-      <Link className="postExcerpt_titleLink" to={`/cloud-studio/${node.slug}`}>
-        <h5 className="postExcerpt_title">{node.title}</h5>
-      </Link>
-      <p className="postExcerpt_date">
-        <em>
-          <time>{node.date}</time>
-        </em>
-      </p>
+      <FluidImage
+        localFile={node.acf.thumbnail.localFile}
+        to={`/cloud-studio/${node.slug}`}
+        className="postExcerpt_image"
+      />
       <section className="postExcerpt_content">
+        <Link
+          className="postExcerpt_titleLink"
+          to={`/cloud-studio/${node.slug}`}
+        >
+          <h5 className="postExcerpt_title">{node.title}</h5>
+        </Link>
         <Text slide={slide} excerpt />
       </section>
-      <Link className="postExcerpt_link" to={`/cloud-studio/${node.slug}`}>
-        <Button className="greyButton" margin>
-          Read More
-        </Button>
-      </Link>
     </article>
   );
 };
@@ -46,6 +45,9 @@ export const query = graphql`
           id
           text
         }
+      }
+      thumbnail {
+        ...FluidImageFragment
       }
     }
   }
