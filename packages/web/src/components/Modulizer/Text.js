@@ -4,9 +4,9 @@ import './text.sass';
 
 const excerpter = (text) => {
   const words = text.split(' ');
-  const excerpt = words.slice(0, 50).join(' ');
+  const excerpt = words.slice(0, 25).join(' ');
 
-  return words.length > 50 ? `${excerpt} ...` : excerpt;
+  return words.length > 25 ? `${excerpt} ...` : excerpt;
 };
 
 const Text = ({ slide, excerpt }) => (

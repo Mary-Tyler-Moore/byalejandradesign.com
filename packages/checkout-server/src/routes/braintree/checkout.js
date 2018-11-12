@@ -101,6 +101,7 @@ const pipeline = (req: $Request, res: $Response) => {
           orderId: ctx.transaction.orderId,
           mailResponse: ctx.mailResponse.status,
           gatewayResponse: ctx.gatewayResponse.success,
+          ctx: JSON.stringify(ctx, null, 2),
         });
 
         res.status(404).json({

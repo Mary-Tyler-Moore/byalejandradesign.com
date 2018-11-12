@@ -10,7 +10,6 @@
       "packages/*"
     ],
     "nohoist": [
-      "@byalejandradesign/web/**/**",
       "**/flow-bin",
       "packages/**/flow-mono-cli"
     ]
@@ -19,8 +18,8 @@
   "scripts": {
     "bootstrap": "lerna bootstrap && lerna link",
     "postbootstrap": "run-s build",
-    "prebuild": "lerna run build --scope=@byalejandradesign/{server-env,checkout-objects}",
-    "build": "lerna run build --ignore=@byalejandradesign/{server-env,checkout-objects}",
+    "prebuild": "lerna run build --scope=@byalejandradesign/{server-env,checkout-objects} --parallel",
+    "build": "lerna run build --ignore=@byalejandradesign/{server-env,checkout-objects} --parallel",
     "prebuild-web": "run-s bootstrap",
     "build-web": "lerna run build-web",
     "predeploy": "lerna run deploy --scope=@byalejandradesign/{server-env,checkout-objects}",
