@@ -2,7 +2,7 @@
   # subdirectory to publish from
   # base = "subdirectory"
   publish = "packages/web/public"
-  command = "npm run build-web"
+  command = "yarn build-web"
 
 [build.environment]
   NODE_VERSION = "10.13.0"
