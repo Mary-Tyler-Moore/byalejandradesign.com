@@ -14,27 +14,58 @@ const pipeAsync = (fn, ...fns) =>
   };
 
 /**
- * Ensures a promise resolution from the passed in function
- * Retries after a timeout
+ * Ensures a promise resolution from the passed in function for maxRetries number of retries
+ * Retries after a timeout throttle
  */
-const downloadRunner = (fn) => (ctx, tries = 0) => {
-  const throttle = 2000;
-  const maxRetries = 10;
+
+const defaultOptions = {
+  throttle: 1000,
+  maxRetries: 10,
+  tries: 0,
+  multiplier: 0,
+};
+
+const downloadRunner = (_options = {}) => (fn, ...args) => {
+  const options = { ...defaultOptions, ..._options };
+  const { throttle, maxRetries, tries, multiplier } = options;
 
   return new Promise((res, rej) => {
-    fn(ctx)
-      .then((ctx) => res(ctx))
-      .catch(() => {
-        if (tries < maxRetries) {
-          // if server timeout or the node doesn't resolve
-          // set a throttle and try again
-          setTimeout(() => res(downloadRunner(fn)(ctx, tries + 1)), throttle);
+    setTimeout(
+      () =>
+        fn(...args)
+          .then((response) => res(response))
+          .catch(() => {
+            if (tries < maxRetries) {
+              // if server timeout or the node doesn't resolve
+              // set a timeout of throttle length times the images position in the array and try again
+              res(
+                downloadRunner({ ...options, tries: tries + 1 })(fn, ...args)
+              );
+            } else {
+              rej();
+            }
+          }),
+      throttle * multiplier
+    );
+  });
+};
+
+/**
+ * creates a local promise rejection on the condition that
+ * createRemoteFileNode returns null
+ */
+const rejectFromCreateRemote = (...args) =>
+  new Promise((res, rej) => {
+    createRemoteFileNode(...args)
+      .then((response) => {
+        if (response) {
+          res(response);
         } else {
           rej();
         }
-      });
+      })
+      .catch(() => rej());
   });
-};
 
 /** Original downloadMediaFiles logic broken into parts */
 
@@ -71,9 +102,11 @@ const downloadFile = ({ e, fileNodeID, mediaDataCacheKey, ...ctx }) =>
     // extract functions
     const { store, cache, createNode, createNodeId, _auth } = ctx;
 
-    // If we don't have cached data, download the file
+    // if we don't have cached data, download the file
+    // use our download runner to throttle connections and
+    // retry on failed download
     if (!fileNodeID) {
-      createRemoteFileNode({
+      downloadRunner({ multiplier: ctx.imageIndex })(rejectFromCreateRemote, {
         url: e.source_url,
         store,
         cache,
@@ -94,6 +127,8 @@ const downloadFile = ({ e, fileNodeID, mediaDataCacheKey, ...ctx }) =>
             });
         } else {
           // reject the promise here as the download has failed
+          // what should we do here?
+          // pass this to upstream to gatsby for a build error?
           rej();
         }
       });
@@ -121,18 +156,19 @@ const removeSizes = ({ e, fileNodeID, ...ctx }) =>
  * Entry point
  * Resolve and download all files before continue
  */
-const downloadMediaFiles = (ctx) =>
-  Promise.all(
+const downloadMediaFiles = (ctx) => {
+  let imageIndex = 0;
+
+  return Promise.all(
     ctx.entities.map(
       (e) =>
         new Promise((res, rej) => {
           if (e.__type === `wordpress__wp_media`) {
-            return pipeAsync(
-              reuseFileNode,
-              downloadRunner(downloadFile),
-              removeSizes
-            )({
+            imageIndex += 1;
+
+            return pipeAsync(reuseFileNode, downloadFile, removeSizes)({
               e,
+              imageIndex,
               ...ctx,
             }).then((e) => res(e));
           } else {
@@ -141,5 +177,6 @@ const downloadMediaFiles = (ctx) =>
         })
     )
   );
+};
 
 module.exports = downloadMediaFiles;
