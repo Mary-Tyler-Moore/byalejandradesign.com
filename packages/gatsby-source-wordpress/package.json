@@ -18,7 +18,6 @@
     "json-stringify-safe": "^5.0.1",
     "lodash": "^4.17.10",
     "minimatch": "^3.0.4",
-    "smalldash": "^1.0.0",
     "qs": "^6.4.0"
   },
   "deprecated": false,
