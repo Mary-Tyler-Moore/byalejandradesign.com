@@ -19,8 +19,6 @@ const reuseFileNode = ({ e, fileNodeID, ...ctx }) =>
     });
   });
 
-const throttle = 10;
-
 const downloadFile = ({ e, fileNodeID, mediaDataCacheKey, ...ctx }) =>
   new Promise((res, rej) => {
     // extract functions
@@ -48,13 +46,30 @@ const downloadFile = ({ e, fileNodeID, mediaDataCacheKey, ...ctx }) =>
               res({ e, fileNodeID, mediaDataCacheKey, ...ctx });
             });
         } else {
-          res(downloadFile({ e, fileNodeID, mediaDataCacheKey, ...ctx }));
+          rej({ e, fileNodeID, mediaDataCacheKey, ...ctx });
         }
       });
     } else {
       res({ e, fileNodeID, mediaDataCacheKey, ...ctx });
     }
   });
+
+const downloadRunner = (ctx, tries = 0) => {
+  const maxRetries = 10;
+  console.log(tries);
+
+  return new Promise((res, rej) => {
+    downloadFile(ctx)
+      .then((ctx) => res(ctx))
+      .catch(() => {
+        if (tries < maxRetries) {
+          res(downloadRunner(ctx, tries + 1));
+        } else {
+          rej();
+        }
+      });
+  });
+};
 
 const removeSizes = ({ e, fileNodeID, ...ctx }) =>
   new Promise((res, rej) => {
@@ -73,7 +88,7 @@ const downloadMediaFiles = (ctx) =>
       (e) =>
         new Promise((res, rej) => {
           if (e.__type === `wordpress__wp_media`) {
-            return pipeAsync(reuseFileNode, downloadFile, removeSizes)({
+            return pipeAsync(reuseFileNode, downloadRunner, removeSizes)({
               e,
               ...ctx,
             }).then((e) => res(e));
