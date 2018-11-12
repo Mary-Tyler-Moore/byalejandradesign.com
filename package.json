@@ -16,11 +16,12 @@
   },
   "license": "ISC",
   "scripts": {
+    "bootstrap:web": "lerna bootstrap && lerna link && lerna run build --parallel",
     "bootstrap": "lerna bootstrap && lerna link",
     "postbootstrap": "run-s build",
     "prebuild": "lerna run build --scope=@byalejandradesign/{server-env,checkout-objects}",
     "build": "lerna run build --ignore=@byalejandradesign/{server-env,checkout-objects}",
-    "prebuild-web": "run-s bootstrap",
+    "prebuild-web": "run-s bootstrap:web",
     "build-web": "lerna run build-web",
     "predeploy": "lerna run deploy --scope=@byalejandradesign/{server-env,checkout-objects}",
     "deploy": "lerna run deploy --parallel --ignore=@byalejandradesign/{server-env,checkout-objects}",
