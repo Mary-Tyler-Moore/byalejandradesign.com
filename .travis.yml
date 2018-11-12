@@ -16,7 +16,14 @@ cache:
     - node_modules
     - packages/web/public
     - packages/web/.cache
-    - packages/**/node_modules
+    - packages/checkout-objects/node_modules
+    - packages/data-objects/node_modules
+    - packages/gatsby-source-wordpress/node_modules
+    - packages/mail-server/node_modules
+    - packages/server-env/node_modules
+    - packages/server-middleware/node_modules
+    - packages/templates/node_modules
+    - packages/web/node_modules
 
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.12.3
@@ -24,5 +31,4 @@ before_install:
 
 script:
   - yarn bootstrap
-  - yarn stage
   - yarn stage
