@@ -31,10 +31,13 @@
     "prestage": "lerna run stage --scope=@byalejandradesign/{server-env,checkout-objects}",
     "stage": "lerna run stage --parallel --ignore=@byalejandradesign/{server-env,checkout-objects}",
     "symlink-types": "flow-mono create-symlinks .flowconfig",
-    "test": "jest --watchAll",
-    "prettier": "prettier 'packages/**/*.{.test.js,.stories.js,js,jsx,json}' --write"
+    "test": "nyc ./node_modules/.bin/ava -v",
+    "prettier": "prettier 'packages/**/*.{.test.js,.stories.js,js,jsx,json}' --write",
+    "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
+    "standard": "standard index.js"
   },
   "devDependencies": {
+    "@aws-amplify/cli": "^0.1.33",
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
@@ -81,6 +84,17 @@
     "rollup-plugin-replace": "^2.1.0",
     "shx": "^0.3.2",
     "sinon": "^6.0.1",
-    "smalldash": "^1.1.20"
+    "smalldash": "^1.1.20",
+    "ava": "^0.16.0",
+    "co-exec": "^1.0",
+    "codecov": "^1.0.1",
+    "ghooks": "^1.2.4",
+    "nyc": "^10.0.0",
+    "standard": "^8.4.0"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run standard"
+    }
   }
 }

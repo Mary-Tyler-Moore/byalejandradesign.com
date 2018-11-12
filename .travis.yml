@@ -1,0 +1,21 @@
+---
+sudo:          false
+
+language:      node_js
+
+node_js:
+  - stable
+
+branches:
+  only:
+  - travis
+
+cache:
+  directories:
+    - node_modules
+    - packages/web/build
+    - packages/web/.cache
+
+script:
+  - yarn bootstrap
+  - yarn build
