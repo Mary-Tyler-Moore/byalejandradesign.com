@@ -1,7 +1,7 @@
 ---
-sudo:          false
+sudo:            false
 
-language:      node_js
+language:        node_js
 
 node_js:
   - stable
@@ -15,6 +15,9 @@ cache:
     - node_modules
     - packages/web/build
     - packages/web/.cache
+
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.12.3
 
 script:
   - yarn bootstrap
