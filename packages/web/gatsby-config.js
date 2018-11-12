@@ -88,7 +88,7 @@ module.exports = {
     },
     'gatsby-transformer-remark',
     {
-      resolve: '@local/gatsby-source-wordpress',
+      resolve: 'gatsby-source-wordpress',
       options: {
         // The base url to your WP site.
         baseUrl: 'api.artetexture.com',

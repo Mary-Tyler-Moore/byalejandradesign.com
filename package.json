@@ -10,7 +10,6 @@
       "packages/*"
     ],
     "nohoist": [
-      "@byalejandradesign/web/**/**",
       "**/flow-bin",
       "packages/**/flow-mono-cli"
     ]
