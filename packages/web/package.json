@@ -13,7 +13,8 @@
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
   "scripts": {
-    "build-web": "STAGE=staging gatsby build",
+    "stage": "STAGE=staging gatsby build",
+    "deploy": "STAGE=production gatsby build",
     "develop": "gatsby develop"
   },
   "dependencies": {
@@ -75,6 +76,7 @@
     "npm-run-all": "^4.1.3",
     "opentracing": "^0.14.3",
     "rollup": "^0.66.6",
+    "s3": "^4.4.0",
     "shx": "^0.3.2",
     "zipkin": "^0.14.3",
     "zipkin-javascript-opentracing": "^2.0.0",

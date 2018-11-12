@@ -25,11 +25,4 @@ before_install:
 script:
   - yarn bootstrap
   - yarn stage
-  - yarn build-web
-
-deploy:
-  provider:      s3
-  bucket:        byalejandra.com
-  acl:           public_read
-  skip_cleanup:  true
-  local_dir:     packages/web/public
+  - yarn stage

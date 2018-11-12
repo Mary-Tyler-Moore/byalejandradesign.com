@@ -37,7 +37,6 @@
     "standard": "standard index.js"
   },
   "devDependencies": {
-    "@aws-amplify/cli": "^0.1.33",
     "@babel/cli": "^7.1.2",
     "@babel/core": "^7.1.2",
     "@babel/plugin-proposal-class-properties": "^7.1.0",
