@@ -21,7 +21,6 @@ const downloadRunner = (fn) => (ctx, tries = 0) => {
   const throttle = 2000;
   const maxRetries = 10;
 
-  console.log(tries);
   return new Promise((res, rej) => {
     fn(ctx)
       .then((ctx) => res(ctx))
