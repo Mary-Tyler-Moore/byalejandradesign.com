@@ -21,7 +21,7 @@
     "prebuild": "lerna run build --scope=@byalejandradesign/{server-env,checkout-objects} --parallel",
     "build": "lerna run build --ignore=@byalejandradesign/{server-env,checkout-objects} --parallel",
     "prebuild-web": "run-s bootstrap",
-    "build-web": "lerna run build-web",
+    "build-web": "lerna run build-web --stream",
     "predeploy": "lerna run deploy --scope=@byalejandradesign/{server-env,checkout-objects}",
     "deploy": "lerna run deploy --parallel --ignore=@byalejandradesign/{server-env,checkout-objects}",
     "develop": "lerna run --parallel develop",
