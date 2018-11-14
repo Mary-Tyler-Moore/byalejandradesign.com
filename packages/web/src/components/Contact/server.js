@@ -4,11 +4,11 @@ const stage = process.env.STAGE || process.env.NODE_ENV || 'development';
 const KEY = stage.toUpperCase();
 
 const base = () => {
-  if (!process.env[`GATSBY_BRAINTREE_SERVER_${KEY}`]) {
-    console.warn(`You must provide a GATSBY_BRAINTREE_SERVER_{${KEY} in .env`);
+  if (!process.env[`GATSBY_MAIL_SERVER_${KEY}`]) {
+    console.warn(`You must provide a GATSBY_MAIL_SERVER_{${KEY} in .env`);
   }
 
-  return process.env[`GATSBY_BRAINTREE_SERVER_${KEY}`];
+  return process.env[`GATSBY_MAIL_SERVER_${KEY}`];
 };
 
 const key = () => {

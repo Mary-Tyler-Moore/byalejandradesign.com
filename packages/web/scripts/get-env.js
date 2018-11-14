@@ -5,11 +5,9 @@ const getEnv = () => {
   const stage = getStage();
 
   try {
-    require('dotenv').config({
-      path: path.resolve(__dirname, `../.env.${stage}`),
-    });
+    require('dotenv').config(path.resolve(__dirname, '../.env'));
   } catch (e) {
-    console.log(`no enivornment file for the stage: ${stage} specified`);
+    console.log(`no environment file specified`);
   }
 };
 
