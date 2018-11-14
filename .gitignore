@@ -12,3 +12,5 @@ packages/*/.flowconfig
 packages/*/yarn.lock
 
 amplify/
+
+.env
