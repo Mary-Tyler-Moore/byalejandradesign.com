@@ -31,7 +31,7 @@ const keys = [
 ];
 
 const values = {
-  STAGE: process.env.STAGE,
+  STAGE: `'${process.env.STAGE}'`,
 };
 
 keys.forEach((key) => {
