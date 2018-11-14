@@ -1,3 +1,4 @@
+import path from 'path';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
@@ -20,27 +21,27 @@ const plugins = [
   }),
   postcss({
     plugins: [autoprefixer],
-    extract: 'build/style.css',
+    extract: path.resolve(__dirname, 'build/style.css'),
     sourceMap: true,
   }),
 ];
 
 export default [
   {
-    input: 'src/index.js',
+    input: path.resolve(__dirname, 'src/index.js'),
     external,
     output: {
-      file: pkg.main,
+      file: path.resolve(__dirname, pkg.main),
       format: 'cjs',
       sourcemap: true,
     },
     plugins,
   },
   {
-    input: 'src/index.js',
+    input: path.resolve(__dirname, 'src/index.js'),
     external,
     output: {
-      file: pkg.module,
+      file: path.resolve(__dirname, pkg.module),
       format: 'esm',
       sourcemap: true,
     },
