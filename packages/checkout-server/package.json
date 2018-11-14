@@ -15,16 +15,10 @@
   "main": "build/app.js",
   "scripts": {
     "clean": "shx rm -rf build .serverless",
-    "deploy": "run-s rollup:build serverless:production",
-    "develop": "run-p rollup:watch serverless:development",
-    "prerollup:build": "run-s clean",
-    "rollup:build": "rollup -c rollup.config.js",
+    "develop": "run-p rollup:watch serverless",
     "prerollup:watch": "run-s clean",
     "rollup:watch": "rollup -c rollup.config.js --watch",
-    "serverless:development": "serverless offline start --stage development",
-    "serverless:production": "serverless deploy -v --stage production",
-    "serverless:staging": "serverless deploy -v --stage staging",
-    "stage": "run-s rollup:build serverless:staging"
+    "serverless": "serverless offline start --stage development --port 3000"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",

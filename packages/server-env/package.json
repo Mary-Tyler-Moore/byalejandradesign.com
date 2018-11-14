@@ -16,10 +16,8 @@
   "module": "build/env.esm.js",
   "scripts": {
     "prebuild": "shx rm -rf build",
-    "build": "STAGE=development rollup -c rollup.config.js",
-    "deploy": "STAGE=production rollup -c rollup.config.js",
-    "develop": "STAGE=development rollup -c rollup.config.js --watch",
-    "stage": "STAGE=staging rollup -c rollup.config.js"
+    "build": "rollup -c rollup.config.js",
+    "develop": "rollup -c rollup.config.js --watch"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2"

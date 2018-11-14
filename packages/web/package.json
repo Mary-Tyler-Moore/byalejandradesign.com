@@ -13,8 +13,6 @@
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
   "scripts": {
-    "stage": "STAGE=staging gatsby build",
-    "deploy": "STAGE=production gatsby build",
     "develop": "gatsby develop"
   },
   "dependencies": {

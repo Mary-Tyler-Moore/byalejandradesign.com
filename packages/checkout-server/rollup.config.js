@@ -1,3 +1,4 @@
+import path from 'path';
 import resolve from 'rollup-plugin-node-resolve';
 import builtins from 'rollup-plugin-node-builtins';
 import globals from 'rollup-plugin-node-globals';
@@ -29,10 +30,10 @@ const plugins = [
 
 export default [
   {
-    input: 'src/app.js',
+    input: path.resolve(__dirname, 'src/app.js'),
     external,
     output: {
-      file: pkg.main,
+      file: path.resolve(__dirname, pkg.main),
       format: 'cjs',
       sourcemap: true,
     },
