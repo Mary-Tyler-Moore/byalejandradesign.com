@@ -1,39 +1,10 @@
 const path = require('path');
+const getEnv = require('./scripts/get-env');
+const mapTaxonomyToPostType = require('./scripts/map-taxonomy-to-post-type');
+const mapPostTypeToTaxonomies = require('./scripts/map-post-type-to-taxonomies');
 const { compose } = require('smalldash');
 
-/**
- * Global function for mapping taxonomy entities to postType
- * @param  {[type]} taxonomy [description]
- * @return {[type]}          [description]
- */
-const mapTaxonomyToPostType = (taxonomy) => (postType) => (entities) => {
-  const taxonomies = entities.filter(
-    (e) => e.__type === `wordpress__wp_${taxonomy}`
-  );
-
-  return entities.map((e) => {
-    if (e.__type === `wordpress__wp_${postType}`) {
-      const hasTaxonomy =
-        e[taxonomy] && Array.isArray(e[taxonomy]) && e[taxonomy].length;
-
-      if (hasTaxonomy) {
-        const key = `${taxonomy}___NODE`;
-        e[key] = e[taxonomy].map(
-          (tax) => taxonomies.find((gObj) => tax === gObj.wordpress_id).id
-        );
-
-        delete e[taxonomy];
-      }
-    }
-
-    return e;
-  });
-
-  return entities;
-};
-
-const mapPostTypeToTaxonomies = (postType) => (taxonomy) => (entities) =>
-  mapTaxonomyToPostType(taxonomy)(postType)(entities);
+getEnv();
 
 const mapShopToTaxonomies = mapPostTypeToTaxonomies('shop');
 
@@ -47,23 +18,13 @@ const normalizers = compose(
   extractEntities
 );
 
-const stage = process.env.STAGE || process.env.NODE_ENV || 'development';
-
-try {
-  require('dotenv').config({
-    path: `.env.${stage}`,
-  });
-} catch (e) {
-  console.log('no enivornment file for this stage specified');
-}
-
 module.exports = {
   siteMetadata: {
     siteUrl: 'https://byalejandradesign.com',
     title: 'By Alejandra',
     subTitle: 'Design Studio and Shop',
     navLayout: {
-      mainNav: ['/home', '/cloud-studio', '/shop', '/contact'],
+      mainNav: ['/home', '/cloud-studio', '/shop/collections', '/contact'],
       footerNav: ['/faq', '/privacy-policy', '/return-policy', '/contact'],
     },
     design: {
