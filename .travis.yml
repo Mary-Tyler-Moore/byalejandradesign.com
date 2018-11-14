@@ -29,4 +29,4 @@ script:
   - yarn stage
 env:
   global:
-    - STAGE=staging
+    - STAGE=production
