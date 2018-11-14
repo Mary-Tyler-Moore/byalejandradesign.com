@@ -174,6 +174,8 @@ exports.createPages = ({ graphql, actions }) => {
 exports.onPostBuild = () => {
   const stage = process.env.STAGE;
 
+  console.log('stage: ' + stage);
+
   if (stage === 'production' || stage === 'staging') {
     uploadToS3();
   }
