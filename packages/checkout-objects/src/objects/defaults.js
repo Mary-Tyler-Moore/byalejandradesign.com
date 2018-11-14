@@ -2,6 +2,8 @@
 type Defaults = <A, B>(prod: A, dev: B) => A | B;
 
 const defaults: Defaults = (prod, dev) =>
-  process.env.NODE_ENV !== 'production' ? dev : prod;
+  process.env.STAGE !== 'production' || process.env.STAGE !== 'staging'
+    ? dev
+    : prod;
 
 export default defaults;
