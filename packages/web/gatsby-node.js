@@ -174,10 +174,7 @@ exports.createPages = ({ graphql, actions }) => {
 exports.onPostBuild = async () => {
   const stage = process.env.STAGE;
 
-  console.log('stage: ' + stage);
-
   if (stage === 'production' || stage === 'staging') {
-    console.log('inside hook');
     try {
       await uploadToS3();
       console.log('finished uploading');
