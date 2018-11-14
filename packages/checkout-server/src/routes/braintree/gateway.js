@@ -3,7 +3,7 @@ import env from '@byalejandradesign/server-env';
 
 const gateway = braintree.connect({
   environment:
-    env.STAGE !== 'production '
+    env.STAGE !== 'production'
       ? braintree.Environment.Sandbox
       : braintree.Environment.Production,
   merchantId: env.BRAINTREE_MERCHANT_ID,
