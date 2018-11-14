@@ -8,10 +8,7 @@ import babel from 'rollup-plugin-babel';
 import runtimes from '@njmyers/babel-runtime-files';
 import pkg from './package.json';
 
-dotEnv.config({
-  // $FlowFixMe
-  path: path.resolve(__dirname, `.env.${process.env.STAGE}`),
-});
+dotEnv.config();
 
 const external = [
   ...Object.keys(pkg.dependencies || {}),
@@ -21,7 +18,6 @@ const external = [
 ];
 
 const keys = [
-  'STAGE',
   'ROOT_DOMAIN',
   'CHECKOUT_DOMAIN',
   'MAIL_DOMAIN',
@@ -34,10 +30,12 @@ const keys = [
   'BRAINTREE_PRIVATE_KEY',
 ];
 
-const values = {};
+const values = {
+  STAGE: process.env.STAGE,
+};
 
 keys.forEach((key) => {
-  values[key] = `'${validateEnv(key)}'`;
+  values[key] = `'${validateEnv(`${key}_${process.env.STAGE.toUpperCase()}`)}'`;
 });
 
 const plugins = [
@@ -55,20 +53,20 @@ const plugins = [
 
 export default [
   {
-    input: 'src/env.js',
+    input: path.resolve(__dirname, 'src/env.js'),
     external,
     output: {
-      file: pkg.module,
+      file: path.resolve(__dirname, pkg.module),
       format: 'esm',
       sourcemap: true,
     },
     plugins,
   },
   {
-    input: 'src/env.js',
+    input: path.resolve(__dirname, 'src/env.js'),
     external,
     output: {
-      file: pkg.main,
+      file: path.resolve(__dirname, pkg.main),
       format: 'cjs',
       sourcemap: true,
     },

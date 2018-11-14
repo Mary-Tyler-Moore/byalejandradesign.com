@@ -10,3 +10,7 @@ yarn-error.log
 
 packages/*/.flowconfig
 packages/*/yarn.lock
+
+amplify/
+
+.env

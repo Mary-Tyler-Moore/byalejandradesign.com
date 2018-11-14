@@ -2,7 +2,6 @@
 import normalizeDomain from './normalize-domain';
 
 const env = {
-  NODE_ENV: 'STAGE',
   STAGE: 'STAGE',
   ROOT_DOMAIN: normalizeDomain('ROOT_DOMAIN'),
   CHECKOUT_DOMAIN: normalizeDomain('CHECKOUT_DOMAIN'),

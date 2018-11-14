@@ -1,5 +1,5 @@
 import * as React from 'react';
-import axios from 'axios';
+import server from './server';
 // reducer
 import contactReducer from './contact-reducer';
 import type { State } from './contact-reducer';
@@ -38,15 +38,7 @@ class Contact extends React.PureComponent<{}, State> {
   submitRequest = async () => {
     // make request
     try {
-      const response = await axios({
-        url: `${process.env.GATSBY_MAIL_SERVER}/contact`,
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: process.env.GATSBY_API_KEY,
-        },
-        data: this.state,
-        method: 'POST',
-      });
+      const response = await server.post('/contact', this.state);
 
       const status = response.data.status;
 
@@ -77,7 +69,7 @@ class Contact extends React.PureComponent<{}, State> {
       // generate next state
       const nextState: State = contactReducer(prevState, action);
       // state logging
-      if (process.env.NODE_ENV !== 'production') {
+      if (process.env.STAGE !== 'production') {
         this.logAction(prevState)(action)(nextState);
       }
 

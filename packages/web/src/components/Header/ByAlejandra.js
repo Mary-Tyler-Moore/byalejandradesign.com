@@ -8,7 +8,7 @@ type Props = {
   interval: IntervalID | null,
 };
 
-type InitialAnimationState = {
+type AnimationState = {
   strokeDashoffset: void,
   strokeDasharray: void,
   status: boolean,
@@ -16,11 +16,11 @@ type InitialAnimationState = {
 };
 
 type State = {
-  by: InitialAnimationState,
-  alejandra: InitialAnimationState,
+  by: AnimationState,
+  alejandra: AnimationState,
 };
 
-class ByAlejandra extends React.Component<Props, State> {
+class ByAlejandra extends React.PureComponent<Props, State> {
   static defaultProps = {
     stroke: '#ffffff',
     strokeWidth: '3',
@@ -42,29 +42,46 @@ class ByAlejandra extends React.Component<Props, State> {
   by: HTMLElement;
   alejandra: HTMLElement;
 
-  animateStroke = (element: ReactDOM$SVGElementJSXIntrinsic) => () => {
-    this.setState((state) => {
-      if (state[element].strokeDashoffset > 0) {
-        return {
-          [element]: {
-            ...state[element],
-            strokeDashoffset: Math.max(state[element].strokeDashoffset - 5, 0),
-          },
-        };
-      } else {
-        clearInterval(this.state[element].interval);
-        return {
-          [element]: {
-            ...state[element],
-            status: true,
-            interval: null,
-          },
-        };
-      }
-    });
+  animateStroke = (element: string) => () => {
+    // console.log(element);
+    this.setState(
+      (state) => {
+        if (state[element].strokeDashoffset > 0) {
+          return {
+            [element]: {
+              ...state[element],
+              strokeDashoffset: Math.max(
+                state[element].strokeDashoffset - 5,
+                0
+              ),
+            },
+          };
+        } else {
+          return {
+            [element]: {
+              ...this.clear(state[element]),
+            },
+          };
+        }
+      },
+      element === 'by' ? this.startNext : () => null
+    );
   };
 
-  setInitialState = (element) => {
+  clear = (slice: AnimationState) => {
+    if (slice.interval) {
+      clearInterval(slice.interval);
+
+      return {
+        interval: null,
+        status: true,
+      };
+    } else {
+      return {};
+    }
+  };
+
+  setInitialState = (element: string) => {
     this.setState((state) => ({
       [element]: {
         ...state[element],
@@ -74,7 +91,13 @@ class ByAlejandra extends React.Component<Props, State> {
     }));
   };
 
-  startAnimation = (element) => {
+  startNext = () => {
+    if (this.state.by.status && !this.state.alejandra.status) {
+      this.startAnimation('alejandra');
+    }
+  };
+
+  startAnimation = (element: string) => {
     this.setState((state) => ({
       [element]: {
         ...state[element],
@@ -90,16 +113,9 @@ class ByAlejandra extends React.Component<Props, State> {
     this.startAnimation('by');
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (!prevState.by.status && this.state.by.status) {
-      this.startAnimation('alejandra');
-    }
-  }
-
   componentWillUnmount() {
-    if (this.state.interval) {
-      clearInterval(this.state.interval);
-    }
+    this.clear(this.state.by);
+    this.clear(this.state.alejandra);
   }
 
   render() {

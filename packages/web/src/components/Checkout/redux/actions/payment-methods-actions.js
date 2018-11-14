@@ -53,6 +53,6 @@ export type Actions =
   | $Call<ExtractReturn, typeof paymentMethodErrorAction>;
 
 function logAction(action) {
-  if (process.env.NODE_ENV !== 'production') console.error(action);
+  if (process.env.STAGE !== 'production') console.error(action);
   return action;
 }

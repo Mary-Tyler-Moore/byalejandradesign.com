@@ -20,8 +20,6 @@
     "postbootstrap": "run-s build",
     "prebuild": "lerna run build --scope=@byalejandradesign/{server-env,checkout-objects} --parallel",
     "build": "lerna run build --ignore=@byalejandradesign/{server-env,checkout-objects} --parallel",
-    "prebuild-web": "run-s bootstrap",
-    "build-web": "lerna run build-web",
     "predeploy": "lerna run deploy --scope=@byalejandradesign/{server-env,checkout-objects}",
     "deploy": "lerna run deploy --parallel --ignore=@byalejandradesign/{server-env,checkout-objects}",
     "develop": "lerna run --parallel develop",
@@ -31,8 +29,10 @@
     "prestage": "lerna run stage --scope=@byalejandradesign/{server-env,checkout-objects}",
     "stage": "lerna run stage --parallel --ignore=@byalejandradesign/{server-env,checkout-objects}",
     "symlink-types": "flow-mono create-symlinks .flowconfig",
-    "test": "jest --watchAll",
-    "prettier": "prettier 'packages/**/*.{.test.js,.stories.js,js,jsx,json}' --write"
+    "test": "nyc ./node_modules/.bin/ava -v",
+    "prettier": "prettier 'packages/**/*.{.test.js,.stories.js,js,jsx,json}' --write",
+    "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov",
+    "standard": "standard index.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
@@ -81,6 +81,7 @@
     "rollup-plugin-replace": "^2.1.0",
     "shx": "^0.3.2",
     "sinon": "^6.0.1",
-    "smalldash": "^1.1.20"
+    "smalldash": "^1.1.20",
+    "standard": "^8.4.0"
   }
 }

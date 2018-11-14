@@ -1,3 +1,4 @@
+import path from 'path';
 import resolve from 'rollup-plugin-node-resolve';
 import babel from 'rollup-plugin-babel';
 import runtimes from '@njmyers/babel-runtime-files';
@@ -20,20 +21,20 @@ const plugins = [
 
 export default [
   {
-    input: 'src/index.js',
+    input: path.resolve(__dirname, 'src/index.js'),
     external,
     output: {
-      file: pkg.module,
+      file: path.resolve(__dirname, pkg.module),
       format: 'esm',
       sourcemap: true,
     },
     plugins,
   },
   {
-    input: 'src/index.js',
+    input: path.resolve(__dirname, 'src/index.js'),
     external,
     output: {
-      file: pkg.main,
+      file: path.resolve(__dirname, pkg.main),
       format: 'cjs',
       sourcemap: true,
     },

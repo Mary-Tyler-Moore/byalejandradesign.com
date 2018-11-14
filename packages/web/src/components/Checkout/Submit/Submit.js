@@ -127,7 +127,7 @@ class Submit extends React.PureComponent<Props, State> {
     amount: this.state.total,
     shipping: addressToServerAddress(this.props.shippingAddress),
     billing: addressToServerAddress(
-      this.props.billingAddress
+      this.props.payment.billingAddress
         ? this.props.billingAddress
         : this.props.shippingAddress
     ),

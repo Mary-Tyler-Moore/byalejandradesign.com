@@ -1,3 +1,4 @@
+import path from 'path';
 import resolve from 'rollup-plugin-node-resolve';
 import globals from 'rollup-plugin-node-globals';
 import builtins from 'rollup-plugin-node-builtins';
@@ -30,20 +31,20 @@ const plugins = [
 
 export default [
   {
-    input: 'src/middleware.js',
+    input: path.resolve(__dirname, 'src/middleware.js'),
     external,
     output: {
-      file: pkg.module,
+      file: path.resolve(__dirname, pkg.module),
       format: 'esm',
       sourcemap: true,
     },
     plugins,
   },
   {
-    input: 'src/middleware.js',
+    input: path.resolve(__dirname, 'src/middleware.js'),
     external,
     output: {
-      file: pkg.main,
+      file: path.resolve(__dirname, pkg.main),
       format: 'cjs',
       sourcemap: true,
     },
