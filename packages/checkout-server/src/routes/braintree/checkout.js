@@ -90,7 +90,7 @@ const pipeline = (req: $Request, res: $Response) => {
     body: req.body,
   })
     .then((ctx) => {
-      if (ctx.gatewayResponse.success === true && ctx.mailResponse === 200) {
+      if (ctx.gatewayResponse.success === true) {
         res.status(200).json({
           message: 'transaction approved',
           status: 200,
