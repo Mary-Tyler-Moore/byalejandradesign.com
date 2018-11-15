@@ -11,7 +11,7 @@ import type { Transaction } from '@byalejandradesign/checkout-objects';
 type CTX = {
   transaction: Transaction,
   body: {
-    ...?Transaction,
+    transaction?: Transaction,
   },
   gatewayResponse?: {},
   mailResponse?: {},
@@ -20,7 +20,7 @@ type CTX = {
 /** validate our transaction data */
 const validate = (ctx: CTX): Promise<CTX> =>
   new Promise((resolve, reject) => {
-    const transaction = validateTransaction(ctx.body);
+    const transaction = validateTransaction(ctx.body.transaction);
     resolve({
       ...ctx,
       transaction,
@@ -58,7 +58,7 @@ const confirmation = (ctx): Promise<CTX> =>
       axios({
         url: `${env.MAIL_DOMAIN || ''}/order-confirmation`,
         method: 'POST',
-        body: {
+        data: {
           transaction: ctx.transaction,
         },
         headers: {
