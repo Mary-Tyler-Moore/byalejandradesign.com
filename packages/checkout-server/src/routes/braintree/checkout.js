@@ -85,25 +85,35 @@ const confirmation = (ctx): Promise<CTX> =>
     });
   });
 
+const logTransaction = (ctx) => {
+  if (env.stage !== 'production') {
+    const now = new Date();
+
+    console.log({
+      orderId: ctx.transaction.orderId,
+      date: now.toLocaleDateString(),
+      time: now.toLocaleTimeString(),
+      mailResponse: JSON.stringify(ctx.mailResponse, null, 2),
+      gatewayResponse: JSON.stringify(ctx.gatewayResponse, null, 2),
+      transaction: JSON.stringify(ctx.transaction, null, 2),
+    });
+  }
+};
+
 const pipeline = (req: $Request, res: $Response) => {
   pipeAsync(validate, checkout, confirmation)({
     body: req.body,
   })
     .then((ctx) => {
+      // verbose stage specific logging
+      logTransaction(ctx);
+
       if (ctx.gatewayResponse.success === true) {
         res.status(200).json({
           message: 'transaction approved',
           status: 200,
         });
       } else {
-        // log specifics to all failed transactions
-        console.log({
-          orderId: ctx.transaction.orderId,
-          mailResponse: ctx.mailResponse.status,
-          gatewayResponse: ctx.gatewayResponse.success,
-          ctx: JSON.stringify(ctx, null, 2),
-        });
-
         res.status(404).json({
           message: 'transaction not accepted',
           status: 404,
