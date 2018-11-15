@@ -77,12 +77,11 @@ const confirmation = (ctx): Promise<CTX> =>
             mailResponse: error,
           })
         );
+    } else {
+      resolve({
+        ...ctx,
+      });
     }
-
-    resolve({
-      ...ctx,
-      mailResponse: {},
-    });
   });
 
 const logTransaction = (ctx) => {
