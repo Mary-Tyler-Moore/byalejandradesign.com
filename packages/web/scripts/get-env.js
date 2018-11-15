@@ -2,7 +2,7 @@ const path = require('path');
 const getStage = require('./get-stage');
 
 const getEnv = () => {
-  const stage = getStage();
+  getStage();
 
   try {
     require('dotenv').config(path.resolve(__dirname, '../.env'));

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const stage = process.env.STAGE || process.env.NODE_ENV || 'development';
+const stage = process.env.GATSBY_STAGE;
 const KEY = stage.toUpperCase();
 
 const base = () => {
