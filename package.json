@@ -24,7 +24,8 @@
     "develop:servers": "STAGE=development lerna run --parallel --ignore=@byalejandradesign/web develop",
     "install-types": "node scripts/install-types.js",
     "symlink-types": "flow-mono create-symlinks .flowconfig",
-    "prettier": "prettier 'packages/**/*.{.test.js,.stories.js,js,jsx,json}' --write"
+    "prettier": "prettier 'packages/**/*.{.test.js,.stories.js,js,jsx,json}' --write",
+    "test": "jest --watchAll"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
