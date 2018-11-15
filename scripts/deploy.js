@@ -22,8 +22,6 @@ const prebuilds = [
 
 const servers = ['mail-server', 'checkout-server'];
 
-parallel('run', 'shx', 'rm', '-rf', 'build');
-
 parallel('run', 'build');
 
 parallel(
