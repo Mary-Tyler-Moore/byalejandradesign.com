@@ -12,6 +12,8 @@
   "main": "build/app.js",
   "scripts": {
     "clean": "shx rm -rf build .serverless",
+    "prebuild": "run-s clean",
+    "build": "rollup -c rollup.config.js",
     "develop": "run-p rollup:watch serverless",
     "prerollup:watch": "run-s clean",
     "rollup:watch": "rollup -c rollup.config.js --watch",
