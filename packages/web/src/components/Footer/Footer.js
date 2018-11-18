@@ -1,21 +1,29 @@
+/** @flow */
 import * as React from 'react';
 import { Link } from 'gatsby';
 import { Form } from '@njmyers/component-library';
 import Button from '../Button';
-import URLToTitle from './url-to-title';
-// style
-import './footer-nav.sass';
+import URLToTitle from '../Nav/url-to-title';
+// types
+import type { Props } from './types';
+// styles
+import './footer.sass';
 
-class DesktopFooterNav extends React.Component {
+class Footer extends React.Component<Props> {
   onSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     console.log('clicked');
   };
 
+  style = () => ({
+    padding: `0.5rem ${this.props.design.mobileContentPadding}px`,
+  });
+
   render() {
     return (
-      <footer className="footer">
+      <footer className="footer" style={this.style()}>
+        {/* <pre>{JSON.stringify(this.style(), null, 2)}</pre> */}
         <section className="footer_widgets">
           <form
             name="emailSignup"
@@ -26,6 +34,7 @@ class DesktopFooterNav extends React.Component {
               block="emailSignup"
               name="email"
               label="Signup For Our Newsletter"
+              type="email"
               required
             />
             <Button type="submit">Sign Up</Button>
@@ -48,31 +57,4 @@ class DesktopFooterNav extends React.Component {
   }
 }
 
-class MobileFooterNav extends React.Component {
-  render() {
-    return (
-      <nav className="footerNavMobile">
-        {this.props.footerNav.map((nav) => (
-          <Link
-            key={nav}
-            to={nav}
-            className="footerNavMobile_link"
-            activeClassName="footerNavMobile_link-active"
-            onClick={this.props.onClick}
-          >
-            {URLToTitle(nav)}
-          </Link>
-        ))}
-      </nav>
-    );
-  }
-}
-
-const FooterNav = (props) =>
-  props.sizes.mobile ? (
-    <MobileFooterNav {...props} />
-  ) : (
-    <DesktopFooterNav {...props} />
-  );
-
-export default FooterNav;
+export default Footer;

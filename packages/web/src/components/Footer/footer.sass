@@ -11,15 +11,28 @@
 
   &_widgets
     display: grid
-    grid-template-columns: repeat(3, 1fr)
+    grid-template-columns: repeat(2, 1fr)
+
+    +all-phone
+      grid-template-columns: repeat(1, 1fr)
 
 .emailSignup
-  +flexbox
-
-  flex-direction: column
+  width: 100%
 
   &_label
-    margin: 0 0 1.5rem 0
+    margin: 0
+
+    @extend %subtitle-amiri-1
+
+  &_input
+    width: 100%
+    margin-bottom: 1rem
+    padding: 0.5rem
+
+    @extend %body-sourceSans-2
+
+    &:focus
+      outline: none
 
 .footerNavDesktop
   width: 100%
