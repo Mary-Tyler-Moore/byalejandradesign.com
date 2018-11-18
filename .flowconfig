@@ -1,8 +1,6 @@
 [ignore]
 
 [include]
-node_modules
-<PROJECT_ROOT>/../../node_modules
 
 [libs]
 flow-typed
