@@ -4,7 +4,6 @@
  */
 const path = require('path');
 const { pipeAsync } = require('smalldash');
-const uploadToS3 = require('./scripts/upload-to-s3');
 
 exports.createPages = ({ graphql, actions }) => {
   const { createRedirect, createPage } = actions;
@@ -169,19 +168,4 @@ exports.createPages = ({ graphql, actions }) => {
   );
 
   return pipeline();
-};
-
-exports.onPostBuild = async () => {
-  const stage = process.env.STAGE;
-
-  console.log(stage);
-
-  if (stage === 'production' || stage === 'staging') {
-    try {
-      await uploadToS3();
-      console.log('finished uploading');
-    } catch (err) {
-      console.log(err);
-    }
-  }
 };

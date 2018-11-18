@@ -1,0 +1,137 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: byalejandradesign-distribution
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+# frameworkVersion:                           "=X.X.X"
+
+plugins:
+  - serverless-plugin-cloudfront-lambda-edge
+  - serverless-s3-sync
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${opt:stage, 'development'}
+  region: us-east-1
+
+package:
+  exclude:
+    - '.*/**'
+  include:
+    - src/functions/*
+
+functions:
+  originRequest:
+    name: '${self:service}-${self:provider.stage}-origin-request'
+    handler: src/functions/origin-request.handler
+    memorySize: 128
+    timeout: 1
+    lambdaAtEdge:
+      distribution: 'WebsiteDistribution'
+      eventType: 'origin-request'
+
+  originResponse:
+    name: '${self:service}-${self:provider.stage}-origin-response'
+    handler: src/functions/origin-response.handler
+    memorySize: 128
+    timeout: 1
+    lambdaAtEdge:
+      distribution: 'WebsiteDistribution'
+      eventType: 'origin-response'
+
+custom:
+  domains:
+    staging:
+      - staging.byalejandradesign.com
+    production:
+      - byalejandradesign.com
+      - www.byalejandradesign.com
+    testing:
+      - testing.byalejandradesign.com
+  bucket:
+    staging: staging--byalejandradesign.com
+    production: production--byalejandradesign.com
+    testing: testing-byalejandradesign.com
+  # custom plugin syntax
+  s3Sync:
+    - bucketName: '${self:custom.bucket.${self:provider.stage}}'
+      localDir: public
+
+resources:
+  Resources:
+    WebsiteBucket:
+      Type: 'AWS::S3::Bucket'
+      Properties:
+        AccessControl: Private
+        BucketName: '${self:custom.bucket.${self:provider.stage}}'
+    # WebsiteBucketPolicy:
+    #   Type:                                 'AWS::S3::BucketPolicy'
+    #   Properties:
+    #     Bucket:
+    #       Ref:                              WebsiteBucket
+    #     PolicyDocument:
+    #       Statement:
+    #         - Action:
+    #             - 's3:GetObject'
+    #           Effect:                       'Allow'
+    #           Principal:                    '*'
+    #           Resource:                     'arn:aws:s3:::${self:custom.bucket.${self:provider.stage}}'
+    # Principal:
+    #   Fn::Join:
+    #     - ''
+    #     - - 'arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity '
+    #       - Ref:                  CloudFrontOriginIdentity
+    CloudFrontOriginIdentity:
+      Type: 'AWS::CloudFront::CloudFrontOriginAccessIdentity'
+      Properties:
+        CloudFrontOriginAccessIdentityConfig:
+          Comment: '${self:service}-${self:provider.stage}'
+    WebsiteDistribution:
+      Type: 'AWS::CloudFront::Distribution'
+      Properties:
+        DistributionConfig:
+          DefaultCacheBehavior:
+            TargetOriginId: 'WebsiteBucketOrigin'
+            ViewerProtocolPolicy: 'redirect-to-https'
+            DefaultTTL: 600 # ten minutes
+            MaxTTL: 600 # ten minutes
+            Compress: true
+            ForwardedValues:
+              QueryString: false
+              Cookies:
+                Forward: 'none'
+          DefaultRootObject: 'index.html'
+          Enabled: true
+          PriceClass: 'PriceClass_100'
+          HttpVersion: 'http2'
+          IPV6Enabled: true
+          Origins:
+            - Id: 'WebsiteBucketOrigin'
+              DomainName: { 'Fn::GetAtt': ['WebsiteBucket', 'DomainName'] }
+              S3OriginConfig: {}
+          CustomErrorResponses:
+            - ErrorCode: 403
+              ErrorCachingMinTTL: 0
+              ResponseCode: 404
+              ResponsePagePath: /404/index.html
+            - ErrorCode: 404
+              ErrorCachingMinTTL: 0
+              ResponseCode: 404
+              ResponsePagePath: /404/index.html
+            - ErrorCode: 400
+              ErrorCachingMinTTL: 0
+              ResponseCode: 200
+              ResponsePagePath: /index.html

@@ -13,3 +13,5 @@ yarn-error.log
 
 src/media/sample_header.jpg
 build/
+
+.serverless
