@@ -8,7 +8,7 @@ const defaults: Defaults = (prod, dev) => {
     ? process.env.GATSBY_STAGE
     : 'development';
 
-  stage === 'production' || stage === 'staging' ? prod : dev;
+  return stage === 'production' || stage === 'staging' ? prod : dev;
 };
 
 export default defaults;
