@@ -1,7 +1,7 @@
 import {
   updateContactForm,
   submitFormError,
-  submitFormSucess,
+  submitFormSuccess,
   submitContactForm,
 } from '../contact-actions';
 
@@ -25,7 +25,8 @@ describe('testing action creators for contact form', () => {
   test('creates a success action', () => {
     const expected = { type: 'SUBMIT_CONTACT_FORM_SUCCESS', value: 'message' };
 
-    expect(submitFormSucess('message')).toMatchObject(expected);
+    expect(typeof submitFormSuccess).toBe('function');
+    expect(submitFormSuccess('message')).toMatchObject(expected);
   });
 
   test('creates a success action', () => {
