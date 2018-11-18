@@ -150,11 +150,9 @@ class Submit extends React.PureComponent<Props, State> {
     const transaction = this.transaction();
 
     server
-      .post('/submit', transaction)
+      .post('/submit', { transaction })
       .then((response) => {
-        this.setState({
-          status: 'resolved',
-        });
+        this.props.emptyCart();
         navigate('/checkout/confirmation', {
           state: { ...transaction },
         });

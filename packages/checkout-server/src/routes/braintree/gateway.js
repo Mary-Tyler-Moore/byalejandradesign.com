@@ -5,7 +5,7 @@ const gateway = braintree.connect({
   environment:
     env.STAGE !== 'production'
       ? braintree.Environment.Sandbox
-      : braintree.Environment.Production,
+      : braintree.Environment.Sandbox,
   merchantId: env.BRAINTREE_MERCHANT_ID,
   publicKey: env.BRAINTREE_PUBLIC_KEY,
   privateKey: env.BRAINTREE_PRIVATE_KEY,

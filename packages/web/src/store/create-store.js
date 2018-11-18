@@ -5,7 +5,7 @@ import useStorage from './use-storage';
 import { loadLocalApplication, saveLocalApplication } from './local-storage';
 
 const REFRESH = 86400 * 1000; // daily
-const INVALIDATE = 1521761285634; // Date.now()
+const INVALIDATE = 1542304058142; // Date.now()
 
 const application = loadLocalApplication();
 const persistedState = application ? application.state : undefined;
@@ -47,8 +47,18 @@ const _createStore = () => {
   if (process.env.STAGE !== 'development') {
     store.subscribe(
       throttle(() => {
+        const completeState = store.getState();
+
+        const partialState = {
+          cart: completeState.cart,
+          checkout: {
+            billingAddress: completeState.checkout.billingAddress,
+            shippingAddress: completeState.checkout.shippingAddress,
+          },
+        };
+
         const application = {
-          state: store.getState(),
+          state: partialState,
           date: Date.now(),
         };
 

@@ -24,11 +24,9 @@ type CTX = {
 
 const validateMessage = (ctx: CTX): Promise<CTX> =>
   new Promise((res, rej) => {
-    // stub transaction for development
-    const transaction: Transaction =
-      env.STAGE === 'development' ? defaultTransaction : ctx.body;
+    try {
+      const transaction = validateTransaction(ctx.body.transaction);
 
-    if (validateTransaction(transaction)) {
       const html = orderConfirmationTemplate(transaction);
       const to =
         env.STAGE !== 'production'
@@ -46,7 +44,7 @@ const validateMessage = (ctx: CTX): Promise<CTX> =>
         ...ctx,
         mailgunMessage,
       });
-    } else {
+    } catch (error) {
       rej({
         ...ctx,
         status: 402,

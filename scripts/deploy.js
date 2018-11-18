@@ -1,36 +1,31 @@
 const path = require('path');
 const parallel = require('./parallel');
 
+// get environment variables
+// all vars are passed onto the spawn that is created with parallel function
 require('dotenv').config({
   path: path.resolve(__dirname, '../.env'),
 });
 
+// Define the default STAGE as staging
 if (!process.env.STAGE) {
   process.env.STAGE = 'staging';
 }
 
 const stage = process.env.STAGE;
 
-const prebuilds = [
-  'server-env',
-  'server-middleware',
-  'templates',
-  'data-objects',
-  'checkout-objects',
-  'gatsby-source-wordpress',
-];
+const serverless = ['mail-server', 'checkout-server', 'web'];
 
-const servers = ['mail-server', 'checkout-server'];
-
-parallel('run', 'shx', 'rm', '-rf', 'build');
-
+// build dependencies
 parallel('run', 'build');
 
+// build frontend
+parallel('exec', `gatsby build`, '--scope', `@byalejandradesign/web`);
+
+// deploy and package with serverless framework
 parallel(
   'exec',
   `serverless deploy -v --stage ${stage}`,
   '--scope',
-  `@byalejandradesign/{${servers.join(',')}}`
+  `@byalejandradesign/{${serverless.join(',')}}`
 );
-
-parallel('exec', `gatsby build`, '--scope', `@byalejandradesign/web`);
