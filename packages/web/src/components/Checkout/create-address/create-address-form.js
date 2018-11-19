@@ -70,8 +70,8 @@ const createAddressForm = (slice: string) => {
         value.length !== length
           ? value
           : this.props[slice].postalCode.length < value.length
-            ? `${value}-`
-            : value;
+          ? `${value}-`
+          : value;
 
       if (regex.test(value))
         this.props.manuallyUpdateAddressField({
@@ -186,6 +186,14 @@ const createAddressForm = (slice: string) => {
             value={this.props[slice].countryCode}
             onChange={this.onSelectCountry}
             required
+          />
+          <Form.Input
+            focus={this.props.focus.includes('phone')}
+            name="phone"
+            label="Phone"
+            block="addressField"
+            value={this.props[slice].phone}
+            onChange={this.props.updateAddressField}
           />
         </React.Fragment>
       );

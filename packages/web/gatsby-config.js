@@ -25,7 +25,13 @@ module.exports = {
     subTitle: 'Design Studio and Shop',
     navLayout: {
       mainNav: ['/home', '/cloud-studio', '/shop/collections', '/contact'],
-      footerNav: ['/faq', '/privacy-policy', '/return-policy', '/contact'],
+      footerNav: [
+        '/faq',
+        '/privacy-policy',
+        '/return-policy',
+        'shipping-policy',
+        '/contact',
+      ],
     },
     design: {
       maxWidth: 1200, // px

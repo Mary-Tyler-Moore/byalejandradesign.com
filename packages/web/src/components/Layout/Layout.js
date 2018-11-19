@@ -2,6 +2,7 @@ import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 import withSize from 'react-size-components';
+import Footer from '../Footer';
 import { MainNav, FooterNav } from '../Nav';
 import Header from '../Header';
 // icons
@@ -106,7 +107,7 @@ class Layout extends React.Component {
               >
                 {this.props.children}
               </main>
-              <FooterNav
+              <Footer
                 design={this.getDesign(data)}
                 maxWidth={data.site.siteMetadata.design.maxWidth}
                 footerNav={data.site.siteMetadata.navLayout.footerNav}

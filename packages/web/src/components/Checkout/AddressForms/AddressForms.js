@@ -39,11 +39,13 @@ class AddressForms extends React.PureComponent<Props, State> {
   };
 
   onChange = (e: SyntheticEvent<HTMLInputElement>) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     const {
       currentTarget: { checked },
     } = e;
+
+    console.log(checked);
 
     this.props.setBillingAddress(checked);
   };
@@ -111,7 +113,7 @@ class AddressForms extends React.PureComponent<Props, State> {
           </section>
           {this.props.hasBillingAddress && (
             <React.Fragment>
-              <h4 className="h4-amiri">Billing Address</h4>
+              <h4 className="addressForm_h4">Billing Address</h4>
               <BillingAddressForm />
             </React.Fragment>
           )}

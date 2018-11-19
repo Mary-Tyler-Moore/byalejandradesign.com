@@ -1,0 +1,83 @@
+@import ../../sass/global.sass
+
+.footer
+  width: 100%
+  background: transparentize($black, 0.1)
+  color: $white
+
+  +flexbox
+
+  justify-content: space-between
+  align-items: center
+  flex-wrap: wrap
+
+  &_widgets
+    width: 100%
+    display: grid
+    grid-template-columns: repeat(2, 1fr)
+    grid-gap: 3rem
+
+    +all-phone
+      grid-template-columns: repeat(1, 1fr)
+
+.emailSignup
+  width: 100%
+
+  &_label
+    margin: 0
+
+    @extend %subtitle-sourceSans-2
+
+  &_input
+    width: 100%
+    margin-bottom: 1rem
+    padding: 0.5rem
+    border-radius: 0.25rem
+    border: none
+
+    @extend %body-sourceSans-2
+
+    margin: 1.5rem 0
+
+    &:focus
+      outline: none
+
+.socialWidget
+  &_subtitle
+    @extend %subtitle-sourceSans-2
+
+    margin-top: 0
+    margin-bottom: calc(1.5rem - 5px)
+
+  &_icon
+    margin-left: 1.5rem
+    color: $white
+
+    +transition(0.25s color)
+
+    &:hover
+      color: transparentize($white, 0.5)
+
+    &-left
+      margin-left: 0
+
+.footerNavDesktop
+  width: 100%
+  display: flex
+  justify-content: flex-start
+  margin-top: 2rem
+
+  &_link
+    @extend %navLink
+
+    color: $white
+    margin: 0 1.5rem
+    padding: 1rem 0
+
+    @extend %subtitle-sourceSans-1
+
+    &:hover
+      @extend %navHighlight
+
+    &:first-child
+      margin-left: 0

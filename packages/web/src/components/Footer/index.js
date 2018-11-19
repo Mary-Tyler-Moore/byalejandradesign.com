@@ -1,4 +1,4 @@
 /** @flow */
-export { default } from './Customer'
+export { default } from './Footer'
 export * from './types'
 

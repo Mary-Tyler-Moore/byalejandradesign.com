@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it works it loads without crashing 1`] = `null`;
+
+exports[`it works it renders a customer 1`] = `
+<section
+  className="confirmation_customerSection"
+>
+  <h4
+    className="h4-amiri"
+  >
+    Customer
+  </h4>
+  <p
+    className="body-sourceSans-2"
+  >
+    <strong>
+      Name
+      : 
+    </strong>
+    Nick Myers
+  </p>
+  <p
+    className="body-sourceSans-2"
+  >
+    <strong>
+      Email
+      : 
+    </strong>
+    nick@email.com
+  </p>
+  <p
+    className="body-sourceSans-2"
+  >
+    <strong>
+      Phone
+      : 
+    </strong>
+    212-192-1222
+  </p>
+</section>
+`;
