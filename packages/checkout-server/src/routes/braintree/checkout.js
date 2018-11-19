@@ -68,7 +68,7 @@ const confirmation = (ctx): Promise<CTX> =>
         .then((response) =>
           resolve({
             ...ctx,
-            mailResponse: response,
+            mailResponse: response.data,
           })
         )
         .catch((error) =>
