@@ -1,6 +1,23 @@
 /** @flow */
-import * as React from 'react'
+import * as React from 'react';
 
-export type Props = {}
-export type State = {}
+export type Props = {
+  footerNav: Array<string>,
+  design: {
+    mobileContentPadding: number,
+    contentPadding: number,
+    maxWidth: number,
+  },
+  sizes: {
+    window: {
+      innerWidth: number,
+      innerHeight: number,
+      outerWidth: number,
+      outerHeight: number,
+    },
+  },
+};
 
+export type State = {
+  email: string,
+};

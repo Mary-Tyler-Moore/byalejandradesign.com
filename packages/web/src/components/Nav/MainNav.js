@@ -30,7 +30,7 @@ class DesktopMainNav extends React.Component<Props> {
     // calculate the max width
     const sidePadding = innerWidth > maxWidth ? (innerWidth - maxWidth) / 2 : 0;
     // add content padding
-    return { padding: `0 ${sidePadding + contentPadding}px` };
+    return { padding: `0 ${sidePadding + contentPadding / 2}px` };
   };
 
   render() {
