@@ -1,11 +1,8 @@
 /** @flow */
 import * as React from 'react';
 import { camelToTitle } from 'smalldash';
-
-export type Props = {
-  label: string,
-  children?: React.Node,
-};
+// types
+import type { Props } from './types';
 
 const Line = ({ label, children }: Props) =>
   label && children ? (

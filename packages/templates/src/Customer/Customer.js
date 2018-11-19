@@ -7,7 +7,7 @@ import type { Props } from './types';
 const Customer = ({ customer }: Props) =>
   customer ? (
     <section className="confirmation_customerSection">
-      <h4 className="h4-amiri">Customer</h4>
+      <h5 className="h5-amiri">Customer</h5>
       <Line label="name">{`${customer.firstName} ${customer.lastName}`}</Line>
       <Line label="email">{customer.email}</Line>
       <Line label="phone">{customer.phone}</Line>

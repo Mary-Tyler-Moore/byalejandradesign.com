@@ -2,6 +2,7 @@
 import * as React from 'react';
 import { dollarString } from 'smalldash';
 import Line from '../Line';
+import LineItems from '../LineItems';
 import ServerAddress from '../ServerAddress';
 import Customer from '../Customer';
 // defaults
@@ -23,15 +24,15 @@ class OrderConfirmation extends React.Component<Props> {
   render() {
     return (
       <section className="confirmation">
-        <h3 className="h3-amiri">Order Confirmation</h3>
+        <h4 className="h4-amiri">Order Confirmation</h4>
         <p className="body-sourceSans-2">
           <em>
-            Thank you for your order from byalejandradesign.com! Your order details
-            are summarized below.
+            Thank you for your order from byalejandradesign.com! Your order
+            details are summarized below.
           </em>
         </p>
         <section>
-          <h4 className="h4-amiri">Order Info</h4>
+          <h5 className="h5-amiri">Order Info</h5>
           {this.props.transaction.orderId && (
             <Line label="orderNumber">{this.props.transaction.orderId}</Line>
           )}
@@ -40,14 +41,17 @@ class OrderConfirmation extends React.Component<Props> {
           </Line>
         </section>
         <Customer customer={this.props.transaction.customer} />
-        <ServerAddress
-          address={this.props.transaction.shipping}
-          label="Shipping Address"
-        />
-        <ServerAddress
-          address={this.props.transaction.billing}
-          label="Billing Address"
-        />
+        <LineItems lineItems={this.props.transaction.lineItems} />
+        <section className="confirmation_grid">
+          <ServerAddress
+            address={this.props.transaction.shipping}
+            label="Shipping Address"
+          />
+          <ServerAddress
+            address={this.props.transaction.billing}
+            label="Billing Address"
+          />
+        </section>
       </section>
     );
   }

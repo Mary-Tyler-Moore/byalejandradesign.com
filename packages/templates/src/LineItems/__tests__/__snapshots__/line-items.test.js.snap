@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it works it loads line items 1`] = `
+<section
+  className="lineItems"
+>
+  <h5
+    className="h5-amiri"
+  >
+    Items
+  </h5>
+  <ul
+    className="lineItems_ul"
+  >
+    <li
+      className="lineItems_li"
+    >
+      <h6
+        className="h6-amiri"
+      >
+        Shoreline Cups
+      </h6>
+      <p
+        className="body-sourceSans-2"
+      >
+        <strong>
+          Quantity
+          : 
+        </strong>
+        1
+      </p>
+      <p
+        className="body-sourceSans-2"
+      >
+        <strong>
+          Price
+          : 
+        </strong>
+        $15.00
+      </p>
+      <p
+        className="body-sourceSans-2"
+      >
+        <strong>
+          Total Price
+          : 
+        </strong>
+        $15.00
+      </p>
+    </li>
+  </ul>
+</section>
+`;
+
+exports[`it works it loads without crashing 1`] = `null`;
