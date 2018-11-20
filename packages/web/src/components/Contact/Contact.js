@@ -69,7 +69,7 @@ class Contact extends React.PureComponent<{}, State> {
       // generate next state
       const nextState: State = contactReducer(prevState, action);
       // state logging
-      if (process.env.STAGE !== 'production') {
+      if (process.env.GATSBY_STAGE !== 'production') {
         this.logAction(prevState)(action)(nextState);
       }
 

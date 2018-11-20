@@ -47,7 +47,7 @@ class Footer extends React.Component<Props, State> {
     const totalPadding = sidePadding + 10 + contentPadding / 2;
 
     return {
-      padding: `3rem ${totalPadding}px 1rem ${totalPadding}px`,
+      padding: `2.5rem ${totalPadding}px 0.5rem ${totalPadding}px`,
     };
   };
 

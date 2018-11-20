@@ -16,7 +16,7 @@ export const saveData = (payload: {}, loadedAt: number = Date.now()) => ({
 
 /** Print errors to console directly during development */
 const logErrors = (err) => {
-  if (process.env.STAGE !== 'production') console.error(err);
+  if (process.env.GATSBY_STAGE !== 'production') console.error(err);
 };
 
 /** Logs errors of unknown type to redux state */

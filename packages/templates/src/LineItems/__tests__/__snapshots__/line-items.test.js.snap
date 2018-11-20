@@ -9,46 +9,68 @@ exports[`it works it loads line items 1`] = `
   >
     Items
   </h5>
-  <ul
-    className="lineItems_ul"
+  <table
+    cellpadding="0"
+    cellspacing="0"
+    className="lineItems_table"
   >
-    <li
-      className="lineItems_li"
+    <thead
+      className="lineItems_thead"
     >
-      <h6
-        className="h6-amiri"
+      <tr
+        className="lineItems_tr"
       >
-        Shoreline Cups
-      </h6>
-      <p
-        className="body-sourceSans-2"
-      >
-        <strong>
+        <th
+          className="lineItems_th lineItems_th-first"
+        >
+          Description
+        </th>
+        <th
+          className="lineItems_th"
+        >
+          Unit Price
+        </th>
+        <th
+          className="lineItems_th"
+        >
           Quantity
-          : 
-        </strong>
-        1
-      </p>
-      <p
-        className="body-sourceSans-2"
+        </th>
+        <th
+          className="lineItems_th"
+        >
+          Amount
+        </th>
+      </tr>
+    </thead>
+    <tbody
+      className="lineItems_tbody"
+    >
+      <tr
+        className="lineItems_tr"
       >
-        <strong>
-          Price
-          : 
-        </strong>
-        $15.00
-      </p>
-      <p
-        className="body-sourceSans-2"
-      >
-        <strong>
-          Total Price
-          : 
-        </strong>
-        $15.00
-      </p>
-    </li>
-  </ul>
+        <td
+          className="lineItems_td lineItems_td-first"
+        >
+          Shoreline Cups
+        </td>
+        <td
+          className="lineItems_td"
+        >
+          $15.00
+        </td>
+        <td
+          className="lineItems_td"
+        >
+          1
+        </td>
+        <td
+          className="lineItems_td"
+        >
+          $15.00
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </section>
 `;
 
