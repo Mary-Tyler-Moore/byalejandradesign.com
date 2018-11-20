@@ -11,19 +11,35 @@ class LineItems extends React.Component<Props> {
   render() {
     return (
       Array.isArray(this.props.lineItems) &&
-      this.props.lineItems.length && (
+      this.props.lineItems.length > 0 && (
         <section className="lineItems">
           <h5 className="h5-amiri">Items</h5>
-          <ul className="lineItems_ul">
-            {this.props.lineItems.map((item) => (
-              <li className="lineItems_li" key={item.name}>
-                <h6 className="h6-amiri">{kebabToTitle(item.name)}</h6>
-                <Line label="quantity">{item.quantity}</Line>
-                <Line label="price">{dollarString(item.unitAmount)}</Line>
-                <Line label="totalPrice">{dollarString(item.totalAmount)}</Line>
-              </li>
-            ))}
-          </ul>
+          <table cellspacing="0" cellpadding="0" className="lineItems_table">
+            <thead className="lineItems_thead">
+              <tr className="lineItems_tr">
+                <th className="lineItems_th lineItems_th-first">Description</th>
+                <th className="lineItems_th">Unit Price</th>
+                <th className="lineItems_th">Quantity</th>
+                <th className="lineItems_th">Amount</th>
+              </tr>
+            </thead>
+            <tbody className="lineItems_tbody">
+              {this.props.lineItems.map((item) => (
+                <tr className="lineItems_tr" key={item.name}>
+                  <td className="lineItems_td lineItems_td-first">
+                    {kebabToTitle(item.name)}
+                  </td>
+                  <td className="lineItems_td">
+                    {dollarString(item.unitAmount)}
+                  </td>
+                  <td className="lineItems_td">{item.quantity}</td>
+                  <td className="lineItems_td">
+                    {dollarString(item.totalAmount)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </section>
       )
     );

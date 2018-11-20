@@ -1,11 +1,43 @@
-@import ../../../web/src/sass/global
+@import ~@njmyers/sass/material/typography
+
++typography("sourceSans", ("Source Sans Pro", sans-serif), 100, 300, 600, 800)
+
+$border-color: transparentize(black, 0.85)
 
 .lineItems
   margin: 0
+  width: 100%
+  border-collapse: collapse
+  border-spacing: 0px
+  table-layout: auto
+  padding: 0
 
-  &_ul
-    list-style-type: none
-    padding-left: 0
+  &_table
+    margin-top: 0.75rem
+    width: 100%
 
-  &_li
-    margin-top: 1.5rem
+  &_thead
+
+  &_th
+    width: 20%
+    text-align: left
+
+    @extend %subtitle-sourceSans-2
+
+    padding: 1.25rem 0
+    border-bottom: 1px solid $border-color
+    border-top: 1px solid $border-color
+
+    &-first
+      width: 40%
+
+  &_tbody
+
+  &_tr
+
+  &_td
+    @extend %body-sourceSans-2
+
+    padding: 1.25rem 0
+    text-align: left
+    border-bottom: 1px solid $border-color
