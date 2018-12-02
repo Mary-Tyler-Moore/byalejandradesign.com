@@ -19,12 +19,10 @@ const SITE_DATA = graphql`
         subTitle
         navLayout {
           mainNav
-          footerNav
-        }
-        design {
-          maxWidth
-          contentPadding
-          mobileContentPadding
+          footerNav {
+            link
+            label
+          }
         }
       }
     }
@@ -48,22 +46,10 @@ class Layout extends React.Component {
   /** get the metadata object */
   getSiteMetadata = (data) => data.site.siteMetadata;
 
-  /** get the design metadata object */
-  getDesign = (data) => this.getSiteMetadata(data).design;
-
   /** get the title from metadata */
   getTitle = (data) => {
     const { title, subTitle } = this.getSiteMetadata(data);
     return `${title}: ${subTitle}`;
-  };
-
-  /** get the content padding from metadata/mobile state */
-  getContentPadding = (data) => {
-    const { design } = this.getSiteMetadata(data);
-
-    return this.props.sizes.mobile
-      ? design.mobileContentPadding
-      : design.contentPadding;
   };
 
   getHeaderImage = (data) => {
@@ -92,27 +78,12 @@ class Layout extends React.Component {
                 />
               </Helmet>
               <MainNav
-                design={this.getDesign(data)}
                 mainNav={data.site.siteMetadata.navLayout.mainNav}
                 sizes={this.props.sizes}
               />
               <Header headerImage={this.getHeaderImage(data)} />
-              <main
-                style={{
-                  maxWidth: `${data.site.siteMetadata.design.maxWidth}px`,
-                  minHeight: '100vh',
-                  padding: `3rem ${this.getContentPadding(data)}px`,
-                }}
-                className="mainContent"
-              >
-                {this.props.children}
-              </main>
-              <Footer
-                design={this.getDesign(data)}
-                maxWidth={data.site.siteMetadata.design.maxWidth}
-                footerNav={data.site.siteMetadata.navLayout.footerNav}
-                sizes={this.props.sizes}
-              />
+              <main className="mainContent">{this.props.children}</main>
+              <Footer footerNav={data.site.siteMetadata.navLayout.footerNav} />
             </div>
             <div id="modal-root" />
           </React.Fragment>

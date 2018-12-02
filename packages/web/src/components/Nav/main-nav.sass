@@ -1,17 +1,22 @@
 @import ../../sass/global.sass
 
-.mainNavDesktop
+.desktopHeader
+  width: 100%
   position: fixed
   top: 0
   left: 0
-  width: 100%
-  display: flex
-  justify-content: space-between
-  align-items: center
   background: transparentize($black, 0.2)
   z-index: 2
 
   @extend %niceShadow
+
+.navDesktop
+  margin: 0 auto
+  padding: 0 $content-padding
+  max-width: $content-max-width
+  display: flex
+  justify-content: space-between
+  align-items: center
 
   &_link,
   &_linkCart
@@ -29,8 +34,11 @@
     &-active
       @extend %navHighlight
 
+  &_link:first-child
+    margin-left: 0
+
   &_linkCart
-    padding: 0.51rem 1rem
+    padding: 0.52rem 1rem
 
   &_logo
     width: 40px
@@ -44,9 +52,18 @@
   left: 0
   z-index: 2
   overflow: hidden
-  display: flex
-  align-items: center
-  justify-content: space-between
+
+  &_container
+    align-items: center
+    justify-content: space-between
+    width: 100%
+    max-width: $content-max-width
+    height: 100%
+
+    +flex
+
+    margin: 0 auto
+    padding: 0 $mobile-content-padding
 
   &_hamburger
     width: 20px
@@ -60,7 +77,7 @@
     &_itemText
       margin-top: 1px
 
-.mainNavMobile
+.navMobile
   display: flex
   flex-direction: column
   justify-content: center

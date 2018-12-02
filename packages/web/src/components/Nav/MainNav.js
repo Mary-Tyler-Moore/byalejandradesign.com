@@ -24,36 +24,29 @@ type Props = {
 };
 
 class DesktopMainNav extends React.Component<Props> {
-  getStyle = () => {
-    const { innerWidth } = this.props.sizes.window;
-    const { maxWidth, contentPadding } = this.props.design;
-    // calculate the max width
-    const sidePadding = innerWidth > maxWidth ? (innerWidth - maxWidth) / 2 : 0;
-    // add content padding
-    return { padding: `0 ${sidePadding + contentPadding / 2}px` };
-  };
-
   render() {
     return (
-      <nav style={this.getStyle()} className="mainNavDesktop">
-        {this.props.mainNav.map((nav) => (
+      <header className="desktopHeader">
+        <nav className="navDesktop">
+          {this.props.mainNav.map((nav) => (
+            <Link
+              key={nav}
+              to={nav}
+              className="navDesktop_link"
+              activeClassName="navDesktop_link-active"
+            >
+              {URLToTitle(nav)}
+            </Link>
+          ))}
           <Link
-            key={nav}
-            to={nav}
-            className="mainNavDesktop_link"
-            activeClassName="mainNavDesktop_link-active"
+            to="/cart"
+            className="navDesktop_linkCart"
+            activeClassName="navDesktop_linkCart-active"
           >
-            {URLToTitle(nav)}
+            <CartIcon />
           </Link>
-        ))}
-        <Link
-          to="/cart"
-          className="mainNavDesktop_linkCart"
-          activeClassName="mainNavDesktop_linkCart-active"
-        >
-          <CartIcon />
-        </Link>
-      </nav>
+        </nav>
+      </header>
     );
   }
 }
@@ -65,8 +58,8 @@ type MobileNavState = {
 const LinkedMobileCartIcon = ({ onClick }) => (
   <Link
     to="/cart"
-    className="mainNavMobile_link"
-    activeClassName="mainNavMobile_link-active"
+    className="navMobile_link"
+    activeClassName="navMobile_link-active"
     onClick={onClick}
   >
     <CartIcon />
@@ -74,15 +67,6 @@ const LinkedMobileCartIcon = ({ onClick }) => (
 );
 
 class MobileMainNav extends React.Component<Props, MobileNavState> {
-  getStyle = () => {
-    const { innerWidth } = this.props.sizes.window;
-    const { maxWidth, mobileContentPadding } = this.props.design;
-    // calculate the max width
-    const sidePadding = innerWidth > maxWidth ? (innerWidth - maxWidth) / 2 : 0;
-    // add content padding
-    return { padding: `0 ${sidePadding + mobileContentPadding}px` };
-  };
-
   state = {
     status: 'off',
   };
@@ -95,28 +79,33 @@ class MobileMainNav extends React.Component<Props, MobileNavState> {
 
   render() {
     return (
-      <header style={this.getStyle()} className="mainHeaderMobile">
-        <div className="mainHeaderMobile_hamburger" onClick={this.handleClick}>
-          {this.state.status === 'off' ? (
-            <Icon.Hamburger color="#ffffff" radius={1} />
-          ) : (
-            <Icon.Cross color="#ffffff" radius={1} />
-          )}
-        </div>
-        <Link to="/cart">
-          <CartIcon />
-        </Link>
+      <header className="mainHeaderMobile">
+        <section className="mainHeaderMobile_container">
+          <div
+            className="mainHeaderMobile_hamburger"
+            onClick={this.handleClick}
+          >
+            {this.state.status === 'off' ? (
+              <Icon.Hamburger color="#ffffff" radius={1} />
+            ) : (
+              <Icon.Cross color="#ffffff" radius={1} />
+            )}
+          </div>
+          <Link to="/cart">
+            <CartIcon />
+          </Link>
+        </section>
         <Modal
           status={this.state.status}
           style={{ background: 'rgba(0, 0, 0, 0.7)' }}
         >
-          <nav className="mainNavMobile">
+          <nav className="navMobile">
             {this.props.mainNav.map((nav) => (
               <Link
                 key={nav}
                 to={nav}
-                className="mainNavMobile_link"
-                activeClassName="mainNavMobile_link-active"
+                className="navMobile_link"
+                activeClassName="navMobile_link-active"
                 onClick={this.handleClick}
               >
                 {URLToTitle(nav)}

@@ -1,0 +1,20 @@
+@import ../../sass/global.sass
+
+.socialWidget
+  &_subtitle
+    @extend %subtitle-sourceSans-2
+
+    margin-top: 0
+    margin-bottom: calc(1.5rem - 5px)
+
+  &_icon
+    margin-left: 1.5rem
+    color: $white
+
+    +transition(0.25s color)
+
+    &:hover
+      color: transparentize($white, 0.5)
+
+    &-left
+      margin-left: 0

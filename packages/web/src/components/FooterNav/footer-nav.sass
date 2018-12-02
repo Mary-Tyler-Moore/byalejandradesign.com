@@ -1,0 +1,30 @@
+@import ../../sass/global.sass
+
+.footerNav
+  width: 100%
+  display: flex
+  justify-content: space-between
+
+  &_link
+    @extend %navLink
+
+    color: $white
+    margin: 0
+    padding: 1rem 0
+    margin: 0 1.5rem
+
+    @extend %subtitle-sourceSans-1
+
+    +all-phone
+      margin: 0
+      padding: 0
+
+
+    &:hover
+      @extend %navHighlight
+
+    &:first-child
+      margin-left: 0
+
+    &:last-child
+      margin-right: 0

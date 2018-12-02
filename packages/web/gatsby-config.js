@@ -26,11 +26,26 @@ module.exports = {
     navLayout: {
       mainNav: ['/home', '/cloud-studio', '/shop/collections', '/contact'],
       footerNav: [
-        '/faq',
-        '/privacy-policy',
-        '/return-policy',
-        'shipping-policy',
-        '/contact',
+        {
+          link: '/faq',
+          label: 'FAQ',
+        },
+        {
+          link: '/privacy-policy',
+          label: 'Privacy',
+        },
+        {
+          link: '/return-policy',
+          label: 'Returns',
+        },
+        {
+          link: '/shipping-policy',
+          label: 'Shipping',
+        },
+        {
+          link: '/contact',
+          label: 'Contact',
+        },
       ],
     },
     design: {

@@ -3,11 +3,6 @@ import * as React from 'react';
 
 export type Props = {
   footerNav: Array<string>,
-  design: {
-    mobileContentPadding: number,
-    contentPadding: number,
-    maxWidth: number,
-  },
   sizes: {
     window: {
       innerWidth: number,
@@ -16,8 +11,4 @@ export type Props = {
       outerHeight: number,
     },
   },
-};
-
-export type State = {
-  email: string,
 };
