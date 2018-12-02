@@ -21,8 +21,8 @@ parallel('run', 'build');
 
 // build frontend
 parallel('exec', `gatsby build`, '--scope', `@byalejandradesign/web`);
-//
-// // deploy and package with serverless framework
+
+// deploy and package with serverless framework
 parallel(
   'exec',
   `serverless deploy -v --stage ${stage}`,
