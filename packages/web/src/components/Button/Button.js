@@ -1,7 +1,10 @@
+/** @flow */
 import * as React from 'react';
 import './button.sass';
+// types
+import type { Props } from './types';
 
-class Button extends React.Component {
+class Button extends React.Component<Props> {
   static defaultProps = {
     className: 'button-yellow',
     type: 'button',

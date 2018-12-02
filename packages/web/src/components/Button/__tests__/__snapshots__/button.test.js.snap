@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it works it loads 1`] = `
+<button
+  className="class"
+  name="button"
+  style={
+    Object {
+      "margin": "1rem 0",
+      "width": "100%",
+    }
+  }
+  type="submit"
+>
+  <span
+    className="button_text-sourceSans"
+  >
+    click me
+  </span>
+</button>
+`;
+
+exports[`it works it loads without crashing 1`] = `
+<button
+  className="button-yellow"
+  style={
+    Object {
+      "margin": "0",
+      "width": "inherit",
+    }
+  }
+  type="button"
+>
+  <span
+    className="button_text-sourceSans"
+  />
+</button>
+`;
