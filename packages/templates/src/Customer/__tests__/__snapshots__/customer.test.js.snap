@@ -6,11 +6,11 @@ exports[`it works it renders a customer 1`] = `
 <section
   className="confirmation_customerSection"
 >
-  <h4
-    className="h4-amiri"
+  <h5
+    className="h5-amiri"
   >
     Customer
-  </h4>
+  </h5>
   <p
     className="body-sourceSans-2"
   >

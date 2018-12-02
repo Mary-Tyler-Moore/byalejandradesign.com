@@ -10,6 +10,10 @@ module.exports = {
     'build/',
     'helpers/',
   ],
+  globals: {
+    __PATH_PREFIX__: '',
+  },
   roots: ['packages/'],
-  transformIgnorePatterns: ['node_modules/(?!(gatsby|@artetexture)/)'],
+  transformIgnorePatterns: ['node_modules/(?!(gatsby|@byalejandradesign)/)'],
+  setupFiles: ['<rootDir>/loadershim.js'],
 };

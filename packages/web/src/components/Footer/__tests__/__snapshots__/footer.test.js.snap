@@ -1,0 +1,127 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it works it loads without crashing 1`] = `
+<footer
+  className="footer"
+>
+  <section
+    className="footer_container"
+  >
+    <form
+      className="emailSignup"
+      name="emailSignup"
+      onSubmit={[Function]}
+    >
+      <div
+        className="emailSignup"
+      >
+        <label
+          className="emailSignup_label"
+          element="label"
+          htmlFor="email"
+        >
+          Signup For Our Newsletter
+        </label>
+        <input
+          className="emailSignup_input"
+          element="input"
+          name="email"
+          onChange={[Function]}
+          placeholder=""
+          required={true}
+          type="email"
+          value=""
+        />
+      </div>
+      <button
+        className="button-yellow"
+        style={
+          Object {
+            "margin": "0",
+            "width": "inherit",
+          }
+        }
+        type="submit"
+      >
+        <span
+          className="button_text-sourceSans"
+        >
+          Sign Up
+        </span>
+      </button>
+    </form>
+    <section
+      className="socialWidget"
+    >
+      <p
+        className="socialWidget_subtitle"
+      >
+        Follow Us!
+      </p>
+      <a
+        href="https://www.instagram.com/byalejandradesign"
+        target="__blank"
+      >
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-instagram fa-w-14 fa-3x socialWidget_icon socialWidget_icon-left"
+          data-icon="instagram"
+          data-prefix="fab"
+          role="img"
+          style={Object {}}
+          viewBox="0 0 448 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+      </a>
+      <a
+        href="https://pinterest.com/byalejandradesign"
+        target="__blank"
+      >
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-pinterest-square fa-w-14 fa-3x socialWidget_icon"
+          data-icon="pinterest-square"
+          data-prefix="fab"
+          role="img"
+          style={Object {}}
+          viewBox="0 0 448 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M448 80v352c0 26.5-21.5 48-48 48H154.4c9.8-16.4 22.4-40 27.4-59.3 3-11.5 15.3-58.4 15.3-58.4 8 15.3 31.4 28.2 56.3 28.2 74.1 0 127.4-68.1 127.4-152.7 0-81.1-66.2-141.8-151.4-141.8-106 0-162.2 71.1-162.2 148.6 0 36 19.2 80.8 49.8 95.1 4.7 2.2 7.1 1.2 8.2-3.3.8-3.4 5-20.1 6.8-27.8.6-2.5.3-4.6-1.7-7-10.1-12.3-18.3-34.9-18.3-56 0-54.2 41-106.6 110.9-106.6 60.3 0 102.6 41.1 102.6 99.9 0 66.4-33.5 112.4-77.2 112.4-24.1 0-42.1-19.9-36.4-44.4 6.9-29.2 20.3-60.7 20.3-81.8 0-53-75.5-45.7-75.5 25 0 21.7 7.3 36.5 7.3 36.5-31.4 132.8-36.1 134.5-29.6 192.6l2.2.8H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h352c26.5 0 48 21.5 48 48z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+      </a>
+      <a
+        href="https://facebook.com"
+        target="__blank"
+      >
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-facebook-square fa-w-14 fa-3x socialWidget_icon"
+          data-icon="facebook-square"
+          data-prefix="fab"
+          role="img"
+          style={Object {}}
+          viewBox="0 0 448 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M448 80v352c0 26.5-21.5 48-48 48h-85.3V302.8h60.6l8.7-67.6h-69.3V192c0-19.6 5.4-32.9 33.5-32.9H384V98.7c-6.2-.8-27.4-2.7-52.2-2.7-51.6 0-87 31.5-87 89.4v49.9H184v67.6h60.9V480H48c-26.5 0-48-21.5-48-48V80c0-26.5 21.5-48 48-48h352c26.5 0 48 21.5 48 48z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+      </a>
+    </section>
+  </section>
+</footer>
+`;

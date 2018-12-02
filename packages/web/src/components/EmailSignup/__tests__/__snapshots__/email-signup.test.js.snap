@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`it works it loads without crashing 1`] = `
+<form
+  className="emailSignup"
+  name="emailSignup"
+  onSubmit={[Function]}
+>
+  <div
+    className="emailSignup"
+  >
+    <label
+      className="emailSignup_label"
+      element="label"
+      htmlFor="email"
+    >
+      Signup For Our Newsletter
+    </label>
+    <input
+      className="emailSignup_input"
+      element="input"
+      name="email"
+      onChange={[Function]}
+      placeholder=""
+      required={true}
+      type="email"
+      value=""
+    />
+  </div>
+  <button
+    className="button-yellow"
+    style={
+      Object {
+        "margin": "0",
+        "width": "inherit",
+      }
+    }
+    type="submit"
+  >
+    <span
+      className="button_text-sourceSans"
+    >
+      Sign Up
+    </span>
+  </button>
+</form>
+`;
