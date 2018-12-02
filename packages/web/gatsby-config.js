@@ -48,11 +48,6 @@ module.exports = {
         },
       ],
     },
-    design: {
-      maxWidth: 1200, // px
-      contentPadding: 40, // px
-      mobileContentPadding: 15, // px
-    },
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -97,6 +92,13 @@ module.exports = {
     },
     {
       resolve: 'gatsby-plugin-sitemap',
+    },
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: process.env.GOOGLE_ANALYTICS_ID,
+        head: true,
+      },
     },
     {
       resolve: 'gatsby-plugin-manifest',
