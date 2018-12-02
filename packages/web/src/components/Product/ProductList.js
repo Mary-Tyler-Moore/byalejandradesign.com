@@ -8,6 +8,7 @@ import FluidImage from '../FluidImage';
 import title from './title';
 import { dollarString } from 'smalldash';
 import getQuantity from './get-quantity';
+import stringifyDimensions from './stringify-dimensions';
 // style
 import './product-list.sass';
 // types
@@ -51,7 +52,7 @@ const ProductList = ({ edges, addOneToCart, sizes, cart }: Props) => (
             </span>
             <span>
               <strong>Size: </strong>
-              12" x 12"
+              {stringifyDimensions(node.acf.dimensions)}
             </span>
           </p>
           <Button

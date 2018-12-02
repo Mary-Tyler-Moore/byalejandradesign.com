@@ -14,6 +14,7 @@ import type { ProductNode } from '@byalejandradesign/data-objects';
 import './single-product.sass';
 // utils
 import getQuantity from './get-quantity';
+import stringifyDimensions from './stringify-dimensions';
 
 type Props = {
   node: ProductNode,
@@ -48,6 +49,10 @@ class SingleProduct extends React.PureComponent<Props> {
             {this.props.node.acf.description}
           </p>
           <aside className="singleProduct_bottomSection">
+            <p className="singleProduct_dimensions">
+              <strong>Dimensions: </strong>
+              <span>{stringifyDimensions(this.props.node.acf.dimensions)}</span>
+            </p>
             <p className="singleProduct_monetary">
               <span>
                 <strong>Price: </strong>
