@@ -26,17 +26,27 @@ module.exports = {
     navLayout: {
       mainNav: ['/home', '/cloud-studio', '/shop/collections', '/contact'],
       footerNav: [
-        '/faq',
-        '/privacy-policy',
-        '/return-policy',
-        'shipping-policy',
-        '/contact',
+        {
+          link: '/faq',
+          label: 'FAQ',
+        },
+        {
+          link: '/privacy-policy',
+          label: 'Privacy',
+        },
+        {
+          link: '/return-policy',
+          label: 'Returns',
+        },
+        {
+          link: '/shipping-policy',
+          label: 'Shipping',
+        },
+        {
+          link: '/contact',
+          label: 'Contact',
+        },
       ],
-    },
-    design: {
-      maxWidth: 1200, // px
-      contentPadding: 40, // px
-      mobileContentPadding: 15, // px
     },
   },
   plugins: [
@@ -82,6 +92,13 @@ module.exports = {
     },
     {
       resolve: 'gatsby-plugin-sitemap',
+    },
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: process.env.GOOGLE_ANALYTICS_ID,
+        head: true,
+      },
     },
     {
       resolve: 'gatsby-plugin-manifest',
