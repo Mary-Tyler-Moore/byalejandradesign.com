@@ -7,6 +7,13 @@ describe('it works', () => {
     const render = TestRenderer.create(<Button />);
     expect(render.toJSON()).toMatchSnapshot();
   });
+
+  test('it loads', () => {
+    const render = TestRenderer.create(
+      <Button margin fullWidth className="class" name="button" type="submit">
+        click me
+      </Button>
+    );
+    expect(render.toJSON()).toMatchSnapshot();
+  });
 });
-
-
