@@ -7,6 +7,16 @@ describe('it works', () => {
     const render = TestRenderer.create(<FooterNav />);
     expect(render.toJSON()).toMatchSnapshot();
   });
+
+  test('it loads routes crashing', () => {
+    const footerNav = [
+      {
+        link: '/path',
+        label: 'Path',
+      },
+    ];
+
+    const render = TestRenderer.create(<FooterNav footerNav={footerNav} />);
+    expect(render.toJSON()).toMatchSnapshot();
+  });
 });
-
-
