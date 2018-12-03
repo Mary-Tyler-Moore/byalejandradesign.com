@@ -1,6 +1,6 @@
 {
   "name": "@byalejandradesign/server-env",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "shared server env package",
   "repository": {

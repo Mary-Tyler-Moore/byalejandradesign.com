@@ -1,6 +1,6 @@
 {
   "name": "@byalejandradesign/checkout-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "a braintree server",
   "keywords": [
@@ -25,9 +25,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",
-    "@byalejandradesign/checkout-objects": "^0.0.1",
-    "@byalejandradesign/server-env": "^0.0.1",
-    "@byalejandradesign/server-middleware": "^0.0.1",
+    "@byalejandradesign/checkout-objects": "^0.0.2",
+    "@byalejandradesign/server-env": "^0.0.2",
+    "@byalejandradesign/server-middleware": "^0.0.2",
     "axios": "^0.18.0",
     "bluebird": "^3.5.1",
     "braintree": "^2.11.0",

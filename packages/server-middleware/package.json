@@ -1,6 +1,6 @@
 {
   "name": "@byalejandradesign/server-middleware",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "shared server middleware package for express",
   "repository": {
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",
-    "@byalejandradesign/server-env": "0.0.1",
+    "@byalejandradesign/server-env": "^0.0.2",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "smalldash": "^1.1.20"

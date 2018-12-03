@@ -1,6 +1,6 @@
 {
   "name": "@byalejandradesign/data-objects",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "types of data objects from our api",
   "repository": {
