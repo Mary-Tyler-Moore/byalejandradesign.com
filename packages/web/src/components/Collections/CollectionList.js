@@ -15,9 +15,26 @@ const CollectionList = ({ edges }) => (
       </p>
     </section>
     <section className="collectionList">
-      {edges.map(({ node }) => (
-        <CollectionExcerpt key={node.id} node={node} />
-      ))}
+      {edges
+        .slice()
+        .sort((prev, next, i) => {
+          const {
+            node: {
+              acf: { order: prevOrder },
+            },
+          } = prev;
+
+          const {
+            node: {
+              acf: { order },
+            },
+          } = next;
+
+          return prevOrder - order;
+        })
+        .map(({ node }) => (
+          <CollectionExcerpt key={node.id} node={node} />
+        ))}
     </section>
   </React.Fragment>
 );

@@ -22,6 +22,9 @@ type Props = {
   sizes: {
     mobile: boolean,
   },
+  cart: {
+    products: Array<any>,
+  },
 };
 
 /**

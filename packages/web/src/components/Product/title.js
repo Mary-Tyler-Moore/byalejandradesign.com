@@ -1,5 +1,5 @@
 /** @flow */
-import type { ProductNode } from 'data';
+import type { ProductNode } from '@byalejandradesign/data-objects';
 
 /**
  * Fallback to title if no display title
