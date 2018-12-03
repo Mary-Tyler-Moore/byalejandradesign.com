@@ -5,6 +5,7 @@
     "type": "git",
     "url": "https://github.com/njmyers/byalejandradesign.com.git"
   },
+  "license": "ISC",
   "workspaces": {
     "packages": [
       "packages/*"
@@ -14,16 +15,15 @@
       "packages/**/flow-mono-cli"
     ]
   },
-  "license": "ISC",
   "scripts": {
     "bootstrap": "lerna bootstrap && lerna link",
-    "stage": "STAGE=staging node scripts/deploy.js",
     "deploy": "STAGE=production node scripts/deploy.js",
     "develop": "STAGE=development node scripts/develop.js",
     "install-types": "node scripts/install-types.js",
+    "stage": "STAGE=staging node scripts/deploy.js",
     "symlink-types": "flow-mono create-symlinks .flowconfig",
-    "prettier": "prettier 'packages/**/*.{.test.js,.stories.js,js,jsx,json}' --write",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "prettier": "prettier 'packages/**/*.{.test.js,.stories.js,js,jsx,json}' --write"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",

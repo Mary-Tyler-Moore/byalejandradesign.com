@@ -16,10 +16,10 @@
   "main": "build/index.cjs.js",
   "module": "build/index.esm.js",
   "scripts": {
-    "clean": "shx rm -rf build",
     "prebuild": "run-s clean",
     "build": "rollup -c rollup.config.js",
     "build:flow": "flow gen-flow-files src --out-dir build",
+    "clean": "shx rm -rf build",
     "watch": "rollup -c rollup.config.js --watch"
   },
   "dependencies": {

@@ -14,9 +14,9 @@
   "author": "Nick Myers <nickmyers111@gmail.com>",
   "main": "build/app.js",
   "scripts": {
-    "clean": "shx rm -rf build .serverless",
     "prebuild": "run-s clean",
     "build": "parcel build -d build --target node --bundle-node-modules src/app.js",
+    "clean": "shx rm -rf build .serverless",
     "develop": "run-p parcel:watch serverless",
     "preparcel:watch": "run-s clean",
     "parcel:watch": "parcel watch -d build --target node --bundle-node-modules src/app.js",
