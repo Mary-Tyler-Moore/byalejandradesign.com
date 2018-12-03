@@ -19,8 +19,8 @@ const pipeAsync = (fn, ...fns) =>
  */
 
 const defaultOptions = {
-  throttle: 200,
-  maxRetries: 10,
+  throttle: 1000,
+  maxRetries: 15,
   tries: 0,
   multiplier: 0,
 };
@@ -129,7 +129,7 @@ const downloadFile = ({ e, fileNodeID, mediaDataCacheKey, ...ctx }) =>
           // reject the promise here as the download has failed
           // what should we do here?
           // pass this to upstream to gatsby for a build error?
-          rej();
+          rej('some files were not downloaded');
         }
       });
     } else {
@@ -170,7 +170,9 @@ const downloadMediaFiles = (ctx) => {
               e,
               imageIndex,
               ...ctx,
-            }).then((e) => res(e));
+            })
+              .then((e) => res(e))
+              .catch((e) => rej(e));
           } else {
             res(e);
           }
