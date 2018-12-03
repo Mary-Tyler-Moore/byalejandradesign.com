@@ -15,19 +15,17 @@ type Props = {
 
 const createAddressDisplay = (slice: string): React.Component<Props> => {
   class DisplayAddress extends React.PureComponent<Props> {
-    key = this.props.isBillingAddress ? slice : 'shippingAddress';
-
     render() {
       return (
         <section className="displayAddress">
           <h5 className="displayAddress_h5">{camelToTitle(slice)}</h5>
-          {Object.keys(this.props[this.key]).map((key) => {
-            return this.props[slice][key] ? (
+          {Object.keys(this.props.address).map((key) => {
+            return this.props.address[key] ? (
               <p key={key} className="displayAddress_paragraph">
                 <span>
                   <strong>{camelToTitle(key)}: </strong>
                 </span>
-                <span>{this.props[slice][key]}</span>
+                <span>{this.props.address[key]}</span>
               </p>
             ) : null;
           })}
@@ -36,11 +34,15 @@ const createAddressDisplay = (slice: string): React.Component<Props> => {
     }
   }
 
-  const mapStateToProps = (state) => ({
-    shippingAddress: state.checkout.shippingAddress,
-    billingAddress: state.checkout.billingAddress,
-    isBillingAddress: state.checkout.payment.billingAddress,
-  });
+  const mapStateToProps = (state) => {
+    const stateSlice = state.checkout.payment.billingAddress
+      ? slice
+      : 'shippingAddress';
+
+    return {
+      address: state.checkout[stateSlice],
+    };
+  };
 
   return connect(mapStateToProps)(DisplayAddress);
 };

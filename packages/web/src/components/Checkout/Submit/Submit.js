@@ -194,11 +194,7 @@ class Submit extends React.PureComponent<Props, State> {
                 <h4 className="h4-amiri">Address</h4>
                 <div className="orderSubmit_addressGrid">
                   <ShippingAddress />
-                  {this.props.payment.billingAddress ? (
-                    <ShippingAddress />
-                  ) : (
-                    <BillingAddress />
-                  )}
+                  <BillingAddress />
                 </div>
               </section>
               <section className="orderSubmit_paymentSection">

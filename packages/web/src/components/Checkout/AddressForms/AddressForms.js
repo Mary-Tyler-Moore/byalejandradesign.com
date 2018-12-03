@@ -45,8 +45,6 @@ class AddressForms extends React.PureComponent<Props, State> {
       currentTarget: { checked },
     } = e;
 
-    console.log(checked);
-
     this.props.setBillingAddress(checked);
   };
 
@@ -60,8 +58,6 @@ class AddressForms extends React.PureComponent<Props, State> {
     const { valid: billingValid, fields: billingFields } = validateAddress(
       this.props.billingAddress
     );
-
-    console.log(shippingFields, billingFields);
 
     if (shippingValid || (this.props.hasBillingAddress && billingValid)) {
       navigate('/checkout/payment-method');
