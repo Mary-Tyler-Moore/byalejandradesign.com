@@ -1,5 +1,4 @@
 const path = require('path');
-const util = require('util');
 
 const spawn = require('child_process').spawnSync;
 

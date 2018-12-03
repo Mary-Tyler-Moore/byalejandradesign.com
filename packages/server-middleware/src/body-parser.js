@@ -1,5 +1,6 @@
 // @flow
-import { json, urlencoded } from 'body-parser';
+import json from 'body-parser/lib/types/json';
+import urlencoded from 'body-parser/lib/types/urlencoded';
 // types
 import type { Middleware } from 'express';
 

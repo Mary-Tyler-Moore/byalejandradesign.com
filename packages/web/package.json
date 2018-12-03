@@ -13,7 +13,7 @@
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
   "scripts": {
-    "develop": "gatsby develop"
+    "watch": "gatsby develop"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",

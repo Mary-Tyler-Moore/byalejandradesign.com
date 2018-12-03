@@ -1,4 +1,6 @@
 /** @flow */
+import fs from 'fs';
+import path from 'path';
 import css from './layout.sass';
 
 type Head = {
@@ -22,8 +24,9 @@ const template: Template = (body, head = defaultHead) => `
     <link href="https://fonts.googleapis.com/css?family=Amiri:400,400i,700,700i|Source+Sans+Pro:300,300i,600,600i" rel="stylesheet">
     <title>${head.title}</title>
     <style>
-      ${css}
-      ${head.stylesheets}
+      ${fs
+        .readFileSync(path.resolve(__dirname, './app.css'), 'utf8')
+        .toString()}
     </style>
   </head>
   <body>

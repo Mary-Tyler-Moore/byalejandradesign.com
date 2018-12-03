@@ -4,6 +4,7 @@ build/
 # serverless
 .serverless/
 .webpack/
+.cache/
 
 lerna-debug.log
 yarn-error.log

@@ -33,19 +33,9 @@ package:
   exclude:
     # first exclude everything
     - '.*/**'
-    - '!package.json'
   include:
+    - package.json
     - build/**
-    - node_modules/**
-    # exlude all code from local modules
-    - '!node_modules/@byalejandradesign/**'
-    # include built code from local modules
-    - node_modules/@byalejandradesign/**/build/**
-    - node_modules/@byalejandradesign/**/package.json
-    # include dependencies from local modules
-    - node_modules/@byalejandradesign/**/node_modules/**
-    # exclude unhoisted dependency from local modules
-    - '!**/@byalejandradesign/**/node_modules/flow-bin/**'
 
 functions:
   server:

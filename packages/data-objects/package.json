@@ -20,7 +20,7 @@
     "prebuild": "run-s clean",
     "build": "rollup -c rollup.config.js",
     "build:flow": "flow gen-flow-files src --out-dir build",
-    "develop": "rollup -c rollup.config.js --watch"
+    "watch": "rollup -c rollup.config.js --watch"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2"
