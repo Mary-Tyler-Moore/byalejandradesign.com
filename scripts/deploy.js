@@ -12,6 +12,7 @@ if (!process.env.STAGE) {
   process.env.STAGE = 'staging';
 }
 
+process.env.GATSBY_INVALIDATE = Date.now();
 const stage = process.env.STAGE;
 
 // big deps

@@ -15,6 +15,8 @@ if (!process.env.STAGE) {
 
 const stage = process.env.STAGE;
 
+process.env.GATSBY_INVALIDATE = Date.now();
+
 const throttler = (...args) =>
   new Promise((res, rej) => {
     const timeout = 2000;

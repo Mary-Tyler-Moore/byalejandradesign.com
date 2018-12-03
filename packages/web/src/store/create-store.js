@@ -5,7 +5,7 @@ import useStorage from './use-storage';
 import { loadLocalApplication, saveLocalApplication } from './local-storage';
 
 const REFRESH = 86400 * 1000; // daily
-const INVALIDATE = 1542304058142; // Date.now()
+const INVALIDATE = process.env.GATSBY_INVALIDATE; // Date.now() of deployment
 
 const application = loadLocalApplication();
 const persistedState = application ? application.state : undefined;
