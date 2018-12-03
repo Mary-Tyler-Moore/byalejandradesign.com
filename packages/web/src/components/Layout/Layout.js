@@ -42,6 +42,11 @@ const SITE_DATA = graphql`
   }
 `;
 
+const Size = React.createContext({
+  mobile: false,
+  orientation: true,
+});
+
 class Layout extends React.Component {
   /** get the metadata object */
   getSiteMetadata = (data) => data.site.siteMetadata;
@@ -82,7 +87,9 @@ class Layout extends React.Component {
                 sizes={this.props.sizes}
               />
               <Header headerImage={this.getHeaderImage(data)} />
-              <main className="mainContent">{this.props.children}</main>
+              <Size.Provider value={this.props.sizes}>
+                <main className="mainContent">{this.props.children}</main>
+              </Size.Provider>
               <Footer footerNav={data.site.siteMetadata.navLayout.footerNav} />
             </div>
             <div id="modal-root" />
@@ -93,8 +100,9 @@ class Layout extends React.Component {
   }
 }
 
+export const SizeConsumer = Size.Consumer;
+
 export default withSize({
   mobile: true,
   orientation: true,
-  measureWindow: true,
 })(Layout);
