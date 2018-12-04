@@ -1,28 +1,19 @@
 import axios from 'axios';
+import { CHECKOUT_DOMAIN, API_KEY } from '@byalejandradesign/server-env';
 
-const stage = process.env.GATSBY_STAGE;
-const KEY = stage.toUpperCase();
-
-const base = () => {
-  if (!process.env[`GATSBY_BRAINTREE_SERVER_${KEY}`]) {
-    console.warn(`You must provide a GATSBY_BRAINTREE_SERVER_${KEY} in .env`);
+const verify = (key) => {
+  if (!key) {
+    console.warn('You are missing an API_KEY');
   }
-
-  return process.env[`GATSBY_BRAINTREE_SERVER_${KEY}`];
 };
 
-const key = () => {
-  if (!process.env[`GATSBY_API_KEY_${KEY}`]) {
-    console.warn(`You must provide a GATSBY_API_KEY_${KEY} in .env`);
-  }
-
-  return process.env[`GATSBY_API_KEY_${KEY}`];
-};
+verify(CHECKOUT_DOMAIN);
+verify(API_KEY);
 
 const server = axios.create({
-  baseURL: base(),
+  baseURL: CHECKOUT_DOMAIN,
   headers: {
-    Authorization: key(),
+    Authorization: API_KEY,
   },
 });
 

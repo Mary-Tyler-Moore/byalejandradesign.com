@@ -1,10 +1,7 @@
 const path = require('path');
-const getEnv = require('./scripts/get-env');
 const mapTaxonomyToPostType = require('./scripts/map-taxonomy-to-post-type');
 const mapPostTypeToTaxonomies = require('./scripts/map-post-type-to-taxonomies');
 const { compose } = require('smalldash');
-
-getEnv();
 
 const mapShopToTaxonomies = mapPostTypeToTaxonomies('shop');
 

@@ -12,8 +12,10 @@ if (!process.env.STAGE) {
   process.env.STAGE = 'staging';
 }
 
-process.env.GATSBY_INVALIDATE = Date.now();
 const stage = process.env.STAGE;
+
+process.env.GATSBY_INVALIDATE = Date.now();
+process.env.GATSBY_STAGE = stage;
 
 // big deps
 parallel('run', 'build', '--scope', 'gatsby-source-wordpress');
@@ -34,7 +36,7 @@ const apps = ['mail-server', 'checkout-server'];
 parallel('run', 'build', '--scope', `@byalejandradesign/{${apps.join(',')}}`);
 
 // build frontend apps
-parallel('exec', `gatsby build`, '--scope', `@byalejandradesign/web`);
+parallel('run', `build`, '--scope', `@byalejandradesign/web`);
 
 // deploy and package with serverless framework
 const serverless = ['mail-server', 'checkout-server', 'web'];

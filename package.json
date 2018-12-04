@@ -41,7 +41,7 @@
     "babel-jest": "^23.6.0",
     "babel-plugin-dynamic-import-node": "^2.2.0",
     "babel-plugin-macros": "^2.4.2",
-    "concurrently": "^4.0.1",
+    "concurrently": "^4.1.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "flow-bin": "^0.83.0",

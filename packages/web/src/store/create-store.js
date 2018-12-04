@@ -3,9 +3,9 @@ import { throttle } from 'lodash-es';
 import reducer from './root-reducer';
 import useStorage from './use-storage';
 import { loadLocalApplication, saveLocalApplication } from './local-storage';
+import { INVALIDATE } from '@byalejandradesign/server-env';
 
 const REFRESH = 86400 * 1000; // daily
-const INVALIDATE = process.env.GATSBY_INVALIDATE; // Date.now() of deployment
 
 const application = loadLocalApplication();
 const persistedState = application ? application.state : undefined;

@@ -16,6 +16,7 @@ if (!process.env.STAGE) {
 const stage = process.env.STAGE;
 
 process.env.GATSBY_INVALIDATE = Date.now();
+process.env.GATSBY_STAGE = stage;
 
 const throttler = (...args) =>
   new Promise((res, rej) => {

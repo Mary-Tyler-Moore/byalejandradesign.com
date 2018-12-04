@@ -31,6 +31,7 @@ const keys = [
 ];
 
 const values = {
+  INVALIDATE: `${Date.now()}`,
   STAGE: `'${process.env.STAGE}'`,
 };
 
