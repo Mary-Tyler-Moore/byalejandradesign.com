@@ -1540,13 +1540,13 @@
   dependencies:
     mime-types "^2.1.20"
 
-"@njmyers/component-library@^0.2.11":
-  version "0.2.14"
-  resolved "https://registry.yarnpkg.com/@njmyers/component-library/-/component-library-0.2.14.tgz#b5ae18c983436265563bc761e2d8a7c81a6f4979"
-  integrity sha512-pU8a8BKLbxtN8ZXkVR+qea5bdSNUtvCT7ekeM/efGyeL3A5MK8aRg69rOVqsy3PdpF+tjJErrSCf1IJ92yHQTw==
+"@njmyers/component-library@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@njmyers/component-library/-/component-library-0.3.0.tgz#54c9076656c840df641c7e95561ee9b741d3a140"
+  integrity sha512-oVbhE7dmpi2bU1lAjOXL8pqGc/JTH7tbD+vEhlucn31bKfhxWDhtgMons1SGk6/ObIAMQnsCNEN03x8Gtpllcg==
   dependencies:
     "@babel/runtime" "7.1.2"
-    react-size-components "^2.0.14"
+    react-size-components "^2.1.0"
     smalldash "^1.1.21"
 
 "@njmyers/directory@^0.0.13":
@@ -7850,6 +7850,13 @@ fast-memoize@^2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/fast-memoize/-/fast-memoize-2.5.1.tgz#c3519241e80552ce395e1a32dcdde8d1fd680f5d"
   integrity sha512-xdmw296PCL01tMOXx9mdJSmWY29jQgxyuZdq0rEHMu+Tpe1eOEtCycoG6chzlcrWsNgpZP7oL8RiQr7+G6Bl6g==
+
+fastdom@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/fastdom/-/fastdom-1.0.8.tgz#10f9d36998fd6efae30e529597d788e750c9febb"
+  integrity sha512-UvXbYr/nsu4Z2XIjJXtJEMv5yhS9GIyEuZBZus6jOYSo3zMsw6/FtWUAeskmDK6tKnfPSo6renooyNWuq00ZKw==
+  dependencies:
+    strictdom "^1.0.1"
 
 fastparse@^1.1.1:
   version "1.1.2"
@@ -16496,13 +16503,25 @@ react-side-effect@^1.1.0:
     exenv "^1.2.1"
     shallowequal "^1.0.1"
 
-react-size-components@^2.0.13, react-size-components@^2.0.14:
+react-size-components@^2.0.13:
   version "2.0.14"
   resolved "https://registry.yarnpkg.com/react-size-components/-/react-size-components-2.0.14.tgz#8992aef99e71a52c11787d0fb2c0e0b33c3ea533"
   integrity sha512-FtavUfJ0+AfTOwsIPYFS8C9YBQM5o3OVvwJR4bj7cWQXV5bhnJHu4SRVy2NfkCxVUCEzAQBoEnAR+kkOM2DFUA==
   dependencies:
     "@babel/runtime" "7.1.2"
     fast-memoize "^2.5.1"
+    invariant "^2.2.4"
+    lodash.debounce "^4.0.8"
+    lodash.throttle "^4.1.1"
+    smalldash "^1.1.21"
+
+react-size-components@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-size-components/-/react-size-components-2.1.0.tgz#899e34a00bffe39535703e9a4c216a0d9d9fb02f"
+  integrity sha512-NhX1fbHismRu949BzqBKH4QaG1uG8dCiJfdnlDhU4zUCJHDT0ebQbHCCasuW8cH8NxhB/0RCeNXU17OP77/EWw==
+  dependencies:
+    "@babel/runtime" "7.1.2"
+    fastdom "^1.0.8"
     invariant "^2.2.4"
     lodash.debounce "^4.0.8"
     lodash.throttle "^4.1.1"
@@ -18843,6 +18862,11 @@ strict-uri-encode@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/strict-uri-encode/-/strict-uri-encode-2.0.0.tgz#b9c7330c7042862f6b142dc274bbcc5866ce3546"
   integrity sha1-ucczDHBChi9rFC3CdLvMWGbONUY=
+
+strictdom@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/strictdom/-/strictdom-1.0.1.tgz#189de91649f73d44d59b8432efa68ef9d2659460"
+  integrity sha1-GJ3pFkn3PUTVm4Qy76aO+dJllGA=
 
 string-hash@^1.1.1:
   version "1.1.3"
