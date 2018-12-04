@@ -5,7 +5,7 @@ const KEY = stage.toUpperCase();
 
 const base = () => {
   if (!process.env[`GATSBY_MAIL_SERVER_${KEY}`]) {
-    console.warn(`You must provide a GATSBY_MAIL_SERVER_{${KEY} in .env`);
+    console.warn(`You must provide a GATSBY_MAIL_SERVER_${KEY} in .env`);
   }
 
   return process.env[`GATSBY_MAIL_SERVER_${KEY}`];
@@ -13,7 +13,7 @@ const base = () => {
 
 const key = () => {
   if (!process.env[`GATSBY_API_KEY_${KEY}`]) {
-    console.warn(`You must provide a GATSBY_API_KEY_{${KEY} in .env`);
+    console.warn(`You must provide a GATSBY_API_KEY_${KEY} in .env`);
   }
 
   return process.env[`GATSBY_API_KEY_${KEY}`];
