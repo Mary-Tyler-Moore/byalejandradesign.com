@@ -1,5 +1,9 @@
 import { kebabToSentence, compose, capitalize } from 'smalldash';
 
+const addNonBreakingSpace = (string) => {
+  return string.replace(/\s/gi, '\u00A0');
+};
+
 /**
  * Removes leading and trailing slash from url string
  * @param  {[type]} url [description]
@@ -16,6 +20,7 @@ const removeSlash = (url) => {
  * @type {[type]}
  */
 const URLToTitle = compose(
+  addNonBreakingSpace,
   capitalize,
   kebabToSentence,
   removeSlash
