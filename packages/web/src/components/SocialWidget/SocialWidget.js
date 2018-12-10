@@ -28,7 +28,7 @@ const SocialWidget = (props: Props) => (
         size="3x"
       />
     </a>
-    <a href="https://facebook.com" target="__blank">
+    <a href="https://facebook.com/byalejandradesign" target="__blank">
       <FontAwesomeIcon
         className="socialWidget_icon"
         icon={faFacebookSquare}
