@@ -18,8 +18,11 @@ const normalizers = compose(
 module.exports = {
   siteMetadata: {
     siteUrl: 'https://byalejandradesign.com',
-    title: 'By Alejandra',
-    subTitle: 'Design Studio and Shop',
+    title: 'By Alejandra Design',
+    subTitle: 'Ceramic Studio and Shop',
+    author: 'Alejandra Rojas Jaramillo',
+    description:
+      'By Alejandra Design is an NYC based ceramic studio specializing in 3D printing and slip-casting.',
     navLayout: {
       mainNav: ['/home', '/cloud-studio', '/shop/collections', '/contact'],
       footerNav: [

@@ -12,17 +12,10 @@ type Props = {
 };
 
 class DesktopHeader extends React.PureComponent<Props> {
-  static defaultProps = {
-    verticalPosition: '15%',
-  };
-
   render() {
     return (
       <header className="header">
-        <figure
-          className="header_imgContainer"
-          // style={{ top: this.props.verticalPosition }}
-        >
+        <figure className="header_imgContainer">
           {this.props.headerImage.localFile ? (
             <Img
               className="header_img"

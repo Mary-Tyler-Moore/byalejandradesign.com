@@ -1,14 +1,19 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
-import Layout from '../components/Layout';
+import Helmet from 'react-helmet';
 import ReactMarkdown from 'react-markdown';
+
+import Layout from '../components/Layout';
 
 import './markdown.sass';
 
 class MarkdownPage extends React.Component {
   render() {
     return (
-      <Layout>
+      <Layout
+        location={this.props.location}
+        title={this.props.data.markdownRemark.frontmatter.title}
+      >
         <h3 className="h3-sourceSans">
           {this.props.data.markdownRemark.frontmatter.title}
         </h3>

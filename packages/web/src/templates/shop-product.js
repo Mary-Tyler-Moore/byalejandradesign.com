@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
+import Helmet from 'react-helmet';
+
 import Layout from '../components/Layout';
 import withSize from 'react-size-components';
 import { SingleProduct } from '../components/Product';
@@ -15,32 +17,39 @@ type Props = {
   },
 };
 
+const getHeaderImage = (data): ImageNode | null => {
+  return data.wordpressWpShop.collections
+    ? data.wordpressWpShop.collections[0].acf.header_image
+    : null;
+};
+
 /**
- * This is a SingleProduct Node
+ * ingleProduct Node
  * @param {[type]} props [description]
  */
-class Node extends React.Component<Props> {
-  /** Safely get header from collection */
-  getHeaderImage = (): ImageNode | null => {
-    return this.props.data.wordpressWpShop.collections
-      ? this.props.data.wordpressWpShop.collections[0].acf.header_image
-      : null;
-  };
+const ShopProduct = ({ location, data, sizes }) => (
+  <Layout
+    location={location}
+    title={
+      data.wordpressWpShop.acf.display_title || data.wordpressWpShop.acf.title
+    }
+    description={data.wordpressWpShop.description}
+    headerImage={getHeaderImage(data)}
+  >
+    <Helmet>
+      <html itemscope itemtype="http://schema.org/Product" />
+      <meta property="og:type" content="article" />
+      <meta
+        property="og:price:amount"
+        content={data.wordpressWpShop.acf.price}
+      />
+      <meta property="og:price:currency" content="USD" />
+    </Helmet>
+    <SingleProduct node={data.wordpressWpShop} sizes={sizes} />
+  </Layout>
+);
 
-  render() {
-    return (
-      <Layout headerImage={this.getHeaderImage()}>
-        <SingleProduct
-          node={this.props.data.wordpressWpShop}
-          sizes={this.props.sizes}
-        />
-      </Layout>
-    );
-  }
-}
-const SizedNode = withSize({ mobile: true })(Node);
-
-export default SizedNode;
+export default withSize({ mobile: true })(ShopProduct);
 
 export const sparseFragment = graphql`
   fragment SparseProductData on wordpress__wp_shop {
@@ -63,6 +72,7 @@ export const fragment = graphql`
       acf {
         header_image {
           localFile {
+            publicURL
             ...HeaderImageFragment
           }
         }

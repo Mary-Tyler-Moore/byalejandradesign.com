@@ -14,24 +14,24 @@ type Props = {
   },
 };
 
-class CollectionProducts extends React.Component<Props> {
-  /** Safely get header image from this collection node */
-  getHeaderImage = (): ImageNode | null =>
-    this.props.data.wordpressWpCollections.acf.header_image
-      ? this.props.data.wordpressWpCollections.acf.header_image
-      : null;
+/** Safely get header image from this collection node */
+const getHeaderImage = (data) =>
+  data.wordpressWpCollections.acf.header_image
+    ? data.wordpressWpCollections.acf.header_image
+    : null;
 
-  render() {
-    return (
-      <Layout headerImage={this.getHeaderImage()}>
-        <SingleCollection node={this.props.data.wordpressWpCollections} />
-        {this.props.data.allWordpressWpShop && (
-          <ProductList edges={this.props.data.allWordpressWpShop.edges} />
-        )}
-      </Layout>
-    );
-  }
-}
+const CollectionProducts = ({ location, data }: Props) => (
+  <Layout
+    location={location}
+    title={data.wordpressWpCollections.name}
+    headerImage={getHeaderImage(data)}
+  >
+    <SingleCollection node={data.wordpressWpCollections} />
+    {data.allWordpressWpShop && (
+      <ProductList edges={data.allWordpressWpShop.edges} />
+    )}
+  </Layout>
+);
 
 export default CollectionProducts;
 
@@ -42,6 +42,7 @@ export const query = graphql`
       acf {
         header_image {
           localFile {
+            publicURL
             ...HeaderImageFragment
           }
         }

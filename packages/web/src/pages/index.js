@@ -6,8 +6,11 @@ import Layout from '../components/Layout';
 
 import './cloud-studio.sass';
 
-const IndexPage = ({ data }) => (
-  <Layout allWordpressAcfOptions={data.allWordpressAcfOptions}>
+const IndexPage = ({ data, location }) => (
+  <Layout
+    location={location}
+    allWordpressAcfOptions={data.allWordpressAcfOptions}
+  >
     <CollectionList edges={data.allWordpressWpCollections.edges} />
     <h3 className="h3-amiri">Cloud Studio</h3>
     <section className="postList">

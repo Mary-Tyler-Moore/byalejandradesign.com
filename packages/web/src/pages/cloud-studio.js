@@ -2,11 +2,13 @@ import * as React from 'react';
 import { graphql } from 'gatsby';
 import { PostExcerpt } from '../components/CloudStudio';
 import Layout from '../components/Layout';
+import Helmet from 'react-helmet';
 
 import './cloud-studio.sass';
 
-const CloudStudio = ({ data }) => (
-  <Layout>
+const CloudStudio = ({ data, location }) => (
+  <Layout location={location} title="Cloud Studio">
+    <Helmet />
     <h3 className="h3-amiri">Cloud Studio</h3>
     <section className="postList">
       {data.allWordpressPost.edges.map(({ node }) => (
