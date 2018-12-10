@@ -1,10 +1,8 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
-import Helmet from 'react-helmet';
 import ReactMarkdown from 'react-markdown';
-
 import Layout from '../components/Layout';
-
+// styles
 import './markdown.sass';
 
 class MarkdownPage extends React.Component {

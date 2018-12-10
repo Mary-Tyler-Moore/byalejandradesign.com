@@ -1,7 +1,5 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
-import Helmet from 'react-helmet';
-
 import { CollectionList } from '../../components/Collections';
 import Layout from '../../components/Layout';
 
@@ -23,7 +21,6 @@ class CollectionEdges extends React.Component {
         headerImage={this.getHeaderImage()}
         title="Collections"
       >
-        <Helmet />
         <CollectionList
           edges={this.props.data.allWordpressWpCollections.edges}
         />
