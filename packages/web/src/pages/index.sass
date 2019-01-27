@@ -1,0 +1,10 @@
+@import ../sass/global
+
+.news
+  display: grid
+  grid-template-columns: repeat(2, 1fr)
+  grid-gap: 4rem
+  margin: 2rem 0
+
+  +all-phone
+    grid-template-columns: repeat(1, 1fr)
