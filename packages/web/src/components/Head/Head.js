@@ -34,19 +34,12 @@ class Head extends React.Component {
   }
 
   get headerImage() {
-    return (
-      this.props.headerImage ||
-      this.props.data.allWordpressAcfOptions.edges[0].node.options
-        .default_header
-    );
+    return this.props.data.allWordpressAcfOptions.edges[0].node.options
+      .default_header;
   }
 
   get ogImage() {
     return `${this.metadata.siteUrl}${this.headerImage.localFile.publicURL}`;
-  }
-
-  componentDidMount() {
-    console.log('loading head');
   }
 
   render() {
