@@ -13,15 +13,6 @@ const CollectionExcerpt = ({ node }) => (
       localFile={node.acf.image.localFile}
       to={`/shop/collection/${node.slug}`}
     />
-    <p className="collectionExcerpt_description">{node.description}</p>
-    <Link
-      className="collectionExcerpt_buttonLink"
-      to={`/shop/collection/${node.slug}`}
-    >
-      <Button fullWidth margin>
-        View Collection
-      </Button>
-    </Link>
   </article>
 );
 
@@ -30,7 +21,6 @@ export const query = graphql`
     name
     id
     wordpress_id
-    description
     slug
     acf {
       order

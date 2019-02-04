@@ -1,43 +1,62 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
+import withSize from 'react-size-components';
+
 import Layout from '../components/Layout';
 import Head from '../components/Head';
-import { SingleCollection } from '../components/Collections';
+import Header from '../components/Header';
 import { ProductList } from '../components/Product';
-// types
-import type { CollectionNode } from '../components/Collections/types';
-import type { ProductEdges, ImageNode } from '../components/Product/types';
 
-type Props = {
-  data: {
-    wordpressWpCollections: CollectionNode,
-    allWordpressWpShop: ProductEdges,
-  },
-};
+import './collection-products.sass';
 
-/** Safely get header image from this collection node */
-const getHeaderImage = (data) =>
-  data.wordpressWpCollections.acf.header_image
-    ? data.wordpressWpCollections.acf.header_image
-    : null;
+class CollectionProducts extends React.Component {
+  get node() {
+    return this.props.data.wordpressWpCollections;
+  }
 
-const CollectionProducts = ({ location, data }: Props) => (
-  <React.Fragment>
-    <Head
-      location={location}
-      title={data.wordpressWpCollections.name}
-      headerImage={getHeaderImage(data)}
-    />
-    <Layout headerImage={getHeaderImage(data)}>
-      <SingleCollection node={data.wordpressWpCollections} />
-      {data.allWordpressWpShop && (
-        <ProductList edges={data.allWordpressWpShop.edges} />
-      )}
-    </Layout>
-  </React.Fragment>
-);
+  get edges() {
+    return this.props.data.allWordpressWpShop.edges;
+  }
 
-export default CollectionProducts;
+  render() {
+    return (
+      <React.Fragment>
+        {console.log(this.props.sizes)}
+        <Head location={this.props.location} title={this.node.name} />
+        <Layout
+          header={() => (
+            <Header image={this.node.acf.header_image} filter={0.5}>
+              {!this.props.sizes.mobile && (
+                <article className="singleCollection_headerText">
+                  <h2>{this.node.name}</h2>
+                  <p>
+                    <em>"{this.node.description}"</em>
+                  </p>
+                </article>
+              )}
+            </Header>
+          )}
+        >
+          {this.props.sizes.mobile && (
+            <section className="singleCollection">
+              <article className="singleCollection_article">
+                <h2 className="singleCollection_h2">{this.node.name}</h2>
+                <p className="singleCollection_description">
+                  <em>"{this.node.description}"</em>
+                </p>
+              </article>
+            </section>
+          )}
+          <ProductList edges={this.edges} />
+        </Layout>
+      </React.Fragment>
+    );
+  }
+}
+
+export default withSize({
+  mobile: true,
+})(CollectionProducts);
 
 export const query = graphql`
   query CollectionById($id: String!) {

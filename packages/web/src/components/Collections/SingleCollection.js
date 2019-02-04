@@ -1,7 +1,6 @@
 /** @flow */
 import * as React from 'react';
 import { graphql } from 'gatsby';
-// import { withCart } from '../Cart';
 // style
 import './single-collection.sass';
 // types
