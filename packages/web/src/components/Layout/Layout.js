@@ -19,13 +19,6 @@ export const SizeProvider = Size.Provider;
 export const SizeConsumer = Size.Consumer;
 
 class Layout extends React.Component {
-  get headerImage() {
-    return this.props.headerImage
-      ? this.props.headerImage
-      : this.props.data.allWordpressAcfOptions.edges[0].node.options
-          .default_header;
-  }
-
   get navLayout() {
     return this.props.data.site.siteMetadata.navLayout;
   }
@@ -39,11 +32,12 @@ class Layout extends React.Component {
   }
 
   render() {
+    const HeaderView = this.props.header;
     return (
       <React.Fragment>
         <div className="root">
           <MainNav mainNav={this.mainNav} sizes={this.props.sizes} />
-          {this.props.headerImage && <Header headerImage={this.headerImage} />}
+          {this.props.header && <HeaderView />}
           <SizeProvider value={this.props.sizes}>
             <main className="mainContent">{this.props.children}</main>
           </SizeProvider>
@@ -55,7 +49,7 @@ class Layout extends React.Component {
   }
 }
 
-const LAYOUT = graphql`
+export const LAYOUT = graphql`
   query Layout {
     site {
       siteMetadata {
@@ -67,20 +61,6 @@ const LAYOUT = graphql`
           footerNav {
             link
             label
-          }
-        }
-      }
-    }
-    allWordpressAcfOptions {
-      edges {
-        node {
-          options {
-            default_header {
-              localFile {
-                publicURL
-                ...HeaderImageFragment
-              }
-            }
           }
         }
       }

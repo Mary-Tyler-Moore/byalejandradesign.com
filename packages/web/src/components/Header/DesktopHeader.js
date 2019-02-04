@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, StaticQuery, Link } from 'gatsby';
 import Img from 'gatsby-image';
-import './header.sass';
 import ByAlejandra from './ByAlejandra.js';
-
+// sass
+import './header.sass';
+// types
 import type { ImageNode } from '@byalejandradesign/data-objects';
 
 type Props = {
-  headerImage: ImageNode,
-  verticalPostion: string,
+  image: ImageNode,
 };
 
 class DesktopHeader extends React.PureComponent<Props> {
@@ -16,13 +16,16 @@ class DesktopHeader extends React.PureComponent<Props> {
     return (
       <header className="header">
         <figure className="header_imgContainer">
-          {this.props.headerImage.localFile ? (
+          {this.props.image.localFile ? (
             <Img
               className="header_img"
-              fluid={this.props.headerImage.localFile.childImageSharp.fluid}
+              fluid={this.props.image.localFile.childImageSharp.fluid}
             />
           ) : null}
         </figure>
+        {this.props.children && (
+          <section className="header_centered">{this.props.children}</section>
+        )}
         <figure className="header_logo">
           <ByAlejandra />
         </figure>
@@ -31,7 +34,7 @@ class DesktopHeader extends React.PureComponent<Props> {
   }
 }
 
-export const query = graphql`
+export const HEADER_IMAGE_FRAGMENT = graphql`
   fragment HeaderImageFragment on File {
     childImageSharp {
       fluid(maxWidth: 1920, quality: 70) {
@@ -41,4 +44,37 @@ export const query = graphql`
   }
 `;
 
-export default DesktopHeader;
+export const DEFAULT_HEADER_IMAGE = graphql`
+  query DefaultHeaderImage {
+    allWordpressAcfOptions {
+      edges {
+        node {
+          options {
+            default_header {
+              localFile {
+                ...HeaderImageFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+const defaultHeaderImage = (data) =>
+  data.allWordpressAcfOptions.edges[0].node.options.default_header;
+
+const HeaderQuery = ({ image, ...props }) =>
+  image ? (
+    <DesktopHeader image={image} {...props} />
+  ) : (
+    <StaticQuery
+      query={DEFAULT_HEADER_IMAGE}
+      render={(data) => (
+        <DesktopHeader image={defaultHeaderImage(data)} {...props} />
+      )}
+    />
+  );
+
+export default HeaderQuery;
