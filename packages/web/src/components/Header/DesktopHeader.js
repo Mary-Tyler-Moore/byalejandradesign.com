@@ -12,9 +12,17 @@ type Props = {
 };
 
 class DesktopHeader extends React.PureComponent<Props> {
+  static defaultProps = {
+    filter: 0,
+  };
+
   render() {
     return (
       <header className="header">
+        <div
+          className="header_imgFilter"
+          style={{ opacity: this.props.filter }}
+        />
         <figure className="header_imgContainer">
           {this.props.image.localFile ? (
             <Img
