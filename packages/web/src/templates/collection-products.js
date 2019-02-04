@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
+import Head from '../components/Head';
 import { SingleCollection } from '../components/Collections';
 import { ProductList } from '../components/Product';
 // types
@@ -21,16 +22,19 @@ const getHeaderImage = (data) =>
     : null;
 
 const CollectionProducts = ({ location, data }: Props) => (
-  <Layout
-    location={location}
-    title={data.wordpressWpCollections.name}
-    headerImage={getHeaderImage(data)}
-  >
-    <SingleCollection node={data.wordpressWpCollections} />
-    {data.allWordpressWpShop && (
-      <ProductList edges={data.allWordpressWpShop.edges} />
-    )}
-  </Layout>
+  <React.Fragment>
+    <Head
+      location={location}
+      title={data.wordpressWpCollections.name}
+      headerImage={getHeaderImage(data)}
+    />
+    <Layout headerImage={getHeaderImage(data)}>
+      <SingleCollection node={data.wordpressWpCollections} />
+      {data.allWordpressWpShop && (
+        <ProductList edges={data.allWordpressWpShop.edges} />
+      )}
+    </Layout>
+  </React.Fragment>
 );
 
 export default CollectionProducts;

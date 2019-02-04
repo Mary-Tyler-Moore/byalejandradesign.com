@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 
 import Layout from '../components/Layout';
+import Head from '../components/Head';
 import withSize from 'react-size-components';
 import { SingleProduct } from '../components/Product';
 // types
@@ -28,25 +29,28 @@ const getHeaderImage = (data): ImageNode | null => {
  * @param {[type]} props [description]
  */
 const ShopProduct = ({ location, data, sizes }) => (
-  <Layout
-    location={location}
-    title={
-      data.wordpressWpShop.acf.display_title || data.wordpressWpShop.acf.title
-    }
-    description={data.wordpressWpShop.description}
-    headerImage={getHeaderImage(data)}
-  >
-    <Helmet>
-      <html itemscope itemtype="http://schema.org/Product" />
-      <meta property="og:type" content="article" />
-      <meta
-        property="og:price:amount"
-        content={data.wordpressWpShop.acf.price}
-      />
-      <meta property="og:price:currency" content="USD" />
-    </Helmet>
-    <SingleProduct node={data.wordpressWpShop} sizes={sizes} />
-  </Layout>
+  <React.Fragment>
+    <Head
+      location={location}
+      title={
+        data.wordpressWpShop.acf.display_title || data.wordpressWpShop.acf.title
+      }
+      description={data.wordpressWpShop.description}
+      headerImage={getHeaderImage(data)}
+    />
+    <Layout headerImage={getHeaderImage(data)}>
+      <Helmet>
+        <html itemscope itemtype="http://schema.org/Product" />
+        <meta property="og:type" content="article" />
+        <meta
+          property="og:price:amount"
+          content={data.wordpressWpShop.acf.price}
+        />
+        <meta property="og:price:currency" content="USD" />
+      </Helmet>
+      <SingleProduct node={data.wordpressWpShop} sizes={sizes} />
+    </Layout>
+  </React.Fragment>
 );
 
 export default withSize({ mobile: true })(ShopProduct);

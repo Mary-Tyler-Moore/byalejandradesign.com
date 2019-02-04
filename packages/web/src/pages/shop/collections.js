@@ -2,6 +2,7 @@ import * as React from 'react';
 import { graphql } from 'gatsby';
 import { CollectionList } from '../../components/Collections';
 import Layout from '../../components/Layout';
+import Head from '../../components/Head';
 
 class CollectionEdges extends React.Component {
   /** Filter nodes that don't have header_image */
@@ -16,15 +17,18 @@ class CollectionEdges extends React.Component {
 
   render() {
     return (
-      <Layout
-        location={this.props.location}
-        headerImage={this.getHeaderImage()}
-        title="Collections"
-      >
-        <CollectionList
-          edges={this.props.data.allWordpressWpCollections.edges}
-        />
-      </Layout>
+      <React.Fragment>
+        <Head location={this.props.location} title="Collections" />
+        <Layout
+          location={this.props.location}
+          headerImage={this.getHeaderImage()}
+          title="Collections"
+        >
+          <CollectionList
+            edges={this.props.data.allWordpressWpCollections.edges}
+          />
+        </Layout>
+      </React.Fragment>
     );
   }
 }

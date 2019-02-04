@@ -1,9 +1,13 @@
 import * as React from 'react';
 import PaymentMethods from '../../components/Checkout/PaymentMethods';
 import Layout from '../../components/Layout';
+import Head from '../../components/Head';
 
 export default ({ location }) => (
-  <Layout location={location} title="Checkout Payment Methods">
-    <PaymentMethods />
-  </Layout>
+  <React.Fragment>
+    <Head location={location} title="Checkout Payment Methods" />
+    <Layout>
+      <PaymentMethods />
+    </Layout>
+  </React.Fragment>
 );
