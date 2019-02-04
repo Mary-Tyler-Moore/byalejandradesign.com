@@ -2,7 +2,7 @@ import React from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import withSize from 'react-size-components';
 import Footer from '../Footer';
-import { MainNav, FooterNav } from '../Nav';
+import MainNav from '../MainNav';
 import Header from '../Header';
 // icons
 import './library';
@@ -10,12 +10,60 @@ import './library';
 import 'normalize.css';
 import './layout.sass';
 
-const SITE_DATA = graphql`
-  query SiteTitleQuery {
+const Size = React.createContext({
+  mobile: false,
+  orientation: true,
+});
+
+export const SizeProvider = Size.Provider;
+export const SizeConsumer = Size.Consumer;
+
+class Layout extends React.Component {
+  get headerImage() {
+    return this.props.headerImage
+      ? this.props.headerImage
+      : this.props.data.allWordpressAcfOptions.edges[0].node.options
+          .default_header;
+  }
+
+  get navLayout() {
+    return this.props.data.site.siteMetadata.navLayout;
+  }
+
+  get mainNav() {
+    return this.navLayout.mainNav;
+  }
+
+  get footerNav() {
+    return this.navLayout.footerNav;
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <div className="root">
+          <MainNav mainNav={this.mainNav} sizes={this.props.sizes} />
+          {this.props.headerImage && <Header headerImage={this.headerImage} />}
+          <SizeProvider value={this.props.sizes}>
+            <main className="mainContent">{this.props.children}</main>
+          </SizeProvider>
+          <Footer footerNav={this.footerNav} />
+        </div>
+        <div id="modal-root" />
+      </React.Fragment>
+    );
+  }
+}
+
+const LAYOUT = graphql`
+  query Layout {
     site {
       siteMetadata {
         navLayout {
-          mainNav
+          mainNav {
+            link
+            label
+          }
           footerNav {
             link
             label
@@ -40,50 +88,14 @@ const SITE_DATA = graphql`
   }
 `;
 
-const Size = React.createContext({
-  mobile: false,
-  orientation: true,
-});
-
-class Layout extends React.Component {
-  getHeaderImage = (data) => {
-    return this.props.headerImage
-      ? this.props.headerImage
-      : data.allWordpressAcfOptions.edges[0].node.options.default_header;
-  };
-
-  render() {
-    return (
-      <StaticQuery
-        query={SITE_DATA}
-        render={(data) => {
-          return (
-            <React.Fragment>
-              <div className="root">
-                <MainNav
-                  mainNav={data.site.siteMetadata.navLayout.mainNav}
-                  sizes={this.props.sizes}
-                />
-                <Header headerImage={this.getHeaderImage(data)} />
-                <Size.Provider value={this.props.sizes}>
-                  <main className="mainContent">{this.props.children}</main>
-                </Size.Provider>
-                <Footer
-                  footerNav={data.site.siteMetadata.navLayout.footerNav}
-                />
-              </div>
-              <div id="modal-root" />
-            </React.Fragment>
-          );
-        }}
-      />
-    );
-  }
-}
-
-export const SizeConsumer = Size.Consumer;
+const LayoutQuery = (props) => (
+  <StaticQuery
+    query={LAYOUT}
+    render={(data) => <Layout data={data} {...props} />}
+  />
+);
 
 export default withSize({
   mobile: true,
   orientation: true,
-})(Layout);
+})(LayoutQuery);

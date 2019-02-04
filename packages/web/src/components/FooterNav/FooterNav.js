@@ -1,7 +1,6 @@
 /** @flow */
 import * as React from 'react';
 import { Link } from 'gatsby';
-import URLToTitle from '../Nav/url-to-title';
 // types
 import type { Props } from './types';
 // styles

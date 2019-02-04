@@ -2,7 +2,6 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
 import { Modal, Icon } from '@njmyers/component-library';
-import URLToTitle from './url-to-title';
 // icons
 import CartIcon from '../CartIcon';
 // styles
@@ -28,14 +27,14 @@ class DesktopMainNav extends React.Component<Props> {
     return (
       <header className="desktopHeader">
         <nav className="navDesktop">
-          {this.props.mainNav.map((nav) => (
+          {this.props.mainNav.map(({ link, label }) => (
             <Link
-              key={nav}
-              to={nav}
+              key={link}
+              to={link}
               className="navDesktop_link"
               activeClassName="navDesktop_link-active"
             >
-              {URLToTitle(nav)}
+              {label.replace(/\s/gi, '\u00A0')}
             </Link>
           ))}
           <Link
@@ -100,15 +99,15 @@ class MobileMainNav extends React.Component<Props, MobileNavState> {
           style={{ background: 'rgba(0, 0, 0, 0.7)' }}
         >
           <nav className="navMobile">
-            {this.props.mainNav.map((nav) => (
+            {this.props.mainNav.map(({ link, label }) => (
               <Link
-                key={nav}
-                to={nav}
+                key={link}
+                to={link}
                 className="navMobile_link"
                 activeClassName="navMobile_link-active"
                 onClick={this.handleClick}
               >
-                {URLToTitle(nav)}
+                {label.replace(/\s/gi, '\u00A0')}
               </Link>
             ))}
             <LinkedMobileCartIcon onClick={this.handleClick} />
