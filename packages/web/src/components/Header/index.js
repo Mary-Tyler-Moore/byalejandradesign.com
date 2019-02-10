@@ -1,3 +1,3 @@
-export { default as DesktopHeader } from './DesktopHeader';
+/** @flow */
+export { default } from './Header';
 export { default as DefaultHeader } from './DefaultHeader';
-export { default } from './DesktopHeader';
