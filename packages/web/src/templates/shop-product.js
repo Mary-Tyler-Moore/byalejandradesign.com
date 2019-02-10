@@ -4,7 +4,7 @@ import Helmet from 'react-helmet';
 
 import Layout from '../components/Layout';
 import Head from '../components/Head';
-import Header from '../components/Header';
+import Hero from '../components/Hero';
 import withSize from 'react-size-components';
 import { SingleProduct } from '../components/Product';
 
@@ -50,8 +50,8 @@ class ShopProduct extends React.Component {
           </Helmet>
         </Head>
         <Layout
-          header={() => (
-            <Header image={this.image} filter={0.5}>
+          hero={() => (
+            <Hero image={this.image} filter={0.5}>
               {!this.props.sizes.mobile && (
                 <article className="singleCollection_headerText">
                   <h2>{this.collection.name}</h2>
@@ -60,7 +60,7 @@ class ShopProduct extends React.Component {
                   </p>
                 </article>
               )}
-            </Header>
+            </Hero>
           )}
         >
           <SingleProduct

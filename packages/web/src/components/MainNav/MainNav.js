@@ -96,7 +96,8 @@ class MobileMainNav extends React.Component<Props, MobileNavState> {
         </section>
         <Modal
           status={this.state.status}
-          style={{ background: 'rgba(0, 0, 0, 0.7)' }}
+          style={{ background: 'rgba(0, 0, 0, 0.75)' }}
+          zIndexOn={3}
         >
           <nav className="navMobile">
             {this.props.mainNav.map(({ link, label }) => (

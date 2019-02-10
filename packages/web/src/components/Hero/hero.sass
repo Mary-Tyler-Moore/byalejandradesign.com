@@ -1,6 +1,6 @@
 @import ../../sass/global
 
-.header
+.hero
   width: 100%
   height: 600px
   position: relative
@@ -16,7 +16,7 @@
     height: 320px
 
   +small-phone
-    height: 190px
+    height: 260px
 
   &_centered
     position: absolute
@@ -62,3 +62,9 @@
     right: 5%
     max-width: 360px
     z-index: 2
+
+    +tablet
+      max-width: 240px
+
+    +all-phone
+      max-width: 160px

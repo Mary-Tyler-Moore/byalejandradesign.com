@@ -4,7 +4,7 @@ import withSize from 'react-size-components';
 
 import Layout from '../components/Layout';
 import Head from '../components/Head';
-import Header from '../components/Header';
+import Hero from '../components/Hero';
 import { ProductList } from '../components/Product';
 
 import './collection-products.sass';
@@ -22,32 +22,36 @@ class CollectionProducts extends React.Component {
     return this.node.acf.header_image;
   }
 
+  get title() {
+    return this.node.name.replace(/\s/gi, '\u00A0');
+  }
+
   render() {
     return (
       <React.Fragment>
         <Head
           location={this.props.location}
-          title={this.node.name}
+          title={this.title}
           image={this.image}
         />
         <Layout
-          header={() => (
-            <Header image={this.image} filter={0.5}>
-              {!this.props.sizes.mobile && (
-                <article className="singleCollection_headerText">
-                  <h2>{this.node.name}</h2>
+          hero={() => (
+            <Hero image={this.image} filter={0.5}>
+              <article className="singleCollection_headerText">
+                <h2>{this.title}</h2>
+                {!this.props.sizes.mobile && (
                   <p>
                     <em>"{this.node.description}"</em>
                   </p>
-                </article>
-              )}
-            </Header>
+                )}
+              </article>
+            </Hero>
           )}
         >
           {this.props.sizes.mobile && (
             <section className="singleCollection">
               <article className="singleCollection_article">
-                <h2 className="singleCollection_h2">{this.node.name}</h2>
+                {/* <h2 className="singleCollection_h2">{this.node.name}</h2> */}
                 <p className="singleCollection_description">
                   <em>"{this.node.description}"</em>
                 </p>

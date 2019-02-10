@@ -3,7 +3,6 @@ import { graphql, Link } from 'gatsby';
 import { PostExcerpt } from '../components/CloudStudio';
 import { CollectionList } from '../components/Collections';
 import Button from '../components/Button';
-import Header from '../components/Header';
 import Layout from '../components/Layout';
 import Head from '../components/Head';
 import Iframe from '../components/Iframe';
@@ -14,25 +13,7 @@ import './index.sass';
 const IndexPage = ({ data, location }) => (
   <React.Fragment>
     <Head location={location} />
-    <Layout
-      header={() => (
-        <Header>
-          <section
-            style={{
-              color: 'white',
-              textAlign: 'center',
-              marginBottom: '1rem',
-            }}
-          >
-            <h2 className="h2-sourceSans">Colorful Ceramics</h2>
-            <h3 className="h3-sourceSans">Geometric Patterns & Textures</h3>
-          </section>
-          <Link className="header_shopLink" to={`/shop`}>
-            <Button className="clearButton">{`Shop\u00A0Now`}</Button>
-          </Link>
-        </Header>
-      )}
-    >
+    <Layout>
       <h3 className="h3-amiri">West Elm Pop-Up Show</h3>
       <p className="body-sourceSans-1">
         Very excited to announce that we will be at the West Elm Pop Up show on
@@ -53,13 +34,6 @@ const IndexPage = ({ data, location }) => (
           allowFullScreen
         />
       </section>
-      {/* <p className="body-sourceSans-1">
-      <strong>Where: </strong>
-      <span>West Elm @ Dumbo</span>
-      <br />
-      <strong>When: </strong>
-      <span>February 24th, 2-5pm</span>
-    </p> */}
       <CollectionList edges={data.allWordpressWpCollections.edges} />
       <h3 className="h3-amiri">Cloud Studio</h3>
       <section className="postList">

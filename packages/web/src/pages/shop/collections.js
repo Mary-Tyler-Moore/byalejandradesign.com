@@ -3,30 +3,32 @@ import { graphql } from 'gatsby';
 import { CollectionList } from '../../components/Collections';
 import Layout from '../../components/Layout';
 import Head from '../../components/Head';
+import Hero from '../../components/Hero';
 
 class CollectionEdges extends React.Component {
-  /** Filter nodes that don't have header_image */
-  headerImage = ({ node }) => node.acf.header_image;
+  get title() {
+    return 'Collections';
+  }
 
-  /** Safely get random header image */
-  getHeaderImage = () =>
-    this.props.data.allWordpressWpCollections.edges
-      .filter(this.headerImage)
-      .map(this.headerImage)
-      .reduce((a, b) => (Math.random() >= 0.5 ? a : b));
+  get edges() {
+    return this.props.data.allWordpressWpCollections.edges;
+  }
+
+  get image() {
+    return this.edges
+      .filter(({ node }) => node.acf.header_image)
+      .reduce((a, b) => (Math.random() >= 0.5 ? a : b)).node.acf.header_image;
+  }
 
   render() {
     return (
       <React.Fragment>
-        <Head location={this.props.location} title="Collections" />
+        <Head location={this.props.location} title={this.title} />
         <Layout
           location={this.props.location}
-          headerImage={this.getHeaderImage()}
-          title="Collections"
+          hero={() => <Hero image={this.image} filter={0.3} />}
         >
-          <CollectionList
-            edges={this.props.data.allWordpressWpCollections.edges}
-          />
+          <CollectionList edges={this.edges} />
         </Layout>
       </React.Fragment>
     );

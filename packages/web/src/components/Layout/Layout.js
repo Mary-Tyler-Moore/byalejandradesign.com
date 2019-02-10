@@ -3,7 +3,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import withSize from 'react-size-components';
 import Footer from '../Footer';
 import MainNav from '../MainNav';
-import { DefaultHeader } from '../Header';
+import { HeroDefault } from '../Header';
 // icons
 import './library';
 // styles
@@ -20,7 +20,7 @@ export const SizeConsumer = Size.Consumer;
 
 class Layout extends React.Component {
   static defaultProps = {
-    header: DefaultHeader,
+    hero: HeroDefault,
   };
 
   get navLayout() {
@@ -36,12 +36,12 @@ class Layout extends React.Component {
   }
 
   render() {
-    const HeaderView = this.props.header;
+    const Hero = this.props.hero;
     return (
       <React.Fragment>
         <div className="root">
           <MainNav mainNav={this.mainNav} sizes={this.props.sizes} />
-          {this.props.header && <HeaderView />}
+          {this.props.hero && <Hero />}
           <SizeProvider value={this.props.sizes}>
             <main className="mainContent">{this.props.children}</main>
           </SizeProvider>

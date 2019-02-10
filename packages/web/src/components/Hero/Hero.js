@@ -3,38 +3,36 @@ import { graphql, StaticQuery, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import ByAlejandra from './ByAlejandra.js';
 // sass
-import './header.sass';
-// types
-import type { ImageNode } from '@byalejandradesign/data-objects';
+import './hero.sass';
 
-type Props = {
-  image: ImageNode,
-};
-
-class DesktopHeader extends React.PureComponent<Props> {
+class Hero extends React.PureComponent<Props> {
   static defaultProps = {
     filter: 0,
   };
 
+  get localFile() {
+    return this.props.image.localFile;
+  }
+
   render() {
     return (
-      <header className="header">
+      <header className="hero">
         <div
-          className="header_imgFilter"
+          className="hero_imgFilter"
           style={{ opacity: this.props.filter }}
         />
-        <figure className="header_imgContainer">
-          {this.props.image.localFile ? (
+        <figure className="hero_imgContainer">
+          {this.localFile ? (
             <Img
-              className="header_img"
-              fluid={this.props.image.localFile.childImageSharp.fluid}
+              className="hero_img"
+              fluid={this.localFile.childImageSharp.fluid}
             />
           ) : null}
         </figure>
         {this.props.children && (
-          <section className="header_centered">{this.props.children}</section>
+          <section className="hero_centered">{this.props.children}</section>
         )}
-        <figure className="header_logo">
+        <figure className="hero_logo">
           <ByAlejandra />
         </figure>
       </header>
@@ -75,13 +73,11 @@ const defaultHeaderImage = (data) =>
 
 const HeaderQuery = ({ image, ...props }) =>
   image ? (
-    <DesktopHeader image={image} {...props} />
+    <Hero image={image} {...props} />
   ) : (
     <StaticQuery
       query={DEFAULT_HEADER_IMAGE}
-      render={(data) => (
-        <DesktopHeader image={defaultHeaderImage(data)} {...props} />
-      )}
+      render={(data) => <Hero image={defaultHeaderImage(data)} {...props} />}
     />
   );
 
