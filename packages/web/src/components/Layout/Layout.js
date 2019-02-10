@@ -3,7 +3,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import withSize from 'react-size-components';
 import Footer from '../Footer';
 import MainNav from '../MainNav';
-import { HeroDefault } from '../Header';
+import { HeroDefault } from '../Hero';
 // icons
 import './library';
 // styles
