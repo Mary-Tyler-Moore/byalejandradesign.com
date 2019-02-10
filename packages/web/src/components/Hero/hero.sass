@@ -5,6 +5,7 @@
   height: 600px
   position: relative
   overflow: hidden
+  margin: 0
 
   +laptop
     height: 600px
@@ -16,19 +17,28 @@
     height: 320px
 
   +small-phone
-    height: 260px
+    height: 220px
+
+  +all-phone
+    margin-top: 48px
 
   &_centered
     position: absolute
     top: 50%
     left: 50%
+    width: 100%
+    max-width: $content-max-width
     transform: translate(-50%, -50%)
     +flex
-
     flex-direction: column
     justify-content: center
     align-items: center
+
     z-index: 2
+    padding: 3rem $content-padding
+
+    +all-phone
+      padding: 2rem $mobile-content-padding
 
   &_shopLink
     @extend %link-reset

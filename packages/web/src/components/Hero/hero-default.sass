@@ -1,12 +1,12 @@
 @import ../../sass/global
 
 .hero
-  +all-phone
-    margin-bottom: 2rem
-
-  &-default
+  &_content-default
     color: $white
     text-align: center
+
+    +all-mobile
+    margin-top: -1.5rem
 
   &_title-default
     @extend %h1-sourceSans
