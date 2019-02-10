@@ -3,8 +3,6 @@ import * as React from 'react';
 import Helmet from 'react-helmet';
 import { graphql, StaticQuery } from 'gatsby';
 
-// import Pixel from './Pixel';
-
 class Head extends React.Component {
   get metadata() {
     return this.props.data.site.siteMetadata;
@@ -33,13 +31,16 @@ class Head extends React.Component {
     return this.props.description || this.metadata.description;
   }
 
-  get headerImage() {
-    return this.props.data.allWordpressAcfOptions.edges[0].node.options
-      .default_header;
+  get image() {
+    return (
+      this.props.image ||
+      this.props.data.allWordpressAcfOptions.edges[0].node.options
+        .default_header
+    );
   }
 
   get ogImage() {
-    return `${this.metadata.siteUrl}${this.headerImage.localFile.publicURL}`;
+    return `${this.metadata.siteUrl}${this.image.localFile.publicURL}`;
   }
 
   render() {
@@ -64,6 +65,7 @@ class Head extends React.Component {
           <meta name="og:url" content={this.canonical} />
           <meta name="og:image" content={this.ogImage} />
           <meta name="fb:admins" content="934241763325153" />
+          {this.props.children}
         </Helmet>
       </React.Fragment>
     );

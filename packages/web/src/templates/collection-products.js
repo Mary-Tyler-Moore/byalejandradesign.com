@@ -18,14 +18,21 @@ class CollectionProducts extends React.Component {
     return this.props.data.allWordpressWpShop.edges;
   }
 
+  get image() {
+    return this.node.acf.header_image;
+  }
+
   render() {
     return (
       <React.Fragment>
-        {console.log(this.props.sizes)}
-        <Head location={this.props.location} title={this.node.name} />
+        <Head
+          location={this.props.location}
+          title={this.node.name}
+          image={this.image}
+        />
         <Layout
           header={() => (
-            <Header image={this.node.acf.header_image} filter={0.5}>
+            <Header image={this.image} filter={0.5}>
               {!this.props.sizes.mobile && (
                 <article className="singleCollection_headerText">
                   <h2>{this.node.name}</h2>

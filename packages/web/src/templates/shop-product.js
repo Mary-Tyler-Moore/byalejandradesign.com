@@ -4,54 +4,74 @@ import Helmet from 'react-helmet';
 
 import Layout from '../components/Layout';
 import Head from '../components/Head';
+import Header from '../components/Header';
 import withSize from 'react-size-components';
 import { SingleProduct } from '../components/Product';
-// types
-import type { ProductNode, ImageNode } from '../components/Product/types';
 
-type Props = {
-  data: {
-    wordpressWpShop: ProductNode,
-  },
-  sizes: {
-    mobile: boolean,
-  },
-};
+class ShopProduct extends React.Component {
+  get title() {
+    const { acf } = this.props.data.wordpressWpShop;
+    return acf.display_title || acf.title;
+  }
 
-const getHeaderImage = (data): ImageNode | null => {
-  return data.wordpressWpShop.collections
-    ? data.wordpressWpShop.collections[0].acf.header_image
-    : null;
-};
+  get description() {
+    return this.props.data.wordpressWpShop.description;
+  }
 
-/**
- * ingleProduct Node
- * @param {[type]} props [description]
- */
-const ShopProduct = ({ location, data, sizes }) => (
-  <React.Fragment>
-    <Head
-      location={location}
-      title={
-        data.wordpressWpShop.acf.display_title || data.wordpressWpShop.acf.title
-      }
-      description={data.wordpressWpShop.description}
-      headerImage={getHeaderImage(data)}
-    />
-    <Layout headerImage={getHeaderImage(data)}>
-      <Helmet>
-        <html itemscope itemtype="http://schema.org/Product" />
-        <meta property="og:type" content="article" />
-        <meta
-          property="og:price:amount"
-          content={data.wordpressWpShop.acf.price}
-        />
-        <meta property="og:price:currency" content="USD" />
-      </Helmet>
-      <SingleProduct node={data.wordpressWpShop} sizes={sizes} />
-    </Layout>
-  </React.Fragment>
-);
+  get image() {
+    const { data } = this.props;
+    return data.wordpressWpShop.collections
+      ? data.wordpressWpShop.collections[0].acf.header_image
+      : null;
+  }
+
+  get collection() {
+    return this.props.data.wordpressWpShop.collections[0];
+  }
+
+  get product() {
+    return this.props.data.wordpressWpShop;
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Head
+          location={this.props.location}
+          title={this.title}
+          description={this.description}
+          image={this.image}
+        >
+          <Helmet>
+            <html itemscope itemtype="http://schema.org/Product" />
+            <meta property="og:type" content="article" />
+            <meta property="og:price:amount" content={this.product.acf.price} />
+            <meta property="og:price:currency" content="USD" />
+          </Helmet>
+        </Head>
+        <Layout
+          header={() => (
+            <Header image={this.image} filter={0.5}>
+              {!this.props.sizes.mobile && (
+                <article className="singleCollection_headerText">
+                  <h2>{this.collection.name}</h2>
+                  <p>
+                    <em>"{this.collection.description}"</em>
+                  </p>
+                </article>
+              )}
+            </Header>
+          )}
+        >
+          <SingleProduct
+            node={this.props.data.wordpressWpShop}
+            sizes={this.props.sizes}
+          />
+        </Layout>
+      </React.Fragment>
+    );
+  }
+}
 
 export default withSize({ mobile: true })(ShopProduct);
 
@@ -73,6 +93,8 @@ export const fragment = graphql`
     ...SparseProductData
     collections {
       slug
+      description
+      name
       acf {
         header_image {
           localFile {

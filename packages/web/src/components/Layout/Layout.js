@@ -3,7 +3,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import withSize from 'react-size-components';
 import Footer from '../Footer';
 import MainNav from '../MainNav';
-import Header from '../Header';
+import { DefaultHeader } from '../Header';
 // icons
 import './library';
 // styles
@@ -19,6 +19,10 @@ export const SizeProvider = Size.Provider;
 export const SizeConsumer = Size.Consumer;
 
 class Layout extends React.Component {
+  static defaultProps = {
+    header: DefaultHeader,
+  };
+
   get navLayout() {
     return this.props.data.site.siteMetadata.navLayout;
   }
