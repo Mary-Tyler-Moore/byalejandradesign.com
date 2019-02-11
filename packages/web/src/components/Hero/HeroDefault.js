@@ -20,10 +20,8 @@ class HeroDefault extends React.Component {
     return (
       <Hero filter={0.3}>
         <section className="hero_content-default">
-          <h1 className="hero_title-default">{`Patterned\u00A0Ceramics`}</h1>
-          <h2 className="hero_subtitle-default">
-            Geometric Patterns & Textures
-          </h2>
+          <h1 className="hero_title-default">{`Complex\u00A0Designs`}</h1>
+          <h2 className="hero_subtitle-default">Colorful Textured Ceramics</h2>
         </section>
         <section className="hero_cta-default">
           <Link className="hero_link-default" to={`/shop`}>
