@@ -10,7 +10,7 @@ export type Props = {
 
 const ServerAddress = ({ address, label }: Props) => (
   <section className="confirmation_billingAddress">
-    <h5 className="h5-amiri">{label}</h5>
+    <h5 className="h5-roboto">{label}</h5>
     <Line label="name">{`${address.firstName} ${address.lastName}`}</Line>
     <Line label="address">{address.streetAddress}</Line>
     {address.extendedAddress && (

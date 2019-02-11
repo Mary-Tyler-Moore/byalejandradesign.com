@@ -24,7 +24,7 @@ class OrderConfirmation extends React.Component<Props> {
   render() {
     return (
       <section className="confirmation">
-        <h4 className="h4-amiri">Order Confirmation</h4>
+        <h4 className="h4-roboto">Order Confirmation</h4>
         <p className="body-sourceSans-2">
           <em>
             Thank you for your order from byalejandradesign.com! Your order
@@ -32,7 +32,7 @@ class OrderConfirmation extends React.Component<Props> {
           </em>
         </p>
         <section>
-          <h5 className="h5-amiri">Order Info</h5>
+          <h5 className="h5-roboto">Order Info</h5>
           {this.props.transaction.orderId && (
             <Line label="orderNumber">{this.props.transaction.orderId}</Line>
           )}

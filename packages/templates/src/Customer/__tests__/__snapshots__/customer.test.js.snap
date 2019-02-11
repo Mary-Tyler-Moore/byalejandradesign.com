@@ -7,7 +7,7 @@ exports[`it works it renders a customer 1`] = `
   className="confirmation_customerSection"
 >
   <h5
-    className="h5-amiri"
+    className="h5-roboto"
   >
     Customer
   </h5>
