@@ -19,7 +19,7 @@ const pipeAsync = (fn, ...fns) =>
  */
 
 const defaultOptions = {
-  throttle: 500,
+  throttle: 1000,
   maxRetries: 15,
   tries: 0,
   multiplier: 0,

@@ -136,10 +136,8 @@ exports.normalizeEntities = normalizeEntities;
 // Standardize ids + make sure keys are valid.
 exports.standardizeKeys = (entities) =>
   entities.map((e) =>
-    deepMapKeys(
-      e,
-      (key) =>
-        key === `ID` ? getValidKey({ key: `id` }) : getValidKey({ key })
+    deepMapKeys(e, (key) =>
+      key === `ID` ? getValidKey({ key: `id` }) : getValidKey({ key })
     )
   );
 
@@ -236,8 +234,10 @@ exports.mapAuthorsToUsers = (entities) => {
 };
 
 exports.mapPostsToTagsCategories = (entities) => {
-  const tags = entities.filter((e) => e.__type === `wordpress__TAG`);
-  const categories = entities.filter((e) => e.__type === `wordpress__CATEGORY`);
+  const categoryTypes = [`wordpress__wc_categories`, `wordpress__CATEGORY`];
+  const tagTypes = [`wordpress__TAG`, `wordpress__wc_tags`];
+  const tags = entities.filter((e) => tagTypes.includes(e.__type));
+  const categories = entities.filter((e) => categoryTypes.includes(e.__type));
 
   return entities.map((e) => {
     // Replace tags & categories with links to their nodes.
@@ -245,7 +245,11 @@ exports.mapPostsToTagsCategories = (entities) => {
     let entityHasTags = e.tags && Array.isArray(e.tags) && e.tags.length;
     if (tags.length && entityHasTags) {
       e.tags___NODE = e.tags.map(
-        (t) => tags.find((tObj) => t === tObj.wordpress_id).id
+        (t) =>
+          tags.find(
+            (tObj) =>
+              (Number.isInteger(t) ? t : t.wordpress_id) === tObj.wordpress_id
+          ).id
       );
       delete e.tags;
     }
@@ -254,7 +258,11 @@ exports.mapPostsToTagsCategories = (entities) => {
       e.categories && Array.isArray(e.categories) && e.categories.length;
     if (categories.length && entityHasCategories) {
       e.categories___NODE = e.categories.map(
-        (c) => categories.find((cObj) => c === cObj.wordpress_id).id
+        (c) =>
+          categories.find(
+            (cObj) =>
+              (Number.isInteger(c) ? c : c.wordpress_id) === cObj.wordpress_id
+          ).id
       );
       delete e.categories;
     }
@@ -269,10 +277,11 @@ exports.mapTagsCategoriesToTaxonomies = (entities) =>
     // Where should api_menus stuff link to?
     if (e.taxonomy && e.__type !== `wordpress__wp_api_menus_menus`) {
       // Replace taxonomy with a link to the taxonomy node.
-      e.taxonomy___NODE = entities.find(
-        (t) => t.wordpress_id === e.taxonomy
-      ).id;
-      delete e.taxonomy;
+      const taxonomyNode = entities.find((t) => t.wordpress_id === e.taxonomy);
+      if (taxonomyNode) {
+        e.taxonomy___NODE = taxonomyNode.id;
+        delete e.taxonomy;
+      }
     }
     return e;
   });
@@ -464,6 +473,64 @@ exports.mapEntitiesToMedia = (entities) => {
 
 // Downloads media files and removes "sizes" data as useless in Gatsby context.
 exports.downloadMediaFiles = require('./download-media-files');
+
+// async ({
+//   entities,
+//   store,
+//   cache,
+//   createNode,
+//   createNodeId,
+//   touchNode,
+//   _auth,
+// }) =>
+//   Promise.all(
+//     entities.map(async e => {
+//       let fileNodeID
+//       if (e.__type === `wordpress__wp_media`) {
+//         const mediaDataCacheKey = `wordpress-media-${e.wordpress_id}`
+//         const cacheMediaData = await cache.get(mediaDataCacheKey)
+
+//         // If we have cached media data and it wasn't modified, reuse
+//         // previously created file node to not try to redownload
+//         if (cacheMediaData && e.modified === cacheMediaData.modified) {
+//           fileNodeID = cacheMediaData.fileNodeID
+//           touchNode({ nodeId: cacheMediaData.fileNodeID })
+//         }
+
+//         // If we don't have cached data, download the file
+//         if (!fileNodeID) {
+//           try {
+//             const fileNode = await createRemoteFileNode({
+//               url: e.source_url,
+//               store,
+//               cache,
+//               createNode,
+//               createNodeId,
+//               auth: _auth,
+//             })
+
+//             if (fileNode) {
+//               fileNodeID = fileNode.id
+
+//               await cache.set(mediaDataCacheKey, {
+//                 fileNodeID,
+//                 modified: e.modified,
+//               })
+//             }
+//           } catch (e) {
+//             // Ignore
+//           }
+//         }
+//       }
+
+//       if (fileNodeID) {
+//         e.localFile___NODE = fileNodeID
+//         delete e.media_details.sizes
+//       }
+
+//       return e
+//     })
+//   )
 
 const prepareACFChildNodes = (
   obj,
