@@ -14,7 +14,7 @@ const IndexPage = ({ data, location }) => (
   <React.Fragment>
     <Head location={location} />
     <Layout>
-      <h3 className="h3-amiri">West Elm Pop-Up Show</h3>
+      <h3 className="h3-roboto">West Elm Pop-Up Show</h3>
       <p className="body-sourceSans-1">
         Very excited to announce that we will be at the West Elm Pop Up show on
         February 24th from 2-5pm!
@@ -35,7 +35,7 @@ const IndexPage = ({ data, location }) => (
         />
       </section>
       <CollectionList edges={data.allWordpressWpCollections.edges} />
-      <h3 className="h3-amiri">Cloud Studio</h3>
+      <h3 className="h3-roboto">Cloud Studio</h3>
       <section className="postList">
         {data.allWordpressPost.edges.map(({ node }) => (
           <PostExcerpt key={node.id} node={node} />
