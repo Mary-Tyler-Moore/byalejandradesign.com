@@ -10,19 +10,19 @@ class Button extends React.Component<Props> {
     type: 'button',
   };
 
+  get style() {
+    return {
+      width: this.props.fullWidth ? '100%' : 'inherit',
+      margin: this.props.margin ? '1rem 0' : '0',
+    };
+  }
+
   render() {
     return (
-      <button
-        onClick={this.props.onClick}
-        name={this.props.name}
-        className={this.props.className}
-        style={{
-          width: this.props.fullWidth ? '100%' : 'inherit',
-          margin: this.props.margin ? '1rem 0' : '0',
-        }}
-        type={this.props.type}
-      >
-        <span className="button_text-sourceSans">{this.props.children}</span>
+      <button style={this.style} {...this.props}>
+        <span className="button_text-sourceSans" {...this.props.span}>
+          {this.props.children}
+        </span>
       </button>
     );
   }

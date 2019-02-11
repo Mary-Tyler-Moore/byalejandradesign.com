@@ -35,7 +35,9 @@ const IndexPage = ({ data, location }) => (
         />
       </section>
       <CollectionList edges={data.allWordpressWpCollections.edges} />
-      <h3 className="h3-roboto">Cloud Studio</h3>
+      <h3 className="h3-roboto" style={{ marginTop: '2rem' }}>
+        Cloud Studio
+      </h3>
       <section className="postList">
         {data.allWordpressPost.edges.map(({ node }) => (
           <PostExcerpt key={node.id} node={node} />
