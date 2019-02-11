@@ -24,6 +24,7 @@
   "dependencies": {
     "@babel/runtime": "^7.1.2",
     "@byalejandradesign/checkout-objects": "^0.0.2",
+    "@njmyers/sass": "^0.0.16",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "smalldash": "^1.1.20"

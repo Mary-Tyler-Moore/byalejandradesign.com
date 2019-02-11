@@ -6,15 +6,6 @@
     "url": "https://github.com/njmyers/byalejandradesign.com.git"
   },
   "license": "ISC",
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ],
-    "nohoist": [
-      "**/flow-bin",
-      "packages/**/flow-mono-cli"
-    ]
-  },
   "scripts": {
     "bootstrap": "lerna bootstrap && lerna link",
     "deploy": "STAGE=production node scripts/deploy.js",
