@@ -12,14 +12,20 @@
   },
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
+  "workspaces": {
+    "nohoist": [
+      "**"
+    ]
+  },
   "scripts": {
-    "watch": "gatsby develop",
-    "build": "gatsby build"
+    "build": "gatsby build",
+    "watch": "gatsby develop"
   },
   "dependencies": {
     "@babel/runtime": "^7.1.2",
     "@byalejandradesign/checkout-objects": "^0.0.2",
     "@byalejandradesign/data-objects": "^0.0.2",
+    "@byalejandradesign/gatsby-source-wordpress": "^3.0.14",
     "@byalejandradesign/server-env": "^0.0.3",
     "@byalejandradesign/templates": "^0.0.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.5",
@@ -71,6 +77,7 @@
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
+    "eslint-plugin-graphql": "^3.0.3",
     "flow-bin": "^0.85.0",
     "flow-mono-cli": "^1.4.2",
     "flow-typed": "^2.5.1",

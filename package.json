@@ -6,15 +6,26 @@
     "url": "https://github.com/njmyers/byalejandradesign.com.git"
   },
   "license": "ISC",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "**/flow-bin",
+      "packages/**/flow-mono-cli",
+      "**express**",
+      "**gatsby**"
+    ]
+  },
   "scripts": {
     "bootstrap": "lerna bootstrap && lerna link",
     "deploy": "STAGE=production node scripts/deploy.js",
     "develop": "STAGE=development node scripts/develop.js",
     "install-types": "node scripts/install-types.js",
+    "prettier": "prettier 'packages/**/*.{.test.js,.stories.js,js,jsx,json}' --write",
     "stage": "STAGE=staging node scripts/deploy.js",
     "symlink-types": "flow-mono create-symlinks .flowconfig",
-    "test": "jest --watchAll",
-    "prettier": "prettier 'packages/**/*.{.test.js,.stories.js,js,jsx,json}' --write"
+    "test": "jest --watchAll"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
@@ -69,6 +80,7 @@
     "standard": "^8.4.0"
   },
   "resolutions": {
-    "**/event-stream": "^4.0.1"
+    "**/event-stream": "^4.0.1",
+    "**/got": "^9.0.0"
   }
 }

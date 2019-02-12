@@ -13,6 +13,11 @@
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
   "main": "build/app.js",
+  "workspaces": {
+    "nohoist": [
+      "**"
+    ]
+  },
   "scripts": {
     "prebuild": "run-s clean",
     "build": "parcel build -d build --target node --bundle-node-modules src/app.js",
