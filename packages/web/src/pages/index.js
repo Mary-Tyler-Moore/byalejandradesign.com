@@ -1,8 +1,7 @@
 import React from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import { PostExcerpt } from '../components/CloudStudio';
 import { CollectionList } from '../components/Collections';
-import Button from '../components/Button';
 import Layout from '../components/Layout';
 import Head from '../components/Head';
 import Iframe from '../components/Iframe';

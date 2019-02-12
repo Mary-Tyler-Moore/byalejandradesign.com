@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { graphql, StaticQuery, Link } from 'gatsby';
+import { graphql, StaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 import ByAlejandra from './ByAlejandra.js';
 // sass

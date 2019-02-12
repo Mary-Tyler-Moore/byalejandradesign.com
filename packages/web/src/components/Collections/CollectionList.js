@@ -1,8 +1,6 @@
 /** @flow */
 import * as React from 'react';
 import CollectionExcerpt from './CollectionExcerpt';
-import { SizeConsumer } from '../Layout';
-import { pipe } from 'smalldash';
 // styles
 import './collection-list.sass';
 

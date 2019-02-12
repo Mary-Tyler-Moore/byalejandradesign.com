@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { graphql, Link } from 'gatsby';
-import Button from '../Button';
+import { graphql } from 'gatsby';
 import FluidImage from '../FluidImage';
 // styles
 import './collection-excerpt.sass';
