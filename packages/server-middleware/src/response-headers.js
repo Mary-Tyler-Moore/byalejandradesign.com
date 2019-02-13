@@ -3,17 +3,15 @@ import env from '@byalejandradesign/server-env';
 // types
 import type { $Request, $Response, NextFunction } from 'express';
 
-const whitelist = [/byalejandradesign\.com$/];
+import whitelist from './whitelist';
 
 // https://serverless.com/blog/cors-api-gateway-survival-guide/
 function responseHeaders(req: $Request, res: $Response, next: NextFunction) {
   const origin = req.headers.origin;
 
   const isAllowed =
-    whitelist
-      .map((regex) => regex.test(origin))
-      .reduce((prevBool, bool) => prevBool || bool, false) ||
-    env.STAGE === 'development';
+    env.STAGE === 'development' ||
+    whitelist.map((regex) => regex().test(origin)).some((boolean) => boolean);
 
   if (isAllowed) {
     res.header({
