@@ -1,5 +1,5 @@
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
-const Queue = require("better-queue")
+const Queue = require(`better-queue`)
 
 const pipeAsync = (fn, ...fns) =>
   async function(...args) {
@@ -134,11 +134,11 @@ const downloadMediaFiles = (ctx, options) =>
       }
     )
 
-    q.on("task_finish", (id, entity) => {
+    q.on(`task_finish`, (id, entity) => {
       results.set(id, entity)
     })
 
-    q.on("drain", () => {
+    q.on(`drain`, () => {
       if (results.size === orderedList.length) {
         res(orderedList.map(id => results.get(id)))
       }
