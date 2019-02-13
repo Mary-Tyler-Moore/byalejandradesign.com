@@ -22,6 +22,7 @@
     "install-types": "node scripts/install-types.js",
     "prettier": "prettier 'packages/**/*.{.test.js,.stories.js,js,jsx,json}' --write",
     "stage": "STAGE=staging node scripts/deploy.js",
+    "package": "STAGE=staging node scripts/package.js",
     "symlink-types": "flow-mono create-symlinks .flowconfig",
     "test": "jest --watchAll"
   },
