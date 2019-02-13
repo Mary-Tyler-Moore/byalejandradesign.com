@@ -36,6 +36,8 @@ exports.sourceNodes = async (
     perPage = 100,
     searchAndReplaceContentUrls = {},
     concurrentRequests = 10,
+    maxRetries = 10,
+    retryDelay = 1000,
     includedRoutes = [`**`],
     excludedRoutes = [],
     normalizer,
@@ -111,15 +113,22 @@ exports.sourceNodes = async (
   entities = normalize.mapEntitiesToMedia(entities)
 
   // Downloads media files and removes "sizes" data as useless in Gatsby context.
-  entities = await normalize.downloadMediaFiles({
-    entities,
-    store,
-    cache,
-    createNode,
-    createNodeId,
-    touchNode,
-    _auth,
-  })
+  entities = await normalize.downloadMediaFiles(
+    {
+      entities,
+      store,
+      cache,
+      createNode,
+      createNodeId,
+      touchNode,
+      _auth,
+    },
+    {
+      concurrentRequests,
+      maxRetries,
+      retryDelay,
+    }
+  )
 
   // Creates links between elements and parent element.
   entities = normalize.mapElementsToParent(entities)
