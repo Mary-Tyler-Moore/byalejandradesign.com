@@ -12,9 +12,7 @@
     ],
     "nohoist": [
       "**/flow-bin",
-      "packages/**/flow-mono-cli",
-      "**express**",
-      "**gatsby**"
+      "packages/**/flow-mono-cli"
     ]
   },
   "scripts": {
