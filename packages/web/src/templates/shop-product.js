@@ -10,23 +10,27 @@ import { SingleProduct } from '../components/Product';
 
 class ShopProduct extends React.Component {
   get title() {
-    const { acf } = this.props.data.wordpressWpShop;
+    const { acf } = this.product;
     return acf.display_title || acf.title;
   }
 
   get description() {
-    return this.props.data.wordpressWpShop.description;
+    return this.product.description;
   }
 
   get image() {
-    const { data } = this.props;
-    return data.wordpressWpShop.collections
-      ? data.wordpressWpShop.collections[0].acf.header_image
-      : null;
+    return this.collection.acf.header_image;
   }
 
   get collection() {
-    return this.props.data.wordpressWpShop.collections[0];
+    const { collections } = this.product;
+    if (!Array.isArray(collections)) {
+      throw new Error(
+        `${this.product.slug} does not have a collection attribution`
+      );
+    }
+
+    return collections[0];
   }
 
   get product() {
