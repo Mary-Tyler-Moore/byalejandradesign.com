@@ -32,7 +32,7 @@ provider:
 package:
   exclude:
     # first exclude everything
-    - '.*/**'
+    - '*/**'
   include:
     - package.json
     - build/**

@@ -29,7 +29,7 @@ provider:
 
 package:
   exclude:
-    - '.*/**'
+    - '*/**'
   include:
     - src/functions/*
 
