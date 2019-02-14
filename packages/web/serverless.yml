@@ -102,6 +102,7 @@ resources:
     WebsiteDistribution:
       Type: 'AWS::CloudFront::Distribution'
       Properties:
+        # Aliases: self:custom.domains
         DistributionConfig:
           DefaultCacheBehavior:
             TargetOriginId: 'WebsiteBucketOrigin'
