@@ -24,20 +24,27 @@ const FluidImageLink = ({ children, to }) =>
     children
   );
 
-const FluidImage = ({ localFile, to, className }: FluidImageProps) => (
-  <FluidImageLink to={to}>
-    <figure
-      className={`fluidImage${to && ' fluidImage_clickable'}${' ' + className}`}
-    >
-      {localFile && (
-        <Img
-          className="fluidImage_gatsby"
-          fluid={localFile.childImageSharp.fluid}
-        />
-      )}
-    </figure>
-  </FluidImageLink>
-);
+const FluidImage = (props: FluidImageProps) => {
+  const { localFile, to, className, children } = props;
+  return (
+    <FluidImageLink to={to}>
+      <figure
+        className={`fluidImage${to && ' fluidImage_clickable'}${' ' +
+          className}`}
+      >
+        {localFile && (
+          <Img
+            className="fluidImage_gatsby"
+            fluid={localFile.childImageSharp.fluid}
+          />
+        )}
+        {children && (
+          <figcaption className="fluidImage_children">{children}</figcaption>
+        )}
+      </figure>
+    </FluidImageLink>
+  );
+};
 
 FluidImage.defaultProps = {
   className: '',

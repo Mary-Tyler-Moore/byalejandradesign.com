@@ -3,51 +3,79 @@ import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 
 import Layout from '../components/Layout';
+import Head from '../components/Head';
+import Hero from '../components/Hero';
 import withSize from 'react-size-components';
 import { SingleProduct } from '../components/Product';
-// types
-import type { ProductNode, ImageNode } from '../components/Product/types';
 
-type Props = {
-  data: {
-    wordpressWpShop: ProductNode,
-  },
-  sizes: {
-    mobile: boolean,
-  },
-};
+class ShopProduct extends React.Component {
+  get title() {
+    const { acf } = this.product;
+    return acf.display_title || acf.title;
+  }
 
-const getHeaderImage = (data): ImageNode | null => {
-  return data.wordpressWpShop.collections
-    ? data.wordpressWpShop.collections[0].acf.header_image
-    : null;
-};
+  get description() {
+    return this.product.description;
+  }
 
-/**
- * ingleProduct Node
- * @param {[type]} props [description]
- */
-const ShopProduct = ({ location, data, sizes }) => (
-  <Layout
-    location={location}
-    title={
-      data.wordpressWpShop.acf.display_title || data.wordpressWpShop.acf.title
+  get image() {
+    return this.collection.acf.header_image;
+  }
+
+  get collection() {
+    const { collections } = this.product;
+    if (!Array.isArray(collections)) {
+      throw new Error(
+        `${this.product.slug} does not have a collection attribution`
+      );
     }
-    description={data.wordpressWpShop.description}
-    headerImage={getHeaderImage(data)}
-  >
-    <Helmet>
-      <html itemscope itemtype="http://schema.org/Product" />
-      <meta property="og:type" content="article" />
-      <meta
-        property="og:price:amount"
-        content={data.wordpressWpShop.acf.price}
-      />
-      <meta property="og:price:currency" content="USD" />
-    </Helmet>
-    <SingleProduct node={data.wordpressWpShop} sizes={sizes} />
-  </Layout>
-);
+
+    return collections[0];
+  }
+
+  get product() {
+    return this.props.data.wordpressWpShop;
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <Head
+          location={this.props.location}
+          title={this.title}
+          description={this.description}
+          image={this.image}
+        >
+          <Helmet>
+            <html itemscope itemtype="http://schema.org/Product" />
+            <meta property="og:type" content="article" />
+            <meta property="og:price:amount" content={this.product.acf.price} />
+            <meta property="og:price:currency" content="USD" />
+          </Helmet>
+        </Head>
+        <Layout
+          hero={() => (
+            <Hero image={this.image} filter={0.5}>
+              {!this.props.sizes.mobile && (
+                <article className="singleCollection_headerText">
+                  <h2>{this.collection.name}</h2>
+                  <p>
+                    <em>"{this.collection.description}"</em>
+                  </p>
+                </article>
+              )}
+            </Hero>
+          )}
+        >
+          <SingleProduct
+            node={this.props.data.wordpressWpShop}
+            sizes={this.props.sizes}
+          />
+        </Layout>
+      </React.Fragment>
+    );
+  }
+}
 
 export default withSize({ mobile: true })(ShopProduct);
 
@@ -69,6 +97,8 @@ export const fragment = graphql`
     ...SparseProductData
     collections {
       slug
+      description
+      name
       acf {
         header_image {
           localFile {

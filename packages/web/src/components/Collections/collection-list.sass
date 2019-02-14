@@ -2,35 +2,23 @@
 
 .collections
   margin: 0
-  margin-bottom: 3rem
+  margin-bottom: 2rem
 
   &_h3
-    @extend %h3-amiri
+    @extend %h3-roboto
 
     margin-top: 0
 
   &_description
     @extend %body-sourceSans-1
 
-    margin-top: 0
+    margin-top: 0.5rem
 
 .collectionList
-  column-count: 2
-  column-gap: 3rem
-
-  +desktop
-    column-gap: 4rem
-
+  margin-top: 2rem
+  display: grid
+  grid-template-columns: repeat(3, 1fr)
+  grid-gap: 3rem
 
   +all-phone
-    column-count: 1
-    column-gap: 0
-
-
-  .collectionExcerpt
-    break-inside: avoid
-    page-break-inside: avoid
-    margin-bottom: 3rem
-
-    +all-phone
-      margin-bottom: 2rem
+    grid-template-columns: repeat(1, 1fr)

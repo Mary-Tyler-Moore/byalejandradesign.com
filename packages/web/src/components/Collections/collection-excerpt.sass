@@ -4,12 +4,14 @@
   width: 100%
 
   &_h4
-    @extend %h4-amiri
+    @extend %h4-roboto
 
     margin: 0
-
-  &_description
-    @extend %body-sourceSans-1
+    margin-bottom: 0.5rem
 
   &_buttonLink
     @extend %a
+    +flex
+
+    justify-content: center
+    align-items: center

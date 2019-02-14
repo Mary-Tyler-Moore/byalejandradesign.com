@@ -1,6 +1,4 @@
 /** @flow */
-import * as React from 'react';
-
 export type Props = {
   footerNav: Array<string>,
   sizes: {

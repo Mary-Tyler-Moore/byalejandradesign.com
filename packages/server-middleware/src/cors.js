@@ -1,11 +1,10 @@
 // @flow
 import cors from 'cors';
 import env from '@byalejandradesign/server-env';
-
-const domains: Array<RegExp> = [/byalejandradesign\.com$/];
+import whitelist from './whitelist';
 
 const corsMiddleware = cors({
-  origin: env.STAGE === 'development' ? '*' : domains,
+  origin: env.STAGE === 'development' ? '*' : whitelist.map((fn) => fn()),
   methods: ['POST, GET'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 });

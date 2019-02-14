@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { graphql, Link } from 'gatsby';
-import Button from '../Button';
 import Text from '../Modulizer/Text';
 import FluidImage from '../FluidImage';
 // style

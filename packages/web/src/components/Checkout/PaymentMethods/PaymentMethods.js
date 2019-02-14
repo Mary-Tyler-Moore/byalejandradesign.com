@@ -19,12 +19,12 @@ import creditLogo from 'payment-icons/svg/flat/default.svg';
 class PaymentMethods extends React.PureComponent {
   renderPaymentMethod = () => {
     switch (this.props.method) {
-      case 'venmo':
-        return (
-          <DataCollector>
-            <Venmo />
-          </DataCollector>
-        );
+      // case 'venmo':
+      //   return (
+      //     <DataCollector>
+      //       <Venmo />
+      //     </DataCollector>
+      //   );
       case 'paypal':
         return (
           <DataCollector>
@@ -44,13 +44,13 @@ class PaymentMethods extends React.PureComponent {
       // Preloads Braintree before loading PaymentMethods
       <Braintree>
         <section className="paymentMethods">
-          <h5 className="h5-amiri">Choose Your Payment Method</h5>
+          <h5 className="h5-roboto">Choose Your Payment Method</h5>
           <section className="paymentOptions">
-            <PaymentOption
+            {/* <PaymentOption
               label="Venmo"
               image={venmoLogo}
               onClick={this.props.chooseVenmo}
-            />
+            /> */}
             <PaymentOption
               label="Credit Card"
               image={creditLogo}

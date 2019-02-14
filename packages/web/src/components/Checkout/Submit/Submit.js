@@ -174,13 +174,13 @@ class Submit extends React.PureComponent<Props, State> {
       >
         <section className="orderSubmit">
           <section className="orderSubmit_cartSection">
-            <h4 className="h4-amiri">Order Contents</h4>
+            <h4 className="h4-roboto">Order Contents</h4>
             <CartContents totalCallback={(total) => this.setState({ total })} />
           </section>
           {this.props.cart.products.length > 0 ? (
             <React.Fragment>
               <section className="orderSubmit_contactSection">
-                <h4 className="h4-amiri">Contact Info</h4>
+                <h4 className="h4-roboto">Contact Info</h4>
                 <p>
                   <strong>Phone: </strong>
                   {this.props.shippingAddress.phone}
@@ -191,14 +191,14 @@ class Submit extends React.PureComponent<Props, State> {
                 </p>
               </section>
               <section className="orderSubmit_addressSection">
-                <h4 className="h4-amiri">Address</h4>
+                <h4 className="h4-roboto">Address</h4>
                 <div className="orderSubmit_addressGrid">
                   <ShippingAddress />
                   <BillingAddress />
                 </div>
               </section>
               <section className="orderSubmit_paymentSection">
-                <h4 className="h4-amiri">Payment Details</h4>
+                <h4 className="h4-roboto">Payment Details</h4>
                 <p>
                   <strong>Payment Method: </strong>{' '}
                   {this.paymentMethodDisplay()}

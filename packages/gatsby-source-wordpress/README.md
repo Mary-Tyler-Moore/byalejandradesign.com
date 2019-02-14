@@ -1,7 +1,5 @@
 # gatsby-source-wordpress
 
-## FORK
-
 Source plugin for pulling data into [Gatsby](https://github.com/gatsbyjs) from
 WordPress sites using the
 [WordPress REST API](https://developer.wordpress.org/rest-api/reference/).
@@ -13,7 +11,7 @@ An example site for this plugin is available.
 
 ## Features
 
-- Pulls data from self-hosted WordPress sites, or sites hosted on [https://wordpress.com](wordpress.com)
+- Pulls data from self-hosted WordPress sites, or sites hosted on [WordPress.com](https://wordpress.com)
 - Should work with any number of posts (tested on a site with 900 posts)
 - Can authenticate to wordpress.com's API using OAuth 2 so media can be queried
 - Easily create responsive images in Gatsby from WordPress images. See [image
@@ -45,26 +43,26 @@ First, you need a way to pass environment variables to the build process, so sec
 module.exports = {
   plugins: [
     /*
-    * Gatsby's data processing layer begins with “source”
-    * plugins. Here the site sources its data from Wordpress.
-    */
+     * Gatsby's data processing layer begins with “source”
+     * plugins. Here the site sources its data from Wordpress.
+     */
     {
-      resolve: 'gatsby-source-wordpress',
+      resolve: "gatsby-source-wordpress",
       options: {
         /*
-        * The base URL of the Wordpress site without the trailingslash and the protocol. This is required.
-        * Example : 'gatsbyjsexamplewordpress.wordpress.com' or 'www.example-site.com'
-        */
-        baseUrl: 'gatsbyjsexamplewordpress.wordpress.com',
+         * The base URL of the Wordpress site without the trailingslash and the protocol. This is required.
+         * Example : 'gatsbyjsexamplewordpress.wordpress.com' or 'www.example-site.com'
+         */
+        baseUrl: "gatsbyjsexamplewordpress.wordpress.com",
         // The protocol. This can be http or https.
-        protocol: 'http',
+        protocol: "http",
         // Indicates whether the site is hosted on wordpress.com.
         // If false, then the assumption is made that the site is self hosted.
         // If true, then the plugin will source its content on wordpress.com using the JSON REST API V2.
         // If your site is hosted on wordpress.org, then set this to false.
         hostingWPCOM: false,
         // If useACF is true, then the source plugin will try to import the Wordpress ACF Plugin contents.
-        // This feature is untested for sites hosted on Wordpress.com.
+        // This feature is untested for sites hosted on wordpress.com.
         // Defaults to true.
         useACF: true,
         // Include specific ACF Option Pages that have a set post ID
@@ -77,23 +75,27 @@ module.exports = {
         auth: {
           // If auth.user and auth.pass are filled, then the source plugin will be allowed
           // to access endpoints that are protected with .htaccess.
-          htaccess_user: 'your-htaccess-username',
-          htaccess_pass: 'your-htaccess-password',
+          htaccess_user: "your-htaccess-username",
+          htaccess_pass: "your-htaccess-password",
           htaccess_sendImmediately: false,
 
           // If hostingWPCOM is true then you will need to communicate with wordpress.com API
           // in order to do that you need to create an app (of type Web) at https://developer.wordpress.com/apps/
           // then add your clientId, clientSecret, username, and password here
-          // Learn about environment variables: https://gatsby.app/env-vars
+          // Learn about environment variables: https://www.gatsbyjs.org/docs/environment-variables
+          // If two-factor authentication is enabled then you need to create an Application-Specific Password,
+          // see https://en.support.wordpress.com/security/two-step-authentication/#application-specific-passwords
           wpcom_app_clientSecret: process.env.WORDPRESS_CLIENT_SECRET,
-          wpcom_app_clientId: '54793',
-          wpcom_user: 'gatsbyjswpexample@gmail.com',
+          wpcom_app_clientId: "54793",
+          wpcom_user: "gatsbyjswpexample@gmail.com",
           wpcom_pass: process.env.WORDPRESS_PASSWORD,
 
           // If you use "JWT Authentication for WP REST API" (https://wordpress.org/plugins/jwt-authentication-for-wp-rest-api/)
+          // or (https://github.com/jonathan-dejong/simple-jwt-authentication) requires jwt_base_path, path can be found in wordpress wp-api.
           // plugin, you can specify user and password to obtain access token and use authenticated requests against wordpress REST API.
           jwt_user: process.env.JWT_USER,
           jwt_pass: process.env.JWT_PASSWORD,
+          jwt_base_path: "/jwt-auth/v1/token" # Default - can skip if you are using https://wordpress.org/plugins/jwt-authentication-for-wp-rest-api/
         },
         // Set verboseOutput to true to display a verbose output on `npm run develop` or `npm run build`
         // It can help you debug specific API Endpoints problems.
@@ -102,8 +104,8 @@ module.exports = {
         perPage: 100,
         // Search and Replace Urls across WordPress content.
         searchAndReplaceContentUrls: {
-          sourceUrl: 'https://source-url.com',
-          replacementUrl: 'https://replacement-url.com',
+          sourceUrl: "https://source-url.com",
+          replacementUrl: "https://replacement-url.com",
         },
         // Set how many simultaneous requests are sent at once.
         concurrentRequests: 10,
@@ -117,24 +119,24 @@ module.exports = {
         // all routes that begin with `yoast` from fetch.
         // Whitelisted routes using glob patterns
         includedRoutes: [
-          '/*/*/categories',
-          '/*/*/posts',
-          '/*/*/pages',
-          '/*/*/media',
-          '/*/*/tags',
-          '/*/*/taxonomies',
-          '/*/*/users',
+          "**/*/*/categories",
+          "**/*/*/posts",
+          "**/*/*/pages",
+          "**/*/*/media",
+          "**/*/*/tags",
+          "**/*/*/taxonomies",
+          "**/*/*/users",
         ],
         // Blacklisted routes using glob patterns
-        excludedRoutes: ['/*/*/posts/1456'],
+        excludedRoutes: ["**/*/*/posts/1456"],
         // use a custom normalizer which is applied after the built-in ones.
         normalizer: function({ entities }) {
-          return entities;
+          return entities
         },
       },
     },
   ],
-};
+}
 ```
 
 ## WordPress Plugins
@@ -154,7 +156,7 @@ plugins.
     [acf-to-rest-api](https://github.com/airesvsg/acf-to-rest-api) installed in
     WordPress.
   - Will pull the `acf: { ... }` fields's contents from any entity which has it
-    attached (pages, posts, medias, ... you choose from in WordPress back-end
+    attached (pages, posts, medias, ... you choose from in WordPress backend
     while creating a Group of Fields).
   - [ACF Pro](https://www.advancedcustomfields.com/pro/) same as ACF :
   - Will work with
@@ -197,13 +199,13 @@ If an endpoint is whitelisted and not blacklisted, it will be fetched. Otherwise
 
 ```javascript
 includedRoutes: [
-  "/*/*/posts",
-  "/*/*/pages",
-  "/*/*/media",
-  "/*/*/categories",
-  "/*/*/tags",
-  "/*/*/taxonomies",
-  "/*/*/users",
+  "**/*/*/posts",
+  "**/*/*/pages",
+  "**/*/*/media",
+  "**/*/*/categories",
+  "**/*/*/tags",
+  "**/*/*/taxonomies",
+  "**/*/*/users",
 ],
 ```
 
@@ -686,24 +688,23 @@ You have a custom post type `movie` and a related custom taxonomy `genre` in you
 
 ```javascript
 function mapMoviesToGenres({ entities }) {
-  const genres = entities.filter((e) => e.__type === `wordpress__wp_genre`);
+  const genres = entities.filter(e => e.__type === `wordpress__wp_genre`)
 
-  return entities.map((e) => {
+  return entities.map(e => {
     if (e.__type === `wordpress__wp_movie`) {
-      let hasGenres =
-        e.genres && Array.isArray(e.genres) && e.categories.length;
+      let hasGenres = e.genres && Array.isArray(e.genres) && e.categories.length
       // Replace genres with links to their nodes.
       if (hasGenres) {
         e.genres___NODE = e.genres.map(
-          (c) => genres.find((gObj) => c === gObj.wordpress_id).id
-        );
-        delete e.genres;
+          c => genres.find(gObj => c === gObj.wordpress_id).id
+        )
+        delete e.genres
       }
     }
-    return e;
-  });
+    return e
+  })
 
-  return entities;
+  return entities
 }
 ```
 
@@ -713,14 +714,14 @@ In your `gatsby-config.js` you can then pass the function to the plugin options:
 module.exports = {
   plugins: [
     {
-      resolve: 'gatsby-source-wordpress',
+      resolve: "gatsby-source-wordpress",
       options: {
         // ...
         normalizer: mapMoviesToGenres,
       },
     },
   ],
-};
+}
 ```
 
 Next to the entities, the object passed to the custom normalizer function also contains other helpful Gatsby functions
@@ -729,10 +730,10 @@ and also your `wordpress-source-plugin` options from `gatsby-config.js`. To lear
 ## Site's `gatsby-node.js` example
 
 ```javascript
-const _ = require(`lodash`);
-const Promise = require(`bluebird`);
-const path = require(`path`);
-const slash = require(`slash`);
+const _ = require(`lodash`)
+const Promise = require(`bluebird`)
+const path = require(`path`)
+const slash = require(`slash`)
 
 // Implement the Gatsby API “createPages”. This is
 // called after the Gatsby bootstrap is finished so you have
@@ -741,7 +742,7 @@ const slash = require(`slash`);
 // Will create pages for WordPress pages (route : /{slug})
 // Will create pages for WordPress posts (route : /post/{slug})
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions;
+  const { createPage } = actions
   return new Promise((resolve, reject) => {
     // The “graphql” function allows us to run arbitrary
     // queries against the local WordPress graphql schema. Think of
@@ -765,18 +766,18 @@ exports.createPages = ({ graphql, actions }) => {
         }
       `
     )
-      .then((result) => {
+      .then(result => {
         if (result.errors) {
-          console.log(result.errors);
-          reject(result.errors);
+          console.log(result.errors)
+          reject(result.errors)
         }
 
         // Create Page pages.
-        const pageTemplate = path.resolve('./src/templates/page.js');
+        const pageTemplate = path.resolve("./src/templates/page.js")
         // We want to create a detailed page for each
         // page node. We'll just use the WordPress Slug for the slug.
         // The Page ID is prefixed with 'PAGE_'
-        _.each(result.data.allWordpressPage.edges, (edge) => {
+        _.each(result.data.allWordpressPage.edges, edge => {
           // Gatsby uses Redux to manage its internal state.
           // Plugins and sites can use functions like "createPage"
           // to interact with Gatsby.
@@ -790,8 +791,8 @@ exports.createPages = ({ graphql, actions }) => {
             context: {
               id: edge.node.id,
             },
-          });
-        });
+          })
+        })
       })
       // ==== END PAGES ====
 
@@ -813,30 +814,30 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           `
-        ).then((result) => {
+        ).then(result => {
           if (result.errors) {
-            console.log(result.errors);
-            reject(result.errors);
+            console.log(result.errors)
+            reject(result.errors)
           }
-          const postTemplate = path.resolve('./src/templates/post.js');
+          const postTemplate = path.resolve("./src/templates/post.js")
           // We want to create a detailed page for each
           // post node. We'll just use the WordPress Slug for the slug.
           // The Post ID is prefixed with 'POST_'
-          _.each(result.data.allWordpressPost.edges, (edge) => {
+          _.each(result.data.allWordpressPost.edges, edge => {
             createPage({
               path: `/${edge.node.slug}/`,
               component: slash(postTemplate),
               context: {
                 id: edge.node.id,
               },
-            });
-          });
-          resolve();
-        });
-      });
+            })
+          })
+          resolve()
+        })
+      })
     // ==== END POSTS ====
-  });
-};
+  })
+}
 ```
 
 ## Troubleshooting
@@ -917,8 +918,8 @@ When running locally, or in other situations that may involve self-signed certif
 To solve this, you can disable Node.js' rejection of unauthorized certificates by adding the following to `gatsby-node.js`:
 
 ```javascript
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
 ```
 
 [dotenv]: https://github.com/motdotla/dotenv
-[envvars]: https://gatsby.app/env-vars
+[envvars]: https://www.gatsbyjs.org/docs/environment-variables

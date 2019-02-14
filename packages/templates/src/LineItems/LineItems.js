@@ -13,7 +13,7 @@ class LineItems extends React.Component<Props> {
       Array.isArray(this.props.lineItems) &&
       this.props.lineItems.length > 0 && (
         <section className="lineItems">
-          <h5 className="h5-amiri">Items</h5>
+          <h5 className="h5-roboto">Items</h5>
           <table cellspacing="0" cellpadding="0" className="lineItems_table">
             <thead className="lineItems_thead">
               <tr className="lineItems_tr">

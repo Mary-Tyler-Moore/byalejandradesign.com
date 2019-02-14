@@ -1,8 +1,6 @@
 /** @flow */
 import * as React from 'react';
 import withSize from 'react-size-components';
-// types
-import type { Props, State } from './types';
 // styles
 import './iframe.sass';
 

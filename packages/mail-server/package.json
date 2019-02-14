@@ -10,6 +10,11 @@
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
   "main": "build/app.js",
+  "workspaces": {
+    "nohoist": [
+      "**"
+    ]
+  },
   "scripts": {
     "prebuild": "run-s clean",
     "build": "parcel build -d build --target node --bundle-node-modules src/app.js",
@@ -30,8 +35,8 @@
     "bluebird": "^3.5.1",
     "express": "^4.16.2",
     "mailgun-js": "^0.21.0",
-    "react": "16.4",
-    "react-dom": "16.4",
+    "react": "16.8.1",
+    "react-dom": "16.8.1",
     "serverless-http": "^1.6.0",
     "smalldash": "^1.1.20"
   },

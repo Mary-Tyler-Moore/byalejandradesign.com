@@ -2,26 +2,30 @@ import * as React from 'react';
 import { graphql } from 'gatsby';
 import ReactMarkdown from 'react-markdown';
 import Layout from '../components/Layout';
+import Head from '../components/Head';
 // styles
 import './markdown.sass';
 
 class MarkdownPage extends React.Component {
+  get title() {
+    return this.props.data.markdownRemark.frontmatter.title;
+  }
+
+  get body() {
+    return this.props.data.markdownRemark.rawMarkdownBody;
+  }
+
   render() {
     return (
-      <Layout
-        location={this.props.location}
-        title={this.props.data.markdownRemark.frontmatter.title}
-      >
-        <h3 className="h3-sourceSans">
-          {this.props.data.markdownRemark.frontmatter.title}
-        </h3>
-        <section className="markdownPage">
-          <ReactMarkdown
-            source={this.props.data.markdownRemark.rawMarkdownBody}
-            className="markdown-sourceSans"
-          />
-        </section>
-      </Layout>
+      <React.Fragment>
+        <Head location={this.props.location} title={this.title} />
+        <Layout>
+          <h3 className="h3-sourceSans">{this.title}</h3>
+          <section className="markdownPage">
+            <ReactMarkdown source={this.body} className="markdown-sourceSans" />
+          </section>
+        </Layout>
+      </React.Fragment>
     );
   }
 }

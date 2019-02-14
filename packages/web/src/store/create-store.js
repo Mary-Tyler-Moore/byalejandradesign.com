@@ -3,7 +3,7 @@ import { throttle } from 'lodash-es';
 import reducer from './root-reducer';
 import useStorage from './use-storage';
 import { loadLocalApplication, saveLocalApplication } from './local-storage';
-import { INVALIDATE } from '@byalejandradesign/server-env';
+import { INVALIDATE, STAGE } from '@byalejandradesign/server-env';
 
 const REFRESH = 86400 * 1000; // daily
 
@@ -20,7 +20,7 @@ const stateDate = application ? application.date : 0;
 const _middlewares = () => {
   const middlewares = [];
 
-  if (process.env.STAGE === 'development') {
+  if (STAGE === 'development') {
     const { logger } = require('redux-logger');
     middlewares.push(logger);
   }
@@ -30,8 +30,7 @@ const _middlewares = () => {
 
 const _createStore = () => {
   const preloadedState =
-    process.env.STAGE !== 'development' &&
-    useStorage(REFRESH, INVALIDATE)(stateDate)
+    STAGE !== 'development' && useStorage(REFRESH, INVALIDATE)(stateDate)
       ? persistedState
       : {};
 
@@ -44,7 +43,7 @@ const _createStore = () => {
   );
 
   // side effects
-  if (process.env.STAGE !== 'development') {
+  if (STAGE !== 'development') {
     store.subscribe(
       throttle(() => {
         const completeState = store.getState();

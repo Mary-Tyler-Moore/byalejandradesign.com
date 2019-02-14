@@ -1,11 +1,15 @@
 import React from 'react';
+import Head from '../components/Head';
 import Layout from '../components/Layout';
 import NotFound from '../components/NotFound';
 
 const NotFoundPage = ({ location }) => (
-  <Layout location={location} title="404">
-    <NotFound />
-  </Layout>
+  <React.Fragment>
+    <Head location={location} title="404" />
+    <Layout>
+      <NotFound />
+    </Layout>
+  </React.Fragment>
 );
 
 export default NotFoundPage;

@@ -24,7 +24,24 @@ module.exports = {
     description:
       'By Alejandra Design is an NYC based ceramic studio specializing in 3D printing and slip-casting.',
     navLayout: {
-      mainNav: ['/home', '/cloud-studio', '/shop/collections', '/contact'],
+      mainNav: [
+        {
+          link: '/',
+          label: 'Home',
+        },
+        {
+          link: '/cloud-studio',
+          label: 'Cloud Studio',
+        },
+        {
+          link: '/shop/collections',
+          label: 'Collections',
+        },
+        {
+          link: '/contact',
+          label: 'Contact',
+        },
+      ],
       footerNav: [
         {
           link: '/faq',
