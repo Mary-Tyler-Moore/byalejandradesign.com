@@ -18,7 +18,12 @@ process.env.GATSBY_INVALIDATE = Date.now();
 process.env.GATSBY_STAGE = stage;
 
 // big deps
-parallel('run', 'build', '--scope', 'gatsby-source-wordpress');
+parallel(
+  'run',
+  'build',
+  '--scope',
+  '@byalejandradesign/gatsby-source-wordpress'
+);
 
 const deps = [
   'checkout-objects',

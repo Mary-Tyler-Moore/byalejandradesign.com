@@ -37,7 +37,12 @@ const apps = ['mail-server', 'checkout-server'];
 
 // watch deps
 const pipeline = pipeAsync(
-  parallel('run', 'watch', '--scope', 'gatsby-source-wordpress'),
+  parallel(
+    'run',
+    'watch',
+    '--scope',
+    '@byalejandradesign/gatsby-source-wordpress'
+  ),
   throttler,
   parallel('run', 'watch', '--scope', `@byalejandradesign/{${deps.join(',')}}`),
   throttler,
