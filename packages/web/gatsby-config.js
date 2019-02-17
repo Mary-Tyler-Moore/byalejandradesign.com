@@ -105,6 +105,7 @@ module.exports = {
           '/wp-rest-api-log/**',
         ],
         normalizer: normalizers,
+        concurrentRequests: 25,
       },
     },
     {
