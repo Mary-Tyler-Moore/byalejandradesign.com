@@ -54,6 +54,7 @@ FluidImage.defaultProps = {
 /** Default image sharp fragment for wp media */
 export const query = graphql`
   fragment FluidImageFragment on wordpress__wp_media {
+    id
     localFile {
       childImageSharp {
         id
