@@ -1,10 +1,10 @@
 /** @flow */
-import * as React from 'react'
-
 export type Props = {
-
-}
-
-export type State = {
-
-}
+  sizes: {
+    component: {
+      width: number,
+    },
+  },
+  childRef: () => HTMLElement<T>,
+  ratio: number,
+};
