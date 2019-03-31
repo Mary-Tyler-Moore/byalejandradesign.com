@@ -19,7 +19,7 @@ type State = {
 };
 
 const TRANSITION_LENGTH = 450;
-const SLIDESHOW_LENGTH = 1000 * 3;
+const SLIDESHOW_LENGTH = 1000 * 4;
 
 /** slide show for product style fluid images */
 class SlideShow extends React.PureComponent<Props, State> {
