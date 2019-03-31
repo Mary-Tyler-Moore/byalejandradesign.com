@@ -1,5 +1,8 @@
 /** @flow */
 import * as React from 'react';
+import { Transition } from 'react-transition-group';
+import classNames from 'classnames';
+
 import FluidImage from '../FluidImage';
 // types
 import type { ImageNode } from '@byalejandradesign/data-objects';
@@ -15,15 +18,33 @@ type State = {
   interval: IntervalID | null,
 };
 
+const TRANSITION_LENGTH = 450;
+const SLIDESHOW_LENGTH = 1000 * 3;
+
 /** slide show for product style fluid images */
 class SlideShow extends React.PureComponent<Props, State> {
   state = {
+    transitioning: false,
     active: 0,
     interval: null,
   };
 
+  get length() {
+    return this.props.images.length;
+  }
+
+  get images() {
+    const { active } = this.state;
+    const { images } = this.props;
+    const currentIndex = active % this.length;
+    const prevIndex = (active + this.length - 1) % this.length;
+    const nextIndex = (active + this.length + 1) % this.length;
+
+    return [images[prevIndex], images[currentIndex]];
+  }
+
   componentDidMount() {
-    if (this.props.images.length > 1) this.startCarousel();
+    if (this.length > 1) this.startCarousel();
   }
 
   componentWillUnmount() {
@@ -32,39 +53,49 @@ class SlideShow extends React.PureComponent<Props, State> {
 
   startCarousel = () => {
     this.setState({
-      interval: setInterval(this.nextImage, 3000),
+      interval: setInterval(this.nextImage, SLIDESHOW_LENGTH),
     });
   };
 
   stopCarousel = () => {
-    if (this.state.interval) clearInterval(this.state.interval);
+    const { interval } = this.state;
+    if (interval) clearInterval(interval);
   };
 
   nextImage = () => {
-    this.setState((state) => ({
-      active: (state.active + 1) % this.props.images.length,
-    }));
-  };
+    this.setState({
+      transitioning: true,
+    });
 
-  className = (i: number) => {
-    return `slideshow_img ${
-      i === this.state.active ? `slideshow_img-active` : ``
-    }${i === this.state.active - 1 ? `slideshow_img-last` : ``}${
-      i === this.state.active + 1 ? `slideshow_img-next` : ``
-    }`;
+    setTimeout(() => {
+      this.setState((state) => ({
+        active: state.active + 1,
+        transitioning: false,
+      }));
+    }, TRANSITION_LENGTH);
   };
 
   render() {
+    const { active, transitioning } = this.state;
     return (
-      <section className="slideshow_imgContainer">
-        {this.props.images.map((image, i) => (
-          <FluidImage
-            key={i}
-            className={this.className(i)}
-            localFile={image.localFile}
-          />
-        ))}
-      </section>
+      <React.Fragment>
+        <Transition in={transitioning} timeout={TRANSITION_LENGTH}>
+          {(state) => (
+            <section className="slideshow_imgContainer">
+              {this.images.map((image) => (
+                <FluidImage
+                  key={image.id}
+                  localFile={image.localFile}
+                  className={classNames({
+                    slideshow_img: true,
+                    [`slideshow_img-${state}`]: true,
+                  })}
+                />
+              ))}
+            </section>
+          )}
+        </Transition>
+      </React.Fragment>
     );
   }
 }

@@ -6,25 +6,24 @@
     padding: 0
     position: relative
     width: 100%
+    overflow: hidden
+
+    +flex
 
   &_img
-    position: absolute
+    +transition(transform 450ms ease)
+
     margin: 0
     width: 100%
-    opacity: 0
-    top: 0
-    left: 0
+    flex-shrink: 0
 
-    +transition(0.45s opacity)
+    &-entering
+      transform: translateX(-100%)
 
-    &-active
-      position: relative
-      opacity: 1
+    &-exiting
+      +transition(transform 0ms)
 
-    &-last
-      position: absolute
-      opacity: 1
+      transform: translateX(0%)
 
-    &-next
-      position: absolute
-      opacity: 1
+    &-exited
+      transform: translateX(0%)
