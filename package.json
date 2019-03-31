@@ -77,7 +77,6 @@
     "standard": "^8.4.0"
   },
   "resolutions": {
-    "**/event-stream": "^4.0.1",
-    "**/got": "^9.0.0"
+    "**/event-stream": "^4.0.1"
   }
 }
