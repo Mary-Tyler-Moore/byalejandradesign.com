@@ -6,6 +6,8 @@ import Layout from '../components/Layout';
 import Head from '../components/Head';
 import Iframe from '../components/Iframe';
 
+import photo from '../assets/west-elm-pop-up.jpg';
+
 import './cloud-studio.sass';
 import './index.sass';
 
@@ -13,21 +15,21 @@ const IndexPage = ({ data, location }) => (
   <React.Fragment>
     <Head location={location} />
     <Layout>
-      <h3 className="h3-roboto">West Elm Pop-Up Show</h3>
-      <p className="body-sourceSans-1">
-        Very excited to announce that we will be at the West Elm Pop Up show on
-        February 24th from 2-5pm!
-      </p>
+      <section className="news_headline">
+        <h3 className="h3-roboto">West Elm Pop-Up Show</h3>
+        <p className="body-sourceSans-1">
+          Very excited to announce that we will be at the West Elm Broadway Pop
+          Up show on May 4th from 12-5pm! I will be working with Poy T. Granati.
+          She makes the most amazing paper flowers! See more of her work{' '}
+          <a href="https://summerspace.studio/">here</a>
+        </p>
+      </section>
       <section className="news">
+        <img src={photo} style={{ width: '100%' }} />
         <Iframe
-          src="https://www.youtube.com/embed/ZiuBDfmBtM8?controls=1&rel=0&modestbranding=1&showinfo=0"
-          frameBorder="0"
-          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-        <Iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.6452173426746!2d-73.99330298418744!3d40.703810679332854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a3141b489cf%3A0x137db3ff6c40dbae!2swest+elm!5e0!3m2!1sen!2sus!4v1548607544501"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30269.046148227888!2d-73.97753803400416!3d40.78261995760309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259bcde4ee591%3A0xbf1b631afb8b1875!2swest+elm!5e0!3m2!1sen!2sus!4v1554056152842!5m2!1sen!2sus"
           width="100%"
+          height="100%"
           frameBorder="0"
           style={{ border: 0 }}
           allowFullScreen
