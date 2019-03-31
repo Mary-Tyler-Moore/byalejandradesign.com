@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { PostExcerpt } from '../components/CloudStudio';
 import { CollectionList } from '../components/Collections';
+import { HeroMain } from '../components/Hero';
 import Layout from '../components/Layout';
 import Head from '../components/Head';
 import Iframe from '../components/Iframe';
@@ -14,9 +15,9 @@ import './index.sass';
 const IndexPage = ({ data, location }) => (
   <React.Fragment>
     <Head location={location} />
-    <Layout>
+    <Layout hero={HeroMain}>
       <section className="news_headline">
-        <h3 className="h3-roboto">West Elm Pop-Up Show</h3>
+        <h3 className="h3-roboto">News</h3>
         <p className="body-sourceSans-1">
           Very excited to announce that we will be at the West Elm Broadway Pop
           Up show on May 4th from 12-5pm! I will be working with Poy T. Granati.
