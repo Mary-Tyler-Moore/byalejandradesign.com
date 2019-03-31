@@ -53,21 +53,9 @@ functions:
       eventType: 'origin-response'
 
 custom:
-  domains:
-    staging:
-      - staging.byalejandradesign.com
-    production:
-      - byalejandradesign.com
-      - www.byalejandradesign.com
-    testing:
-      - testing.byalejandradesign.com
-  bucket:
-    staging: staging--byalejandradesign.com
-    production: production--byalejandradesign.com
-    testing: testing-byalejandradesign.com
   # custom plugin syntax
   s3Sync:
-    - bucketName: '${self:custom.bucket.${self:provider.stage}}'
+    - bucketName: ${file(./deployment/${self:provider.stage}.json):bucket}
       localDir: public
 
 resources:
@@ -76,24 +64,7 @@ resources:
       Type: 'AWS::S3::Bucket'
       Properties:
         AccessControl: Private
-        BucketName: '${self:custom.bucket.${self:provider.stage}}'
-    # WebsiteBucketPolicy:
-    #   Type:                                 'AWS::S3::BucketPolicy'
-    #   Properties:
-    #     Bucket:
-    #       Ref:                              WebsiteBucket
-    #     PolicyDocument:
-    #       Statement:
-    #         - Action:
-    #             - 's3:GetObject'
-    #           Effect:                       'Allow'
-    #           Principal:                    '*'
-    #           Resource:                     'arn:aws:s3:::${self:custom.bucket.${self:provider.stage}}'
-    # Principal:
-    #   Fn::Join:
-    #     - ''
-    #     - - 'arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity '
-    #       - Ref:                  CloudFrontOriginIdentity
+        BucketName: ${file(./deployment/${self:provider.stage}.json):bucket}
     CloudFrontOriginIdentity:
       Type: 'AWS::CloudFront::CloudFrontOriginAccessIdentity'
       Properties:
@@ -102,8 +73,8 @@ resources:
     WebsiteDistribution:
       Type: 'AWS::CloudFront::Distribution'
       Properties:
-        # Aliases: self:custom.domains.${self:provider.stage}
         DistributionConfig:
+          Aliases: ${file(./deployment/${self:provider.stage}.json):domains}
           DefaultCacheBehavior:
             TargetOriginId: 'WebsiteBucketOrigin'
             ViewerProtocolPolicy: 'redirect-to-https'
@@ -136,3 +107,6 @@ resources:
               ErrorCachingMinTTL: 0
               ResponseCode: 200
               ResponsePagePath: /index.html
+          ViewerCertificate:
+            AcmCertificateArn: arn:aws:acm:us-east-1:143911967951:certificate/49bd72d5-3c50-4c06-a0bb-e7b46cc609db
+            SslSupportMethod: sni-only
