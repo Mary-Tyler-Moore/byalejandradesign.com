@@ -53,27 +53,13 @@ class Mailgun<T> {
     });
 
   // list adder
-  lists = (
-    lists: string | Array<string>,
-    members: Array<Member>
-  ): Promise<string> =>
+  subscribe = (list: string, members: Array<Member>): Promise<string> =>
     new Promise((res, rej) => {
       this.api
-        .lists(safeArray(lists))
+        .lists(list)
         .members()
-        .add(
-          { members: safeArray(members), subscribed: true },
-          (error, body) => {
-            this.api.messages().send(message, (error, body) => {
-              if (error) {
-                rej(error);
-              } else if (body) {
-                res(body);
-              } else {
-                rej('no mailgun response');
-              }
-            });
-          }
+        .add({ members: safeArray(members), subscribed: true }, (error, body) =>
+          error ? rej(error) : res(body)
         );
     });
 

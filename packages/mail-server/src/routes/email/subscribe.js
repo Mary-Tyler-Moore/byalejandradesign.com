@@ -5,7 +5,8 @@ import env from '@byalejandradesign/server-env';
 
 type CTX = {
   body: {
-    email: string,
+    members: string,
+    list: string,
   },
   id?: string,
   message?: string,
@@ -13,14 +14,21 @@ type CTX = {
 };
 
 const validateBody = (body): boolean %checks => {
-  return Boolean(body.email);
+  return Boolean(body && body.members);
 };
 
-const signup = (ctx: CTX): Promise<CTX> =>
+const subscribe = (ctx: CTX): Promise<CTX> =>
   new Promise((res, rej) => {
     if (validateBody(ctx.body)) {
+      const { members, list } = ctx.body;
+
+      const defaultList =
+        env.STAGE === 'production'
+          ? 'mailer@mail.byalejandradesign.com'
+          : 'mailer@mail--staging.byalejandradesign.com';
+
       mailgun
-        .send(ctx.mailgunMessage)
+        .subscribe(list || defaultList, members)
         .then((response) => {
           res({
             ...ctx,
@@ -37,10 +45,36 @@ const signup = (ctx: CTX): Promise<CTX> =>
     } else {
       rej({
         ...ctx,
-        status: 502,
-        message: 'no email available for signup',
+        status: 402,
+        message: 'message body invalid',
       });
     }
   });
 
-export default pipeline(signup);
+const notify = (ctx: CTX): Promise<CTX> =>
+  new Promise((res, rej) => {
+    const mailgunMessage = {
+      from: env.EMAIL_RECIPIENT,
+      to: env.EMAIL_RECIPIENT,
+      subject: 'New Email Subscribers!',
+      text: JSON.stringify(ctx.body, null, 2),
+    };
+
+    mailgun
+      .send(mailgunMessage)
+      .then((response) => {
+        res({
+          ...ctx,
+          ...response,
+        });
+      })
+      .catch((error) => {
+        rej({
+          ...ctx,
+          status: 502,
+          message: error || 'invalid gateway response',
+        });
+      });
+  });
+
+export default pipeline(subscribe, notify);
