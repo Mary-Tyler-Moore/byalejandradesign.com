@@ -55,7 +55,7 @@ class ShopProduct extends React.Component {
         </Head>
         <Layout
           hero={() => (
-            <Hero image={this.image} filter={0.5}>
+            <Hero image={this.image} filter={0.5} fill="half">
               {!this.props.sizes.mobile && (
                 <article className="singleCollection_headerText">
                   <h2>{this.collection.name}</h2>
