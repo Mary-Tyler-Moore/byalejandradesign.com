@@ -38,7 +38,6 @@ class SlideShow extends React.PureComponent<Props, State> {
     const { images } = this.props;
     const currentIndex = active % this.length;
     const prevIndex = (active + this.length - 1) % this.length;
-    const nextIndex = (active + this.length + 1) % this.length;
 
     return [images[prevIndex], images[currentIndex]];
   }
@@ -76,7 +75,7 @@ class SlideShow extends React.PureComponent<Props, State> {
   };
 
   render() {
-    const { active, transitioning } = this.state;
+    const { transitioning } = this.state;
     return (
       <React.Fragment>
         <Transition in={transitioning} timeout={TRANSITION_LENGTH}>
