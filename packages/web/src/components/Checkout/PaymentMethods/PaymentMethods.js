@@ -5,7 +5,7 @@ import { paymentMethodType } from '../redux/actions/payment-methods-actions';
 // components
 import CreditCard from '../CreditCard';
 import Paypal from '../Paypal';
-import Venmo from '../Venmo';
+// import Venmo from '../Venmo';
 import Braintree from '../Braintree';
 import DataCollector from '../DataCollector';
 import PaymentOption from '../PaymentOption';
@@ -13,8 +13,8 @@ import PaymentOption from '../PaymentOption';
 import './payment-methods.sass';
 // assets
 import paypalLogo from 'payment-icons/svg/flat/paypal.svg';
-import venmoLogo from './blue_venmo_acceptance_mark.svg';
 import creditLogo from 'payment-icons/svg/flat/default.svg';
+// import venmoLogo from './blue_venmo_acceptance_mark.svg';
 
 class PaymentMethods extends React.PureComponent {
   renderPaymentMethod = () => {
