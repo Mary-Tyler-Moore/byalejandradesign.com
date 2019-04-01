@@ -25,6 +25,18 @@ const About = ({ location, ...props }) => (
             both. And so, with the help of a 3D printer I have been bringing
             these designs to life!
           </p>
+          <p className="body-sourceSans-2">
+            <em>
+              By Alejandra Design focuses on creating intricate home decor
+              products. We seek to challenge the boundaries of fabrication with
+              complex patterns that define different geometries. Alejandra is a
+              designer with a background in architecture and computational
+              design. Her fascination with 3D printing and ceramic craftsmanship
+              has led her to develop a workflow where she brings to life unique
+              shapes. We are based in New York City and we source our products
+              locally.
+            </em>
+          </p>
         </article>
       </section>
     </Layout>
