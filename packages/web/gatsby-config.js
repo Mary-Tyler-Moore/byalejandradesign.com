@@ -38,6 +38,10 @@ module.exports = {
           label: 'Collections',
         },
         {
+          link: '/about',
+          label: 'About',
+        },
+        {
           link: '/contact',
           label: 'Contact',
         },
