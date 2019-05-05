@@ -30,7 +30,7 @@ const rejectFromCreateRemoteNode = (...args) =>
 /**
  * Checks to ensure a file node is not already created
  */
-const reuseFileNode = ({ e, ...ctx }) =>
+const reuseFileNode = ({ e, getNode, ...ctx }) =>
   new Promise((res, rej) => {
     // extract gatsby functions
     const { cache, touchNode } = ctx
@@ -41,13 +41,17 @@ const reuseFileNode = ({ e, ...ctx }) =>
       // If we have cached media data and it wasn't modified, reuse
       // previously created file node to not try to redownload
       if (cacheMediaData && e.modified === cacheMediaData.modified) {
-        const fileNodeID = cacheMediaData.fileNodeID
-        touchNode({ nodeId: cacheMediaData.fileNodeID })
+        const fileNode = getNode(cachedMediaData.fileNodeID)
+
+        if (fileNode) {
+          const fileNodeID = cachedMediaData.fileNodeID
+          touchNode({ nodeId: fileNodeID })
+        }
         // fileNodeID is our flag in order to download a file
         // add it to the ctx of the entity
-        res({ e, fileNodeID, mediaDataCacheKey, ...ctx })
+        res({ e, fileNodeID, getNode, mediaDataCacheKey, ...ctx })
       } else {
-        res({ e, mediaDataCacheKey, ...ctx })
+        res({ e, mediaDataCacheKey, getNode, ...ctx })
       }
     })
   })
