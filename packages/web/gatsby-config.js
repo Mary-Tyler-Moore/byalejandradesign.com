@@ -87,9 +87,7 @@ module.exports = {
     },
     'gatsby-transformer-remark',
     {
-      resolve: require.resolve(
-        path.resolve(__dirname, '../gatsby-source-wordpress/package.json')
-      ),
+      resolve: 'gatsby-source-wordpress',
       options: {
         // The base url to your WP site.
         baseUrl: 'api.artetexture.com',
@@ -109,7 +107,7 @@ module.exports = {
           '/wp-rest-api-log/**',
         ],
         normalizer: normalizers,
-        concurrentRequests: 50,
+        concurrentRequests: 30,
       },
     },
     {
