@@ -17,10 +17,13 @@
   },
   "scripts": {
     "bootstrap": "lerna bootstrap && lerna link",
+    "predeploy": "node scripts/fix-concurrency",
     "deploy": "STAGE=production node scripts/deploy.js",
+    "predevelop": "node scripts/fix-concurrency",
     "develop": "STAGE=development node scripts/develop.js",
     "install-types": "node scripts/install-types.js",
     "prettier": "prettier 'packages/**/*.{.test.js,.stories.js,js,jsx,json}' --write",
+    "prestage": "node scripts/fix-concurrency",
     "stage": "STAGE=staging node scripts/deploy.js",
     "package": "STAGE=staging node scripts/package.js",
     "symlink-types": "flow-mono create-symlinks .flowconfig",
