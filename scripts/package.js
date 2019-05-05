@@ -41,12 +41,7 @@ const apps = ['mail-server', 'checkout-server'];
 parallel('run', 'build', '--scope', `@byalejandradesign/{${apps.join(',')}}`);
 
 // build frontend apps
-const gatsby = parallel('run', `build`, '--scope', `@byalejandradesign/web`);
-
-gatsby.on('error', (err) => {
-  console.error(error);
-  process.exit();
-});
+parallel('run', `build`, '--scope', `@byalejandradesign/web`);
 
 // package with serverless framework
 const serverless = ['mail-server', 'checkout-server', 'web'];
