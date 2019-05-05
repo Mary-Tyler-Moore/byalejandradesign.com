@@ -16,26 +16,36 @@ const About = ({ location, ...props }) => (
           <h4 className="h4-sourceSans" style={{ marginTop: 0 }}>
             About
           </h4>
+          <h5 className="h5-sourceSans">By Alejandra Design</h5>
           <p className="body-sourceSans-1">
-            I’m a designer based in NYC with a background in architecture and
-            computational design. I have always been curious to learn new
-            techniques and materials. For a few years I have been getting my
-            hands dirty making pottery while creating different geometries
-            digitally. Not so long ago I started researching for a way to merge
-            both. And so, with the help of a 3D printer I have been bringing
-            these designs to life!
+            By Alejandra Design focuses on creating intricate design products
+            for both home décor and wearable art. The products are designed
+            using computational algorithms and printed in-house with our 3D
+            printer. The final pieces are made using slipcasting technique and
+            fired in a kiln. Each piece is then hand glazed to create varying
+            effects and ends up with different patterns and beautiful geometric
+            results!
           </p>
-          <p className="body-sourceSans-2">
-            <em>
-              By Alejandra Design focuses on creating intricate home decor
-              products. We seek to challenge the boundaries of fabrication with
-              complex patterns that define different geometries. Alejandra is a
-              designer with a background in architecture and computational
-              design. Her fascination with 3D printing and ceramic craftsmanship
-              has led her to develop a workflow where she brings to life unique
-              shapes. We are based in New York City and we source our products
-              locally.
-            </em>
+          <h5 className="h5-sourceSans">Meet the designer</h5>
+          <p className="body-sourceSans-1">
+            Alejandra is an architect with a great curiosity in both
+            computational design and fabrication. Her architectural studies led
+            her to live in multiple cities, but she ultimately settled in her
+            favorite one: NYC. Shortly after moving, she started taking
+            sculpture and ceramic classes while developing new scripted
+            geometries. After quite a lot of experimentation, she found a
+            workflow to bring her intricate designs to life and started By
+            Alejandra Design.
+          </p>
+          <h5 className="h5-sourceSans">Explore by Collections</h5>
+          <p className="body-sourceSans-1">
+            Collections are products curated based on technique, color and/or
+            material. Items in a collection are made to be combined easily with
+            one another but feel free to mix and match if it suits your taste!
+          </p>
+          <h5 className="h5-sourceSans">Cloud Studio</h5>
+          <p className="body-sourceSans-1">
+            This is a virtual studio where we share our creative process.
           </p>
         </article>
       </section>
