@@ -11,7 +11,9 @@ class CollectionEdges extends React.Component {
   }
 
   get edges() {
-    return this.props.data.allWordpressWpCollections.edges;
+    return this.props.data.allWordpressWpCollections.edges
+      .slice()
+      .sort((a, b) => parseInt(a.node.acf.order) - parseInt(b.node.acf.order));
   }
 
   get image() {
