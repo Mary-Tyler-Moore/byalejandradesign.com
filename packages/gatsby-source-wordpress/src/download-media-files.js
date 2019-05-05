@@ -30,10 +30,10 @@ const rejectFromCreateRemoteNode = (...args) =>
 /**
  * Checks to ensure a file node is not already created
  */
-const reuseFileNode = ({ e, getNode, ...ctx }) =>
+const reuseFileNode = ({ e, ...ctx }) =>
   new Promise((res, rej) => {
     // extract gatsby functions
-    const { cache, touchNode } = ctx
+    const { cache, touchNode, getNode } = ctx
 
     const mediaDataCacheKey = `wordpress-media-${e.wordpress_id}`
 
@@ -41,17 +41,17 @@ const reuseFileNode = ({ e, getNode, ...ctx }) =>
       // If we have cached media data and it wasn't modified, reuse
       // previously created file node to not try to redownload
       if (cacheMediaData && e.modified === cacheMediaData.modified) {
-        const fileNode = getNode(cachedMediaData.fileNodeID)
+        const fileNode = getNode(cacheMediaData.fileNodeID)
 
         if (fileNode) {
-          const fileNodeID = cachedMediaData.fileNodeID
+          const fileNodeID = cacheMediaData.fileNodeID
           touchNode({ nodeId: fileNodeID })
+          // fileNodeID is our flag in order to download a file
+          // add it to the ctx of the entity
+          res({ e, fileNodeID, mediaDataCacheKey, ...ctx })
         }
-        // fileNodeID is our flag in order to download a file
-        // add it to the ctx of the entity
-        res({ e, fileNodeID, getNode, mediaDataCacheKey, ...ctx })
       } else {
-        res({ e, mediaDataCacheKey, getNode, ...ctx })
+        res({ e, mediaDataCacheKey, ...ctx })
       }
     })
   })
