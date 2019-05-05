@@ -16,9 +16,12 @@ const CollectionList = ({ edges }) => (
       </p>
     </section>
     <section className="collectionList">
-      {edges.map(({ node }) => (
-        <CollectionExcerpt key={node.id} node={node} />
-      ))}
+      {edges
+        .slice()
+        .sort((a, b) => parseInt(a.node.acf.order) - parseInt(b.node.acf.order))
+        .map(({ node }) => (
+          <CollectionExcerpt key={node.id} node={node} />
+        ))}
     </section>
   </React.Fragment>
 );
