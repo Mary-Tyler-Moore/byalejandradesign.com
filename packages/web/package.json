@@ -25,7 +25,6 @@
     "@babel/runtime": "^7.1.2",
     "@byalejandradesign/checkout-objects": "^0.0.2",
     "@byalejandradesign/data-objects": "^0.0.2",
-    "@byalejandradesign/gatsby-source-wordpress": "^3.0.14",
     "@byalejandradesign/server-env": "^0.0.3",
     "@byalejandradesign/templates": "^0.0.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.5",
