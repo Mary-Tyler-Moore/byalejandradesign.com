@@ -1,11 +1,7 @@
-/** @flow */
-import checkRequired from './check-required';
 import { stringish } from 'smalldash';
-// types
-import type { Customer } from '../objects';
-import type { ValidationResponse } from './types';
+import checkRequired from './check-required';
 
-const validateCustomer = (customer: Customer): ValidationResponse => {
+const validateCustomer = (customer) => {
   const invalidFields = checkRequired(customer, stringish);
 
   return {

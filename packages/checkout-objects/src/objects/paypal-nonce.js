@@ -1,21 +1,6 @@
-/** @flow */
 import paypalAddress from './paypal-address';
-import type { PaypalAddress } from './paypal-address';
 
-export type PaypalNonce = {
-  +details: {
-    +countryCode: string,
-    +email: string,
-    +firstName: string,
-    +lastName: string,
-    +payerId: string,
-  },
-  +shippingAddress: PaypalAddress,
-  +nonce: string,
-  +type: 'PayPalAccount',
-};
-
-const paypalNonce: PaypalNonce = {
+const paypalNonce = {
   details: {
     countryCode: '',
     email: '',

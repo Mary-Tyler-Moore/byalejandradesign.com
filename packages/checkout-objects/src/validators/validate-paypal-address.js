@@ -1,11 +1,7 @@
-/** @flow */
-import checkRequired from './check-required';
 import { stringish } from 'smalldash';
-// types
-import type { ServerAddress } from '../objects';
-import type { ValidationResponse, Check } from './types';
+import checkRequired from './check-required';
 
-const validateServerAddress = (address: ServerAddress): ValidationResponse => {
+const validateServerAddress = (address) => {
   const { extendedAddress, ...requiredFields } = address;
 
   const invalidFields = checkRequired(requiredFields, stringish);

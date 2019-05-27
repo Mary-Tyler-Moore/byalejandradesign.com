@@ -1,18 +1,6 @@
-/** @flow */
 import defaults from './defaults';
 
-export type ServerAddress = {
-  +firstName: string,
-  +lastName: string,
-  +streetAddress: string,
-  +extendedAddress: string,
-  +locality: string,
-  +region: string,
-  +postalCode: string,
-  +countryCodeAlpha2: string,
-};
-
-const serverAddress: ServerAddress = {
+const serverAddress = {
   firstName: defaults('', 'Nick'),
   lastName: defaults('', 'Myers'),
   streetAddress: defaults('', '1000 8th St. W'),

@@ -1,7 +1,4 @@
-/** @flow */
-type Defaults = <A, B>(prod: A, dev: B) => A | B;
-
-const defaults: Defaults = (prod, dev) => {
+const defaults = (prod, dev) => {
   const stage = process.env.STAGE
     ? process.env.STAGE
     : process.env.GATSBY_STAGE

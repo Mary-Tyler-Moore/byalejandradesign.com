@@ -1,9 +1,6 @@
-/** @flow */
 import uuid from 'uuid/v1';
 
-type OrderID = () => string;
-
-const orderId: OrderID = () =>
+const orderId = () =>
   uuid()
     .replace(/-/gi, '')
     .slice(0, 16);

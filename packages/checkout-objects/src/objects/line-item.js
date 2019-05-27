@@ -1,17 +1,6 @@
-/** @flow */
 import defaults from './defaults';
 
-export type LineItem = {
-  +name: string,
-  +productCode: string,
-  +description: string,
-  +quantity: number,
-  +unitAmount: number,
-  +totalAmount: number,
-  +kind: 'debit' | 'credit',
-};
-
-const lineItem: LineItem = {
+const lineItem = {
   name: defaults('', 'shoreline-cups'),
   productCode: defaults('', '01234'),
   description: defaults('', 'a beautiful cup from shoreline collection'),

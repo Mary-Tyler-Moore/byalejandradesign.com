@@ -1,8 +1,5 @@
-/** @flow */
-import type { Address, PaypalAddress } from '../objects';
-
 /** Converts a redux address to an address compatible with paypal */
-function addressToPaypalAddress(address: Address): PaypalAddress {
+function addressToPaypalAddress(address) {
   return {
     recipientName: `${address.firstName} ${address.lastName}`,
     line1: address.streetAddress1,

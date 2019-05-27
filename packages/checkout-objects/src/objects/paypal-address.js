@@ -1,17 +1,6 @@
-/** @flow */
 import defaults from './defaults';
 
-export type PaypalAddress = {
-  +recipientName: string,
-  +line1: string,
-  +line2: string,
-  +city: string,
-  +state: string,
-  +postalCode: string,
-  +countryCode: string,
-};
-
-const paypalAddress: PaypalAddress = {
+const paypalAddress = {
   recipientName: defaults('', 'Nick Myers'),
   line1: defaults('', '1000 8th St. W'),
   line2: defaults('', 'Apt. 1C'),
