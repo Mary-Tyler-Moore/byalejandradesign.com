@@ -2,9 +2,8 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-version: 2.0
+version: 2.1
 jobs:
-
   # install dependencies and setup
   setup:
     working_directory: ~/byalejandradesign.com
@@ -38,6 +37,10 @@ jobs:
     working_directory: ~/byalejandradesign.com
     docker:
       - image: circleci/node:10.13-browsers
+    branches:
+      only:
+        - staging
+        - master
     steps:
       # export branch variable
       - run:
@@ -61,19 +64,3 @@ jobs:
             - /packages/*/.cache
             - /packages/*/build
           key: v1-dependencies-{{ checksum "package.json" }}
-
-workflows:
-  version: 2
-  test:
-    jobs:
-      - setup
-      - test
-      - cleanup
-  deploy:
-    jobs:
-      - deploy:
-          filters:
-            branches:
-              only:
-                - staging
-                - master
