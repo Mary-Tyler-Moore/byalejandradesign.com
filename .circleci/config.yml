@@ -29,16 +29,19 @@ jobs:
           name: Install Local NPM Modules
           command: yarn && yarn bootstrap
 
+
   # run tests
   test:
     executor: node
     steps:
+      - checkout
       - run: yarn test
 
   # build and deploy
   deploy:
     executor: node
     steps:
+      - checkout
       # export branch variable
       - run:
           name: Setup Branch Variable
@@ -52,6 +55,7 @@ jobs:
   cleanup:
     executor: node
     steps:
+      - checkout
       - save_cache:
           paths:
             - node_modules
@@ -74,9 +78,7 @@ workflows:
                 - staging
                 - master
           requires:
-            - setup
             - test
       - cleanup:
           requires:
-            - test
             - deploy
