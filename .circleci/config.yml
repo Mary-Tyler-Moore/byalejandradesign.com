@@ -4,7 +4,9 @@
 #
 version: 2.0
 jobs:
-  build:
+
+  # install dependencies and setup
+  setup:
     working_directory: ~/byalejandradesign.com
     docker:
       - image: circleci/node:10.13-browsers
@@ -22,15 +24,36 @@ jobs:
       - run:
           name: Install Local NPM Modules
           command: yarn && yarn bootstrap
+
+  # run tests
+  test:
+    working_directory: ~/byalejandradesign.com
+    docker:
+      - image: circleci/node:10.13-browsers
+    steps:
+      - run: yarn test
+
+  # build and deploy
+  deploy:
+    working_directory: ~/byalejandradesign.com
+    docker:
+      - image: circleci/node:10.13-browsers
+    steps:
+      # export branch variable
       - run:
           name: Setup Branch Variable
-          command: echo $CIRCLE_BRANCH >> $BRANCH # Redirect MY_ENV_VAR into $BASH_ENV
-      # run tests!
-      # - run: yarn test
+          command: echo $CIRCLE_BRANCH >> $BRANCH
+      # build project
       - run:
           name: Build Project
           command: yarn package
-      # cache build, cache and node_modules
+
+  # cleanup and cache dependencies
+  cleanup:
+    working_directory: ~/byalejandradesign.com
+    docker:
+      - image: circleci/node:10.13-browsers
+    steps:
       - save_cache:
           paths:
             - node_modules
@@ -41,9 +64,14 @@ jobs:
 
 workflows:
   version: 2
-  main:
+  test:
     jobs:
-      - build:
+      - setup
+      - test
+      - cleanup
+  deploy:
+    jobs:
+      - deploy:
           filters:
             branches:
               only:
