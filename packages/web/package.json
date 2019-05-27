@@ -12,11 +12,6 @@
   },
   "license": "ISC",
   "author": "Nick Myers <nickmyers111@gmail.com>",
-  "workspaces": {
-    "nohoist": [
-      "**"
-    ]
-  },
   "scripts": {
     "build": "gatsby build",
     "watch": "gatsby develop"
