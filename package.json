@@ -17,6 +17,7 @@
     "prestage": "node scripts/fix-concurrency",
     "stage": "STAGE=staging node scripts/deploy.js",
     "package": "STAGE=staging node scripts/package.js",
+    "pretest": "STAGE=test node scripts/build-deps.js",
     "test": "jest"
   },
   "devDependencies": {
