@@ -10,10 +10,10 @@ executors:
       - image: circleci/node:10.13-browsers
     working_directory: ~/byalejandradesign.com
 
-jobs:
+commands:
   # install dependencies and setup
   setup:
-    executor: node
+    description: Checkout and Install Dependencies
     steps:
       - checkout
       # install package managers
@@ -29,19 +29,16 @@ jobs:
           name: Install Local NPM Modules
           command: yarn && yarn bootstrap
 
-
-  # run tests
   test:
-    executor: node
+    description: Run Tests
     steps:
-      - checkout
-      - run: yarn test
+      - run:
+          name: Run Tests
+          command: yarn test
 
-  # build and deploy
   deploy:
-    executor: node
+    description: Deploy
     steps:
-      - checkout
       # export branch variable
       - run:
           name: Setup Branch Variable
@@ -53,9 +50,8 @@ jobs:
 
   # cleanup and cache dependencies
   cleanup:
-    executor: node
+    description: Cleanup and Save Cache
     steps:
-      - checkout
       - save_cache:
           paths:
             - node_modules
@@ -64,21 +60,37 @@ jobs:
             - /packages/*/build
           key: v1-dependencies-{{ checksum "package.json" }}
 
+jobs:
+  test:
+    executor: node
+    steps:
+      - checkout
+      - setup
+      - test
+      - cleanup
+
+  # build and deploy
+  test_and_deploy:
+    executor: node
+    steps:
+      - checkout
+      - setup
+      - test
+      - deploy
+      - cleanup
+
 workflows:
   build:
     jobs:
-      - setup
       - test:
-          requires:
-            - setup
-      - deploy:
+          filters:
+            branches:
+              ignore:
+                - staging
+                - master
+      - test_and_deploy:
           filters:
             branches:
               only:
                 - staging
                 - master
-          requires:
-            - test
-      - cleanup:
-          requires:
-            - deploy
