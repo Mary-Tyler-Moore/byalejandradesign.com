@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { graphql, StaticQuery } from 'gatsby';
+import classNames from 'classnames';
 import Img from 'gatsby-image';
 import ByAlejandra from './ByAlejandra.js';
 // sass
@@ -8,15 +9,27 @@ import './hero.sass';
 class Hero extends React.PureComponent<Props> {
   static defaultProps = {
     filter: 0,
+    fill: 'half',
   };
 
   get localFile() {
     return this.props.image.localFile;
   }
 
+  get className() {
+    const { fill } = this.props;
+
+    return classNames({
+      hero: true,
+      'hero-half': fill === 'half',
+      'hero-full': fill === 'full',
+      'hero-twoThirds': fill === 'twoThirds',
+    });
+  }
+
   render() {
     return (
-      <header className="hero">
+      <header className={this.className}>
         <div
           className="hero_imgFilter"
           style={{ opacity: this.props.filter }}

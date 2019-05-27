@@ -92,9 +92,7 @@ class CartContents extends React.PureComponent<Props> {
                       />
                       <div className="cartItem_middle">
                         <h5 className="cartItem_h5">{title(node)}</h5>
-                        <p className="body-sourceSans-2">
-                          {node.acf.description}
-                        </p>
+                        <p className="copy-2">{node.acf.description}</p>
                         <div className="cartItem_floatDown">
                           <p>
                             <strong>Quantity: </strong>
@@ -138,9 +136,7 @@ class CartContents extends React.PureComponent<Props> {
                 {dollarString(this.reduceTotal(data))}
               </p>
             ) : (
-              <p className="body-sourceSans-2">
-                Oh no you have nothing in your cart!
-              </p>
+              <p className="copy-2">Oh no you have nothing in your cart!</p>
             )}
           </React.Fragment>
         )}

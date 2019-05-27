@@ -6,7 +6,7 @@
   &_label
     margin: 0
 
-    @extend %subtitle-sourceSans-2
+    @extend %subtitle-copy-2
 
   &_input
     width: 100%
@@ -15,9 +15,13 @@
     border-radius: 0.25rem
     border: none
 
-    @extend %body-sourceSans-2
+    @extend %body-copy-2
 
     margin: 1.5rem 0
+
+    &::placeholder
+      font-style: italic
+      font-weight: 700
 
     &:focus
       outline: none

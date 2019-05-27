@@ -1,1 +1,6 @@
-.serverless/*
+packages/**/.serverless/*
+packages/**/.cache/*
+packages/**/public/*
+packages/**/flow-typed/*
+packages/**/build/*
+packages/legacy/**

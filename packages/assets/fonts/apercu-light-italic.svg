@@ -1,0 +1,183 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+<metadata>
+Created by FontForge 20170731 at Sun Oct  3 21:18:47 2010
+ By Aleksey,,,
+Copyright (c) 2009 by The Entente (AS &#38; EH). All rights reserved.
+</metadata>
+<defs>
+<font id="Apercu-LightItalic" horiz-adv-x="222" >
+  <font-face 
+    font-family="Apercu Light"
+    font-weight="300"
+    font-style="italic"
+    font-stretch="normal"
+    units-per-em="1000"
+    panose-1="2 0 5 6 4 0 0 9 0 4"
+    ascent="800"
+    descent="-200"
+    bbox="-55 -212 1050 913"
+    underline-thickness="50"
+    underline-position="-200"
+    slope="-12"
+    unicode-range="U+0020-0192"
+  />
+<missing-glyph horiz-adv-x="619" 
+d="M518 0h-417v700h417v-700zM454 58v584h-289v-584h289z" />
+    <glyph glyph-name=".notdef" horiz-adv-x="619" 
+d="M518 0h-417v700h417v-700zM454 58v584h-289v-584h289z" />
+    <glyph glyph-name=".null" horiz-adv-x="0" 
+ />
+    <glyph glyph-name="nonmarkingreturn" horiz-adv-x="333" 
+ />
+    <glyph glyph-name="CR" 
+ />
+    <glyph glyph-name="space" unicode=" " 
+ />
+    <glyph glyph-name="dotlessi" unicode="&#x131;" horiz-adv-x="259" 
+d="M34 0l97 504h63l-98 -504h-62z" />
+    <glyph glyph-name="Lslash" unicode="&#x141;" horiz-adv-x="502" 
+d="M108 342l70 358h67l-63 -321l141 70l17 -49l-170 -85l-49 -253h320l-13 -62h-386l54 278l-80 -40l-18 49z" />
+    <glyph glyph-name="lslash" unicode="&#x142;" horiz-adv-x="318" 
+d="M126 315l-86 -43l-16 49l114 58l65 329h63l-58 -295l85 43l18 -49l-116 -58l-68 -349h-63z" />
+    <glyph glyph-name="OE" unicode="&#x152;" horiz-adv-x="1043" 
+d="M635 573l25 127h390l-13 -62h-323l-45 -234h263l-12 -62h-263l-54 -280h333l-13 -62h-399l21 110l-11 -12q-102 -106 -250 -106q-106 0 -174 75q-66 75 -66 203q0 94 34 181t96 151q102 106 249 106q72 0 127.5 -35.5t84.5 -99.5zM411 646q-125 0 -209 -104
+q-42 -53 -65.5 -124.5t-23.5 -145.5q0 -103 48.5 -160.5t134.5 -57.5q126 0 210 104q89 111 89 268q0 104 -49 162t-135 58z" />
+    <glyph glyph-name="oe" unicode="&#x153;" horiz-adv-x="947" 
+d="M881 280l-5 -28h-375q-7 -22 -7 -56q0 -69 32.5 -107.5t92.5 -38.5q102 0 170 104l52 -23q-49 -76 -104 -107.5t-129 -31.5q-123 0 -165 113q-80 -113 -223 -113q-90 0 -140.5 57.5t-50.5 157.5q0 127 70 209q83 96 210 96q67 0 112.5 -32.5t64.5 -92.5q39 58 97 91.5
+t126 33.5q83 0 130.5 -49t47.5 -132q0 -21 -6 -51zM298 454q-88 0 -150 -75q-54 -66 -54 -166q0 -76 35 -119.5t102 -43.5q89 0 150 75q54 66 54 166q0 76 -35 119.5t-102 43.5zM698 454q-58 0 -105.5 -39.5t-74.5 -104.5h306q0 144 -126 144z" />
+    <glyph glyph-name="Scaron" unicode="&#x160;" horiz-adv-x="521" 
+d="M477 594l-61 -34q-27 86 -101 86q-53 0 -84.5 -33.5t-31.5 -89.5q0 -45 34 -75q32 -27 74 -50q69 -39 102 -78.5t33 -94.5q0 -105 -54 -163q-64 -70 -184 -70q-76 0 -129 54q-52 53 -52 135l60 30q0 -64 35 -111q36 -46 98 -46q73 0 115 40t42 111q0 37 -18 66
+q-11 19 -25 32.5t-26.5 21t-43.5 24.5q-63 35 -95.5 74.5t-32.5 95.5q0 85 53.5 137t141.5 52q56 0 95 -32t55 -82zM433 913h77l-164 -151h-24l-120 151h72l68 -89z" />
+    <glyph glyph-name="scaron" unicode="&#x161;" horiz-adv-x="448" 
+d="M253 512q90 0 135 -78l-49 -36q-32 56 -95 56q-37 0 -61.5 -22t-24.5 -57q0 -33 26 -54q23 -16 57 -31q115 -52 115 -135q0 -80 -46 -121.5t-129 -41.5q-71 0 -114 43t-49 97l60 28q23 -110 112 -110q44 0 71.5 24t27.5 65q0 27 -15 47q-13 19 -28 28.5t-49 24.5
+q-53 22 -78.5 51.5t-25.5 75.5q0 69 42.5 107.5t117.5 38.5zM371 717h77l-164 -151h-24l-120 151h72l68 -89z" />
+    <glyph glyph-name="Ydieresis" unicode="&#x178;" horiz-adv-x="472" 
+d="M120 0l60 304l-127 396h76l95 -331l229 331h79l-285 -396l-60 -304h-67zM181 846q0 21 14 35.5t35 14.5t35 -14.5t14 -35.5q0 -20 -14 -34t-35 -14t-35 14t-14 34zM335 846q0 21 14 35.5t34 14.5q21 0 35.5 -14.5t14.5 -35.5q0 -20 -14.5 -34t-35.5 -14q-20 0 -34 14
+t-14 34z" />
+    <glyph glyph-name="Zcaron" unicode="&#x17d;" horiz-adv-x="556" 
+d="M445 638h-333l12 62h427l-7 -32l-450 -606h350l-13 -62h-446l7 32zM442 913h77l-164 -151h-24l-120 151h72l68 -89z" />
+    <glyph glyph-name="zcaron" unicode="&#x17e;" horiz-adv-x="463" 
+d="M333 446h-244l11 58h332l-6 -34l-325 -412h259l-11 -58h-350l5 30zM378 717h77l-164 -151h-24l-120 151h72l68 -89z" />
+    <glyph glyph-name="florin" unicode="&#x192;" horiz-adv-x="434" 
+d="M224 446h-90l12 58h90l6 32q17 91 62 131.5t124 40.5q39 0 61 -13l-24 -57q-23 12 -50 12q-88 0 -109 -104l-8 -42h122l-12 -58h-122l-94 -486q-18 -92 -61.5 -132t-120.5 -40q-43 0 -65 13l24 57q24 -12 50 -12q47 0 72.5 24.5t36.5 79.5z" />
+    <hkern g1="OE"
+	g2="OE"
+	k="24" />
+    <hkern g1="OE"
+	g2="Scaron"
+	k="15" />
+    <hkern g1="OE"
+	g2="Ydieresis"
+	k="-26" />
+    <hkern g1="OE"
+	g2="oe"
+	k="38" />
+    <hkern g1="OE"
+	g2="dotlessi"
+	k="31" />
+    <hkern g1="OE"
+	g2="scaron"
+	k="53" />
+    <hkern g1="OE"
+	g2="zcaron"
+	k="13" />
+    <hkern g1="Lslash"
+	g2="OE"
+	k="42" />
+    <hkern g1="Lslash"
+	g2="Scaron"
+	k="14" />
+    <hkern g1="Lslash"
+	g2="Ydieresis"
+	k="58" />
+    <hkern g1="Lslash"
+	g2="Zcaron"
+	k="-26" />
+    <hkern g1="Lslash"
+	g2="oe"
+	k="6" />
+    <hkern g1="Scaron"
+	g2="OE"
+	k="10" />
+    <hkern g1="Scaron"
+	g2="Scaron"
+	k="12" />
+    <hkern g1="Scaron"
+	g2="Ydieresis"
+	k="5" />
+    <hkern g1="Scaron"
+	g2="Zcaron"
+	k="13" />
+    <hkern g1="Scaron"
+	g2="oe"
+	k="3" />
+    <hkern g1="Scaron"
+	g2="dotlessi"
+	k="17" />
+    <hkern g1="Scaron"
+	g2="zcaron"
+	k="3" />
+    <hkern g1="Ydieresis"
+	g2="OE"
+	k="14" />
+    <hkern g1="Ydieresis"
+	g2="Scaron"
+	k="27" />
+    <hkern g1="Ydieresis"
+	g2="Zcaron"
+	k="-7" />
+    <hkern g1="Ydieresis"
+	g2="oe"
+	k="63" />
+    <hkern g1="Ydieresis"
+	g2="scaron"
+	k="59" />
+    <hkern g1="Zcaron"
+	g2="OE"
+	k="22" />
+    <hkern g1="Zcaron"
+	g2="Ydieresis"
+	k="-16" />
+    <hkern g1="Zcaron"
+	g2="Zcaron"
+	k="3" />
+    <hkern g1="Zcaron"
+	g2="oe"
+	k="43" />
+    <hkern g1="Zcaron"
+	g2="dotlessi"
+	k="13" />
+    <hkern g1="oe"
+	g2="oe"
+	k="-2" />
+    <hkern g1="oe"
+	g2="dotlessi"
+	k="16" />
+    <hkern g1="oe"
+	g2="scaron"
+	k="7" />
+    <hkern g1="dotlessi"
+	g2="oe"
+	k="12" />
+    <hkern g1="dotlessi"
+	g2="dotlessi"
+	k="37" />
+    <hkern g1="dotlessi"
+	g2="scaron"
+	k="34" />
+    <hkern g1="dotlessi"
+	g2="zcaron"
+	k="30" />
+    <hkern g1="zcaron"
+	g2="oe"
+	k="13" />
+    <hkern g1="zcaron"
+	g2="dotlessi"
+	k="13" />
+    <hkern g1="zcaron"
+	g2="zcaron"
+	k="4" />
+  </font>
+</defs></svg>

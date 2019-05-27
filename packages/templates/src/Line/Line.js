@@ -6,7 +6,7 @@ import type { Props } from './types';
 
 const Line = ({ label, children }: Props) =>
   label && children ? (
-    <p className="body-sourceSans-2">
+    <p className="copy-2">
       <strong>{camelToTitle(label)}: </strong>
       {children}
     </p>

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
 import Helmet from 'react-helmet';
+import withSize from 'react-size-components';
 
 import Layout from '../components/Layout';
 import Head from '../components/Head';
 import Hero from '../components/Hero';
-import withSize from 'react-size-components';
 import { SingleProduct } from '../components/Product';
 
 class ShopProduct extends React.Component {
@@ -47,7 +47,7 @@ class ShopProduct extends React.Component {
           image={this.image}
         >
           <Helmet>
-            <html itemscope itemtype="http://schema.org/Product" />
+            <html itemScope itemType="http://schema.org/Product" />
             <meta property="og:type" content="article" />
             <meta property="og:price:amount" content={this.product.acf.price} />
             <meta property="og:price:currency" content="USD" />
@@ -55,12 +55,16 @@ class ShopProduct extends React.Component {
         </Head>
         <Layout
           hero={() => (
-            <Hero image={this.image} filter={0.5}>
+            <Hero image={this.image} filter={0.5} fill="half">
               {!this.props.sizes.mobile && (
                 <article className="singleCollection_headerText">
                   <h2>{this.collection.name}</h2>
                   <p>
-                    <em>"{this.collection.description}"</em>
+                    <em>
+                      {'"'}
+                      {this.collection.description}
+                      {'"'}
+                    </em>
                   </p>
                 </article>
               )}

@@ -85,7 +85,7 @@ class AddressForms extends React.PureComponent<Props, State> {
   render() {
     return (
       <React.Fragment>
-        <h4 className="h4-roboto">Shipping Address</h4>
+        <h4 className="h4-headline">Shipping Address</h4>
         <form className="addressForm_form" onSubmit={this.onSubmit}>
           <ShippingAddressForm focus={this.state.focusFields} />
           <Form.Input

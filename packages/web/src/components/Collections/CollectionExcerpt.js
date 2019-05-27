@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
 import FluidImage from '../FluidImage';
-// styles
-import './collection-excerpt.sass';
 
-/** renders a collection excerpt */
 const CollectionExcerpt = ({ node }) => (
-  <article className="collectionExcerpt">
-    <h4 className="collectionExcerpt_h4">{node.name}</h4>
+  <article style={{ width: '100%' }}>
+    <h5 className="headline" style={{ margin: 0 }}>
+      {node.name}
+    </h5>
     <FluidImage
       localFile={node.acf.image.localFile}
       to={`/shop/collection/${node.slug}`}
+      style={{ marginTop: '1rem' }}
     />
   </article>
 );

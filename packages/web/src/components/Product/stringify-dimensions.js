@@ -5,8 +5,6 @@ type Dimensions = {
   height?: string,
 };
 
-// const unitString = (dimension: string) => (dimension ? `${dimension}"` : '');
-
 const stringifyDimensions = (dimensions: Dimensions) => {
   const { length, width, height } = dimensions || {};
 

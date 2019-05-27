@@ -7,7 +7,7 @@ import type { State as AddressState } from '../components/Address/address-reduce
 import type { Actions as AddressActions } from '../components/Address/address-actions';
 
 import type { State as BraintreeState } from '../components/PaymentMethods/Braintree/braintree-reducer';
-import type { Actions as BraintreeActions } from '../components/PaymentMethods/Braintree/braintree-reducer';
+import type { Actions as BraintreeActions } from '../components/PaymentMethods/Braintree/braintree-actions';
 
 import type { State as PaymentState } from '../components/PaymentMethods/payment-methods-reducer';
 import type { Actions as PaymentActions } from '../components/PaymentMethods/payment-methods-actions';

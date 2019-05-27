@@ -38,6 +38,10 @@ module.exports = {
           label: 'Collections',
         },
         {
+          link: '/about',
+          label: 'About',
+        },
+        {
           link: '/contact',
           label: 'Contact',
         },
@@ -72,7 +76,7 @@ module.exports = {
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-plugin-sass',
-      options: { precision: 8 },
+      options: { precision: 8, sourceMap: true },
     },
     {
       resolve: 'gatsby-source-filesystem',
@@ -83,9 +87,7 @@ module.exports = {
     },
     'gatsby-transformer-remark',
     {
-      resolve: require.resolve(
-        path.resolve(__dirname, '../gatsby-source-wordpress/package.json')
-      ),
+      resolve: 'gatsby-source-wordpress',
       options: {
         // The base url to your WP site.
         baseUrl: 'api.artetexture.com',
@@ -105,7 +107,7 @@ module.exports = {
           '/wp-rest-api-log/**',
         ],
         normalizer: normalizers,
-        concurrentRequests: 25,
+        concurrentRequests: 30,
       },
     },
     {

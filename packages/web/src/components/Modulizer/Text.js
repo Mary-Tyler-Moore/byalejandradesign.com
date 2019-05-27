@@ -1,6 +1,5 @@
 import * as React from 'react';
 import ReactHtmlParser from 'react-html-parser';
-import './text.sass';
 
 const excerpter = (text) => {
   const words = text.split(' ');
@@ -10,7 +9,7 @@ const excerpter = (text) => {
 };
 
 const Text = ({ slide, excerpt }) => (
-  <section className="markdown-sourceSans">
+  <section className="parent-copy">
     {ReactHtmlParser(excerpt ? excerpter(slide.text) : slide.text)}
   </section>
 );

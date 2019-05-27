@@ -49,7 +49,7 @@ class Head extends React.Component {
         <Helmet>
           <title>{this.title}</title>
           <link
-            href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600,600i|Roboto:300,300i,600,600i"
+            href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,600,600i"
             rel="stylesheet"
           />
           <link rel="canonical" href={this.canonical} />

@@ -13,7 +13,7 @@ const Modulizer = ({ slide }) => {
     case 'WordPressAcf_text':
       return <Text slide={slide} />;
     case 'WordPressAcf_heading':
-      return <h4 className="h4-sourceSans">{slide.heading}</h4>;
+      return <h4 className="h4-text">{slide.heading}</h4>;
     case 'WordPressAcf_youtube':
       return <YouTube slide={slide} />;
     // case 'video':

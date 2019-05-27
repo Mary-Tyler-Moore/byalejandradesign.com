@@ -1,4 +1,5 @@
 /** @flow */
+/* eslint-disable jsx-a11y/iframe-has-title */
 import * as React from 'react';
 import withSize from 'react-size-components';
 // styles
