@@ -1,0 +1,12 @@
+{
+  "name": "@byalejandradesign/assets",
+  "version": "0.0.2",
+  "private": true,
+  "description": "Assets for byalejandradesign.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/njmyers/byalejandradesign.com.git"
+  },
+  "license": "ISC",
+  "author": "Nick Myers <nickmyers111@gmail.com>"
+}

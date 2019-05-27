@@ -1,0 +1,65 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+<metadata>
+Created by FontForge 20170731 at Sun Oct  3 21:18:55 2010
+ By Aleksey,,,
+Copyright (c) 2009 by The Entente (AS &#38; EH). All rights reserved.
+</metadata>
+<defs>
+<font id="Apercu-MediumItalic" horiz-adv-x="227" >
+  <font-face 
+    font-family="Apercu Medium"
+    font-weight="500"
+    font-style="italic"
+    font-stretch="normal"
+    units-per-em="1000"
+    panose-1="2 0 6 6 0 0 0 2 0 4"
+    ascent="800"
+    descent="-200"
+    bbox="-68 -212 1050 938"
+    underline-thickness="50"
+    underline-position="-200"
+    slope="-12"
+    unicode-range="U+0020-0192"
+  />
+<missing-glyph horiz-adv-x="645" 
+d="M551 0h-457v700h457v-700zM448 94v512h-251v-512h251z" />
+    <glyph glyph-name=".notdef" horiz-adv-x="645" 
+d="M551 0h-457v700h457v-700zM448 94v512h-251v-512h251z" />
+    <glyph glyph-name=".null" horiz-adv-x="0" 
+ />
+    <glyph glyph-name="nonmarkingreturn" horiz-adv-x="333" 
+ />
+    <glyph glyph-name="CR" 
+ />
+    <glyph glyph-name="space" unicode=" " 
+ />
+    <glyph glyph-name="dotlessi" unicode="&#x131;" horiz-adv-x="287" 
+d="M24 0l98 504h105l-98 -504h-105z" />
+    <glyph glyph-name="Lslash" unicode="&#x141;" horiz-adv-x="518" 
+d="M106 356l67 344h111l-55 -282l118 60l30 -81l-169 -85l-40 -208h296l-21 -104h-406l48 250l-66 -33l-30 80z" />
+    <glyph glyph-name="lslash" unicode="&#x142;" horiz-adv-x="339" 
+d="M128 386l62 322h105l-51 -265l66 33l27 -81l-113 -56l-66 -339h-105l55 282l-66 -33l-27 81z" />
+    <glyph glyph-name="OE" unicode="&#x152;" horiz-adv-x="1041" 
+d="M625 620l16 80h409l-21 -104h-298l-33 -172h239l-20 -104h-239l-42 -216h308l-21 -104h-419l11 58q-89 -66 -225 -66q-108 0 -184 74q-75 75 -75 211q0 216 142 340q103 91 256 91q124 0 196 -88zM409 604q-112 0 -186 -89q-77 -95 -77 -228q0 -91 43.5 -141t120.5 -50
+q112 0 186 89q77 95 77 228q0 91 -43.5 141t-120.5 50z" />
+    <glyph glyph-name="oe" unicode="&#x153;" horiz-adv-x="950" 
+d="M894 268l-9 -45h-363q-3 -17 -3 -33q0 -49 27.5 -77.5t80.5 -28.5q85 0 150 92l80 -42q-51 -76 -108.5 -109t-143.5 -33q-108 0 -159 82q-82 -82 -213 -82q-94 0 -151 62t-57 155q0 139 79 218q84 85 216 85q116 0 174 -93q86 93 212 93q91 0 142 -52.5t51 -140.5
+q0 -19 -5 -51zM306 420q-74 0 -123 -63q-46 -58 -46 -138q0 -63 29.5 -99t80.5 -36q73 0 123 63q46 58 46 138q0 63 -29.5 99t-80.5 36zM688 420q-50 0 -89.5 -30t-57.5 -80h251q0 51 -26 80.5t-78 29.5z" />
+    <glyph glyph-name="Scaron" unicode="&#x160;" horiz-adv-x="533" 
+d="M501 585l-97 -51q-26 74 -91 74q-38 0 -62.5 -24t-24.5 -64q0 -42 36 -71q32 -23 80 -46q68 -32 97.5 -72t29.5 -110q0 -111 -69 -169q-70 -60 -185 -60q-82 0 -140 55q-57 56 -59 140l95 53q5 -67 38.5 -105.5t87.5 -38.5q53 0 85.5 29.5t32.5 81.5q0 40 -24.5 66.5
+t-80.5 54.5q-137 68 -137 184q0 92 59.5 144t157.5 52q62 0 108 -37q47 -38 63 -86zM434 938h111l-193 -176h-30l-125 176h100l55 -76z" />
+    <glyph glyph-name="scaron" unicode="&#x161;" horiz-adv-x="458" 
+d="M263 512q50 0 89.5 -22.5t57.5 -61.5l-77 -58q-33 50 -81 50q-27 0 -43 -13.5t-16 -38.5q0 -21 16 -34.5t59 -33.5q50 -23 78 -50q37 -31 37 -90q0 -82 -49 -125t-135 -43q-81 0 -130 43q-51 44 -58 101l89 40q9 -42 35.5 -67t66.5 -25q37 0 57.5 17t20.5 49
+q0 23 -21.5 41t-67.5 38q-101 44 -101 131q0 72 46 112t127 40zM378 742h111l-193 -176h-30l-125 176h100l55 -76z" />
+    <glyph glyph-name="Ydieresis" unicode="&#x178;" horiz-adv-x="500" 
+d="M177 300l-125 400h118l81 -291l195 291h123l-281 -400l-59 -300h-111zM191 802q-18 18 -18 45t18 45t45 18t45 -18t18 -45t-18 -45t-45 -18t-45 18zM376 802q-18 18 -18 45t18 45t45 18t45 -18t18 -45t-18 -45t-45 -18t-45 18z" />
+    <glyph glyph-name="Zcaron" unicode="&#x17d;" horiz-adv-x="567" 
+d="M401 596h-300l21 104h452l-11 -54l-412 -542h324l-21 -104h-479l11 54zM445 938h111l-193 -176h-30l-125 176h100l55 -76z" />
+    <glyph glyph-name="zcaron" unicode="&#x17e;" horiz-adv-x="462" 
+d="M274 412h-202l17 92h353l-8 -42l-275 -370h221l-17 -92h-374l7 42zM367 742h111l-193 -176h-30l-125 176h100l55 -76z" />
+    <glyph glyph-name="florin" unicode="&#x192;" horiz-adv-x="437" 
+d="M199 412h-85l18 92h85l5 26q34 178 203 178q55 0 80 -18l-38 -88q-25 14 -57 14q-70 0 -83 -79l-6 -33h111l-18 -92h-111l-88 -446q-34 -178 -203 -178q-54 0 -80 18l38 88q25 -14 57 -14q67 0 83 79z" />
+  </font>
+</defs></svg>
