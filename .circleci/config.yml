@@ -22,6 +22,9 @@ jobs:
       - run:
           name: Install Local NPM Modules
           command: yarn && yarn bootstrap
+      - run:
+          name: Setup Branch Variable
+          command: echo $CIRCLE_BRANCH >> $BRANCH # Redirect MY_ENV_VAR into $BASH_ENV
       # run tests!
       # - run: yarn test
       - run:
@@ -35,3 +38,14 @@ jobs:
             - /packages/*/.cache
             - /packages/*/build
           key: v1-dependencies-{{ checksum "package.json" }}
+
+workflows:
+  version: 2.0
+  main:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - staging
+                - master
