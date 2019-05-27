@@ -22,6 +22,8 @@ jobs:
       - run:
           name: Install Local NPM Modules
           command: yarn && yarn bootstrap
+      # run tests!
+      # - run: yarn test
       - run:
           name: Build Project
           command: yarn package
@@ -33,6 +35,3 @@ jobs:
             - /packages/*/.cache
             - /packages/*/build
           key: v1-dependencies-{{ checksum "package.json" }}
-
-      # run tests!
-      # - run: yarn test
