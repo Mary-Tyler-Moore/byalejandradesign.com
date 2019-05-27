@@ -76,7 +76,7 @@ module.exports = {
     'gatsby-plugin-sharp',
     {
       resolve: 'gatsby-plugin-sass',
-      options: { precision: 8 },
+      options: { precision: 8, sourceMap: true },
     },
     {
       resolve: 'gatsby-source-filesystem',
