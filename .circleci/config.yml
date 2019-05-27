@@ -13,9 +13,8 @@ executors:
 commands:
   # install dependencies and setup
   setup:
-    description: Checkout and Install Dependencies
+    description: Install Dependencies
     steps:
-      - checkout
       # install package managers
       - run:
           name: Install Global NPM Modules
