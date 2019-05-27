@@ -20,9 +20,11 @@ class MarkdownPage extends React.Component {
       <React.Fragment>
         <Head location={this.props.location} title={this.title} />
         <Layout>
-          <h3 className="h3-text">{this.title}</h3>
+          <h4 className="headline" style={{ margin: 0 }}>
+            {this.title}
+          </h4>
           <section className="markdownPage">
-            <ReactMarkdown source={this.body} className="markdown-text" />
+            <ReactMarkdown source={this.body} className="markdown-copy" />
           </section>
         </Layout>
       </React.Fragment>
