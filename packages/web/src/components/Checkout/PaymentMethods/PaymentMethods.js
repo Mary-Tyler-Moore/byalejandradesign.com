@@ -44,7 +44,7 @@ class PaymentMethods extends React.PureComponent {
       // Preloads Braintree before loading PaymentMethods
       <Braintree>
         <section className="paymentMethods">
-          <h5 className="h5-roboto">Choose Your Payment Method</h5>
+          <h5 className="h5-headline">Choose Your Payment Method</h5>
           <section className="paymentOptions">
             {/* <PaymentOption
               label="Venmo"

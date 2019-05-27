@@ -2,8 +2,8 @@
 
 .news
   display: grid
-  grid-template-columns: repeat(2, 1fr)
-  grid-column-gap: 4rem
+  grid-template-columns: 331px 190px 1fr
+  grid-column-gap: 3rem
   grid-row-gap: 3rem
   margin: 2rem 0
 
@@ -11,7 +11,15 @@
     grid-template-columns: repeat(1, 1fr)
 
 
-.news_headline  
+  img
+    width: 100%
+    display: block
+
+  iframe
+    table
+      width: 100%
+
+.news_headline
   a
     @extend %link-reset
 

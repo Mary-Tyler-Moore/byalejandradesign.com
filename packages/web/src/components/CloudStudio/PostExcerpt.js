@@ -17,12 +17,14 @@ const PostExcerpt = ({ node }) => {
         to={`/cloud-studio/${node.slug}`}
         className="postExcerpt_image"
       />
-      <section className="postExcerpt_content">
+      <section className="parent-copy" style={{ padding: '1.5rem' }}>
         <Link
           className="postExcerpt_titleLink"
           to={`/cloud-studio/${node.slug}`}
         >
-          <h5 className="postExcerpt_title">{node.title}</h5>
+          <h6 className="headline" style={{ margin: 0 }}>
+            {node.title}
+          </h6>
         </Link>
         <Text slide={slide} excerpt />
       </section>

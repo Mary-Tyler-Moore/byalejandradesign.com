@@ -2,23 +2,26 @@ import * as React from 'react';
 import { graphql, Link } from 'gatsby';
 import Modulizer from '../Modulizer';
 import Button from '../Button';
+
 import './single-post.sass';
 
 const SinglePost = ({ node }) => {
   return (
     <article className="singlePost">
-      <h4 className="singlePost_title">{node.title}</h4>
-      <p className="singlePost_date">
+      <h4 className="headline" style={{ margin: 0 }}>
+        {node.title}
+      </h4>
+      <p className="subtitle-headline" style={{ margin: 0 }}>
         <em>
           <time>{node.date}</time>
         </em>
       </p>
-      <section className="singlePost_content">
+      <section>
         {node.acf.slides_post.map((slide) => (
           <Modulizer key={slide.id} slide={slide} />
         ))}
       </section>
-      <section className="singlePost_buttons">
+      <section>
         <Link className="link-reset" to="/cloud-studio">
           <Button className="greyButton">{`Back to Cloud Studio`}</Button>
         </Link>
@@ -47,20 +50,6 @@ export const query = graphql`
             ...FluidImageFragment
           }
         }
-        # ... on WordPressAcf_heading {
-        #   id
-        #   heading
-        # }
-        # ... on WordPressAcf_youtube {
-        #   id
-        #   video_id
-        # }
-        # ... on WordPressAcf_image {
-        #   id
-        #   singleImage: images {
-        #     ...FluidImageFragment
-        #   }
-        # }
       }
     }
   }

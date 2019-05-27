@@ -107,7 +107,9 @@ class Contact extends React.PureComponent<{}, State> {
   render() {
     return (
       <section className="contact">
-        <h3 className="contact_h3">Contact Alejandra</h3>
+        <h4 className="headline" style={{ margin: 0 }}>
+          Contact Alejandra
+        </h4>
         <form className="contactForm" onSubmit={this.onSubmit}>
           <Form.Input
             name="name"

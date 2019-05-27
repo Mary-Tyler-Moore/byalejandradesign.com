@@ -8,12 +8,7 @@ import './hero-main.sass';
 
 class HeroMain extends React.Component {
   get style() {
-    return !this.props.mobile
-      ? {
-          fontSize: '1.2rem',
-          marginBottom: 2,
-        }
-      : {};
+    return !this.props.mobile ? { fontSize: '1.2rem' } : {};
   }
 
   render() {

@@ -7,7 +7,7 @@ import Layout from '../components/Layout';
 import Head from '../components/Head';
 import Iframe from '../components/Iframe';
 
-import photo from '../assets/west-elm-pop-up.jpg';
+import renegade from '../assets/renegade.gif';
 
 import './cloud-studio.sass';
 import './index.sass';
@@ -17,29 +17,28 @@ const IndexPage = ({ data, location }) => (
     <Head location={location} />
     <Layout hero={HeroMain}>
       <section className="news_headline">
-        <h3 className="h3-roboto">News</h3>
-        <p className="body-sourceSans-1">
-          Very excited to announce that we will be at the West Elm Broadway Pop
-          Up show on May 4th from 12-5pm! I will be working with Poy T. Granati.
-          She makes the most amazing paper flowers! See more of her work{' '}
-          <a href="https://summerspace.studio/">here</a>
+        <h4 className="headline">Upcoming Events</h4>
+        <p className="copy">
+          We are very excited to announce that we will be at the Renegade Craft
+          Fair at the Brooklyn Expo Center!!! If you are in NYC stop by to see
+          our collections on June 22-23 at the Brooklyn Expo Center. Also make
+          sure you subscribe, we have more exciting news to share!
         </p>
       </section>
       <section className="news">
-        <img src={photo} style={{ width: '100%' }} />
+        <img src={renegade} />
         <Iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30269.046148227888!2d-73.97753803400416!3d40.78261995760309!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259bcde4ee591%3A0xbf1b631afb8b1875!2swest+elm!5e0!3m2!1sen!2sus!4v1554056152842!5m2!1sen!2sus"
-          width="100%"
-          height="100%"
+          src="https://libs.a2zinc.net/Common/Widgets/ExhibitorBadge.aspx?applicationid=gM+M1z2efQdG+80vAgrVYldily4MF7jwI+voQf0xjKDx/f/3oqsywXi/TjKM5ggR&CompanyID=858315&BoothID=932807&EventID=1441"
           frameBorder="0"
-          style={{ border: 0 }}
-          allowFullScreen
+          allowtransparency="true"
+          scrolling="no"
+          ratio={190 / 331}
         />
       </section>
       <CollectionList edges={data.allWordpressWpCollections.edges} />
-      <h3 className="h3-roboto" style={{ marginTop: '2rem' }}>
+      <h4 className="headline" style={{ marginTop: '2rem' }}>
         Cloud Studio
-      </h3>
+      </h4>
       <section className="postList">
         {data.allWordpressPost.edges.map(({ node }) => (
           <PostExcerpt key={node.id} node={node} />

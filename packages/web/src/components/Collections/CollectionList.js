@@ -7,9 +7,11 @@ import './collection-list.sass';
 /** Renders a list of collections */
 const CollectionList = ({ edges }) => (
   <React.Fragment>
-    <h3 className="collections_h3">Collections</h3>
+    <h4 className="headline" style={{ margin: 0 }}>
+      Collections
+    </h4>
     <section className="collections">
-      <p className="collections_description">
+      <p className="copy" style={{ marginTop: '0.5rem' }}>
         Collections are ceramic items that are grouped by technique, color and
         or material. Items in a collection are made to work easily with one
         another but feel free to mix and match if it suits your taste!

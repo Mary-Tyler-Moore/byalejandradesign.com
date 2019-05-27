@@ -20,9 +20,9 @@ class MarkdownPage extends React.Component {
       <React.Fragment>
         <Head location={this.props.location} title={this.title} />
         <Layout>
-          <h3 className="h3-sourceSans">{this.title}</h3>
+          <h3 className="h3-text">{this.title}</h3>
           <section className="markdownPage">
-            <ReactMarkdown source={this.body} className="markdown-sourceSans" />
+            <ReactMarkdown source={this.body} className="markdown-text" />
           </section>
         </Layout>
       </React.Fragment>
