@@ -26,7 +26,6 @@
     "prestage": "node scripts/fix-concurrency",
     "stage": "STAGE=staging node scripts/deploy.js",
     "package": "STAGE=staging node scripts/package.js",
-    "symlink-types": "flow-mono create-symlinks .flowconfig",
     "test": "jest"
   },
   "devDependencies": {
