@@ -5,28 +5,26 @@
 version: 2.1
 jobs:
   build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:10.13-browsers
-
     working_directory: ~/byalejandradesign.com
-
+    docker:
+      - image: circleci/node:10.13-browsers
     steps:
       - checkout
       # install package managers
       - run:
-        name: install-yarn
-        command: 'npm install -g yarn'
+          name: install yarn
+          command: npm install -g yarn
       # download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
       # install local dependencies
       - run:
-          command: |
-            yarn install
-            yarn bootstrap
-            yarn package
+          name: bootstrap
+          command: yarn && yarn bootstrap
+      - run:
+          name: build
+          command: yarn package
       # cache build, cache and node_modules
       - save_cache:
           paths:
