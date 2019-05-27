@@ -1,11 +1,19 @@
 import { stringish } from 'smalldash';
-import checkRequired from './check-required';
+import checkFields from './check-fields';
+
+const REQUIRED_FIELDS = [
+  'firstName',
+  'lastName',
+  'streetAddress1',
+  'city',
+  'countryCode',
+  'postalCode',
+  'province',
+];
 
 /** Checks for required fields in an address */
 const validateAddress = (address) => {
-  const { streetAddress2, phone, ...requiredFields } = address;
-
-  const invalidFields = checkRequired(requiredFields, stringish);
+  const invalidFields = checkFields(REQUIRED_FIELDS, address, stringish);
 
   return {
     valid: Boolean(invalidFields.length < 1),

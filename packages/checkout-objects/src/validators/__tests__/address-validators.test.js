@@ -18,13 +18,11 @@ describe('it validates our address objects and returns a response', () => {
     };
 
     expect(validateAddress(address)).toMatchObject(validResponse);
-
     expect(validateServerAddress(serverAddress)).toMatchObject(validResponse);
-
     expect(validatePaypalAddress(paypalAddress)).toMatchObject(validResponse);
   });
 
-  test('it returns the correct invalid response', () => {
+  test('it returns the correct invalid response from validateAddress', () => {
     const invalidResponse = {
       valid: false,
       fields: ['firstName'],
@@ -35,7 +33,7 @@ describe('it validates our address objects and returns a response', () => {
     expect(validateAddress(testObject)).toMatchObject(invalidResponse);
   });
 
-  test('it returns the correct invalid response', () => {
+  test('it returns the correct invalid response from validateServerAddress', () => {
     const invalidResponse = {
       valid: false,
       fields: ['firstName'],
@@ -46,14 +44,14 @@ describe('it validates our address objects and returns a response', () => {
     expect(validateServerAddress(testObject)).toMatchObject(invalidResponse);
   });
 
-  test('it returns the correct invalid response', () => {
+  test('it returns the correct invalid response from validatePaypalAddress', () => {
     const invalidResponse = {
       valid: false,
       fields: ['recipientName'],
     };
 
-    const testObject = { ...serverAddress, recipientName: '' };
+    const testObject = { ...paypalAddress, recipientName: '' };
 
-    expect(validateAddress(testObject)).toMatchObject(invalidResponse);
+    expect(validatePaypalAddress(testObject)).toMatchObject(invalidResponse);
   });
 });

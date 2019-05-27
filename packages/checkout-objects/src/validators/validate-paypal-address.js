@@ -1,10 +1,17 @@
 import { stringish } from 'smalldash';
-import checkRequired from './check-required';
+import checkFields from './check-fields';
 
-const validateServerAddress = (address) => {
-  const { extendedAddress, ...requiredFields } = address;
+const REQUIRED_FIELDS = [
+  'recipientName',
+  'line1',
+  'city',
+  'state',
+  'postalCode',
+  'countryCode',
+];
 
-  const invalidFields = checkRequired(requiredFields, stringish);
+const validatePaypalAddress = (address) => {
+  const invalidFields = checkFields(REQUIRED_FIELDS, address, stringish);
 
   return {
     valid: Boolean(invalidFields.length < 1),
@@ -12,4 +19,4 @@ const validateServerAddress = (address) => {
   };
 };
 
-export default validateServerAddress;
+export default validatePaypalAddress;
