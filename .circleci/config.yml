@@ -38,10 +38,6 @@ jobs:
   # build and deploy
   deploy:
     executor: node
-    # branches:
-    #   only:
-    #     - staging
-    #     - master
     steps:
       # export branch variable
       - run:
@@ -68,6 +64,19 @@ workflows:
   build:
     jobs:
       - setup
-      - test
-      - deploy
-      - cleanup
+      - test:
+          requires:
+            - setup
+      - deploy:
+          filters:
+            branches:
+              only:
+                - staging
+                - master
+          requires:
+            - setup
+            - test
+      - cleanup:
+          requires:
+            - test
+            - deploy
