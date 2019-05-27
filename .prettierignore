@@ -1,4 +1,5 @@
 packages/**/.serverless/*
+packages/**/node_modules
 packages/**/.cache/*
 packages/**/public/*
 packages/**/flow-typed/*
