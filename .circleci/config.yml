@@ -13,28 +13,28 @@ jobs:
 
     steps:
       - checkout
-
-      # Download and cache dependencies
+      # install package managers
+      - run:
+        name: install-yarn
+        command: 'npm install -g yarn'
+      # download and cache dependencies
       - restore_cache:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
+      # install local dependencies
       - run:
           command: |
             yarn install
             yarn bootstrap
             yarn package
-
+      # cache build, cache and node_modules
       - save_cache:
           paths:
             - node_modules
             - /packages/*/node_modules
+            - /packages/*/.cache
+            - /packages/*/build
           key: v1-dependencies-{{ checksum "package.json" }}
-
-      - build_packages:
-
 
       # run tests!
       # - run: yarn test
