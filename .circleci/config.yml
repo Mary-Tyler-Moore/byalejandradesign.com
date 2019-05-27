@@ -2,7 +2,7 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-version: 2.1
+version: 2.0
 jobs:
   build:
     working_directory: ~/byalejandradesign.com
@@ -13,7 +13,7 @@ jobs:
       # install package managers
       - run:
           name: install yarn
-          command: npm install -g yarn
+          command: sudo npm install -g yarn
       # download and cache dependencies
       - restore_cache:
           keys:
