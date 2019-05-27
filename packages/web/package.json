@@ -39,6 +39,8 @@
     "braintree-web": "^3.34.0",
     "classnames": "^2.2.6",
     "datasets-us-states-abbr-names": "^1.0.0",
+    "gatsby": "^2.0.45",
+    "gatsby-image": "^2.0.20",
     "lodash-es": "^4.17.11",
     "normalize.css": "^8.0.0",
     "parse-link-header": "^1.0.1",
@@ -60,8 +62,6 @@
   },
   "devDependencies": {
     "eslint-plugin-graphql": "^3.0.3",
-    "gatsby": "^2.0.45",
-    "gatsby-image": "^2.0.20",
     "gatsby-plugin-google-analytics": "^2.0.8",
     "gatsby-plugin-manifest": "^2.0.8",
     "gatsby-plugin-netlify": "^2.0.4",
