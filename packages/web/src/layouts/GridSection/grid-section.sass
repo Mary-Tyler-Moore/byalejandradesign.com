@@ -1,0 +1,21 @@
+@import ../../sass/global
+
+.gridSection
+  p
+    margin-top: 0.5rem
+
+  &_children
+    margin-top: 2rem
+    display: grid
+    grid-template-columns: repeat(3, 1fr)
+    grid-column-gap: 3rem
+    grid-row-gap: 2rem
+
+    +all-phone
+      grid-template-columns: repeat(1, 1fr)
+
+.gridSection + .gridSection
+  margin: 4rem 0
+
+  +all-phone
+    margin: 2rem 0
