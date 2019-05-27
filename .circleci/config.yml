@@ -12,7 +12,7 @@ jobs:
       - checkout
       # install package managers
       - run:
-          name: install yarn
+          name: Install Global NPM Modules
           command: sudo npm install -g yarn
       # download and cache dependencies
       - restore_cache:
@@ -20,10 +20,10 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
       # install local dependencies
       - run:
-          name: bootstrap
+          name: Install Local NPM Modules
           command: yarn && yarn bootstrap
       - run:
-          name: build
+          name: Build Project
           command: yarn package
       # cache build, cache and node_modules
       - save_cache:
