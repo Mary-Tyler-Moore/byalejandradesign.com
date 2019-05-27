@@ -10,4 +10,4 @@ const FILE_PATH = path.resolve(
   'gatsby-source-filesystem/create-remote-file-node.js'
 );
 
-shell.sed('-i', 'concurrent: 200', 'concurrent: 10', FILE_PATH);
+shell.sed('-i', 'concurrent: 200', 'concurrent: 20', FILE_PATH);
