@@ -1,26 +1,17 @@
 @import ../sass/global
 
 .news
-  display: grid
-  grid-template-columns: 331px 190px 1fr
-  grid-column-gap: 3rem
-  grid-row-gap: 3rem
-  margin: 2rem 0
+  .gridSection_children
+    grid-template-columns: 331px 190px 1fr
 
-  +all-phone
-    grid-template-columns: repeat(1, 1fr)
+    +all-phone
+      grid-template-columns: repeat(1, 1fr)
 
 
-  img
-    width: 100%
-    display: block
-
-  iframe
-    table
+    img
       width: 100%
+      display: block
 
-.news_headline
-  a
-    @extend %link-reset
-
-    @extend %a
+    iframe
+      table
+        width: 100%

@@ -4,12 +4,13 @@ import FluidImage from '../FluidImage';
 
 const CollectionExcerpt = ({ node }) => (
   <article style={{ width: '100%' }}>
-    <h5 className="headline" style={{ margin: 0, marginBottom: '0.5rem' }}>
+    <h5 className="headline" style={{ margin: 0 }}>
       {node.name}
     </h5>
     <FluidImage
       localFile={node.acf.image.localFile}
       to={`/shop/collection/${node.slug}`}
+      style={{ marginTop: '1rem' }}
     />
   </article>
 );

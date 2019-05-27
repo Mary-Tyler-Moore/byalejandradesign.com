@@ -25,12 +25,13 @@ const FluidImageLink = ({ children, to }) =>
   );
 
 const FluidImage = (props: FluidImageProps) => {
-  const { localFile, to, className, children } = props;
+  const { localFile, to, className, style, children } = props;
   return (
     <FluidImageLink to={to}>
       <figure
         className={`fluidImage${to && ' fluidImage_clickable'}${' ' +
           className}`}
+        style={style}
       >
         {localFile && (
           <Img
