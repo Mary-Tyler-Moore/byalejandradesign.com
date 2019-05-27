@@ -3,12 +3,17 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
 version: 2.1
+
+executors:
+  node:
+    docker:
+      - image: circleci/node:10.13-browsers
+    working_directory: ~/byalejandradesign.com
+
 jobs:
   # install dependencies and setup
   setup:
-    working_directory: ~/byalejandradesign.com
-    docker:
-      - image: circleci/node:10.13-browsers
+    executor: node
     steps:
       - checkout
       # install package managers
@@ -26,21 +31,17 @@ jobs:
 
   # run tests
   test:
-    working_directory: ~/byalejandradesign.com
-    docker:
-      - image: circleci/node:10.13-browsers
+    executor: node
     steps:
       - run: yarn test
 
   # build and deploy
   deploy:
-    working_directory: ~/byalejandradesign.com
-    docker:
-      - image: circleci/node:10.13-browsers
-    branches:
-      only:
-        - staging
-        - master
+    executor: node
+    # branches:
+    #   only:
+    #     - staging
+    #     - master
     steps:
       # export branch variable
       - run:
@@ -53,9 +54,7 @@ jobs:
 
   # cleanup and cache dependencies
   cleanup:
-    working_directory: ~/byalejandradesign.com
-    docker:
-      - image: circleci/node:10.13-browsers
+    executor: node
     steps:
       - save_cache:
           paths:
@@ -64,3 +63,11 @@ jobs:
             - /packages/*/.cache
             - /packages/*/build
           key: v1-dependencies-{{ checksum "package.json" }}
+
+workflows:
+  build:
+    jobs:
+      - setup
+      - test
+      - deploy
+      - cleanup
