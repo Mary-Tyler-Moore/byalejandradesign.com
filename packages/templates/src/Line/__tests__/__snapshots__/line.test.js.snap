@@ -2,7 +2,7 @@
 
 exports[`it works it loads line items 1`] = `
 <p
-  className="body-sourceSans-2"
+  className="copy-2"
 >
   <strong>
     Label

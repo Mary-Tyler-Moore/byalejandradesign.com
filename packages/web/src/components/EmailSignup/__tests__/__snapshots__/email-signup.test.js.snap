@@ -37,9 +37,7 @@ exports[`it works it loads without crashing 1`] = `
     }
     type="submit"
   >
-    <span
-      className="button_text-copy"
-    >
+    <span>
       Sign Up
     </span>
   </button>

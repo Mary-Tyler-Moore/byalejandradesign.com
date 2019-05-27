@@ -5,7 +5,16 @@ import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
 
-const mainNav = ['/link', '/other-link'];
+const mainNav = [
+  {
+    link: '/link',
+    label: 'Link',
+  },
+  {
+    link: '/other-link',
+    label: 'Other Link',
+  },
+];
 
 describe('it renders the footer navs', () => {
   test('it displays the desktop version', () => {

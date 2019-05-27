@@ -7,12 +7,12 @@ exports[`it works it renders a customer 1`] = `
   className="confirmation_customerSection"
 >
   <h5
-    className="h5-roboto"
+    className="headline"
   >
     Customer
   </h5>
   <p
-    className="body-sourceSans-2"
+    className="copy-2"
   >
     <strong>
       Name
@@ -21,7 +21,7 @@ exports[`it works it renders a customer 1`] = `
     Nick Myers
   </p>
   <p
-    className="body-sourceSans-2"
+    className="copy-2"
   >
     <strong>
       Email
@@ -30,7 +30,7 @@ exports[`it works it renders a customer 1`] = `
     nick@email.com
   </p>
   <p
-    className="body-sourceSans-2"
+    className="copy-2"
   >
     <strong>
       Phone
