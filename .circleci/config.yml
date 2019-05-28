@@ -38,10 +38,6 @@ commands:
   deploy:
     description: Deploy
     steps:
-      # export branch variable
-      - run:
-          name: Setup Branch Variable
-          command: echo $CIRCLE_BRANCH >> $BRANCH
       # build project
       - run:
           name: Build Project
