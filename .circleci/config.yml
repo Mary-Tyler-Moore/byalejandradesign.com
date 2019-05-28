@@ -85,11 +85,11 @@ workflows:
           filters:
             branches:
               ignore:
-                - staging
-                - master
+                # - staging
+                # - master
       - test_and_deploy:
           filters:
             branches:
               only:
-                - staging
-                - master
+                # - staging
+                # - master
