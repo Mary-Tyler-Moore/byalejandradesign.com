@@ -18,7 +18,6 @@ service: byalejandradesign-braintree
 # frameworkVersion:        "=X.X.X"
 
 plugins:
-  - serverless-plugin-monorepo
   - serverless-offline
   - serverless-domain-manager
 
