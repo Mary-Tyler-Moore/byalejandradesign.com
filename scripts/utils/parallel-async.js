@@ -1,12 +1,12 @@
 const path = require('path');
-const spawn = require('child_process').spawn;
+const { spawn } = require('child_process');
 
-const parallel = (...commands) => (...args) =>
+const parallel = (...commands) => () =>
   new Promise((res, rej) => {
     const ps = spawn(
       'node',
       [
-        path.resolve(__dirname, '../node_modules/.bin/lerna'),
+        path.resolve(__dirname, '../../node_modules/.bin/lerna'),
         ...commands,
         '--parallel',
       ],

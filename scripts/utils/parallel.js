@@ -6,7 +6,7 @@ const parallel = (...commands) =>
   spawn(
     'node',
     [
-      path.resolve(__dirname, '../node_modules/.bin/lerna'),
+      path.resolve(__dirname, '../../node_modules/.bin/lerna'),
       ...commands,
       '--parallel',
     ],
