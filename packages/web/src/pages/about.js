@@ -1,8 +1,8 @@
 import React from 'react';
-import Head from '../components/Head';
+import about from '@byalejandradesign/assets/images/about.png';
 
+import Head from '../components/Head';
 import Layout from '../components/Layout';
-import about from '../assets/about.png';
 
 import './about.sass';
 
